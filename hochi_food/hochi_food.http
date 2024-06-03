@@ -1,0 +1,6 @@
+@hochi_food_HostAddress = http://localhost:5121
+
+GET {{hochi_food_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
