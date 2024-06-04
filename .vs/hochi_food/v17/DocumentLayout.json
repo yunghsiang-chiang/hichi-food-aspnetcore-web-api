@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "hochi_food\\Controllers\\dishesController.cs",
               "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\dishesController.cs",
               "RelativeToolTip": "hochi_food\\Controllers\\dishesController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAAAJAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABMAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-03T09:14:58.148Z",
               "EditorCaption": ""
@@ -55,8 +55,7 @@
               "RelativeToolTip": "hochi_food\\Models\\foodContext.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T09:08:24.374Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-03T09:08:24.374Z"
             },
             {
               "$type": "Document",
@@ -68,8 +67,7 @@
               "RelativeToolTip": "hochi_food\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-03T09:01:50.975Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-03T09:01:50.975Z"
             },
             {
               "$type": "Document",
@@ -81,8 +79,7 @@
               "RelativeToolTip": "hochi_food\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAACBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T08:39:05.912Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-03T08:39:05.912Z"
             },
             {
               "$type": "Document",
@@ -94,8 +91,7 @@
               "RelativeToolTip": "hochi_food\\WeatherForecast.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T05:53:11.903Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-03T05:53:11.903Z"
             }
           ]
         }
