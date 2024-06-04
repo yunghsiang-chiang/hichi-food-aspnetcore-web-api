@@ -2,13 +2,16 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cors;
 
 namespace hochi_food.Controllers
 {
+    [EnableCors("corsapp")]
     [Route("api/[controller]")]
     [ApiController]
     public class dishesController : ControllerBase
     {
+
         private readonly foodContext _foodContext;   //先在全域宣告資料庫物件
 
         public dishesController(foodContext foodcontext)

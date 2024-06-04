@@ -54,4 +54,9 @@ public partial class c_dishes
     /// 介紹菜品
     /// </summary>
     public string? commentary { get; set; }
+
+    /// <summary>
+    /// 調味品
+    /// </summary>
+    public string? seasoning { get; set; }
 }
