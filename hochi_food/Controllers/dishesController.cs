@@ -30,7 +30,17 @@ namespace hochi_food.Controllers
             return _foodContext.c_dishes.FirstOrDefault(n=>n.dishes_name==dishesName);
         }
 
+        [HttpGet("get_dishes_type")]
+        public IEnumerable<c_dishes_type> get_dishes_type()
+        {
+            return _foodContext.c_dishes_type;
+        }
 
+        [HttpGet("get_cooking_method")]
+        public IEnumerable<c_cooking_method> get_cooking_method()
+        {
+            return _foodContext.c_cooking_method;
+        }
         //// GET: dishesController
         //public ActionResult Index()
         //{
