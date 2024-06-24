@@ -41,6 +41,11 @@ namespace hochi_food.Controllers
         {
             return _foodContext.c_cooking_method;
         }
+
+        [HttpGet("search_dishes_by_words/{words}")]
+        public IEnumerable<c_dishes> search_dishes_by_words(string words) { 
+            return _foodContext.c_dishes.Where(n=>n.dishes_name.Contains(words));
+        }
         //// GET: dishesController
         //public ActionResult Index()
         //{

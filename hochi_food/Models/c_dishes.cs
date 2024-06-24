@@ -48,15 +48,15 @@ public partial class c_dishes
     /// <summary>
     /// 菜品照片Urls
     /// </summary>
-    public string? dishes_image { get; set; }
+    public string dishes_image { get; set; } = null!;
 
     /// <summary>
     /// 介紹菜品
     /// </summary>
-    public string? commentary { get; set; }
+    public string commentary { get; set; } = null!;
 
     /// <summary>
     /// 調味品
     /// </summary>
-    public string? seasoning { get; set; }
+    public string seasoning { get; set; } = null!;
 }

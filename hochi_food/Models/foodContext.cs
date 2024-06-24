@@ -13,6 +13,8 @@ public partial class foodContext : DbContext
 
     public virtual DbSet<c_cooking_method> c_cooking_method { get; set; }
 
+    public virtual DbSet<c_cooking_method_old> c_cooking_method_old { get; set; }
+
     public virtual DbSet<c_dishes> c_dishes { get; set; }
 
     public virtual DbSet<c_dishes_type> c_dishes_type { get; set; }
@@ -23,13 +25,30 @@ public partial class foodContext : DbContext
     {
         modelBuilder.Entity<c_cooking_method>(entity =>
         {
-            entity.HasKey(e => new { e.cooking_method_id, e.cooking_method }).HasName("PRIMARY");
+            entity.HasKey(e => e.cooking_method_id).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("烹飪方式"));
+
+            entity.Property(e => e.cooking_method_id)
+                .HasMaxLength(10)
+                .HasComment("烹飪方式ID");
+            entity.Property(e => e.cooking_method)
+                .HasMaxLength(45)
+                .HasComment("烹飪方式");
+        });
+
+        modelBuilder.Entity<c_cooking_method_old>(entity =>
+        {
+            entity.HasKey(e => e.cooking_method_id).HasName("PRIMARY");
 
             entity.ToTable(tb => tb.HasComment("烹飪方法對照表"));
 
             entity.Property(e => e.cooking_method_id)
-                .HasMaxLength(2)
+                .HasMaxLength(10)
                 .HasComment("烹飪方式編碼");
+            entity.Property(e => e.cooking_explain)
+                .HasMaxLength(100)
+                .HasComment("烹飪方式解釋");
             entity.Property(e => e.cooking_method)
                 .HasMaxLength(45)
                 .HasComment("烹飪方式");
@@ -37,11 +56,14 @@ public partial class foodContext : DbContext
 
         modelBuilder.Entity<c_dishes>(entity =>
         {
-            entity.HasKey(e => e.dishes_id).HasName("PRIMARY");
+            entity.HasKey(e => new { e.dishes_id, e.dishes_name }).HasName("PRIMARY");
 
             entity.Property(e => e.dishes_id)
-                .HasMaxLength(10)
+                .HasMaxLength(15)
                 .HasComment("菜品編號");
+            entity.Property(e => e.dishes_name)
+                .HasMaxLength(45)
+                .HasComment("菜品名稱");
             entity.Property(e => e.commentary)
                 .HasMaxLength(150)
                 .HasComment("介紹菜品");
@@ -55,28 +77,28 @@ public partial class foodContext : DbContext
             entity.Property(e => e.dishes_image)
                 .HasMaxLength(150)
                 .HasComment("菜品照片Urls");
-            entity.Property(e => e.dishes_name)
-                .HasMaxLength(45)
-                .HasComment("菜品名稱");
             entity.Property(e => e.dishes_type)
-                .HasMaxLength(45)
+                .HasMaxLength(15)
                 .HasComment("菜品類型");
             entity.Property(e => e.material_id_items)
-                .HasMaxLength(100)
+                .HasMaxLength(150)
                 .HasComment("食材名稱 代號");
             entity.Property(e => e.material_id_names)
-                .HasMaxLength(190)
+                .HasMaxLength(150)
                 .HasComment("食材名稱 中文");
+            entity.Property(e => e.seasoning)
+                .HasMaxLength(100)
+                .HasComment("調味品");
         });
 
         modelBuilder.Entity<c_dishes_type>(entity =>
         {
-            entity.HasKey(e => new { e.dishes_type_id, e.dishes_type_name }).HasName("PRIMARY");
+            entity.HasKey(e => e.dishes_type_id).HasName("PRIMARY");
 
             entity.ToTable(tb => tb.HasComment("餐點類型資訊"));
 
             entity.Property(e => e.dishes_type_id)
-                .HasMaxLength(2)
+                .HasMaxLength(10)
                 .HasComment("餐點類型ID");
             entity.Property(e => e.dishes_type_name)
                 .HasMaxLength(45)
@@ -87,9 +109,9 @@ public partial class foodContext : DbContext
         {
             entity.HasKey(e => e.樣品編號).HasName("PRIMARY");
 
-            entity.Property(e => e.樣品編號).HasMaxLength(10);
+            entity.Property(e => e.樣品編號).HasMaxLength(20);
             entity.Property(e => e.P_M_S)
-                .HasMaxLength(20)
+                .HasColumnType("text")
                 .HasColumnName("P/M/S");
             entity.Property(e => e.α_生育酚_mg_).HasColumnName("α-生育酚(mg)");
             entity.Property(e => e.α_維生素E當量_α_TE__mg_).HasColumnName("α-維生素E當量(α-TE)(mg)");
@@ -101,7 +123,7 @@ public partial class foodContext : DbContext
             entity.Property(e => e.丙胺酸_Ala__mg_).HasColumnName("丙胺酸(Ala)(mg)");
             entity.Property(e => e.乳糖_g_).HasColumnName("乳糖(g)");
             entity.Property(e => e.亞麻油酸_18_2__mg_).HasColumnName("亞麻油酸(18:2)(mg)");
-            entity.Property(e => e.俗名).HasMaxLength(100);
+            entity.Property(e => e.俗名).HasMaxLength(70);
             entity.Property(e => e.修正熱量_kcal_).HasColumnName("修正熱量(kcal)");
             entity.Property(e => e.內容物描述).HasMaxLength(100);
             entity.Property(e => e.其他脂肪酸_mg_).HasColumnName("其他脂肪酸(mg)");
@@ -194,7 +216,7 @@ public partial class foodContext : DbContext
             entity.Property(e => e.鎂_mg_).HasColumnName("鎂(mg)");
             entity.Property(e => e.鐵_mg_).HasColumnName("鐵(mg)");
             entity.Property(e => e.離胺酸_Lys__mg_).HasColumnName("離胺酸(Lys)(mg)");
-            entity.Property(e => e.食品分類).HasMaxLength(10);
+            entity.Property(e => e.食品分類).HasMaxLength(20);
             entity.Property(e => e.飽和脂肪_g_).HasColumnName("飽和脂肪(g)");
             entity.Property(e => e.鱈烯酸_20_1__mg_).HasColumnName("鱈烯酸(20:1)(mg)");
             entity.Property(e => e.麥芽糖_g_).HasColumnName("麥芽糖(g)");

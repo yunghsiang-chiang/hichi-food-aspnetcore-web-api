@@ -16,5 +16,5 @@ public partial class c_dishes_type
     /// <summary>
     /// 餐點類型名稱
     /// </summary>
-    public string dishes_type_name { get; set; } = null!;
+    public string? dishes_type_name { get; set; }
 }
