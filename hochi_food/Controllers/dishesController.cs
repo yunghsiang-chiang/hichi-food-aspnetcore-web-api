@@ -46,6 +46,14 @@ namespace hochi_food.Controllers
         public IEnumerable<c_dishes> search_dishes_by_words(string words) { 
             return _foodContext.c_dishes.Where(n=>n.dishes_name.Contains(words));
         }
+
+        [HttpPost]
+        public void appendNewdishes([FromBody] c_dishes dishes)
+        {
+            _foodContext.Add(dishes);
+            _foodContext.SaveChanges();
+        }
+
         //// GET: dishesController
         //public ActionResult Index()
         //{
