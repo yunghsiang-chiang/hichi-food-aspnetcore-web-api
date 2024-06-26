@@ -30,6 +30,16 @@ namespace hochi_food.Controllers
             return _foodContext.c_dishes.FirstOrDefault(n=>n.dishes_name==dishesName);
         }
 
+        [HttpGet("get_dishes_id_like/{dishes_id_like}")]
+        public string get_dishes_id_like(string dishes_id_like)
+        {
+            var dishes_id_last = from row in _foodContext.c_dishes
+                                 where row.dishes_id.StartsWith(dishes_id_like)
+                                 orderby row.dishes_id
+                                 select row.dishes_id;
+            return dishes_id_last.LastOrDefault();
+        }
+
         [HttpGet("get_dishes_type")]
         public IEnumerable<c_dishes_type> get_dishes_type()
         {

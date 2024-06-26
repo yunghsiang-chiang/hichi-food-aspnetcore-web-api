@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\publish\</_PublishTargetUrl>
-    <History>True|2024-06-25T07:26:14.2062196Z||;True|2024-06-24T10:38:47.8796502+08:00||;True|2024-06-06T10:12:48.6586784+08:00||;True|2024-06-04T11:54:03.5519014+08:00||;True|2024-06-04T10:12:42.9005784+08:00||;True|2024-06-04T10:11:28.6418833+08:00||;False|2024-06-04T10:10:43.8746852+08:00||;True|2024-06-04T09:10:18.7690474+08:00||;</History>
+    <History>True|2024-06-26T02:04:09.2155418Z||;True|2024-06-25T15:26:14.2062196+08:00||;True|2024-06-24T10:38:47.8796502+08:00||;True|2024-06-06T10:12:48.6586784+08:00||;True|2024-06-04T11:54:03.5519014+08:00||;True|2024-06-04T10:12:42.9005784+08:00||;True|2024-06-04T10:11:28.6418833+08:00||;False|2024-06-04T10:10:43.8746852+08:00||;True|2024-06-04T09:10:18.7690474+08:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>
