@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Cors;
+using hochi_food.Dtos;
 
 namespace hochi_food.Controllers
 {
@@ -31,13 +32,13 @@ namespace hochi_food.Controllers
         }
 
         [HttpGet("get_dishes_id_like/{dishes_id_like}")]
-        public string get_dishes_id_like(string dishes_id_like)
+        public dishesIdDTO get_dishes_id_like(string dishes_id_like)
         {
-            var dishes_id_last = from row in _foodContext.c_dishes
+            var dishes_id_last = (from row in _foodContext.c_dishes
                                  where row.dishes_id.StartsWith(dishes_id_like)
                                  orderby row.dishes_id
-                                 select row.dishes_id;
-            return dishes_id_last.LastOrDefault();
+                                 select new dishesIdDTO { dishes_id= row.dishes_id }).LastOrDefault();
+            return dishes_id_last;
         }
 
         [HttpGet("get_dishes_type")]
@@ -57,7 +58,7 @@ namespace hochi_food.Controllers
             return _foodContext.c_dishes.Where(n=>n.dishes_name.Contains(words));
         }
 
-        [HttpPost]
+        [HttpPost("appendNewdishes")]
         public void appendNewdishes([FromBody] c_dishes dishes)
         {
             _foodContext.Add(dishes);
