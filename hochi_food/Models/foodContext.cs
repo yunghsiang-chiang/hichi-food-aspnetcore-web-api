@@ -21,6 +21,10 @@ public partial class foodContext : DbContext
 
     public virtual DbSet<c_food_nutrition> c_food_nutrition { get; set; }
 
+    public virtual DbSet<c_ingredients_unit> c_ingredients_unit { get; set; }
+
+    public virtual DbSet<c_seasoning> c_seasoning { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<c_cooking_method>(entity =>
@@ -221,6 +225,32 @@ public partial class foodContext : DbContext
             entity.Property(e => e.鱈烯酸_20_1__mg_).HasColumnName("鱈烯酸(20:1)(mg)");
             entity.Property(e => e.麥芽糖_g_).HasColumnName("麥芽糖(g)");
             entity.Property(e => e.麩胺酸_Glu__mg_).HasColumnName("麩胺酸(Glu)(mg)");
+        });
+
+        modelBuilder.Entity<c_ingredients_unit>(entity =>
+        {
+            entity.HasKey(e => e.unit_chinese).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("食材單位表"));
+
+            entity.Property(e => e.unit_chinese)
+                .HasMaxLength(10)
+                .HasComment("單位中文稱呼");
+        });
+
+        modelBuilder.Entity<c_seasoning>(entity =>
+        {
+            entity.HasKey(e => e.seasoning_id).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("調味料"));
+
+            entity.Property(e => e.seasoning_id)
+                .HasMaxLength(2)
+                .HasComment("調味料ID");
+            entity.Property(e => e.seasoning_description).HasMaxLength(45);
+            entity.Property(e => e.seasoning_name)
+                .HasMaxLength(45)
+                .HasComment("調味料名稱");
         });
 
         OnModelCreatingPartial(modelBuilder);
