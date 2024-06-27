@@ -39,6 +39,9 @@ public partial class foodContext : DbContext
             entity.Property(e => e.cooking_method)
                 .HasMaxLength(45)
                 .HasComment("烹飪方式");
+            entity.Property(e => e.method_description)
+                .HasMaxLength(45)
+                .HasComment("烹飪說明");
         });
 
         modelBuilder.Entity<c_cooking_method_old>(entity =>

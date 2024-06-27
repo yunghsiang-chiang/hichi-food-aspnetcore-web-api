@@ -17,4 +17,9 @@ public partial class c_cooking_method
     /// 烹飪方式
     /// </summary>
     public string cooking_method { get; set; } = null!;
+
+    /// <summary>
+    /// 烹飪說明
+    /// </summary>
+    public string? method_description { get; set; }
 }
