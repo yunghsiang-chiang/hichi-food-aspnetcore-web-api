@@ -232,13 +232,22 @@ public partial class foodContext : DbContext
 
         modelBuilder.Entity<c_ingredients_unit>(entity =>
         {
-            entity.HasKey(e => e.unit_chinese).HasName("PRIMARY");
+            entity.HasKey(e => new { e.unit_chinese, e.unit_english }).HasName("PRIMARY");
 
             entity.ToTable(tb => tb.HasComment("食材單位表"));
 
             entity.Property(e => e.unit_chinese)
                 .HasMaxLength(10)
                 .HasComment("單位中文稱呼");
+            entity.Property(e => e.unit_english)
+                .HasMaxLength(10)
+                .HasComment("單位英文稱呼");
+            entity.Property(e => e.unit_description)
+                .HasMaxLength(45)
+                .HasComment("單位說明");
+            entity.Property(e => e.unit_type)
+                .HasMaxLength(45)
+                .HasComment("單位類型");
         });
 
         modelBuilder.Entity<c_seasoning>(entity =>
