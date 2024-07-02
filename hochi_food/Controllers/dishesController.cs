@@ -25,6 +25,13 @@ namespace hochi_food.Controllers
         {
             return _foodContext.c_dishes;
         }
+
+        [HttpGet("get_fruits")]
+        public IEnumerable<c_fruits> get_fruits()
+        {
+            return _foodContext.c_fruits;
+        }
+
         /// <summary>
         /// 取得食材單位
         /// </summary>
@@ -34,6 +41,9 @@ namespace hochi_food.Controllers
         {
             return _foodContext.c_ingredients_unit;
         }
+
+
+
         /// <summary>
         /// 菜色名稱 查詢 對應資訊
         /// 非模糊查詢
@@ -119,6 +129,17 @@ namespace hochi_food.Controllers
         public IEnumerable<c_dishes> search_dishes_by_words(string words) { 
             return _foodContext.c_dishes.Where(n=>n.dishes_name.Contains(words));
         }
+        /// <summary>
+        /// 使用關鍵字 查詢 菜色資訊
+        /// </summary>
+        /// <param name="material"></param>
+        /// <returns></returns>
+        [HttpGet("search_dishes_by_material/{material}")]
+        public IEnumerable<c_dishes> search_dishes_by_material(string material)
+        {
+            return _foodContext.c_dishes.Where(n => n.material_id_names.Contains(material));
+        }
+
         /// <summary>
         /// 新增菜色資料
         /// </summary>

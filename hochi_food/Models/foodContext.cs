@@ -21,7 +21,11 @@ public partial class foodContext : DbContext
 
     public virtual DbSet<c_food_nutrition> c_food_nutrition { get; set; }
 
+    public virtual DbSet<c_fruits> c_fruits { get; set; }
+
     public virtual DbSet<c_ingredients_unit> c_ingredients_unit { get; set; }
+
+    public virtual DbSet<c_meal_type> c_meal_type { get; set; }
 
     public virtual DbSet<c_seasoning> c_seasoning { get; set; }
 
@@ -230,6 +234,14 @@ public partial class foodContext : DbContext
             entity.Property(e => e.麩胺酸_Glu__mg_).HasColumnName("麩胺酸(Glu)(mg)");
         });
 
+        modelBuilder.Entity<c_fruits>(entity =>
+        {
+            entity.HasKey(e => e.fruits_chinese).HasName("PRIMARY");
+
+            entity.Property(e => e.fruits_chinese).HasMaxLength(5);
+            entity.Property(e => e.fruits_english).HasMaxLength(20);
+        });
+
         modelBuilder.Entity<c_ingredients_unit>(entity =>
         {
             entity.HasKey(e => new { e.unit_chinese, e.unit_english }).HasName("PRIMARY");
@@ -248,6 +260,17 @@ public partial class foodContext : DbContext
             entity.Property(e => e.unit_type)
                 .HasMaxLength(45)
                 .HasComment("單位類型");
+        });
+
+        modelBuilder.Entity<c_meal_type>(entity =>
+        {
+            entity.HasKey(e => e.meal_type).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("餐別"));
+
+            entity.Property(e => e.meal_type)
+                .HasMaxLength(10)
+                .HasComment("餐別");
         });
 
         modelBuilder.Entity<c_seasoning>(entity =>
