@@ -26,6 +26,42 @@ namespace hochi_food.Controllers
             return _foodContext.c_dishes;
         }
 
+        /// <summary>
+        /// 取得活動歷史資料 by 活動天數
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("get_h_activity_records_byday/{activity_days}")]
+        public IEnumerable<h_activity_records> get_h_activity_records_byday(int activity_days)
+        {
+            return _foodContext.h_activity_records.Where(x=>x.activity_days== activity_days);
+        }
+
+        /// <summary>
+        /// 取得活動歷史資料 by 活動名稱
+        /// </summary>
+        /// <param name="activity_name"></param>
+        /// <returns></returns>
+        [HttpGet("get_h_activity_records_byname/{activity_name}")]
+        public IEnumerable<h_activity_records> get_h_activity_records_byname(string activity_name)
+        {
+            return _foodContext.h_activity_records.Where(x=>x.activity_name== activity_name);
+        }
+
+        /// <summary>
+        /// 取得活動歷史資料 by 餐別
+        /// </summary>
+        /// <param name="mealtype"></param>
+        /// <returns></returns>
+        [HttpGet("get_h_activity_records_bymealtype/{meal_type}")]
+        public IEnumerable<h_activity_records> get_h_activity_records_bymealtype(string mealtype) 
+        {
+            return _foodContext.h_activity_records.Where(x=>x.meal_type== mealtype);
+        }
+
+        /// <summary>
+        /// 取得水果
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("get_fruits")]
         public IEnumerable<c_fruits> get_fruits()
         {
@@ -42,8 +78,6 @@ namespace hochi_food.Controllers
             return _foodContext.c_ingredients_unit;
         }
 
-
-
         /// <summary>
         /// 菜色名稱 查詢 對應資訊
         /// 非模糊查詢
@@ -55,6 +89,7 @@ namespace hochi_food.Controllers
         {
             return _foodContext.c_dishes.FirstOrDefault(n=>n.dishes_name==dishesName);
         }
+
         /// <summary>
         /// 菜色ID查詢
         /// 前四碼 關鍵字 查詢
@@ -70,6 +105,7 @@ namespace hochi_food.Controllers
                                  select new dishesIdDTO { dishes_id= row.dishes_id }).LastOrDefault();
             return dishes_id_last;
         }
+
         /// <summary>
         /// 取得食材資訊
         /// </summary>
@@ -81,6 +117,7 @@ namespace hochi_food.Controllers
                                       select new nutritionDTO { 樣品編號 = row.樣品編號, 樣品名稱 = row.樣品名稱 };
             return food_nutrition_linq;
         }
+
         /// <summary>
         /// 取得菜色名稱與類型
         /// </summary>
@@ -102,6 +139,7 @@ namespace hochi_food.Controllers
         {
             return _foodContext.c_dishes_type;
         }
+
         /// <summary>
         /// 取得菜色烹飪資訊
         /// </summary>
@@ -111,6 +149,7 @@ namespace hochi_food.Controllers
         {
             return _foodContext.c_cooking_method;
         }
+
         /// <summary>
         /// 取得調味資訊
         /// </summary>
@@ -120,6 +159,7 @@ namespace hochi_food.Controllers
         {
             return _foodContext.c_seasoning;
         }
+
         /// <summary>
         /// 使用關鍵字 查詢 菜色資訊
         /// </summary>
@@ -129,6 +169,7 @@ namespace hochi_food.Controllers
         public IEnumerable<c_dishes> search_dishes_by_words(string words) { 
             return _foodContext.c_dishes.Where(n=>n.dishes_name.Contains(words));
         }
+
         /// <summary>
         /// 使用關鍵字 查詢 菜色資訊
         /// </summary>

@@ -29,6 +29,8 @@ public partial class foodContext : DbContext
 
     public virtual DbSet<c_seasoning> c_seasoning { get; set; }
 
+    public virtual DbSet<h_activity_records> h_activity_records { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<c_cooking_method>(entity =>
@@ -286,6 +288,35 @@ public partial class foodContext : DbContext
             entity.Property(e => e.seasoning_name)
                 .HasMaxLength(45)
                 .HasComment("調味料名稱");
+        });
+
+        modelBuilder.Entity<h_activity_records>(entity =>
+        {
+            entity.HasKey(e => new { e.activity_name, e.activity_date, e.meal_type }).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("歷史活動紀錄"));
+
+            entity.Property(e => e.activity_name)
+                .HasMaxLength(15)
+                .HasComment("活動名稱");
+            entity.Property(e => e.activity_date)
+                .HasComment("活動日期")
+                .HasColumnType("date");
+            entity.Property(e => e.meal_type)
+                .HasMaxLength(45)
+                .HasComment("餐別");
+            entity.Property(e => e.activity_days)
+                .HasDefaultValueSql("'1'")
+                .HasComment("活動天數");
+            entity.Property(e => e.dishes_id_str)
+                .HasMaxLength(70)
+                .HasComment("菜色清單");
+            entity.Property(e => e.during_the_activity)
+                .HasMaxLength(45)
+                .HasComment("活動期間");
+            entity.Property(e => e.lm_user)
+                .HasMaxLength(15)
+                .HasComment("最後編輯者");
         });
 
         OnModelCreatingPartial(modelBuilder);
