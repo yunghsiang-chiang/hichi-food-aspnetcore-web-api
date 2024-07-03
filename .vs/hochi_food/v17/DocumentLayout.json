@@ -5,6 +5,18 @@
     {
       "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\controllers\\dishescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\controllers\\dishescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\dtos\\activity_searchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\dtos\\activity_searchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +26,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "activity_searchDTO.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Dtos\\activity_searchDTO.cs",
+              "RelativeDocumentMoniker": "hochi_food\\Dtos\\activity_searchDTO.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Dtos\\activity_searchDTO.cs",
+              "RelativeToolTip": "hochi_food\\Dtos\\activity_searchDTO.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAADwvyAAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T09:48:11.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\appsettings.json",
+              "RelativeDocumentMoniker": "hochi_food\\appsettings.json",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\appsettings.json",
+              "RelativeToolTip": "hochi_food\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-03T09:16:07.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Program.cs",
+              "RelativeDocumentMoniker": "hochi_food\\Program.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Program.cs",
+              "RelativeToolTip": "hochi_food\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T09:15:06.997Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +75,7 @@
               "RelativeDocumentMoniker": "hochi_food\\Controllers\\dishesController.cs",
               "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\dishesController.cs",
               "RelativeToolTip": "hochi_food\\Controllers\\dishesController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4BAAAAAAAA",
+              "ViewState": "AQIAADIAAAAAAAAAAAAgwEoAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-02T07:41:01.577Z",
               "EditorCaption": ""

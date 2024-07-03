@@ -27,6 +27,18 @@ namespace hochi_food.Controllers
         }
 
         /// <summary>
+        /// 活動名稱 Distinct
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("get_activity_name")]
+        public IEnumerable<activity_nameDTO> get_activity_name()
+        {
+            var activity_name_linq = (from row in _foodContext.h_activity_records
+                                     select new activity_nameDTO { activity_name=row.activity_name }).Distinct();
+            return activity_name_linq;
+        }
+
+        /// <summary>
         /// 取得活動歷史資料 by 活動天數
         /// </summary>
         /// <returns></returns>
@@ -44,7 +56,7 @@ namespace hochi_food.Controllers
         [HttpGet("get_h_activity_records_byname/{activity_name}")]
         public IEnumerable<h_activity_records> get_h_activity_records_byname(string activity_name)
         {
-            return _foodContext.h_activity_records.Where(x=>x.activity_name== activity_name);
+            return _foodContext.h_activity_records.Where(x=>x.activity_name == activity_name);
         }
 
         /// <summary>
@@ -53,9 +65,43 @@ namespace hochi_food.Controllers
         /// <param name="mealtype"></param>
         /// <returns></returns>
         [HttpGet("get_h_activity_records_bymealtype/{meal_type}")]
-        public IEnumerable<h_activity_records> get_h_activity_records_bymealtype(string mealtype) 
+        public IEnumerable<h_activity_records> get_h_activity_records_bymealtype(string meal_type) 
         {
-            return _foodContext.h_activity_records.Where(x=>x.meal_type== mealtype);
+            return _foodContext.h_activity_records.Where(x=>x.meal_type == meal_type);
+        }
+
+        /// <summary>
+        /// 取得活動歷史資料 by名稱/餐別/活動天數
+        /// </summary>
+        /// <param name="activity_name"></param>
+        /// <param name="meal_type"></param>
+        /// <param name="activity_days"></param>
+        /// <returns></returns>
+        [HttpGet("get_h_activity_records_search")]
+        public IEnumerable<activity_searchDTO> get_h_activity_records_search(string activity_name, string meal_type, string activity_days) 
+        {
+            var result = from row in _foodContext.h_activity_records
+                         select new activity_searchDTO  { activity_name=row.activity_name,
+                             activity_date=row.activity_date,
+                             meal_type=row.meal_type,
+                             activity_days=row.activity_days,
+                             during_the_activity=row.during_the_activity,
+                             lm_user=row.lm_user
+                         };
+            if (activity_name != "default")
+            {
+                result.Where(x => x.activity_name == activity_name);
+            }
+            if (meal_type != "default")
+            {
+                result.Where(x => x.meal_type == meal_type);
+            }
+            if (activity_days != "default")
+            {
+                result.Where(x => x.activity_days == Convert.ToInt16(activity_days));
+            }
+            return result;
+
         }
 
         /// <summary>
@@ -179,6 +225,12 @@ namespace hochi_food.Controllers
         public IEnumerable<c_dishes> search_dishes_by_material(string material)
         {
             return _foodContext.c_dishes.Where(n => n.material_id_names.Contains(material));
+        }
+
+        [HttpGet("search_dishes_by_wordsAndMaterial/{words}/{material}")]
+        public IEnumerable<c_dishes> search_dishes_by_wordsAndMaterial(string words, string material) 
+        {
+            return _foodContext.c_dishes.Where(x=>x.dishes_name.Contains(words) && x.material_id_names.Contains(material));
         }
 
         /// <summary>
