@@ -309,7 +309,7 @@ public partial class foodContext : DbContext
                 .HasDefaultValueSql("'1'")
                 .HasComment("活動天數");
             entity.Property(e => e.dishes_id_str)
-                .HasMaxLength(70)
+                .HasMaxLength(100)
                 .HasComment("菜色清單");
             entity.Property(e => e.during_the_activity)
                 .HasMaxLength(45)

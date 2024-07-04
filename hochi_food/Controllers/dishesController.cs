@@ -71,14 +71,14 @@ namespace hochi_food.Controllers
         }
 
         /// <summary>
-        /// 取得活動歷史資料 by名稱/餐別/活動天數
+        /// 取得活動歷史資料 by名稱/餐別/活動天數/活動起始日/活動結束日
         /// </summary>
         /// <param name="activity_name"></param>
         /// <param name="meal_type"></param>
         /// <param name="activity_days"></param>
         /// <returns></returns>
         [HttpGet("get_h_activity_records_search")]
-        public IEnumerable<activity_searchDTO> get_h_activity_records_search(string activity_name, string meal_type, string activity_days) 
+        public IEnumerable<activity_searchDTO> get_h_activity_records_search(string activity_name, string meal_type, string activity_days,DateTime?activity_start,DateTime?activity_end) 
         {
             var result = from row in _foodContext.h_activity_records
                          select new activity_searchDTO  { activity_name=row.activity_name,
@@ -90,16 +90,25 @@ namespace hochi_food.Controllers
                          };
             if (activity_name != "default")
             {
-                result.Where(x => x.activity_name == activity_name);
+                result=result.Where(x => x.activity_name == activity_name);
             }
             if (meal_type != "default")
             {
-                result.Where(x => x.meal_type == meal_type);
+                result=result.Where(x => x.meal_type == meal_type);
             }
             if (activity_days != "default")
             {
-                result.Where(x => x.activity_days == Convert.ToInt16(activity_days));
+                result=result.Where(x => x.activity_days == Convert.ToInt16(activity_days));
             }
+            if(activity_start != null)
+            {
+                result=result.Where(x=>x.activity_date >= Convert.ToDateTime(activity_start));
+            }
+            if (activity_end != null)
+            {
+                result=result.Where(x=>x.activity_date <= Convert.ToDateTime(activity_end));
+            }
+
             return result;
 
         }

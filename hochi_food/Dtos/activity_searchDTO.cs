@@ -31,5 +31,6 @@
         /// 最後編輯者
         /// </summary>
         public string? lm_user { get; set; }
+
     }
 }
