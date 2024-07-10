@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Cors;
 using hochi_food.Dtos;
+using Microsoft.IdentityModel.Tokens;
+using System.Data;
 
 namespace hochi_food.Controllers
 {
@@ -111,6 +113,62 @@ namespace hochi_food.Controllers
 
             return result;
 
+        }
+
+        /// <summary>
+        /// 取得菜單資訊
+        /// </summary>
+        /// <param name="activity_name"></param>
+        /// <param name="meal_type"></param>
+        /// <param name="activity_days"></param>
+        /// <returns></returns>
+        [HttpGet("get_activity_dishes")]
+        public IEnumerable<activity_dishesDTO> get_activity_dishes(string activity_name, string meal_type, string activity_date)
+        {
+            var data1 = from rowA in _foodContext.h_activity_records
+                        where rowA.activity_name == activity_name && rowA.meal_type == meal_type && rowA.activity_date == Convert.ToDateTime(activity_date)
+                        select rowA.dishes_id_str;
+            try
+            {
+                if (!String.IsNullOrEmpty(data1.ElementAt(0).ToString()))
+                {
+                    string[] temp_array = data1.ElementAt(0).Split(',');
+                    DataTable resultdt = new DataTable();
+                    resultdt.Columns.Add("activity_name");
+                    resultdt.Columns.Add("activity_date");
+                    resultdt.Columns.Add("meal_type");
+                    resultdt.Columns.Add("dishes_id");
+                    for (int i = 0; i < temp_array.Count(); i++)
+                    {
+                        DataRow dataRow = resultdt.NewRow();
+                        dataRow["activity_name"] = activity_name;
+                        dataRow["activity_date"] = activity_date;
+                        dataRow["meal_type"] = meal_type;
+                        dataRow["dishes_id"] = temp_array[i];
+                        resultdt.Rows.Add(dataRow);
+                    }
+                    var temp_linq = from row in resultdt.AsEnumerable()
+                                    select new { activity_name = row.Field<string>("activity_name"), activity_date = row.Field<string>("activity_date"), meal_type = row.Field<string>("meal_type"), dishes_id = row.Field<string>("dishes_id") };
+                    var dishes_linq = from row in _foodContext.c_dishes.AsEnumerable()
+                                      select new { row.dishes_id, row.dishes_name, row.dishes_type };
+                    var resultlinq = from rowA in temp_linq
+                                     join rowB in dishes_linq
+                                      on rowA.dishes_id equals rowB.dishes_id
+                                     select new activity_dishesDTO { activity_name = rowA.activity_name, activity_date = rowA.activity_date, meal_type = rowA.meal_type, dishes_id = rowA.dishes_id, dishes_name = rowB.dishes_name, dishes_type = rowB.dishes_type };
+
+                    return resultlinq;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+            
         }
 
         /// <summary>
