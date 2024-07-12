@@ -42,5 +42,4 @@ public partial class h_activity_records
     /// 菜色清單
     /// </summary>
     public string? dishes_id_str { get; set; }
-
 }
