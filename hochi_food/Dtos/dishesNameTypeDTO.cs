@@ -3,6 +3,10 @@
     public class dishesNameTypeDTO
     {
         /// <summary>
+        /// 菜品編號
+        /// </summary>
+        public string dishes_id { get; set; } = null!;
+        /// <summary>
         /// 菜品名稱
         /// </summary>
         public string dishes_name { get; set; } = null!;

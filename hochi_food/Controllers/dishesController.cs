@@ -232,14 +232,14 @@ namespace hochi_food.Controllers
         }
 
         /// <summary>
-        /// 取得菜色名稱與類型
+        /// 取得菜色ID、名稱與類型
         /// </summary>
         /// <returns></returns>
         [HttpGet("get_dishes_type_name")]
         public IEnumerable<dishesNameTypeDTO> get_dishes_type_name()
         {
             var get_dishes_type_name_linq = from row in _foodContext.c_dishes
-                                            select new dishesNameTypeDTO { dishes_name = row.dishes_name, dishes_type = row.dishes_type };
+                                            select new dishesNameTypeDTO { dishes_id=row.dishes_id, dishes_name = row.dishes_name, dishes_type = row.dishes_type };
             return get_dishes_type_name_linq;
         }
 
