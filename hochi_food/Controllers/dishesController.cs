@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cors;
 using hochi_food.Dtos;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
+using Microsoft.Identity.Client;
 
 namespace hochi_food.Controllers
 {
@@ -90,6 +91,7 @@ namespace hochi_food.Controllers
                              during_the_activity=row.during_the_activity,
                              lm_user=row.lm_user
                          };
+
             if (activity_name != "default")
             {
                 result=result.Where(x => x.activity_name == activity_name);
@@ -117,6 +119,23 @@ namespace hochi_food.Controllers
 
         /// <summary>
         /// 取得菜單資訊
+        /// HID 
+        /// DB Web api & DB connect   課程ID + 問卷ID
+        /// 
+        /// 1.問卷成立 
+        /// 上傳 成功  get HID  &  慈場DB 
+        /// 
+        /// 方案1
+        /// EDU後台 課程&問卷 setting => send 桃園慈場DB post
+        /// 
+        /// 方案2
+        /// get web api 
+        /// args  問卷ID +問卷 Title 
+        ///     課程 1 2 3 4 5  ...  問卷 課程1 2 . 
+        /// 
+        /// 
+        /// 2.回收答案
+        /// 
         /// </summary>
         /// <param name="activity_name"></param>
         /// <param name="meal_type"></param>
@@ -310,6 +329,19 @@ namespace hochi_food.Controllers
             _foodContext.Add(dishes);
             _foodContext.SaveChanges();
         }
+
+        /// <summary>
+        /// 新增歷史菜單資料c
+        /// </summary>
+        /// <param name="activity_records"></param>
+        [HttpPost("appendActivity_records")]
+        public void appendActivity_records([FromBody] h_activity_records activity_records)
+        {
+            _foodContext.Add(activity_records);
+            _foodContext.SaveChanges();
+        }
+
+
 
         //// GET: dishesController
         //public ActionResult Index()
