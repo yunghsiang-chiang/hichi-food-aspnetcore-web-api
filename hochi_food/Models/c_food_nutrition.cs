@@ -9,7 +9,7 @@ public partial class c_food_nutrition
 
     public string 食品分類 { get; set; } = null!;
 
-    public string? 樣品名稱 { get; set; }
+    public string 樣品名稱 { get; set; } = null!;
 
     public string? 俗名 { get; set; }
 

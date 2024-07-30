@@ -251,6 +251,32 @@ namespace hochi_food.Controllers
         }
 
         /// <summary>
+        /// 取的食材基本欄位
+        /// </summary>
+        /// <param name="food_classification"></param>
+        /// <returns></returns>
+        [HttpGet("get_food_nutrition_simple_field")]
+        public IEnumerable<food_nutrition_simple_fieldDTO> get_food_nutrition_simple_field(string food_classification)
+        {
+            var food_nutrition_linq = from row in _foodContext.c_food_nutrition
+                                      where row.食品分類 == food_classification
+                                      select new food_nutrition_simple_fieldDTO { 樣品編號 = row.樣品編號, 食品分類 = row.食品分類, 樣品名稱=row.樣品名稱, 俗名=row.俗名, 內容物描述=row.內容物描述 };
+            return food_nutrition_linq;
+        }
+
+        /// <summary>
+        /// 取得食材類型
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("get_food_nutrition_category")]
+        public IEnumerable<food_nutrition_categoryDTO> get_food_nutrition_category()
+        {
+            var food_nutrition_category_linq = (from row in _foodContext.c_food_nutrition
+                                               select new food_nutrition_categoryDTO { 食品分類=row.食品分類 }).Distinct();
+            return food_nutrition_category_linq;
+        }
+
+        /// <summary>
         /// 取得菜色ID、名稱與類型
         /// </summary>
         /// <returns></returns>

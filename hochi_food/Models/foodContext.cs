@@ -69,14 +69,11 @@ public partial class foodContext : DbContext
 
         modelBuilder.Entity<c_dishes>(entity =>
         {
-            entity.HasKey(e => new { e.dishes_id, e.dishes_name }).HasName("PRIMARY");
+            entity.HasKey(e => e.dishes_id).HasName("PRIMARY");
 
             entity.Property(e => e.dishes_id)
                 .HasMaxLength(15)
                 .HasComment("菜品編號");
-            entity.Property(e => e.dishes_name)
-                .HasMaxLength(45)
-                .HasComment("菜品名稱");
             entity.Property(e => e.commentary)
                 .HasMaxLength(150)
                 .HasComment("介紹菜品");
@@ -90,6 +87,9 @@ public partial class foodContext : DbContext
             entity.Property(e => e.dishes_image)
                 .HasMaxLength(150)
                 .HasComment("菜品照片Urls");
+            entity.Property(e => e.dishes_name)
+                .HasMaxLength(45)
+                .HasComment("菜品名稱");
             entity.Property(e => e.dishes_type)
                 .HasMaxLength(15)
                 .HasComment("菜品類型");
