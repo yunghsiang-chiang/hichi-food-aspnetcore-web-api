@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\controllers\\dishescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\dtos\\food_nutrition_simple_fielddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\dtos\\food_nutrition_simple_fielddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\dtos\\ingredients_unitdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\dtos\\ingredients_unitdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "food_nutrition_simple_fieldDTO.cs",
-              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Dtos\\food_nutrition_simple_fieldDTO.cs",
-              "RelativeDocumentMoniker": "hochi_food\\Dtos\\food_nutrition_simple_fieldDTO.cs",
-              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Dtos\\food_nutrition_simple_fieldDTO.cs",
-              "RelativeToolTip": "hochi_food\\Dtos\\food_nutrition_simple_fieldDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAcAAAA",
+              "Title": "ingredients_unitDTO.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Dtos\\ingredients_unitDTO.cs",
+              "RelativeDocumentMoniker": "hochi_food\\Dtos\\ingredients_unitDTO.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Dtos\\ingredients_unitDTO.cs",
+              "RelativeToolTip": "hochi_food\\Dtos\\ingredients_unitDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T07:34:01.17Z",
+              "WhenOpened": "2024-08-02T08:34:22.745Z",
               "EditorCaption": ""
             },
             {
@@ -41,7 +41,7 @@
               "RelativeDocumentMoniker": "hochi_food\\Controllers\\dishesController.cs",
               "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\dishesController.cs",
               "RelativeToolTip": "hochi_food\\Controllers\\dishesController.cs",
-              "ViewState": "AQIAAMkAAAAAAAAAAAAAAP0AAAAUAAAA",
+              "ViewState": "AQIAALQAAAAAAAAAAAAwwM8AAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T01:41:45.568Z",
               "EditorCaption": ""

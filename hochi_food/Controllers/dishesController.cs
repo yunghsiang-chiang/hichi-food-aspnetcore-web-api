@@ -205,9 +205,12 @@ namespace hochi_food.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("get_ingredients_unit")]
-        public IEnumerable<c_ingredients_unit> get_ingredients_unit()
+        public IEnumerable<ingredients_unitDTO> get_ingredients_unit()
         {
-            return _foodContext.c_ingredients_unit;
+            var temp_linq = from row in _foodContext.c_ingredients_unit
+                            orderby row.unit_type
+                            select new ingredients_unitDTO { unit_chinese =row.unit_chinese , unit_english =row.unit_english , unit_type =row.unit_type , unit_description =row.unit_description };
+            return temp_linq;
         }
 
         /// <summary>
