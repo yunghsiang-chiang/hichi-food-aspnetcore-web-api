@@ -170,6 +170,11 @@ namespace hochi_food.Controllers
                                     select new { activity_name = row.Field<string>("activity_name"), activity_date = row.Field<string>("activity_date"), meal_type = row.Field<string>("meal_type"), dishes_id = row.Field<string>("dishes_id") };
                     var dishes_linq = from row in _foodContext.c_dishes.AsEnumerable()
                                       select new { row.dishes_id, row.dishes_name, row.dishes_type };
+                    //2024/8/15 把水果加入選項中
+                    var fruits_linq = from row in _foodContext.c_fruits.AsEnumerable()
+                                      select new { dishes_id=row.fruits_chinese, dishes_name=row.fruits_english, dishes_type= "fruits" };
+                    dishes_linq = dishes_linq.Union(fruits_linq);
+
                     var resultlinq = from rowA in temp_linq
                                      join rowB in dishes_linq
                                       on rowA.dishes_id equals rowB.dishes_id
