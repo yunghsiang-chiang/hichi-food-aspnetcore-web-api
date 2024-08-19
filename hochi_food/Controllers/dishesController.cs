@@ -30,6 +30,34 @@ namespace hochi_food.Controllers
         }
 
         /// <summary>
+        /// 請購活動請單
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("get_purchase")]
+        public IEnumerable<purchase_DTO> get_purchase()
+        {
+            var temp = from row in _foodContext.h_activity_records
+                       where row.activity_date >= DateTime.UtcNow
+                       select new purchase_DTO { activity_name =row.activity_name , activity_date =row.activity_date , meal_type =row.meal_type , during_the_activity =row.during_the_activity , dishes_id_str =row.dishes_id_str };
+            return temp;
+        }
+
+        /// <summary>
+        /// 請購食材清單
+        /// </summary>
+        /// <param name="material_id_names_string"></param>
+        /// <returns></returns>
+        [HttpGet("get_material_id_names")]
+        public IEnumerable<material_id_namesDTO> get_material_id_names(string material_id_names_string)
+        {
+            string[] material_id_names_array = material_id_names_string.Split(',');
+            var temp = from row in _foodContext.c_dishes
+                       where material_id_names_array.Contains(row.dishes_id)
+                       select new material_id_namesDTO { material_id_names =row.material_id_names };
+            return temp;
+        }
+
+        /// <summary>
         /// 活動名稱 Distinct
         /// </summary>
         /// <returns></returns>
