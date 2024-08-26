@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<foodContext>(options =>options.UseMySQL(builder.Configuration.GetConnectionString("WebDatabase")));
 builder.Services.AddDbContext<worldContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("WebDatabase2")));
+builder.Services.AddDbContext<attendanceContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("WebDatabase3")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
