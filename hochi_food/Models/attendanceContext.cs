@@ -15,6 +15,8 @@ public partial class attendanceContext : DbContext
 
     public virtual DbSet<h_attendance_infor> h_attendance_infor { get; set; }
 
+    public virtual DbSet<h_attendance_record> h_attendance_record { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<h_attendance_day>(entity =>
@@ -52,6 +54,26 @@ public partial class attendanceContext : DbContext
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasComment("狀態起始時間  網頁按下按鈕的時間")
                 .HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<h_attendance_record>(entity =>
+        {
+            entity.HasKey(e => e.user_id).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("出勤紀錄_詳細底層資料"));
+
+            entity.Property(e => e.user_id)
+                .HasMaxLength(15)
+                .HasComment("ID 唯一碼");
+            entity.Property(e => e.attendance_status)
+                .HasMaxLength(45)
+                .HasComment("狀態");
+            entity.Property(e => e.create_time)
+                .HasComment("時間")
+                .HasColumnType("datetime");
+            entity.Property(e => e.user_name)
+                .HasMaxLength(45)
+                .HasComment("姓名");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -39,5 +39,12 @@ namespace hochi_food.Controllers
             _attendanceContext.Add(h_Attendance_Day);
             _attendanceContext.SaveChanges();
         }
+
+        [HttpPost("appendattendance_record")]
+        public void appendattendance_record([FromBody] h_attendance_record h_Attendance_Record)
+        {
+            _attendanceContext.Add(h_Attendance_Record);
+            _attendanceContext.SaveChanges();
+        }
     }
 }
