@@ -58,7 +58,7 @@ public partial class attendanceContext : DbContext
 
         modelBuilder.Entity<h_attendance_record>(entity =>
         {
-            entity.HasKey(e => e.user_id).HasName("PRIMARY");
+            entity.HasKey(e => new { e.user_id, e.attendance_status, e.create_time }).HasName("PRIMARY");
 
             entity.ToTable(tb => tb.HasComment("出勤紀錄_詳細底層資料"));
 
