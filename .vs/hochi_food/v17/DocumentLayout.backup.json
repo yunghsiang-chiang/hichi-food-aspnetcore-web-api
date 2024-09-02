@@ -30,8 +30,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "attendanceController.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\attendanceController.cs",
+              "RelativeDocumentMoniker": "hochi_food\\Controllers\\attendanceController.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\attendanceController.cs",
+              "RelativeToolTip": "hochi_food\\Controllers\\attendanceController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAIwC8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T04:23:46.182Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -54,7 +67,8 @@
               "RelativeToolTip": "hochi_food\\Controllers\\WeatherForecastController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T06:08:54.841Z"
+              "WhenOpened": "2024-08-29T06:08:54.841Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -67,19 +81,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-29T06:08:53.442Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "attendanceController.cs",
-              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\attendanceController.cs",
-              "RelativeDocumentMoniker": "hochi_food\\Controllers\\attendanceController.cs",
-              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\attendanceController.cs",
-              "RelativeToolTip": "hochi_food\\Controllers\\attendanceController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAADIAAABQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-26T02:49:55.724Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
