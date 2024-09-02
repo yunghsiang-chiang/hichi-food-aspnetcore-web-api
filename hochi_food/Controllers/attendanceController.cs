@@ -7,6 +7,7 @@ using hochi_food.Dtos;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using Microsoft.Identity.Client;
+using Org.BouncyCastle.Bcpg;
 
 namespace hochi_food.Controllers
 {
@@ -20,11 +21,6 @@ namespace hochi_food.Controllers
         public attendanceController(attendanceContext attendanceContext) {
             _attendanceContext = attendanceContext;
         }
-
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
 
         [HttpPost("appendattendance_infor")]
         public void appendattendance_infor([FromBody] h_attendance_infor h_Attendance_Infor)
@@ -64,5 +60,16 @@ namespace hochi_food.Controllers
                        select new get_today_check_in_timeDTO { create_time=row.create_time };
             return temp;
         }
+
+        [HttpGet("get_attendance_record")]
+        public IEnumerable<attendance_recordDTO> get_attendance_record(string userid,DateTime startdate, DateTime enddate)
+        {
+            var temp = from row in _attendanceContext.h_attendance_record
+                       where userid == row.user_id && row.create_time >= startdate && row.create_time <= enddate
+                       select new attendance_recordDTO { user_id=row.user_id,user_name=row.user_name, attendance_status=row.attendance_status , create_time =row.create_time};
+            return temp;
+
+        }
+
     }
 }
