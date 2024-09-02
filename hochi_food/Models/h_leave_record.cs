@@ -32,4 +32,9 @@ public partial class h_leave_record
     /// 結束時間
     /// </summary>
     public DateTime endTime { get; set; }
+
+    /// <summary>
+    /// 小時數(浮點)
+    /// </summary>
+    public float count_hours { get; set; }
 }

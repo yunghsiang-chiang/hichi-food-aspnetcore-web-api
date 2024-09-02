@@ -93,6 +93,7 @@ public partial class attendanceContext : DbContext
             entity.Property(e => e.leaveType)
                 .HasMaxLength(45)
                 .HasComment("請假類型");
+            entity.Property(e => e.count_hours).HasComment("小時數(浮點)");
             entity.Property(e => e.endTime)
                 .HasComment("結束時間")
                 .HasColumnType("datetime");
