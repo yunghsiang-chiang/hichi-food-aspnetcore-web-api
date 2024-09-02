@@ -67,6 +67,28 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "appendleave_record",
+    "RelativePath": "api/attendance/appendleave_record",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "h_Leave_Record",
+        "Type": "hochi_food.Models.h_leave_record",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "get_today_check_in_time",
     "RelativePath": "api/attendance/get_today_check_in_time",
     "HttpMethod": "GET",

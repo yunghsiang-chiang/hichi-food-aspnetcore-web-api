@@ -42,8 +42,7 @@
               "RelativeToolTip": "hochi_food\\Dtos\\get_today_check_in_timeDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T08:00:09.366Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-29T08:00:09.366Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "hochi_food\\Controllers\\WeatherForecastController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T06:08:54.841Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-29T06:08:54.841Z"
             },
             {
               "$type": "Document",
@@ -78,7 +76,7 @@
               "RelativeDocumentMoniker": "hochi_food\\Controllers\\attendanceController.cs",
               "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\attendanceController.cs",
               "RelativeToolTip": "hochi_food\\Controllers\\attendanceController.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAAwD0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAADIAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-26T02:49:55.724Z",
               "EditorCaption": ""
@@ -93,8 +91,7 @@
               "RelativeToolTip": "hochi_food\\Controllers\\dishesController.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAIwGIAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-15T01:48:20.11Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-15T01:48:20.11Z"
             }
           ]
         }

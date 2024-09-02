@@ -47,6 +47,13 @@ namespace hochi_food.Controllers
             _attendanceContext.SaveChanges();
         }
 
+        [HttpPost("appendleave_record")]
+        public void appendleave_record([FromBody] h_leave_record h_Leave_Record)
+        {
+            _attendanceContext.Add(h_Leave_Record);
+            _attendanceContext.SaveChanges();
+        }
+
         [HttpGet("get_today_check_in_time")]
         public IEnumerable<get_today_check_in_timeDTO> get_today_check_in_time()
         {

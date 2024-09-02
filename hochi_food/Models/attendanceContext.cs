@@ -17,6 +17,8 @@ public partial class attendanceContext : DbContext
 
     public virtual DbSet<h_attendance_record> h_attendance_record { get; set; }
 
+    public virtual DbSet<h_leave_record> h_leave_record { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<h_attendance_day>(entity =>
@@ -72,6 +74,29 @@ public partial class attendanceContext : DbContext
                 .HasComment("時間")
                 .HasColumnType("datetime");
             entity.Property(e => e.user_name)
+                .HasMaxLength(45)
+                .HasComment("姓名");
+        });
+
+        modelBuilder.Entity<h_leave_record>(entity =>
+        {
+            entity.HasKey(e => new { e.userId, e.startTime, e.leaveType }).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("請假紀錄"));
+
+            entity.Property(e => e.userId)
+                .HasMaxLength(45)
+                .HasComment("使用者ID");
+            entity.Property(e => e.startTime)
+                .HasComment("起始時間")
+                .HasColumnType("datetime");
+            entity.Property(e => e.leaveType)
+                .HasMaxLength(45)
+                .HasComment("請假類型");
+            entity.Property(e => e.endTime)
+                .HasComment("結束時間")
+                .HasColumnType("datetime");
+            entity.Property(e => e.userName)
                 .HasMaxLength(45)
                 .HasComment("姓名");
         });
