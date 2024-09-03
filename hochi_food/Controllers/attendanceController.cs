@@ -66,6 +66,7 @@ namespace hochi_food.Controllers
         {
             var temp = from row in _attendanceContext.h_attendance_record
                        where userid == row.user_id && row.create_time >= startdate && row.create_time <= enddate
+                       orderby row.create_time
                        select new attendance_recordDTO { user_id=row.user_id,user_name=row.user_name, attendance_status=row.attendance_status , create_time =row.create_time};
             return temp;
 
