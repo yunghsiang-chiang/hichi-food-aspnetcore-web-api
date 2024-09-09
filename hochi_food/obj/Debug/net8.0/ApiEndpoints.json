@@ -1,6 +1,28 @@
 [
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "appendattendance_calendar",
+    "RelativePath": "api/attendance/appendattendance_calendar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "c_Attendance_Calendar",
+        "Type": "hochi_food.Models.c_attendance_calendar",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "appendattendance_day",
     "RelativePath": "api/attendance/appendattendance_day",
     "HttpMethod": "POST",

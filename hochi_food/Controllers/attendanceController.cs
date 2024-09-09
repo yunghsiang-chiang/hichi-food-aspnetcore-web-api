@@ -50,6 +50,13 @@ namespace hochi_food.Controllers
             _attendanceContext.SaveChanges();
         }
 
+        [HttpPost("appendattendance_calendar")]
+        public void appendattendance_calendar([FromBody] c_attendance_calendar c_Attendance_Calendar)
+        {
+            _attendanceContext.Add(c_Attendance_Calendar);
+            _attendanceContext.SaveChanges();
+        }
+
         [HttpGet("get_attendanceDays")]
         public IEnumerable<get_attendanceDaysDTO> get_attendanceDays(int calendaryear, int calendarmonth)
         {
