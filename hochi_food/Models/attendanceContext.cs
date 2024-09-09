@@ -11,6 +11,8 @@ public partial class attendanceContext : DbContext
     {
     }
 
+    public virtual DbSet<c_attendance_calendar> c_attendance_calendar { get; set; }
+
     public virtual DbSet<h_attendance_day> h_attendance_day { get; set; }
 
     public virtual DbSet<h_attendance_infor> h_attendance_infor { get; set; }
@@ -21,6 +23,19 @@ public partial class attendanceContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<c_attendance_calendar>(entity =>
+        {
+            entity.HasKey(e => new { e.calendar_year, e.calendar_month }).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("標記工作日"));
+
+            entity.Property(e => e.calendar_year).HasComment("年");
+            entity.Property(e => e.calendar_month).HasComment("月");
+            entity.Property(e => e.attendance_days)
+                .HasMaxLength(310)
+                .HasComment("工作日");
+        });
+
         modelBuilder.Entity<h_attendance_day>(entity =>
         {
             entity.HasKey(e => new { e.user_name, e.attendance_day, e.attendance_state }).HasName("PRIMARY");

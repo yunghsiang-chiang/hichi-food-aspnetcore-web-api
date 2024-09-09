@@ -50,6 +50,15 @@ namespace hochi_food.Controllers
             _attendanceContext.SaveChanges();
         }
 
+        [HttpGet("get_attendanceDays")]
+        public IEnumerable<get_attendanceDaysDTO> get_attendanceDays(int calendaryear, int calendarmonth)
+        {
+            var temp = from row in _attendanceContext.c_attendance_calendar
+                       where row.calendar_year == calendaryear && row.calendar_month == calendarmonth
+                       select new get_attendanceDaysDTO { attendance_days =row.attendance_days};
+            return temp;
+        }
+
         [HttpGet("get_today_check_in_time")]
         public IEnumerable<get_today_check_in_timeDTO> get_today_check_in_time()
         {

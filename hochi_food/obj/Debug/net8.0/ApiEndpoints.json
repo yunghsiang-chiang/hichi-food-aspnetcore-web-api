@@ -125,6 +125,37 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "get_attendanceDays",
+    "RelativePath": "api/attendance/get_attendanceDays",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "calendaryear",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "calendarmonth",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.get_attendanceDaysDTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "get_leave_record",
     "RelativePath": "api/attendance/get_leave_record",
     "HttpMethod": "GET",
