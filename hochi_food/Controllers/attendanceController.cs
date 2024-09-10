@@ -16,7 +16,7 @@ namespace hochi_food.Controllers
     [ApiController]
     public class attendanceController : ControllerBase
     {
-        private readonly attendanceContext _attendanceContext;
+        private readonly attendanceContext _attendanceContext; //先在全域宣告資料庫物件
 
         public attendanceController(attendanceContext attendanceContext) {
             _attendanceContext = attendanceContext;
