@@ -111,6 +111,28 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "appendovetime_record",
+    "RelativePath": "api/attendance/appendovetime_record",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "h_Overtime_Record",
+        "Type": "hochi_food.Models.h_overtime_record",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "get_attendance_record",
     "RelativePath": "api/attendance/get_attendance_record",
     "HttpMethod": "GET",

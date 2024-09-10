@@ -21,6 +21,8 @@ public partial class attendanceContext : DbContext
 
     public virtual DbSet<h_leave_record> h_leave_record { get; set; }
 
+    public virtual DbSet<h_overtime_record> h_overtime_record { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<c_attendance_calendar>(entity =>
@@ -112,6 +114,30 @@ public partial class attendanceContext : DbContext
             entity.Property(e => e.endTime)
                 .HasComment("結束時間")
                 .HasColumnType("datetime");
+            entity.Property(e => e.userName)
+                .HasMaxLength(45)
+                .HasComment("姓名");
+        });
+
+        modelBuilder.Entity<h_overtime_record>(entity =>
+        {
+            entity.HasKey(e => new { e.userID, e.startTime }).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("歷史加班紀錄"));
+
+            entity.Property(e => e.userID)
+                .HasMaxLength(45)
+                .HasComment("ID");
+            entity.Property(e => e.startTime)
+                .HasComment("開始時間")
+                .HasColumnType("datetime");
+            entity.Property(e => e.count_hours).HasComment("小時數");
+            entity.Property(e => e.endTime)
+                .HasComment("結束時間")
+                .HasColumnType("datetime");
+            entity.Property(e => e.overtimeType)
+                .HasMaxLength(45)
+                .HasComment("加班類型");
             entity.Property(e => e.userName)
                 .HasMaxLength(45)
                 .HasComment("姓名");

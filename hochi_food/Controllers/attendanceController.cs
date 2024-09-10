@@ -50,6 +50,13 @@ namespace hochi_food.Controllers
             _attendanceContext.SaveChanges();
         }
 
+        [HttpPost("appendovetime_record")]
+        public void appendovetime_record([FromBody] h_overtime_record h_Overtime_Record)
+        {
+            _attendanceContext.Add(h_Overtime_Record);
+            _attendanceContext.SaveChanges();
+        }
+
         [HttpPost("appendattendance_calendar")]
         public void appendattendance_calendar([FromBody] c_attendance_calendar c_Attendance_Calendar)
         {
