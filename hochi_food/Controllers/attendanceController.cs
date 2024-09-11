@@ -64,6 +64,15 @@ namespace hochi_food.Controllers
             _attendanceContext.SaveChanges();
         }
 
+        [HttpGet("get_attendanceDates")]
+        public IEnumerable<attendanceDatesDTO> get_attendanceDates(string userid,int attendanceyear,int attendancemonth)
+        {
+            var temp = (from row in _attendanceContext.h_attendance_record
+                       where row.user_id == userid && row.create_time.Year == attendanceyear && row.create_time.Month == attendancemonth
+                       select new attendanceDatesDTO { attendanceDates = row.create_time.ToString("yyyy-MM-dd") }).Distinct();
+            return temp;
+        }
+
         [HttpGet("get_attendanceDays")]
         public IEnumerable<get_attendanceDaysDTO> get_attendanceDays(int calendaryear, int calendarmonth)
         {
