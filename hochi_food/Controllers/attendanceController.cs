@@ -67,10 +67,10 @@ namespace hochi_food.Controllers
         [HttpGet("get_attendanceDates")]
         public IEnumerable<attendanceDatesDTO> get_attendanceDates(string userid,int attendanceyear,int attendancemonth)
         {
-            var temp = (from row in _attendanceContext.h_attendance_record
-                       where row.user_id == userid && row.create_time.Year == attendanceyear && row.create_time.Month == attendancemonth
-                       select new attendanceDatesDTO { attendanceDates = row.create_time.ToString("yyyy-MM-dd") }).Distinct();
-            return temp;
+            var temp = from row in _attendanceContext.h_attendance_record
+                       where row.user_id == userid && row.create_time.Year == attendanceyear && row.create_time.Month == attendancemonth && row.attendance_status =="到班"
+                       select new attendanceDatesDTO { attendanceDates = row.create_time.ToString("yyyy-MM-dd") };
+            return temp.Distinct();
         }
 
         [HttpGet("get_attendanceDays")]
