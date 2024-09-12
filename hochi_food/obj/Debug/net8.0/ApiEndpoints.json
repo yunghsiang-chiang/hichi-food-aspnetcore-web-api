@@ -272,6 +272,26 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "get_today_attendance_record",
+    "RelativePath": "api/attendance/get_today_attendance_record",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.h_attendance_record, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "get_today_check_in_time",
     "RelativePath": "api/attendance/get_today_check_in_time",
     "HttpMethod": "GET",

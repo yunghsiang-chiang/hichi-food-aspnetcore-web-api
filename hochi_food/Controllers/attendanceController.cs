@@ -64,6 +64,15 @@ namespace hochi_food.Controllers
             _attendanceContext.SaveChanges();
         }
 
+        [HttpGet("get_today_attendance_record")]
+        public IEnumerable<h_attendance_record> get_today_attendance_record()
+        {
+            var temp = from row in _attendanceContext.h_attendance_record
+                       where row.create_time.Date == DateTime.Now.Date
+                       select row;
+            return temp;
+        }
+
         [HttpGet("get_attendanceDates")]
         public IEnumerable<attendanceDatesDTO> get_attendanceDates(string userid,int attendanceyear,int attendancemonth)
         {
