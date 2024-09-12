@@ -942,6 +942,26 @@
     ]
   },
   {
+    "ContainingType": "hochi_food.Controllers.hochi_learnersController",
+    "Method": "get_staff_qty",
+    "RelativePath": "api/hochi_learners/get_staff_qty",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "hochi_food.Controllers.worldController",
     "Method": "Get",
     "RelativePath": "api/world",

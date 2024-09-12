@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\egrou\\source\\repos\\hochi_food\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\controllers\\hochi_learnerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\controllers\\hochi_learnerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\dtos\\get_staff_qtydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\dtos\\get_staff_qtydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\controllers\\dishescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\controllers\\dishescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,17 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "get_staff_qtyDTO.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Dtos\\get_staff_qtyDTO.cs",
+              "RelativeDocumentMoniker": "hochi_food\\Dtos\\get_staff_qtyDTO.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Dtos\\get_staff_qtyDTO.cs",
+              "RelativeToolTip": "hochi_food\\Dtos\\get_staff_qtyDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T07:12:31.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "dishesController.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\dishesController.cs",
+              "RelativeDocumentMoniker": "hochi_food\\Controllers\\dishesController.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\dishesController.cs",
+              "RelativeToolTip": "hochi_food\\Controllers\\dishesController.cs",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T07:07:26.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "hochi_learnersController.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\hochi_learnersController.cs",
+              "RelativeDocumentMoniker": "hochi_food\\Controllers\\hochi_learnersController.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\hochi_learnersController.cs",
+              "RelativeToolTip": "hochi_food\\Controllers\\hochi_learnersController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAADwvykAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T06:55:02.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "attendanceController.cs",
               "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\attendanceController.cs",
               "RelativeDocumentMoniker": "hochi_food\\Controllers\\attendanceController.cs",
               "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\attendanceController.cs",
               "RelativeToolTip": "hochi_food\\Controllers\\attendanceController.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAYwEcAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAmwEcAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-10T01:35:34.518Z",
               "EditorCaption": ""

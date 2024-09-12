@@ -7,6 +7,7 @@ using hochi_food.Dtos;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using Microsoft.Identity.Client;
+using Org.BouncyCastle.Asn1.Crmf;
 
 namespace hochi_food.Controllers
 {
@@ -27,6 +28,15 @@ namespace hochi_food.Controllers
         {
             var temp = from row in _hochi_configContext.c_fellow_hochi_learners
                        select new personIdNameDTO { person_id = row.person_id, person_name = row.person_name };
+            return temp;
+        }
+
+        [HttpGet("get_staff_qty")]
+        public int get_staff_qty()
+        {
+            var temp = (from row in _hochi_configContext.c_fellow_hochi_learners
+                       where row.person_type == "staff"
+                       select row.person_id).Count();
             return temp;
         }
 
