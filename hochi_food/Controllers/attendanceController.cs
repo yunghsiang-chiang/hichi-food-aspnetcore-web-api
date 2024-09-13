@@ -102,11 +102,22 @@ namespace hochi_food.Controllers
             return temp;
         }
 
+        [HttpGet("get_attendance_record_by_date")]
+        public IEnumerable<attendance_recordDTO> get_attendance_record(string userid, string attendanceDate)
+        {
+            var temp = from row in _attendanceContext.h_attendance_record
+                       where userid == row.user_id && row.create_time.Date == DateTime.Parse(attendanceDate).Date
+                       orderby row.create_time
+                       select new attendance_recordDTO { user_id = row.user_id, user_name = row.user_name, attendance_status = row.attendance_status, create_time = row.create_time };
+            return temp;
+
+        }
+
         [HttpGet("get_attendance_record")]
         public IEnumerable<attendance_recordDTO> get_attendance_record(string userid,DateTime startdate, DateTime enddate)
         {
             var temp = from row in _attendanceContext.h_attendance_record
-                       where userid == row.user_id && row.create_time >= startdate && row.create_time <= enddate
+                       where userid == row.user_id && row.create_time >= startdate && row.create_time <= enddate.AddDays(1)
                        orderby row.create_time
                        select new attendance_recordDTO { user_id=row.user_id,user_name=row.user_name, attendance_status=row.attendance_status , create_time =row.create_time};
             return temp;
