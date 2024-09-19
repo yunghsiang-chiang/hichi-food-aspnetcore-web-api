@@ -303,6 +303,68 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "get_leave_record_by_year_month",
+    "RelativePath": "api/attendance/get_leave_record_by_year_month",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "month",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.h_leave_record, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "get_overtime_record_by_year_month",
+    "RelativePath": "api/attendance/get_overtime_record_by_year_month",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "month",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.h_overtime_record, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "get_today_attendance_record",
     "RelativePath": "api/attendance/get_today_attendance_record",
     "HttpMethod": "GET",

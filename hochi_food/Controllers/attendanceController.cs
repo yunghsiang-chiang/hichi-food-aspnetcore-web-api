@@ -133,5 +133,23 @@ namespace hochi_food.Controllers
             return temp;
         }
 
+        [HttpGet("get_leave_record_by_year_month")]
+        public IEnumerable<h_leave_record> get_leave_record_by_year_month(int  year, int month)
+        {
+            var temp = from row in _attendanceContext.h_leave_record
+                       where row.startTime.Year == year && row.startTime.Month == month
+                       select row;
+            return temp;    
+        }
+
+        [HttpGet("get_overtime_record_by_year_month")]
+        public IEnumerable<h_overtime_record> get_overtime_record_by_year_month(int year,int month)
+        {
+            var temp = from row in _attendanceContext.h_overtime_record
+                       where row.startTime.Year==year && row.startTime.Month == month
+                       select row;
+            return temp;
+        }
+
     }
 }
