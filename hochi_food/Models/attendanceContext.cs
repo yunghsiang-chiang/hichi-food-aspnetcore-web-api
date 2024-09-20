@@ -40,21 +40,20 @@ public partial class attendanceContext : DbContext
 
         modelBuilder.Entity<h_attendance_day>(entity =>
         {
-            entity.HasKey(e => new { e.user_name, e.attendance_day, e.attendance_state }).HasName("PRIMARY");
+            entity.HasKey(e => new { e.attendance_day, e.user_id }).HasName("PRIMARY");
 
-            entity.Property(e => e.user_name)
-                .HasMaxLength(45)
-                .HasComment("同修姓名");
             entity.Property(e => e.attendance_day)
                 .HasComment("出勤日")
                 .HasColumnType("date");
-            entity.Property(e => e.attendance_state)
-                .HasMaxLength(25)
-                .HasComment("出勤狀態");
-            entity.Property(e => e.consecutive_hours).HasComment("連續小時");
+            entity.Property(e => e.user_id)
+                .HasMaxLength(45)
+                .HasComment("同修 ID");
             entity.Property(e => e.morning_light_down).HasComment("晨光下");
             entity.Property(e => e.morning_light_up).HasComment("晨光上");
             entity.Property(e => e.morning_meeting).HasComment("晨會");
+            entity.Property(e => e.user_name)
+                .HasMaxLength(45)
+                .HasComment("同修姓名");
         });
 
         modelBuilder.Entity<h_attendance_infor>(entity =>

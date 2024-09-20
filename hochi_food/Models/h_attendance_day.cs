@@ -6,6 +6,11 @@ namespace hochi_food.Models;
 public partial class h_attendance_day
 {
     /// <summary>
+    /// 同修 ID
+    /// </summary>
+    public string user_id { get; set; } = null!;
+
+    /// <summary>
     /// 同修姓名
     /// </summary>
     public string user_name { get; set; } = null!;
@@ -14,16 +19,6 @@ public partial class h_attendance_day
     /// 出勤日
     /// </summary>
     public DateTime attendance_day { get; set; }
-
-    /// <summary>
-    /// 出勤狀態
-    /// </summary>
-    public string attendance_state { get; set; } = null!;
-
-    /// <summary>
-    /// 連續小時
-    /// </summary>
-    public float consecutive_hours { get; set; }
 
     /// <summary>
     /// 晨光上
