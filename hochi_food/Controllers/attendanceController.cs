@@ -18,7 +18,8 @@ namespace hochi_food.Controllers
     {
         private readonly attendanceContext _attendanceContext; //先在全域宣告資料庫物件
 
-        public attendanceController(attendanceContext attendanceContext) {
+        public attendanceController(attendanceContext attendanceContext)
+        {
             _attendanceContext = attendanceContext;
         }
 
@@ -74,10 +75,10 @@ namespace hochi_food.Controllers
         }
 
         [HttpGet("get_attendanceDates")]
-        public IEnumerable<attendanceDatesDTO> get_attendanceDates(string userid,int attendanceyear,int attendancemonth)
+        public IEnumerable<attendanceDatesDTO> get_attendanceDates(string userid, int attendanceyear, int attendancemonth)
         {
             var temp = from row in _attendanceContext.h_attendance_record
-                       where row.user_id == userid && row.create_time.Year == attendanceyear && row.create_time.Month == attendancemonth && row.attendance_status =="到班"
+                       where row.user_id == userid && row.create_time.Year == attendanceyear && row.create_time.Month == attendancemonth && row.attendance_status == "到班"
                        select new attendanceDatesDTO { attendanceDates = row.create_time.ToString("yyyy-MM-dd") };
             return temp.Distinct();
         }
@@ -87,7 +88,7 @@ namespace hochi_food.Controllers
         {
             var temp = from row in _attendanceContext.c_attendance_calendar
                        where row.calendar_year == calendaryear && row.calendar_month == calendarmonth
-                       select new get_attendanceDaysDTO { attendance_days =row.attendance_days};
+                       select new get_attendanceDaysDTO { attendance_days = row.attendance_days };
             return temp;
         }
 
@@ -98,7 +99,7 @@ namespace hochi_food.Controllers
             var temp = from row in _attendanceContext.h_attendance_record
                        where row.create_time >= Convert.ToDateTime(today_date + " 00:00:00") && row.attendance_status == "到班"
                        orderby row.create_time descending
-                       select new get_today_check_in_timeDTO { create_time=row.create_time };
+                       select new get_today_check_in_timeDTO { create_time = row.create_time };
             return temp;
         }
 
@@ -114,39 +115,48 @@ namespace hochi_food.Controllers
         }
 
         [HttpGet("get_attendance_record")]
-        public IEnumerable<attendance_recordDTO> get_attendance_record(string userid,DateTime startdate, DateTime enddate)
+        public IEnumerable<attendance_recordDTO> get_attendance_record(string userid, DateTime startdate, DateTime enddate)
         {
             var temp = from row in _attendanceContext.h_attendance_record
                        where userid == row.user_id && row.create_time >= startdate && row.create_time <= enddate.AddDays(1)
                        orderby row.create_time
-                       select new attendance_recordDTO { user_id=row.user_id,user_name=row.user_name, attendance_status=row.attendance_status , create_time =row.create_time};
+                       select new attendance_recordDTO { user_id = row.user_id, user_name = row.user_name, attendance_status = row.attendance_status, create_time = row.create_time };
             return temp;
 
+        }
+
+        [HttpGet("get_overtime_record")]
+        public IEnumerable<h_overtime_record> get_overtime_record(string userid, DateTime startdate, DateTime enddate)
+        {
+            var temp = from row in _attendanceContext.h_overtime_record
+                       where userid == row.userID && row.startTime.Date >= startdate.Date && row.endTime <= enddate.Date
+                       select row;
+            return temp;
         }
 
         [HttpGet("get_leave_record")]
         public IEnumerable<h_leave_record> get_leave_record(string userid, DateTime startdate, DateTime enddate)
         {
             var temp = from row in _attendanceContext.h_leave_record
-                       where userid== row.userId && row.startTime.Date >= startdate.Date && row.endTime.Date <= enddate.Date
-                       select new h_leave_record { userId=row.userId, userName=row.userName, leaveType=row.leaveType, startTime=row.startTime, endTime=row.endTime, count_hours=row.count_hours};
+                       where userid == row.userId && row.startTime.Date >= startdate.Date && row.endTime.Date <= enddate.Date
+                       select row;
             return temp;
         }
 
         [HttpGet("get_leave_record_by_year_month")]
-        public IEnumerable<h_leave_record> get_leave_record_by_year_month(int  year, int month)
+        public IEnumerable<h_leave_record> get_leave_record_by_year_month(int year, int month)
         {
             var temp = from row in _attendanceContext.h_leave_record
                        where row.startTime.Year == year && row.startTime.Month == month
                        select row;
-            return temp;    
+            return temp;
         }
 
         [HttpGet("get_overtime_record_by_year_month")]
-        public IEnumerable<h_overtime_record> get_overtime_record_by_year_month(int year,int month)
+        public IEnumerable<h_overtime_record> get_overtime_record_by_year_month(int year, int month)
         {
             var temp = from row in _attendanceContext.h_overtime_record
-                       where row.startTime.Year==year && row.startTime.Month == month
+                       where row.startTime.Year == year && row.startTime.Month == month
                        select row;
             return temp;
         }
@@ -155,9 +165,9 @@ namespace hochi_food.Controllers
         public attendance_last_statusDTO get_attendannce_last_status(string userid)
         {
             var temp = (from row in _attendanceContext.h_attendance_record
-                       where row.create_time.Date == DateTime.Now.Date && row.user_id == userid
-                       orderby row.create_time descending
-                       select new attendance_last_statusDTO { attendance_status = row.attendance_status });
+                        where row.create_time.Date == DateTime.Now.Date && row.user_id == userid
+                        orderby row.create_time descending
+                        select new attendance_last_statusDTO { attendance_status = row.attendance_status });
 
             return temp.SingleOrDefault();
         }
