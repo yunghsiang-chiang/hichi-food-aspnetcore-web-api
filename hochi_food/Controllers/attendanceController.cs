@@ -128,7 +128,7 @@ namespace hochi_food.Controllers
         public IEnumerable<h_leave_record> get_leave_record(string userid, DateTime startdate, DateTime enddate)
         {
             var temp = from row in _attendanceContext.h_leave_record
-                       where userid== row.userId && row.startTime.Date >= startdate && row.startTime.Date <= enddate && row.endTime.Date >= startdate && row.endTime.Date <= enddate
+                       where userid== row.userId && row.startTime.Date >= startdate.Date && row.endTime.Date <= enddate.Date
                        select new h_leave_record { userId=row.userId, userName=row.userName, leaveType=row.leaveType, startTime=row.startTime, endTime=row.endTime, count_hours=row.count_hours};
             return temp;
         }
