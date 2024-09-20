@@ -151,5 +151,16 @@ namespace hochi_food.Controllers
             return temp;
         }
 
+        [HttpGet("get_attendannce_last_status")]
+        public attendance_last_statusDTO get_attendannce_last_status(string userid)
+        {
+            var temp = (from row in _attendanceContext.h_attendance_record
+                       where row.create_time.Date == DateTime.Now.Date && row.user_id == userid
+                       orderby row.create_time descending
+                       select new attendance_last_statusDTO { attendance_status = row.attendance_status });
+
+            return temp.SingleOrDefault();
+        }
+
     }
 }

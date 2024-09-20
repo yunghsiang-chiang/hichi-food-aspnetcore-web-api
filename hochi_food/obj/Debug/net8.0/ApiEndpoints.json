@@ -267,6 +267,32 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "get_attendannce_last_status",
+    "RelativePath": "api/attendance/get_attendannce_last_status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userid",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hochi_food.Dtos.attendance_last_statusDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "get_leave_record",
     "RelativePath": "api/attendance/get_leave_record",
     "HttpMethod": "GET",
