@@ -183,6 +183,12 @@ namespace hochi_food.Controllers
 
             return attendanceStatus;
         }
+        //取得同休 休假表
+        [HttpGet("get_person_vacation")]
+        public IEnumerable<r_person_vacation> get_person_vacation()
+        {
+            return _attendanceContext.r_person_vacation.ToList();
+        }
 
     }
 }

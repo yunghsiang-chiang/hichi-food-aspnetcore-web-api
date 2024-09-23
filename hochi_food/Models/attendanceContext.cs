@@ -23,6 +23,8 @@ public partial class attendanceContext : DbContext
 
     public virtual DbSet<h_overtime_record> h_overtime_record { get; set; }
 
+    public virtual DbSet<r_person_vacation> r_person_vacation { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<c_attendance_calendar>(entity =>
@@ -140,6 +142,26 @@ public partial class attendanceContext : DbContext
             entity.Property(e => e.userName)
                 .HasMaxLength(45)
                 .HasComment("姓名");
+        });
+
+        modelBuilder.Entity<r_person_vacation>(entity =>
+        {
+            entity.HasKey(e => e.person_id).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("休假即時表"));
+
+            entity.Property(e => e.person_id)
+                .HasMaxLength(45)
+                .HasComment("ID");
+            entity.Property(e => e.compensatory_leave_hours).HasComment("補休");
+            entity.Property(e => e.person_name)
+                .HasMaxLength(45)
+                .HasComment("姓名");
+            entity.Property(e => e.personal_leave_hours).HasComment("事假");
+            entity.Property(e => e.special_vacation_hours).HasComment("特休時數");
+            entity.Property(e => e.start_work)
+                .HasComment("到職日")
+                .HasColumnType("date");
         });
 
         OnModelCreatingPartial(modelBuilder);
