@@ -161,15 +161,27 @@ namespace hochi_food.Controllers
             return temp;
         }
 
+        //最後狀態
         [HttpGet("get_attendannce_last_status")]
         public attendance_last_statusDTO get_attendannce_last_status(string userid)
         {
-            var temp = (from row in _attendanceContext.h_attendance_record
-                        where row.create_time.Date == DateTime.Now.Date && row.user_id == userid
-                        orderby row.create_time descending
-                        select new attendance_last_statusDTO { attendance_status = row.attendance_status });
+            // 查詢當天的出勤記錄
+            var attendanceStatus = (from row in _attendanceContext.h_attendance_record
+                                    where row.create_time.Date == DateTime.Now.Date && row.user_id == userid
+                                    orderby row.create_time descending
+                                    select new attendance_last_statusDTO { attendance_status = row.attendance_status })
+                                   .FirstOrDefault();
 
-            return temp.SingleOrDefault();
+            // 如果沒有出勤記錄，查詢請假記錄
+            if (attendanceStatus == null)
+            {
+                attendanceStatus = (from row in _attendanceContext.h_leave_record
+                                    where row.startTime.Date == DateTime.Now.Date && row.userId == userid
+                                    select new attendance_last_statusDTO { attendance_status = row.leaveType })
+                                   .FirstOrDefault();
+            }
+
+            return attendanceStatus;
         }
 
     }
