@@ -37,4 +37,14 @@ public partial class h_overtime_record
     /// 小時數
     /// </summary>
     public float count_hours { get; set; }
+
+    /// <summary>
+    /// 提交日期
+    /// </summary>
+    public DateTime submitted_at { get; set; }
+
+    /// <summary>
+    /// 審核人
+    /// </summary>
+    public string? approved_by { get; set; }
 }

@@ -189,6 +189,15 @@ namespace hochi_food.Controllers
         {
             return _attendanceContext.r_person_vacation.ToList();
         }
+        //
+        [HttpGet("get_permissions_infor")]
+        public IEnumerable<permissions_inforDTO> get_permissions_infor()
+        {
+            var temp = from row in _attendanceContext.c_user_roles
+                       select new permissions_inforDTO { role_name =row.role_name, permissions =row.permissions};
+            return temp;
+        }
+
 
     }
 }
