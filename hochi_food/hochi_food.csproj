@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Dtos\get_staff_qtyDTO.cs" />
-    <Compile Remove="Dtos\personDTO.cs" />
+    <Compile Remove="Dtos\UpdateAttendanceTimesDTO.cs" />
   </ItemGroup>
 
   <ItemGroup>

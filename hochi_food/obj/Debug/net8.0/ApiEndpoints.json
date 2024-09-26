@@ -506,6 +506,27 @@
     ]
   },
   {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "UpdateTimes",
+    "RelativePath": "api/attendance/updateTimes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "hochi_food.Controllers.attendanceController\u002BUpdateAttendanceTimesDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "hochi_food.Controllers.dishesController",
     "Method": "Get",
     "RelativePath": "api/dishes",
