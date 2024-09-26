@@ -87,14 +87,14 @@ namespace hochi_food.Controllers
         }
 
         // HTTP GET 方法，查詢出勤資訊
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<c_attendance_times>>> GetAllAttendanceTimes()
+        [HttpGet("getAllAttendanceTimes")]
+        public IEnumerable<c_attendance_times> getAllAttendanceTimes()
         {
             // 從資料庫中獲取所有的考勤時間記錄
-            var attendanceTimes = await _attendanceContext.c_attendance_times.ToListAsync();
+            var attendanceTimes = _attendanceContext.c_attendance_times;
 
             // 返回考勤時間記錄列表
-            return Ok(attendanceTimes);
+            return attendanceTimes;
         }
 
 
