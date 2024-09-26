@@ -139,3 +139,7 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\hoc
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\hochi_food.genruntimeconfig.cache
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\ref\hochi_food.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.ClientModel.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Newtonsoft.Json.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Newtonsoft.Json.Bson.dll

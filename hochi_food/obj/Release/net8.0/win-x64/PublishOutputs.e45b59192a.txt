@@ -11,6 +11,8 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\Pub
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\K4os.Compression.LZ4.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\K4os.Compression.LZ4.Streams.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\K4os.Hash.xxHash.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.Data.SqlClient.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
@@ -31,6 +33,8 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\Pub
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\MySql.Data.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\MySql.EntityFrameworkCore.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\MySQLConnection.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Newtonsoft.Json.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Newtonsoft.Json.Bson.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
