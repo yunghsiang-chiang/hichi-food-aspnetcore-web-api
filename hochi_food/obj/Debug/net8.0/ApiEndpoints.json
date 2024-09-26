@@ -528,7 +528,7 @@
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "UpdateLunchTimes",
-    "RelativePath": "api/attendance/updateLunchTimes/{id}",
+    "RelativePath": "api/attendance/UpdateLunchTimes/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -539,14 +539,9 @@
         "IsRequired": true
       },
       {
-        "Name": "lunch_start_time",
-        "Type": "System.TimeSpan",
+        "Name": "payload",
+        "Type": "hochi_food.Dtos.LunchTimesPayloadDTO",
         "IsRequired": true
-      },
-      {
-        "Name": "lunch_end_time",
-        "Type": "System.TimeSpan",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -554,7 +549,7 @@
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "UpdateWorkTimes",
-    "RelativePath": "api/attendance/updateWorkTimes/{id}",
+    "RelativePath": "api/attendance/UpdateWorkTimes/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -565,17 +560,18 @@
         "IsRequired": true
       },
       {
-        "Name": "workStart",
-        "Type": "System.TimeSpan",
+        "Name": "payload",
+        "Type": "hochi_food.Dtos.WorkTimesPayloadDTO",
         "IsRequired": true
-      },
-      {
-        "Name": "workEnd",
-        "Type": "System.TimeSpan",
-        "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "hochi_food.Controllers.dishesController",
