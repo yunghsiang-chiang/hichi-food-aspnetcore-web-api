@@ -527,8 +527,8 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
-    "Method": "UpdateLunchTimes",
-    "RelativePath": "api/attendance/UpdateLunchTimes/{id}",
+    "Method": "UpdateAttendanceTimes",
+    "RelativePath": "api/attendance/UpdateAttendanceTimes/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -539,39 +539,12 @@
         "IsRequired": true
       },
       {
-        "Name": "payload",
-        "Type": "hochi_food.Dtos.LunchTimesPayloadDTO",
+        "Name": "value",
+        "Type": "hochi_food.Models.c_attendance_times",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.attendanceController",
-    "Method": "UpdateWorkTimes",
-    "RelativePath": "api/attendance/UpdateWorkTimes/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "payload",
-        "Type": "hochi_food.Dtos.WorkTimesPayloadDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
   },
   {
     "ContainingType": "hochi_food.Controllers.dishesController",
@@ -1215,72 +1188,6 @@
     "ReturnTypes": [
       {
         "Type": "System.Int32",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.worldController",
-    "Method": "Get",
-    "RelativePath": "api/world",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.t_questionnaire_answers, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.worldController",
-    "Method": "Get_distinct_question",
-    "RelativePath": "api/world/Get_distinct_question",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.questionnaire_questionDTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.worldController",
-    "Method": "get_question_answer",
-    "RelativePath": "api/world/get_question_answer",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "question",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.questionnaire_answerDTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

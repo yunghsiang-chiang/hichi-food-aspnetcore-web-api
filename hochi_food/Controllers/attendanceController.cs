@@ -266,55 +266,94 @@ namespace hochi_food.Controllers
             return temp;
         }
 
-        // 更新上下班時間
-        [HttpPut("updateWorkTimes/{id}")]
-        public async Task<IActionResult> UpdateWorkTimes(int id, [FromBody] TimeSpan workStart, TimeSpan workEnd)
+
+        [HttpPut("UpdateAttendanceTimes/{id}")]
+        // 定義一個 HTTP PUT 方法，用於更新指定 ID 的考勤時間
+        public async Task<IActionResult> UpdateAttendanceTimes(int id, [FromBody] c_attendance_times value)
         {
-            // 從資料庫查找現有的記錄
-            var existingRecord = await _attendanceContext.c_attendance_times.FindAsync(id);
-            if (existingRecord == null)
+            // 從資料庫中查找對應的考勤紀錄，根據傳入的 ID 進行查找
+            var update = await _attendanceContext.c_attendance_times
+                .SingleOrDefaultAsync(a => a.id == id);
+
+            // 如果找到對應的紀錄
+            if (update != null)
             {
-                return NotFound(); // 若找不到記錄，返回 404
+                // 更新上班開始時間
+                update.work_start_time = value.work_start_time;
+                // 更新下班時間
+                update.work_end_time = value.work_end_time;
+                // 更新午餐開始時間
+                update.lunch_start_time = value.lunch_start_time;
+                // 更新午餐結束時間
+                update.lunch_end_time = value.lunch_end_time;
+                // 設定更新的時間戳記為當前時間
+                update.updated_at = DateTime.Now;
+
+                try
+                {
+                    // 將修改保存至資料庫
+                    await _attendanceContext.SaveChangesAsync();
+                    return NoContent(); // 返回 204 無內容表示更新成功
+                }
+                catch (DbUpdateException ex)
+                {
+                    // 捕獲資料庫更新異常，並返回 500 伺服器錯誤，附帶異常訊息
+                    return StatusCode(500, ex.Message);
+                }
             }
-
-            // 更新上下班時間
-            existingRecord.work_start_time = workStart;
-            existingRecord.work_end_time = workEnd;
-
-            // 設置最後更新時間為當前時間
-            existingRecord.updated_at = DateTime.Now;
-
-            // 保存變更到資料庫
-            await _attendanceContext.SaveChangesAsync();
-
-            // 返回更新後的記錄
-            return Ok(existingRecord);
+            // 如果沒有找到對應的紀錄，返回 404 找不到的回應
+            return NotFound();
         }
 
-        //更新休息時間 lunch_start_time lunch_end_time
-        [HttpPut("updateLunchTimes/{id}")]
-        public async Task<IActionResult> UpdateLunchTimes(int id, [FromBody] TimeSpan lunch_start_time, TimeSpan lunch_end_time)
-        {
-            // 從資料庫查找現有的記錄
-            var existingRecord = await _attendanceContext.c_attendance_times.FindAsync(id);
-            if (existingRecord == null)
-            {
-                return NotFound(); // 若找不到記錄，返回 404
-            }
 
-            // 更新上下班時間
-            existingRecord.lunch_start_time = lunch_start_time;
-            existingRecord.lunch_end_time = lunch_end_time;
 
-            // 設置最後更新時間為當前時間
-            existingRecord.updated_at = DateTime.Now;
+        //// 更新上下班時間
+        //[HttpPut("updateWorkTimes/{id}")]
+        //public async Task<ActionResult<c_attendance_times>> UpdateWorkTimes(int id, [FromBody] c_attendance_times c_Attendance_Times)
+        //{
+        //    try
+        //    {
+        //        if (id != c_Attendance_Times.id)
+        //            return BadRequest("Employee ID mismatch");
 
-            // 保存變更到資料庫
-            await _attendanceContext.SaveChangesAsync();
+        //        var employeeToUpdate = await _attendanceContext.c_attendance_times.FindAsync(id);
 
-            // 返回更新後的記錄
-            return Ok(existingRecord);
-        }
+        //        if (employeeToUpdate == null)
+        //            return NotFound($"Employee with Id = {id} not found");
+
+        //        await _attendanceContext.c_attendance_times.SaveChangesAsync();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError,
+        //            "Error updating data");
+        //    }
+        //}
+
+        ////更新休息時間 lunch_start_time lunch_end_time
+        //[HttpPut("updateLunchTimes/{id}")]
+        //public async Task<IActionResult> UpdateLunchTimes(int id, [FromBody] TimeSpan lunch_start_time, TimeSpan lunch_end_time)
+        //{
+        //    // 從資料庫查找現有的記錄
+        //    var existingRecord = await _attendanceContext.c_attendance_times.FindAsync(id);
+        //    if (existingRecord == null)
+        //    {
+        //        return NotFound(); // 若找不到記錄，返回 404
+        //    }
+
+        //    // 更新上下班時間
+        //    existingRecord.lunch_start_time = lunch_start_time;
+        //    existingRecord.lunch_end_time = lunch_end_time;
+
+        //    // 設置最後更新時間為當前時間
+        //    existingRecord.updated_at = DateTime.Now;
+
+        //    // 保存變更到資料庫
+        //    await _attendanceContext.SaveChangesAsync();
+
+        //    // 返回更新後的記錄
+        //    return Ok(existingRecord);
+        //}
 
     }
 }

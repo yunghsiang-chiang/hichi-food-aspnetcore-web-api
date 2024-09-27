@@ -2,7 +2,7 @@
 {
     public class WorkTimesPayloadDTO
     {
-        public TimeSpan WorkStart { get; set; }
-        public TimeSpan WorkEnd { get; set; }
+        public String WorkStart { get; set; }
+        public String WorkEnd { get; set; }
     }
 }

@@ -29,7 +29,6 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\Pub
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.OpenApi.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.SqlServer.Server.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\MySql.Data.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\MySql.EntityFrameworkCore.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\MySQLConnection.dll
@@ -40,7 +39,6 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\Pub
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\System.ClientModel.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\System.Configuration.ConfigurationManager.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\System.Drawing.Common.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\System.Memory.Data.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\PubTmp\Out\System.Runtime.Caching.dll

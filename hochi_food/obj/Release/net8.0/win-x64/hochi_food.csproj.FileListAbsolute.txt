@@ -35,7 +35,6 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Mic
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.IdentityModel.Tokens.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.OpenApi.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.SqlServer.Server.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.Win32.SystemEvents.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Mono.TextTemplating.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\MySql.Data.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\MySql.EntityFrameworkCore.dll
@@ -50,7 +49,6 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Sys
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Composition.Runtime.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Composition.TypedParts.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Configuration.ConfigurationManager.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Drawing.Common.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Memory.Data.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Runtime.Caching.dll
