@@ -305,5 +305,29 @@ namespace hochi_food.Controllers
             return NotFound();
         }
 
+
+        // PUT: api/attendance/update_attendance_calendar
+        [HttpPut("update_attendance_calendar")]
+        public async Task<IActionResult> UpdateAttendanceCalendar([FromBody] c_attendance_calendar c_Attendance_Calendar)
+        {
+            // 驗證資料是否存在
+            var existingRecord = await _attendanceContext.c_attendance_calendar
+                .FirstOrDefaultAsync(ac => ac.calendar_year == c_Attendance_Calendar.calendar_year
+                                          && ac.calendar_month == c_Attendance_Calendar.calendar_month);
+
+            if (existingRecord == null)
+            {
+                return NotFound("該紀錄不存在。");
+            }
+
+            // 更新 attendance_days 欄位
+            existingRecord.attendance_days = c_Attendance_Calendar.attendance_days;
+
+            // 儲存變更
+            await _attendanceContext.SaveChangesAsync();
+
+            return NoContent(); // 更新成功，回傳204 No Content
+        }
+
     }
 }

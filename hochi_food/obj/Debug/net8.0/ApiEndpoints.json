@@ -527,6 +527,22 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "UpdateAttendanceCalendar",
+    "RelativePath": "api/attendance/update_attendance_calendar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "c_Attendance_Calendar",
+        "Type": "hochi_food.Models.c_attendance_calendar",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "UpdateAttendanceTimes",
     "RelativePath": "api/attendance/UpdateAttendanceTimes/{id}",
     "HttpMethod": "PUT",
@@ -1148,6 +1164,26 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.c_dishes, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.hochi_learnersController",
+    "Method": "get_disciple_qty",
+    "RelativePath": "api/hochi_learners/get_disciple_qty",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
         "MediaTypes": [
           "text/plain",
           "application/json",
