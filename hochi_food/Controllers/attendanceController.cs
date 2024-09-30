@@ -305,55 +305,5 @@ namespace hochi_food.Controllers
             return NotFound();
         }
 
-
-
-        //// 更新上下班時間
-        //[HttpPut("updateWorkTimes/{id}")]
-        //public async Task<ActionResult<c_attendance_times>> UpdateWorkTimes(int id, [FromBody] c_attendance_times c_Attendance_Times)
-        //{
-        //    try
-        //    {
-        //        if (id != c_Attendance_Times.id)
-        //            return BadRequest("Employee ID mismatch");
-
-        //        var employeeToUpdate = await _attendanceContext.c_attendance_times.FindAsync(id);
-
-        //        if (employeeToUpdate == null)
-        //            return NotFound($"Employee with Id = {id} not found");
-
-        //        await _attendanceContext.c_attendance_times.SaveChangesAsync();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError,
-        //            "Error updating data");
-        //    }
-        //}
-
-        ////更新休息時間 lunch_start_time lunch_end_time
-        //[HttpPut("updateLunchTimes/{id}")]
-        //public async Task<IActionResult> UpdateLunchTimes(int id, [FromBody] TimeSpan lunch_start_time, TimeSpan lunch_end_time)
-        //{
-        //    // 從資料庫查找現有的記錄
-        //    var existingRecord = await _attendanceContext.c_attendance_times.FindAsync(id);
-        //    if (existingRecord == null)
-        //    {
-        //        return NotFound(); // 若找不到記錄，返回 404
-        //    }
-
-        //    // 更新上下班時間
-        //    existingRecord.lunch_start_time = lunch_start_time;
-        //    existingRecord.lunch_end_time = lunch_end_time;
-
-        //    // 設置最後更新時間為當前時間
-        //    existingRecord.updated_at = DateTime.Now;
-
-        //    // 保存變更到資料庫
-        //    await _attendanceContext.SaveChangesAsync();
-
-        //    // 返回更新後的記錄
-        //    return Ok(existingRecord);
-        //}
-
     }
 }
