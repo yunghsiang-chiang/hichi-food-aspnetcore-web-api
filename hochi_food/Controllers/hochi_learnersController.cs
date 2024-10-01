@@ -54,9 +54,9 @@ namespace hochi_food.Controllers
         [HttpGet("get_disciple_qty")]
         public int get_disciple_qty()
         {
-            // 從 c_fellow_hochi_learners 表中篩選出 person_type 為 "disciple" 的人員，並計算總數
+            // 從 c_fellow_hochi_learners 表中篩選出 person_type 為 "disciple" 或 "secretary" 的人員，並計算總數
             var temp = (from row in _hochi_configContext.c_fellow_hochi_learners
-                        where row.person_type == "disciple"
+                        where row.person_type == "disciple" || row.person_area == "secretary"
                         select row.person_id).Count();
 
             // 返回職員總數
