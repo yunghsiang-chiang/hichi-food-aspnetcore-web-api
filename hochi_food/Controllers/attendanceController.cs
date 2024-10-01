@@ -279,6 +279,25 @@ namespace hochi_food.Controllers
             return temp;
         }
 
+        // HTTP GET 方法，取得等待簽核加班紀錄資訊
+        [HttpGet("waiting_for_approval_of_overtime_record")]
+        public IEnumerable<h_overtime_record> waiting_for_approval_of_overtime_record()
+        {
+            var temp = from row in _attendanceContext.h_overtime_record
+                       where row.approved_by == null  // 篩選 approved_by 為 null 的紀錄
+                       select row;
+            return temp;
+        }
+
+        // HTTP GET 方法，取得等待簽核休假紀錄資訊
+        [HttpGet("waiting_for_approval_of_leave_record")]
+        public IEnumerable<h_leave_record> waiting_for_approval_of_leave_record()
+        {
+            var temp = from row in _attendanceContext.h_leave_record
+                       where row.approved_by == null  // 篩選 approved_by 為 null 的紀錄
+                       select row;
+            return temp;
+        }
 
         [HttpPut("UpdateAttendanceTimes/{id}")]
         // 定義一個 HTTP PUT 方法，用於更新指定 ID 的考勤時間
@@ -340,6 +359,50 @@ namespace hochi_food.Controllers
             await _attendanceContext.SaveChangesAsync();
 
             return NoContent(); // 更新成功，回傳204 No Content
+        }
+
+        //
+
+        [HttpPut("update-overtime/{userID}/{overtimeType}/{startTime}")]
+        public async Task<IActionResult> UpdateOvertimeRecord(string userID, string overtimeType, DateTime startTime, [FromBody] h_overtime_record updatedRecord)
+        {
+            // 查找加班記錄
+            var existingRecord = await _attendanceContext.h_overtime_record
+                .FirstOrDefaultAsync(o => o.userID == userID && o.overtimeType == overtimeType && o.startTime == startTime);
+
+            if (existingRecord == null)
+            {
+                return NotFound("加班記錄未找到。");
+            }
+
+            // 更新資料
+            existingRecord.approved_by = updatedRecord.approved_by;
+
+            // 保存更改
+            await _attendanceContext.SaveChangesAsync();
+
+            return Ok(existingRecord);
+        }
+
+        [HttpPut("update-leave/{userId}/{leaveType}/{startTime}")]
+        public async Task<IActionResult> UpdateLeaveRecord(string userId, string leaveType, DateTime startTime, [FromBody] h_leave_record updatedRecord)
+        {
+            // 查找請假記錄
+            var existingRecord = await _attendanceContext.h_leave_record
+                .FirstOrDefaultAsync(l => l.userId == userId && l.leaveType == leaveType && l.startTime == startTime);
+
+            if (existingRecord == null)
+            {
+                return NotFound("請假記錄未找到。");
+            }
+
+            // 更新資料
+            existingRecord.approved_by = updatedRecord.approved_by;
+
+            // 保存更改
+            await _attendanceContext.SaveChangesAsync();
+
+            return Ok(existingRecord);
         }
 
     }

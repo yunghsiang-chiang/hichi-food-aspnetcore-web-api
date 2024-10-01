@@ -563,6 +563,68 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "UpdateLeaveRecord",
+    "RelativePath": "api/attendance/update-leave/{userId}/{leaveType}/{startTime}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "leaveType",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "startTime",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedRecord",
+        "Type": "hochi_food.Models.h_leave_record",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "UpdateOvertimeRecord",
+    "RelativePath": "api/attendance/update-overtime/{userID}/{overtimeType}/{startTime}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "overtimeType",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "startTime",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedRecord",
+        "Type": "hochi_food.Models.h_overtime_record",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "UpdateAttendanceTimes",
     "RelativePath": "api/attendance/UpdateAttendanceTimes/{id}",
     "HttpMethod": "PUT",
@@ -581,6 +643,46 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "waiting_for_approval_of_leave_record",
+    "RelativePath": "api/attendance/waiting_for_approval_of_leave_record",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.h_leave_record, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "waiting_for_approval_of_overtime_record",
+    "RelativePath": "api/attendance/waiting_for_approval_of_overtime_record",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.h_overtime_record, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "hochi_food.Controllers.dishesController",
