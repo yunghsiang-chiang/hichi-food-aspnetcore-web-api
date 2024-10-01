@@ -175,6 +175,19 @@ namespace hochi_food.Controllers
             return temp;
         }
 
+        // HTTP GET 方法，取得今天的請假記錄
+        [HttpGet("get_today_leave_record")]
+        public IEnumerable<h_leave_record> get_today_leave_record()
+        {
+            // 查詢今天的請假記錄
+            var todayLeaveRecords = from record in _attendanceContext.h_leave_record
+                                    where record.startTime.Date <= DateTime.Now.Date && record.endTime.Date >= DateTime.Now.Date
+                                    select record;
+
+            // 返回查詢結果
+            return todayLeaveRecords;
+        }
+
         // HTTP GET 方法，根據使用者 ID 和指定時間範圍取得加班記錄
         [HttpGet("get_overtime_record")]
         public IEnumerable<h_overtime_record> get_overtime_record(string userid, DateTime startdate, DateTime enddate)
