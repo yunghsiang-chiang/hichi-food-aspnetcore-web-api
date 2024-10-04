@@ -37,6 +37,16 @@ namespace hochi_food.Controllers
             return temp;
         }
 
+        // 定義一個 HTTP GET 方法，用來獲取人員的 ID 、名稱、職務
+        [HttpGet("get_person_IdNameType")]
+        public IEnumerable<personDTO> get_person_IdNameType()
+        {
+            var temp = from row in _hochi_configContext.c_fellow_hochi_learners
+                       select new personDTO { person_id=row.person_id, person_name=row.person_name, person_type=row.person_type };
+            return temp;
+        }
+
+
         // 定義一個 HTTP GET 方法，用來獲取職員的總數
         [HttpGet("get_staff_qty")]
         public int get_staff_qty()
