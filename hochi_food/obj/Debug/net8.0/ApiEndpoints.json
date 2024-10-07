@@ -360,6 +360,26 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "get_leave_record_last_year",
+    "RelativePath": "api/attendance/get_leave_record_last_year",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.h_leave_record, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "get_overtime_record",
     "RelativePath": "api/attendance/get_overtime_record",
     "HttpMethod": "GET",
@@ -1326,6 +1346,26 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.personIdNameDTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.hochi_learnersController",
+    "Method": "get_person_IdNameType",
+    "RelativePath": "api/hochi_learners/get_person_IdNameType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.personDTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

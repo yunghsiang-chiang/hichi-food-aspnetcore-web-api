@@ -224,6 +224,17 @@ namespace hochi_food.Controllers
             return temp;
         }
 
+        //HTTP GET 方法，取得1年內請假記錄
+        [HttpGet("get_leave_record_last_year")]
+        public IEnumerable<h_leave_record> get_leave_record_last_year()
+        {
+            DateTime last_year_day = DateTime.Now.AddDays(-365);
+            var temp = from row in _attendanceContext.h_leave_record
+                       where row.startTime >= last_year_day
+                       select row;
+            return temp;
+        }
+
         // HTTP GET 方法，根據指定年份和月份取得加班記錄
         [HttpGet("get_overtime_record_by_year_month")]
         public IEnumerable<h_overtime_record> get_overtime_record_by_year_month(int year, int month)

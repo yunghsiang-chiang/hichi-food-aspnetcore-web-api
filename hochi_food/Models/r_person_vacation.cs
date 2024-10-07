@@ -4,7 +4,8 @@ using System.Collections.Generic;
 namespace hochi_food.Models;
 
 /// <summary>
-/// 休假即時表
+/// 休假即時表，網頁呈現的數值會計算過
+/// 這張表等同config表
 /// </summary>
 public partial class r_person_vacation
 {

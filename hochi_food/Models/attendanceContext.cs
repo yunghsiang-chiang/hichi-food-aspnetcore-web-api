@@ -361,7 +361,7 @@ public partial class attendanceContext : DbContext
         {
             entity.HasKey(e => e.person_id).HasName("PRIMARY");
 
-            entity.ToTable(tb => tb.HasComment("休假即時表"));
+            entity.ToTable(tb => tb.HasComment("休假即時表，網頁呈現的數值會計算過\n這張表等同config表"));
 
             entity.Property(e => e.person_id)
                 .HasMaxLength(45)
