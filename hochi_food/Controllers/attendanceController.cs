@@ -114,10 +114,18 @@ namespace hochi_food.Controllers
         [HttpGet("get_attendanceDates")]
         public IEnumerable<attendanceDatesDTO> get_attendanceDates(string userid, int attendanceyear, int attendancemonth)
         {
-            // 查詢指定使用者在指定年月的出勤日期，並篩選出"到班"的狀態
+            // 查詢指定使用者在指定年月的出勤日期，篩選出 "到班" 或 "外出公務" 的狀態，並確保日期唯一
             var temp = from row in _attendanceContext.h_attendance_record
-                       where row.user_id == userid && row.create_time.Year == attendanceyear && row.create_time.Month == attendancemonth && row.attendance_status == "到班"
-                       select new attendanceDatesDTO { attendanceDates = row.create_time.ToString("yyyy-MM-dd") };
+                       where row.user_id == userid
+                             && row.create_time.Year == attendanceyear
+                             && row.create_time.Month == attendancemonth
+                             && (row.attendance_status == "到班" || row.attendance_status == "外出公務")
+                       group row by row.create_time.Date into g
+                       select new attendanceDatesDTO
+                       {
+                           attendanceDates = g.Key.ToString("yyyy-MM-dd")
+                       };
+
             // 返回去重後的出勤日期
             return temp.Distinct();
         }
