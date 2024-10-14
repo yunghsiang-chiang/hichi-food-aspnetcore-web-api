@@ -36,15 +36,43 @@ namespace hochi_food.Controllers
             _attendanceContext.SaveChanges();
         }
 
-        // HTTP POST 方法，新增每日出勤記錄
+        // HTTP POST 方法，新增或覆蓋每日出勤記錄
         [HttpPost("appendattendance_day")]
-        public void appendattendance_day([FromBody] h_attendance_day h_Attendance_Day)
+        public IActionResult appendattendance_day([FromBody] h_attendance_day h_Attendance_Day)
         {
-            // 將每日出勤新增到資料庫
-            _attendanceContext.Add(h_Attendance_Day);
-            // 保存變更
-            _attendanceContext.SaveChanges();
+            try
+            {
+                // 先檢查資料是否已經存在
+                var existingRecord = _attendanceContext.h_attendance_day
+                    .FirstOrDefault(a => a.user_id == h_Attendance_Day.user_id && a.attendance_day == h_Attendance_Day.attendance_day);
+
+                if (existingRecord != null)
+                {
+                    // 如果存在，更新現有資料
+                    existingRecord.user_name = h_Attendance_Day.user_name;
+                    existingRecord.morning_light_up = h_Attendance_Day.morning_light_up;
+                    existingRecord.morning_light_down = h_Attendance_Day.morning_light_down;
+                    existingRecord.morning_meeting = h_Attendance_Day.morning_meeting;
+                }
+                else
+                {
+                    // 如果不存在，新增新的記錄
+                    _attendanceContext.h_attendance_day.Add(h_Attendance_Day);
+                }
+
+                // 保存變更
+                _attendanceContext.SaveChanges();
+
+                // 成功操作，不回傳任何數據 (204 No Content)
+                return StatusCode(204);
+            }
+            catch (Exception ex)
+            {
+                // 異常時回傳500 Internal Server Error，並附帶錯誤訊息和傳入的資料
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}", data = h_Attendance_Day });
+            }
         }
+
 
         // HTTP POST 方法，新增出勤記錄
         [HttpPost("appendattendance_record")]
@@ -85,6 +113,38 @@ namespace hochi_food.Controllers
             // 保存變更
             _attendanceContext.SaveChanges();
         }
+
+        // HTTP GET 方法，取得特定同修在某年某月的累積晨光與晨會數據
+        [HttpGet("getMonthlyAttendanceSummary")]
+        public IActionResult GetMonthlyAttendanceSummary(string user_id, int year, int month)
+        {
+            try
+            {
+                // 篩選符合 user_id 和指定年份與月份的出勤記錄
+                var attendanceRecords = _attendanceContext.h_attendance_day
+                    .Where(a => a.user_id == user_id
+                                && a.attendance_day.Year == year
+                                && a.attendance_day.Month == month)
+                    .ToList();
+
+                // 計算當月累積的晨光上、晨光下、晨會數據
+                var summary = new
+                {
+                    TotalMorningLightUp = attendanceRecords.Sum(a => a.morning_light_up),
+                    TotalMorningLightDown = attendanceRecords.Sum(a => a.morning_light_down),
+                    TotalMorningMeeting = attendanceRecords.Sum(a => a.morning_meeting)
+                };
+
+                // 回傳累積數據
+                return Ok(summary);
+            }
+            catch (Exception ex)
+            {
+                // 異常時回傳錯誤訊息
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
 
         // HTTP GET 方法，查詢出勤資訊
         [HttpGet("getAllAttendanceTimes")]
