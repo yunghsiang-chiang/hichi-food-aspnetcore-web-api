@@ -255,29 +255,47 @@ namespace hochi_food.Controllers
             return temp;
         }
 
-        // HTTP GET 方法，取得當天最後的出勤狀態
-        [HttpGet("get_attendannce_last_status")]
-        public attendance_last_statusDTO get_attendannce_last_status(string userid)
+        [HttpGet("get_attendance_last_status")]
+        public attendance_last_statusDTO get_attendance_last_status(string userid)
         {
-            // 查詢當天的出勤記錄，按時間排序，取最新的記錄
-            var attendanceStatus = (from row in _attendanceContext.h_attendance_record
-                                    where row.create_time.Date == DateTime.Now.Date && row.user_id == userid
-                                    orderby row.create_time descending
-                                    select new attendance_last_statusDTO { attendance_status = row.attendance_status })
-                                   .FirstOrDefault();
+            // 取得當天的請假記錄
+            var leaveRecords = (from row in _attendanceContext.h_leave_record
+                                where row.startTime.Date == DateTime.Now.Date && row.userId == userid
+                                select new { LeaveType = row.leaveType, StartTime = row.startTime, EndTime = row.endTime })
+                               .ToList();
 
-            // 如果沒有找到出勤記錄，則查詢請假記錄
-            if (attendanceStatus == null)
+            // 取得當天的出勤記錄
+            var attendanceRecords = (from row in _attendanceContext.h_attendance_record
+                                     where row.create_time.Date == DateTime.Now.Date && row.user_id == userid
+                                     select new { Status = row.attendance_status, Time = row.create_time })
+                                    .ToList();
+
+            // 遍歷出勤記錄，排除在請假時間段內的出勤記錄
+            var validAttendanceRecords = attendanceRecords.Where(attendance =>
             {
-                attendanceStatus = (from row in _attendanceContext.h_leave_record
-                                    where row.startTime.Date == DateTime.Now.Date && row.userId == userid
-                                    select new attendance_last_statusDTO { attendance_status = row.leaveType })
-                                   .FirstOrDefault();
+                // 檢查出勤時間是否在所有請假記錄的請假時間段之外
+                bool isDuringLeave = leaveRecords.Any(leave => attendance.Time >= leave.StartTime && attendance.Time <= leave.EndTime);
+                return !isDuringLeave; // 如果不在請假時間段內，則認為是有效的出勤記錄
+            })
+            .ToList();
+
+            // 合併有效的出勤記錄和請假記錄，按時間排序
+            var combinedRecords = validAttendanceRecords
+                                  .Select(record => new { Status = record.Status, Time = record.Time })
+                                  .Concat(leaveRecords.Select(leave => new { Status = leave.LeaveType, Time = leave.StartTime }))
+                                  .OrderByDescending(record => record.Time)
+                                  .FirstOrDefault();
+
+            // 如果找到合併後的最新有效記錄，返回最新狀態
+            if (combinedRecords != null)
+            {
+                return new attendance_last_statusDTO { attendance_status = combinedRecords.Status };
             }
 
-            // 返回出勤或請假狀態
-            return attendanceStatus;
+            // 如果沒有找到任何有效記錄，返回空的狀態
+            return null;
         }
+
 
         // HTTP GET 方法，取得同休人員的休假表
         [HttpGet("get_person_vacation")]
