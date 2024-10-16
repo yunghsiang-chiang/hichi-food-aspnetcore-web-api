@@ -22,4 +22,9 @@ public partial class category
     /// Optional description or notes about the category
     /// </summary>
     public string? description { get; set; }
+
+    /// <summary>
+    /// category icon
+    /// </summary>
+    public string? icon { get; set; }
 }
