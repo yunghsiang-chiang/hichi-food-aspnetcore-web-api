@@ -406,7 +406,7 @@ namespace hochi_food.Controllers
         }
 
         /// <summary>
-        /// Add a new category
+        /// Add or update a category
         /// </summary>
         [HttpPost("categories")]
         public async Task<ActionResult<category>> PostCategory([FromBody] category newCategory)
@@ -416,12 +416,28 @@ namespace hochi_food.Controllers
                 return BadRequest("Category name is required.");
             }
 
-            // 確保不提供 category_id，因為資料庫會自動生成
-            _foodContext.category.Add(newCategory);
-            await _foodContext.SaveChangesAsync();
+            // 查找是否已有相同 category_id 的分類
+            var existingCategory = await _foodContext.category
+                .FirstOrDefaultAsync(c => c.category_id == newCategory.category_id);
 
-            return CreatedAtAction(nameof(GetCategory), new { id = newCategory.category_id }, newCategory);
+            if (existingCategory != null)
+            {
+                // 更新已有的分類資料
+                existingCategory.category_name = newCategory.category_name;
+                existingCategory.description = newCategory.description;
+                _foodContext.category.Update(existingCategory);
+                await _foodContext.SaveChangesAsync();
+                return Ok(existingCategory); // 返回更新後的分類資料
+            }
+            else
+            {
+                // 添加新的分類資料
+                _foodContext.category.Add(newCategory);
+                await _foodContext.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetCategory), new { id = newCategory.category_id }, newCategory);
+            }
         }
+
 
 
 
