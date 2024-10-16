@@ -29,7 +29,19 @@ public partial class foodContext : DbContext
 
     public virtual DbSet<c_seasoning> c_seasoning { get; set; }
 
+    public virtual DbSet<category> category { get; set; }
+
+    public virtual DbSet<chef> chef { get; set; }
+
     public virtual DbSet<h_activity_records> h_activity_records { get; set; }
+
+    public virtual DbSet<ingredient> ingredient { get; set; }
+
+    public virtual DbSet<main_ingredient> main_ingredient { get; set; }
+
+    public virtual DbSet<recipe> recipe { get; set; }
+
+    public virtual DbSet<recipe_steps> recipe_steps { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -290,6 +302,36 @@ public partial class foodContext : DbContext
                 .HasComment("調味料名稱");
         });
 
+        modelBuilder.Entity<category>(entity =>
+        {
+            entity.HasKey(e => e.category_id).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("Table to store different categories for recipes"));
+
+            entity.Property(e => e.category_id).HasComment("Unique identifier for each recipe category");
+            entity.Property(e => e.category_name)
+                .HasMaxLength(255)
+                .HasComment("Name of the category (e.g., 主菜, 紅燒, 咖哩)");
+            entity.Property(e => e.description)
+                .HasComment("Optional description or notes about the category")
+                .HasColumnType("text");
+        });
+
+        modelBuilder.Entity<chef>(entity =>
+        {
+            entity.HasKey(e => e.chef_id).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("Table to store information about each chef"));
+
+            entity.Property(e => e.chef_id).HasComment("Unique identifier for each chef");
+            entity.Property(e => e.name)
+                .HasMaxLength(255)
+                .HasComment("Name of the chef (e.g., 王金對)");
+            entity.Property(e => e.region)
+                .HasMaxLength(255)
+                .HasComment("Region or location associated with the chef (optional)");
+        });
+
         modelBuilder.Entity<h_activity_records>(entity =>
         {
             entity.HasKey(e => new { e.activity_name, e.activity_date, e.meal_type }).HasName("PRIMARY");
@@ -317,6 +359,97 @@ public partial class foodContext : DbContext
             entity.Property(e => e.lm_user)
                 .HasMaxLength(15)
                 .HasComment("最後編輯者");
+        });
+
+        modelBuilder.Entity<ingredient>(entity =>
+        {
+            entity.HasKey(e => e.ingredient_id).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("Table to store detailed information about ingredients used in recipes"));
+
+            entity.Property(e => e.ingredient_id).HasComment("Unique identifier for each ingredient");
+            entity.Property(e => e.description)
+                .HasComment("Optional description or notes about the ingredient")
+                .HasColumnType("text");
+            entity.Property(e => e.ingredient_name)
+                .HasMaxLength(255)
+                .HasComment("Name of the ingredient (e.g., 天貝, 豆包)");
+            entity.Property(e => e.unit)
+                .HasMaxLength(50)
+                .HasComment("Unit of measurement for the ingredient (e.g., grams, ml)");
+        });
+
+        modelBuilder.Entity<main_ingredient>(entity =>
+        {
+            entity.HasKey(e => e.main_ingredient_id).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("Table to store detailed information about each main ingredient used in recipes"));
+
+            entity.Property(e => e.main_ingredient_id).HasComment("Unique identifier for each main ingredient");
+            entity.Property(e => e.category)
+                .HasMaxLength(255)
+                .HasComment("Category of the ingredient (e.g., 豆製品 for tofu products)");
+            entity.Property(e => e.description)
+                .HasComment("Optional description or notes about the ingredient")
+                .HasColumnType("text");
+            entity.Property(e => e.main_ingredient_name)
+                .HasMaxLength(255)
+                .HasComment("Name of the main ingredient (e.g., 豆包, 天貝)");
+        });
+
+        modelBuilder.Entity<recipe>(entity =>
+        {
+            entity.HasKey(e => e.recipe_id).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("Table to store information about each recipe, including name, main ingredient, category, and chef reference"));
+
+            entity.HasIndex(e => e.chef_id, "chef_id");
+
+            entity.HasIndex(e => e.main_ingredient_id, "main_ingredient_id");
+
+            entity.Property(e => e.recipe_id).HasComment("Unique identifier for each recipe");
+            entity.Property(e => e.category)
+                .HasMaxLength(255)
+                .HasComment("Category of the recipe (e.g., 主菜 - 紅燒, 咖哩)");
+            entity.Property(e => e.chef_id).HasComment("References the ID of the chef from the Chef table");
+            entity.Property(e => e.main_ingredient_id).HasComment("References the ID of the main ingredient from the Main_Ingredient table");
+            entity.Property(e => e.recipe_link)
+                .HasMaxLength(255)
+                .HasComment("Link or identifier for further recipe details");
+            entity.Property(e => e.recipe_name)
+                .HasMaxLength(255)
+                .HasComment("Name of the recipe (e.g., 糖醋豆包)");
+
+            entity.HasOne(d => d.chef).WithMany(p => p.recipe)
+                .HasForeignKey(d => d.chef_id)
+                .HasConstraintName("recipe_ibfk_2");
+
+            entity.HasOne(d => d.main_ingredient).WithMany(p => p.recipe)
+                .HasForeignKey(d => d.main_ingredient_id)
+                .HasConstraintName("recipe_ibfk_1");
+        });
+
+        modelBuilder.Entity<recipe_steps>(entity =>
+        {
+            entity.HasKey(e => e.step_id).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("Table to store step-by-step instructions for each recipe"));
+
+            entity.HasIndex(e => e.recipe_id, "recipe_id");
+
+            entity.Property(e => e.step_id).HasComment("Unique identifier for each recipe step");
+            entity.Property(e => e.description)
+                .HasComment("Detailed description of the step")
+                .HasColumnType("text");
+            entity.Property(e => e.image_url)
+                .HasMaxLength(255)
+                .HasComment("URL for an image illustrating the step (if available)");
+            entity.Property(e => e.recipe_id).HasComment("References the ID of the recipe from the Recipe table");
+            entity.Property(e => e.step_number).HasComment("The order of the step in the recipe");
+
+            entity.HasOne(d => d.recipe).WithMany(p => p.recipe_steps)
+                .HasForeignKey(d => d.recipe_id)
+                .HasConstraintName("recipe_steps_ibfk_1");
         });
 
         OnModelCreatingPartial(modelBuilder);

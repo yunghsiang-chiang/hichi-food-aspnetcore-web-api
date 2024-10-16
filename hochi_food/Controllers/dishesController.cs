@@ -382,6 +382,50 @@ namespace hochi_food.Controllers
         }
 
         /// <summary>
+        /// Get all categories
+        /// </summary>
+        [HttpGet("categories")]
+        public async Task<ActionResult<IEnumerable<category>>> GetCategories()
+        {
+            var categories = await _foodContext.category.ToListAsync();
+            return Ok(categories);
+        }
+
+        /// <summary>
+        /// Get a single category by ID
+        /// </summary>
+        [HttpGet("categories/{id}")]
+        public async Task<ActionResult<category>> GetCategory(int id)
+        {
+            var category = await _foodContext.category.FindAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return Ok(category);
+        }
+
+        /// <summary>
+        /// Add a new category
+        /// </summary>
+        [HttpPost("categories")]
+        public async Task<ActionResult<category>> PostCategory([FromBody] category newCategory)
+        {
+            if (newCategory == null || string.IsNullOrEmpty(newCategory.category_name))
+            {
+                return BadRequest("Category name is required.");
+            }
+
+            // 確保不提供 category_id，因為資料庫會自動生成
+            _foodContext.category.Add(newCategory);
+            await _foodContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetCategory), new { id = newCategory.category_id }, newCategory);
+        }
+
+
+
+        /// <summary>
         /// 新增菜色資料
         /// </summary>
         /// <param name="dishes"></param>
