@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "hochi_food.Controllers.activityController",
+    "Method": "SubmitSurvey",
+    "RelativePath": "api/activity/SubmitSurvey",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "hochi_food.Dtos.SurveySubmissionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "appendattendance_calendar",
     "RelativePath": "api/attendance/appendattendance_calendar",
@@ -851,6 +867,78 @@
     "ReturnTypes": [
       {
         "Type": "hochi_food.Models.category",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.dishesController",
+    "Method": "GetChefs",
+    "RelativePath": "api/dishes/chefs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.chef, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.dishesController",
+    "Method": "PostChef",
+    "RelativePath": "api/dishes/chefs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newChef",
+        "Type": "hochi_food.Models.chef",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hochi_food.Models.chef",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.dishesController",
+    "Method": "GetChef",
+    "RelativePath": "api/dishes/chefs/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hochi_food.Models.chef",
         "MediaTypes": [
           "text/plain",
           "application/json",

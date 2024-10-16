@@ -9,6 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<foodContext>(options =>options.UseMySQL(builder.Configuration.GetConnectionString("WebDatabase")));
 builder.Services.AddDbContext<attendanceContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("WebDatabase3")));
 builder.Services.AddDbContext<hochi_configContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("WebDatabase4")));
+builder.Services.AddDbContext<activityContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("WebDatabase5")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
