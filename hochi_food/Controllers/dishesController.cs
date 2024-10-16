@@ -439,7 +439,61 @@ namespace hochi_food.Controllers
         }
 
 
+        /// <summary>
+        /// Get all chefs
+        /// </summary>
+        [HttpGet("chefs")]
+        public async Task<ActionResult<IEnumerable<chef>>> GetChefs()
+        {
+            var chefs = await _foodContext.chef.ToListAsync();
+            return Ok(chefs);
+        }
 
+        /// <summary>
+        /// Get a single chef by ID
+        /// </summary>
+        [HttpGet("chefs/{id}")]
+        public async Task<ActionResult<chef>> GetChef(int id)
+        {
+            var chef = await _foodContext.chef.FindAsync(id);
+            if (chef == null)
+            {
+                return NotFound();
+            }
+            return Ok(chef);
+        }
+
+        /// <summary>
+        /// Add or update a chef
+        /// </summary>
+        [HttpPost("chefs")]
+        public async Task<ActionResult<chef>> PostChef([FromBody] chef newChef)
+        {
+            if (newChef == null || string.IsNullOrEmpty(newChef.name))
+            {
+                return BadRequest("Chef name is required.");
+            }
+
+            var existingChef = await _foodContext.chef
+                .FirstOrDefaultAsync(c => c.chef_id == newChef.chef_id);
+
+            if (existingChef != null)
+            {
+                // Update existing chef information
+                existingChef.name = newChef.name;
+                existingChef.region = newChef.region;
+                _foodContext.chef.Update(existingChef);
+                await _foodContext.SaveChangesAsync();
+                return Ok(existingChef);
+            }
+            else
+            {
+                // Add new chef
+                _foodContext.chef.Add(newChef);
+                await _foodContext.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetChef), new { id = newChef.chef_id }, newChef);
+            }
+        }
 
         /// <summary>
         /// 新增菜色資料
