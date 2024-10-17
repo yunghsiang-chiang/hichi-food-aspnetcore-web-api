@@ -52,21 +52,45 @@ namespace hochi_food.Controllers
         [HttpGet("ColorDistribution")]
         public IActionResult GetColorDistribution()
         {
-            var colors = new[] { "紅", "橙", "黃", "綠", "藍", "靛", "紫" };
-            var colorCounts = colors.Select(color => new
-            {
-                Color = color,
-                Count = _activityContext.color_preferences.Count(c => c.message_board_color2 == color)
-            }).ToList();
+            var colorGroups = _activityContext.color_preferences
+                .Where(c => !string.IsNullOrEmpty(c.message_board_color1) && !string.IsNullOrEmpty(c.message_board_color2))
+                .GroupBy(c => c.message_board_color1)
+                .Select(g => new
+                {
+                    MessageBoardColor1 = g.Key, // 分組依據
+                    Colors = new
+                    {
+                        Red = g.Count(c => c.message_board_color2 == "紅"),
+                        Orange = g.Count(c => c.message_board_color2 == "橙"),
+                        Yellow = g.Count(c => c.message_board_color2 == "黃"),
+                        Green = g.Count(c => c.message_board_color2 == "綠"),
+                        Blue = g.Count(c => c.message_board_color2 == "藍"),
+                        Indigo = g.Count(c => c.message_board_color2 == "靛"),
+                        Purple = g.Count(c => c.message_board_color2 == "紫")
+                    }
+                })
+                .ToList();
 
             var result = new
             {
-                colors = colorCounts.Select(c => c.Color).ToArray(),
-                counts = colorCounts.Select(c => c.Count).ToArray()
+                groups = colorGroups.Select(g => g.MessageBoardColor1).ToArray(),
+                data = colorGroups.Select(g => new
+                {
+                    Colors = new int[] {
+                g.Colors.Red,
+                g.Colors.Orange,
+                g.Colors.Yellow,
+                g.Colors.Green,
+                g.Colors.Blue,
+                g.Colors.Indigo,
+                g.Colors.Purple
+            }
+                }).ToArray()
             };
 
             return Ok(result);
         }
+
 
 
         // AgeData - 年齡範圍分布
