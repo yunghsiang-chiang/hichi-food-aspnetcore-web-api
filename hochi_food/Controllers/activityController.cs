@@ -7,6 +7,7 @@ using hochi_food.Dtos;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using Microsoft.Identity.Client;
+using Google.Protobuf.WellKnownTypes;
 namespace hochi_food.Controllers
 {
     [EnableCors("corsapp")]
@@ -91,6 +92,55 @@ namespace hochi_food.Controllers
             return Ok(result);
         }
 
+        //取得 participants 的性別比例
+        //這個 API 將計算性別比例並返回。例如，男性和女性的比例
+        [HttpGet("GenderRatio")]
+        public IActionResult GetGenderRatio()
+        {
+            var maleCount = _activityContext.participants.Count(p => p.gender == "男");
+            var femaleCount = _activityContext.participants.Count(p => p.gender == "女");
+            var total = maleCount + femaleCount;
+
+            if (total == 0) return Ok(new { male = 0, female = 0 });
+
+            return Ok(new
+            {
+                male = Math.Round((double)maleCount / total * 100, 1),
+                female = Math.Round((double)femaleCount / total * 100, 1)
+            });
+        }
+        //取得 feedback 中有回饋感受的比例
+        //這個 API 計算 feedback_text 不為空的比例
+        [HttpGet("FeedbackResponseRate")]
+        public IActionResult GetFeedbackResponseRate()
+        {
+            var totalCount = _activityContext.feedback.Count();
+            var respondedCount = _activityContext.feedback.Count(f => !string.IsNullOrWhiteSpace(f.feedback_text));
+
+            if (totalCount == 0) return Ok(new { responded = 0, noResponse = 0 });
+
+            return Ok(new
+            {
+                responded = Math.Round((double)respondedCount / totalCount * 100, 1),
+                noResponse = Math.Round((double)(totalCount - respondedCount) / totalCount * 100, 1)
+            });
+        }
+        //取得 color_preferences 中使用 balloon = 是 的比例
+        //這個 API 計算有使用點點貼的比例
+        [HttpGet("BalloonUsageRate")]
+        public IActionResult GetBalloonUsageRate()
+        {
+            var totalCount = _activityContext.color_preferences.Count();
+            var balloonYesCount = _activityContext.color_preferences.Count(cp => cp.balloon == "是");
+
+            if (totalCount == 0) return Ok(new { used = 0, notUsed = 0 });
+
+            return Ok(new
+            {
+                used = Math.Round((double)balloonYesCount / totalCount * 100, 1),
+                notUsed = Math.Round((double)(totalCount - balloonYesCount) / totalCount * 100, 1)
+            });
+        }
 
 
         // AgeData - 年齡範圍分布
