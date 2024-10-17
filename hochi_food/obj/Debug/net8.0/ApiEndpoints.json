@@ -1,6 +1,46 @@
 [
   {
     "ContainingType": "hochi_food.Controllers.activityController",
+    "Method": "GetAgeData",
+    "RelativePath": "api/activity/AgeData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.activityController",
+    "Method": "GetColorDistribution",
+    "RelativePath": "api/activity/ColorDistribution",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.activityController",
+    "Method": "GetSocialData",
+    "RelativePath": "api/activity/SocialData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.activityController",
+    "Method": "GetSubmissionTimeData",
+    "RelativePath": "api/activity/SubmissionTimeData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.activityController",
     "Method": "SubmitSurvey",
     "RelativePath": "api/activity/SubmitSurvey",
     "HttpMethod": "POST",

@@ -22,6 +22,102 @@ namespace hochi_food.Controllers
             _activityContext = activitycontext;
         }
 
+        //SubmissionTimeData - 填寫問卷的小時分布
+        //這個方法會根據 feedback 表中的 created_at 字段，統計不同小時（0-23）的提交數量
+        [HttpGet("SubmissionTimeData")]
+        public IActionResult GetSubmissionTimeData()
+        {
+            var hourGroups = _activityContext.feedback
+                .Where(f => f.created_at.HasValue)
+                .GroupBy(f => f.created_at.Value.Hour)
+                .Select(g => new
+                {
+                    Hour = g.Key,
+                    Count = g.Count()
+                })
+                .OrderBy(g => g.Hour)
+                .ToList();
+
+            var result = new
+            {
+                hours = hourGroups.Select(x => x.Hour).ToArray(),
+                counts = hourGroups.Select(x => x.Count).ToArray()
+            };
+
+            return Ok(result);
+        }
+
+        // ColorDistribution - 顏色分布
+        //這個方法根據 color_preferences 中的 message_board_color2 字段，統計每個顏色（紅、橙、黃、綠、藍、靛、紫）的選擇數量。
+        [HttpGet("ColorDistribution")]
+        public IActionResult GetColorDistribution()
+        {
+            var colors = new[] { "紅", "橙", "黃", "綠", "藍", "靛", "紫" };
+            var colorCounts = colors.Select(color => new
+            {
+                Color = color,
+                Count = _activityContext.color_preferences.Count(c => c.message_board_color2 == color)
+            }).ToList();
+
+            var result = new
+            {
+                colors = colorCounts.Select(c => c.Color).ToArray(),
+                counts = colorCounts.Select(c => c.Count).ToArray()
+            };
+
+            return Ok(result);
+        }
+
+
+        // AgeData - 年齡範圍分布
+        //這個方法會從 participants 表中，統計不同年齡範圍的人數
+        [HttpGet("AgeData")]
+        public IActionResult GetAgeData()
+        {
+            var ageGroups = _activityContext.participants
+                .GroupBy(p => p.age_range)
+                .Select(g => new
+                {
+                    AgeRange = g.Key,
+                    Count = g.Count()
+                })
+                .OrderBy(g => g.AgeRange) // 可根據需求調整排序
+                .ToList();
+
+            var result = new
+            {
+                ageRanges = ageGroups.Select(x => x.AgeRange).ToArray(),
+                counts = ageGroups.Select(x => x.Count).ToArray()
+            };
+
+            return Ok(result);
+        }
+
+        // SocialData - 社群數據
+        //這個方法會根據 social_check_in 表中的 platform 字段，統計每個社群平台的使用情況
+        [HttpGet("SocialData")]
+        public IActionResult GetSocialData()
+        {
+            var platformGroups = _activityContext.social_check_in
+                .Where(s => !string.IsNullOrEmpty(s.platform))
+                .GroupBy(s => s.platform)
+                .Select(g => new
+                {
+                    Platform = g.Key,
+                    Count = g.Count()
+                })
+                .ToList();
+
+            var result = new
+            {
+                platforms = platformGroups.Select(x => x.Platform).ToArray(),
+                values = platformGroups.Select(x => x.Count).ToArray()
+            };
+
+            return Ok(result);
+        }
+
+
         [HttpPost("SubmitSurvey")]
         public async Task<IActionResult> SubmitSurvey([FromBody] SurveySubmissionDto dto)
         {
