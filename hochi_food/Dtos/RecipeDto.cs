@@ -7,7 +7,11 @@
         public string Category { get; set; }
         public string ChefName { get; set; }
         public string MainIngredientName { get; set; }
-        public string Description { get; set; } // 新增的 description 欄位
+
+        public string Description { get; set; }
         public List<RecipeStepDto> RecipeSteps { get; set; }
+        public List<IngredientDto> Ingredients { get; set; }
+        public List<SeasoningDto> Seasonings { get; set; }
     }
+
 }

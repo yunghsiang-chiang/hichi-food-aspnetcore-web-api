@@ -40,7 +40,11 @@ public partial class recipe
 
     public virtual chef? chef { get; set; }
 
+    public virtual ICollection<ingredients> ingredients { get; set; } = new List<ingredients>();
+
     public virtual main_ingredient? main_ingredient { get; set; }
 
     public virtual ICollection<recipe_steps> recipe_steps { get; set; } = new List<recipe_steps>();
+
+    public virtual ICollection<seasonings> seasonings { get; set; } = new List<seasonings>();
 }

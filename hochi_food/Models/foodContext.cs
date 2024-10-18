@@ -37,11 +37,15 @@ public partial class foodContext : DbContext
 
     public virtual DbSet<ingredient> ingredient { get; set; }
 
+    public virtual DbSet<ingredients> ingredients { get; set; }
+
     public virtual DbSet<main_ingredient> main_ingredient { get; set; }
 
     public virtual DbSet<recipe> recipe { get; set; }
 
     public virtual DbSet<recipe_steps> recipe_steps { get; set; }
+
+    public virtual DbSet<seasonings> seasonings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -382,6 +386,21 @@ public partial class foodContext : DbContext
                 .HasComment("Unit of measurement for the ingredient (e.g., grams, ml)");
         });
 
+        modelBuilder.Entity<ingredients>(entity =>
+        {
+            entity.HasKey(e => e.ingredient_id).HasName("PRIMARY");
+
+            entity.HasIndex(e => e.recipe_id, "recipe_id");
+
+            entity.Property(e => e.amount).HasPrecision(10);
+            entity.Property(e => e.ingredient_name).HasMaxLength(255);
+            entity.Property(e => e.unit).HasMaxLength(50);
+
+            entity.HasOne(d => d.recipe).WithMany(p => p.ingredients)
+                .HasForeignKey(d => d.recipe_id)
+                .HasConstraintName("ingredients_ibfk_1");
+        });
+
         modelBuilder.Entity<main_ingredient>(entity =>
         {
             entity.HasKey(e => e.main_ingredient_id).HasName("PRIMARY");
@@ -453,6 +472,21 @@ public partial class foodContext : DbContext
             entity.HasOne(d => d.recipe).WithMany(p => p.recipe_steps)
                 .HasForeignKey(d => d.recipe_id)
                 .HasConstraintName("recipe_steps_ibfk_1");
+        });
+
+        modelBuilder.Entity<seasonings>(entity =>
+        {
+            entity.HasKey(e => e.seasoning_id).HasName("PRIMARY");
+
+            entity.HasIndex(e => e.recipe_id, "recipe_id");
+
+            entity.Property(e => e.amount).HasPrecision(10);
+            entity.Property(e => e.seasoning_name).HasMaxLength(255);
+            entity.Property(e => e.unit).HasMaxLength(50);
+
+            entity.HasOne(d => d.recipe).WithMany(p => p.seasonings)
+                .HasForeignKey(d => d.recipe_id)
+                .HasConstraintName("seasonings_ibfk_1");
         });
 
         OnModelCreatingPartial(modelBuilder);
