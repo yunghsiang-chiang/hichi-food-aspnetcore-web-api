@@ -145,81 +145,102 @@ namespace hochi_food.Controllers
         [HttpPost]
         public async Task<ActionResult<recipe>> PostRecipe([FromBody] recipe newRecipe)
         {
-            if (newRecipe == null || string.IsNullOrEmpty(newRecipe.recipe_name))
+            try
             {
-                return BadRequest("Recipe name is required.");
-            }
-
-            // 验证食材
-            if (newRecipe.ingredients != null)
-            {
-                foreach (var ingredient in newRecipe.ingredients)
+                if (newRecipe == null || string.IsNullOrEmpty(newRecipe.recipe_name))
                 {
-                    if (ingredient.amount <= 0)
-                    {
-                        return BadRequest("Ingredient amount must be greater than zero.");
-                    }
-                    if (string.IsNullOrEmpty(ingredient.unit))
-                    {
-                        return BadRequest("Ingredient unit is required.");
-                    }
-                }
-            }
-
-            // 验证调味料
-            if (newRecipe.seasonings != null)
-            {
-                foreach (var seasoning in newRecipe.seasonings)
-                {
-                    if (seasoning.amount <= 0)
-                    {
-                        return BadRequest("Seasoning amount must be greater than zero.");
-                    }
-                    if (string.IsNullOrEmpty(seasoning.unit))
-                    {
-                        return BadRequest("Seasoning unit is required.");
-                    }
-                }
-            }
-
-            var existingRecipe = await _foodContext.recipe
-                .Include(r => r.ingredients)
-                .Include(r => r.seasonings)
-                .FirstOrDefaultAsync(r => r.recipe_id == newRecipe.recipe_id);
-
-            if (existingRecipe != null)
-            {
-                // 更新现有食谱信息
-                existingRecipe.recipe_name = newRecipe.recipe_name;
-                existingRecipe.main_ingredient_id = newRecipe.main_ingredient_id;
-                existingRecipe.category = newRecipe.category;
-                existingRecipe.chef_id = newRecipe.chef_id;
-                existingRecipe.description = newRecipe.description;
-
-                // 更新食材信息
-                existingRecipe.ingredients.Clear();
-                foreach (var ingredient in newRecipe.ingredients)
-                {
-                    existingRecipe.ingredients.Add(ingredient);
+                    return BadRequest("Recipe name is required.");
                 }
 
-                // 更新调味料信息
-                existingRecipe.seasonings.Clear();
-                foreach (var seasoning in newRecipe.seasonings)
+                // 验证食材
+                if (newRecipe.ingredients != null)
                 {
-                    existingRecipe.seasonings.Add(seasoning);
+                    foreach (var ingredient in newRecipe.ingredients)
+                    {
+                        if (ingredient.amount <= 0)
+                        {
+                            return BadRequest($"Ingredient '{ingredient.ingredient_name}' amount must be greater than zero.");
+                        }
+                        if (string.IsNullOrEmpty(ingredient.unit))
+                        {
+                            return BadRequest($"Ingredient '{ingredient.ingredient_name}' unit is required.");
+                        }
+
+                        // 設置食材的 recipe_id 而不是需要完整的 recipe 物件
+                        ingredient.recipe_id = newRecipe.recipe_id;
+                        ingredient.recipe = null;  // 清除 recipe 物件，只需要 recipe_id
+                    }
                 }
 
-                _foodContext.recipe.Update(existingRecipe);
-                await _foodContext.SaveChangesAsync();
-                return Ok(existingRecipe);
+                // 验证调味料
+                if (newRecipe.seasonings != null)
+                {
+                    foreach (var seasoning in newRecipe.seasonings)
+                    {
+                        if (seasoning.amount <= 0)
+                        {
+                            return BadRequest($"Seasoning '{seasoning.seasoning_name}' amount must be greater than zero.");
+                        }
+                        if (string.IsNullOrEmpty(seasoning.unit))
+                        {
+                            return BadRequest($"Seasoning '{seasoning.seasoning_name}' unit is required.");
+                        }
+
+                        // 設置調味料的 recipe_id 而不是需要完整的 recipe 物件
+                        seasoning.recipe_id = newRecipe.recipe_id;
+                        seasoning.recipe = null;  // 清除 recipe 物件，只需要 recipe_id
+                    }
+                }
+
+                var existingRecipe = await _foodContext.recipe
+                    .Include(r => r.ingredients)
+                    .Include(r => r.seasonings)
+                    .FirstOrDefaultAsync(r => r.recipe_id == newRecipe.recipe_id);
+
+                if (existingRecipe != null)
+                {
+                    // 更新现有食谱信息
+                    existingRecipe.recipe_name = newRecipe.recipe_name;
+                    existingRecipe.main_ingredient_id = newRecipe.main_ingredient_id;
+                    existingRecipe.category = newRecipe.category;
+                    existingRecipe.chef_id = newRecipe.chef_id;
+                    existingRecipe.description = newRecipe.description;
+
+                    // 更新食材信息
+                    existingRecipe.ingredients.Clear();
+                    foreach (var ingredient in newRecipe.ingredients)
+                    {
+                        existingRecipe.ingredients.Add(ingredient);
+                    }
+
+                    // 更新调味料信息
+                    existingRecipe.seasonings.Clear();
+                    foreach (var seasoning in newRecipe.seasonings)
+                    {
+                        existingRecipe.seasonings.Add(seasoning);
+                    }
+
+                    _foodContext.recipe.Update(existingRecipe);
+                    await _foodContext.SaveChangesAsync();
+                    return Ok(existingRecipe);
+                }
+                else
+                {
+                    // 新增食谱信息及其食材和调味料
+                    _foodContext.recipe.Add(newRecipe);
+                    await _foodContext.SaveChangesAsync();
+                    return CreatedAtAction(nameof(GetRecipe), new { id = newRecipe.recipe_id }, newRecipe);
+                }
             }
-            else
+            catch (DbUpdateException dbEx)
             {
-                // 新增食谱信息及其食材和调味料
-                _foodContext.recipe.Add(newRecipe);
-                await _foodContext.SaveChangesAsync();
-                return CreatedAtAction(nameof(GetRecipe), new { id = newRecipe.recipe_id }, newRecipe);
+                // 捕捉數據庫更新異常
+                return StatusCode(500, $"Database update error: {dbEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                // 捕捉所有其他異常
+                return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
 
