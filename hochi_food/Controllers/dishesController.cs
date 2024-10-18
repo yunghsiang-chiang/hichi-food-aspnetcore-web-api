@@ -534,7 +534,7 @@ namespace hochi_food.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("recipe/{id}")]
         public async Task<ActionResult<recipe>> GetRecipe(int id)
         {
             var recipe = await _foodContext.recipe
@@ -586,7 +586,7 @@ namespace hochi_food.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("recipe/{id}")]
         public async Task<IActionResult> DeleteRecipe(int id)
         {
             var recipe = await _foodContext.recipe
@@ -603,6 +603,82 @@ namespace hochi_food.Controllers
 
             return NoContent();
         }
+        /// <summary>
+        /// 获取所有主食材信息
+        /// </summary>
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<main_ingredient>>> GetMainIngredients()
+        {
+            // 从数据库中异步获取所有的主食材信息并返回
+            var mainIngredients = await _foodContext.main_ingredient.ToListAsync();
+            return Ok(mainIngredients);
+        }
 
+        /// <summary>
+        /// 根据ID获取单个主食材信息
+        /// </summary>
+        [HttpGet("main_ingredient/{id}")]
+        public async Task<ActionResult<main_ingredient>> GetMainIngredient(int id)
+        {
+            var mainIngredient = await _foodContext.main_ingredient.FindAsync(id);
+            if (mainIngredient == null)
+            {
+                return NotFound();
+            }
+            return Ok(mainIngredient);
+        }
+
+        /// <summary>
+        /// 新增或更新主食材信息
+        /// </summary>
+        [HttpPost]
+        public async Task<ActionResult<main_ingredient>> PostMainIngredient([FromBody] main_ingredient newMainIngredient)
+        {
+            // 检查主食材数据是否为空，名称是否为空
+            if (newMainIngredient == null || string.IsNullOrEmpty(newMainIngredient.main_ingredient_name))
+            {
+                return BadRequest("主食材名称不能为空。");
+            }
+
+            // 尝试查找是否已有相同ID的主食材，判断是更新还是新增
+            var existingMainIngredient = await _foodContext.main_ingredient
+                .FirstOrDefaultAsync(m => m.main_ingredient_id == newMainIngredient.main_ingredient_id);
+
+            if (existingMainIngredient != null)
+            {
+                // 如果存在，进行更新操作
+                existingMainIngredient.main_ingredient_name = newMainIngredient.main_ingredient_name;
+                existingMainIngredient.description = newMainIngredient.description;
+                existingMainIngredient.category = newMainIngredient.category;
+                _foodContext.main_ingredient.Update(existingMainIngredient); // 更新主食材数据
+                await _foodContext.SaveChangesAsync(); // 保存更改
+                return Ok(existingMainIngredient); // 返回更新后的数据
+            }
+            else
+            {
+                // 如果不存在，进行新增操作
+                _foodContext.main_ingredient.Add(newMainIngredient); // 添加新的主食材
+                await _foodContext.SaveChangesAsync(); // 保存更改
+                return CreatedAtAction(nameof(GetMainIngredient), new { id = newMainIngredient.main_ingredient_id }, newMainIngredient); // 返回创建的资源路径和数据
+            }
+        }
+
+        /// <summary>
+        /// 根据ID删除主食材
+        /// </summary>
+        [HttpDelete("main_ingredient/{id}")]
+        public async Task<IActionResult> DeleteMainIngredient(int id)
+        {
+            var mainIngredient = await _foodContext.main_ingredient.FindAsync(id);
+            if (mainIngredient == null)
+            {
+                return NotFound();
+            }
+
+            _foodContext.main_ingredient.Remove(mainIngredient);
+            await _foodContext.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

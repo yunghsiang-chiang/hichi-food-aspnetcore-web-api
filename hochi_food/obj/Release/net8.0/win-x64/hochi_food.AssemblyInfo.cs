@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("hochi_food")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63d3986dca7f277a17e02e6391ee6f470876b54d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c9b737dcd661788940fe4c526c91136628c9de76")]
 [assembly: System.Reflection.AssemblyProductAttribute("hochi_food")]
 [assembly: System.Reflection.AssemblyTitleAttribute("hochi_food")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
