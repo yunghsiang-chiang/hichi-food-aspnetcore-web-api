@@ -1,4 +1,5 @@
-﻿using hochi_food.Models;
+﻿using hochi_food.Dtos;
+using hochi_food.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -21,26 +22,55 @@ namespace hochi_food.Controllers
         /// 获取所有食谱
         /// </summary>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<recipe>>> GetRecipes()
+        public async Task<ActionResult<IEnumerable<RecipeDto>>> GetRecipes()
         {
             var recipes = await _foodContext.recipe
-                .Include(r => r.chef) // 包含关联的厨师信息
-                .Include(r => r.main_ingredient) // 包含关联的主食材信息
+                .Include(r => r.chef)
+                .Include(r => r.main_ingredient)
+                .Include(r => r.recipe_steps)
+                .Select(r => new RecipeDto
+                {
+                    RecipeId = r.recipe_id,
+                    RecipeName = r.recipe_name,
+                    Category = r.category,
+                    ChefName = r.chef.name,
+                    MainIngredientName = r.main_ingredient.main_ingredient_name,
+                    RecipeSteps = r.recipe_steps.Select(rs => new RecipeStepDto
+                    {
+                        StepNumber = rs.step_number,
+                        Description = rs.description
+                    }).ToList()
+                })
                 .ToListAsync();
+
             return Ok(recipes);
         }
+
 
         /// <summary>
         /// 获取单个食谱信息
         /// </summary>
         [HttpGet("{id}")]
-        public async Task<ActionResult<recipe>> GetRecipe(int id)
+        public async Task<ActionResult<RecipeDto>> GetRecipe(int id)
         {
             var recipe = await _foodContext.recipe
                 .Include(r => r.chef)
                 .Include(r => r.main_ingredient)
-                .Include(r => r.recipe_steps) // 包含关联的步骤信息
-                .FirstOrDefaultAsync(r => r.recipe_id == id);
+                .Include(r => r.recipe_steps)
+                .Select(r => new RecipeDto
+                {
+                    RecipeId = r.recipe_id,
+                    RecipeName = r.recipe_name,
+                    Category = r.category,
+                    ChefName = r.chef.name,
+                    MainIngredientName = r.main_ingredient.main_ingredient_name,
+                    RecipeSteps = r.recipe_steps.Select(rs => new RecipeStepDto
+                    {
+                        StepNumber = rs.step_number,
+                        Description = rs.description
+                    }).ToList()
+                })
+                .FirstOrDefaultAsync(r => r.RecipeId == id);
 
             if (recipe == null)
             {
@@ -49,6 +79,7 @@ namespace hochi_food.Controllers
 
             return Ok(recipe);
         }
+
         /// <summary>
         /// 新增食譜步驟
         /// </summary>

@@ -1292,7 +1292,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.recipe, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.RecipeDto, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1344,7 +1344,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "hochi_food.Models.recipe",
+        "Type": "hochi_food.Dtos.RecipeDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
