@@ -141,8 +141,6 @@ namespace hochi_food.Controllers
                 notUsed = Math.Round((double)(totalCount - balloonYesCount) / totalCount * 100, 1)
             });
         }
-
-
         // AgeData - 年齡範圍分布
         //這個方法會從 participants 表中，統計不同年齡範圍的人數
         [HttpGet("AgeData")]
@@ -166,7 +164,6 @@ namespace hochi_food.Controllers
 
             return Ok(result);
         }
-
         // SocialData - 社群數據
         //這個方法會根據 social_check_in 表中的 platform 字段，統計每個社群平台的使用情況
         [HttpGet("SocialData")]
@@ -190,8 +187,6 @@ namespace hochi_food.Controllers
 
             return Ok(result);
         }
-
-
         [HttpPost("SubmitSurvey")]
         public async Task<IActionResult> SubmitSurvey([FromBody] SurveySubmissionDto dto)
         {

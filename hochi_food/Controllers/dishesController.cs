@@ -516,82 +516,93 @@ namespace hochi_food.Controllers
             _foodContext.Add(activity_records);
             _foodContext.SaveChanges();
         }
+        /// <summary>
+        /// 于获取所有食谱的列表。代码中使用了 Include 方法来关联其他表格的数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<recipe>>> GetRecipes()
+        {
+            var recipes = await _foodContext.recipe
+                .Include(r => r.chef)
+                .Include(r => r.main_ingredient)
+                .ToListAsync();
+            return Ok(recipes);
+        }
+        /// <summary>
+        /// 用于根据 recipe_id 获取单个食谱的详细信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<recipe>> GetRecipe(int id)
+        {
+            var recipe = await _foodContext.recipe
+                .Include(r => r.chef)
+                .Include(r => r.main_ingredient)
+                .Include(r => r.recipe_steps)
+                .FirstOrDefaultAsync(r => r.recipe_id == id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+            return Ok(recipe);
+        }
+        /// <summary>
+        /// 用于新增或更新食谱
+        /// </summary>
+        /// <param name="newRecipe"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult<recipe>> PostRecipe([FromBody] recipe newRecipe)
+        {
+            if (newRecipe == null || string.IsNullOrEmpty(newRecipe.recipe_name))
+            {
+                return BadRequest("Recipe name is required.");
+            }
 
+            var existingRecipe = await _foodContext.recipe
+                .FirstOrDefaultAsync(r => r.recipe_id == newRecipe.recipe_id);
 
+            if (existingRecipe != null)
+            {
+                existingRecipe.recipe_name = newRecipe.recipe_name;
+                existingRecipe.main_ingredient_id = newRecipe.main_ingredient_id;
+                existingRecipe.category = newRecipe.category;
+                existingRecipe.chef_id = newRecipe.chef_id;
+                _foodContext.recipe.Update(existingRecipe);
+                await _foodContext.SaveChangesAsync();
+                return Ok(existingRecipe);
+            }
+            else
+            {
+                _foodContext.recipe.Add(newRecipe);
+                await _foodContext.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetRecipe), new { id = newRecipe.recipe_id }, newRecipe);
+            }
+        }
+        /// <summary>
+        /// 用于删除指定的食谱及其关联的步骤信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRecipe(int id)
+        {
+            var recipe = await _foodContext.recipe
+                .Include(r => r.recipe_steps)
+                .FirstOrDefaultAsync(r => r.recipe_id == id);
 
-        //// GET: dishesController
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
+            if (recipe == null)
+            {
+                return NotFound();
+            }
 
-        //// GET: dishesController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+            _foodContext.recipe.Remove(recipe);
+            await _foodContext.SaveChangesAsync();
 
-        //// GET: dishesController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+            return NoContent();
+        }
 
-        //// POST: dishesController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: dishesController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: dishesController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: dishesController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: dishesController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

@@ -11,8 +11,38 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.activityController",
+    "Method": "GetBalloonUsageRate",
+    "RelativePath": "api/activity/BalloonUsageRate",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.activityController",
     "Method": "GetColorDistribution",
     "RelativePath": "api/activity/ColorDistribution",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.activityController",
+    "Method": "GetFeedbackResponseRate",
+    "RelativePath": "api/activity/FeedbackResponseRate",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.activityController",
+    "Method": "GetGenderRatio",
+    "RelativePath": "api/activity/GenderRatio",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
