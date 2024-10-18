@@ -3,15 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\egrou\\source\\repos\\hochi_food\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\FoodAdmin\\recipe.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\controllers\\recipescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\controllers\\recipescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\controllers\\dishescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\controllers\\dishescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\controllers\\mainingredientscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\controllers\\mainingredientscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,45 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RecipesController.cs",
-              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\RecipesController.cs",
-              "RelativeDocumentMoniker": "hochi_food\\Controllers\\RecipesController.cs",
-              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\RecipesController.cs",
-              "RelativeToolTip": "hochi_food\\Controllers\\RecipesController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAADwvxsAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-18T02:20:47.205Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "recipe.js",
-              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\FoodAdmin\\recipe.js",
-              "RelativeDocumentMoniker": "..\\food\\food\\Scripts\\FoodAdmin\\recipe.js",
-              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\FoodAdmin\\recipe.js",
-              "RelativeToolTip": "..\\food\\food\\Scripts\\FoodAdmin\\recipe.js",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAUwIsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-10-18T02:16:35.811Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "dishesController.cs",
-              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\dishesController.cs",
-              "RelativeDocumentMoniker": "hochi_food\\Controllers\\dishesController.cs",
-              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\dishesController.cs",
-              "RelativeToolTip": "hochi_food\\Controllers\\dishesController.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAAACgAAABQAAAAAAAAAA==",
+              "Title": "MainIngredientsController.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\MainIngredientsController.cs",
+              "RelativeDocumentMoniker": "hochi_food\\Controllers\\MainIngredientsController.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\MainIngredientsController.cs",
+              "RelativeToolTip": "hochi_food\\Controllers\\MainIngredientsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-18T01:21:12.629Z",
+              "WhenOpened": "2024-10-18T02:36:23.553Z",
               "EditorCaption": ""
             }
           ]
