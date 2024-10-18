@@ -1371,6 +1371,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "hochi_food.Controllers.RecipesController",
+    "Method": "AddRecipeSteps",
+    "RelativePath": "api/Recipes/recipeSteps",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "steps",
+        "Type": "System.Collections.Generic.List\u00601[[hochi_food.Models.recipe_steps, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "hochi_food.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",
