@@ -811,41 +811,9 @@
     ]
   },
   {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "AppendActivityRecords",
-    "RelativePath": "api/dishes/appendActivity_records",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "activity_records",
-        "Type": "hochi_food.Models.h_activity_records",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "AppendNewDishes",
-    "RelativePath": "api/dishes/appendNewdishes",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dishes",
-        "Type": "hochi_food.Models.c_dishes",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
+    "ContainingType": "hochi_food.Controllers.CategoriesController",
     "Method": "GetCategories",
-    "RelativePath": "api/dishes/categories",
+    "RelativePath": "api/Categories/categories",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -863,9 +831,9 @@
     ]
   },
   {
-    "ContainingType": "hochi_food.Controllers.dishesController",
+    "ContainingType": "hochi_food.Controllers.CategoriesController",
     "Method": "PostCategory",
-    "RelativePath": "api/dishes/categories",
+    "RelativePath": "api/Categories/categories",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -889,9 +857,9 @@
     ]
   },
   {
-    "ContainingType": "hochi_food.Controllers.dishesController",
+    "ContainingType": "hochi_food.Controllers.CategoriesController",
     "Method": "GetCategory",
-    "RelativePath": "api/dishes/categories/{id}",
+    "RelativePath": "api/Categories/categories/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -915,9 +883,9 @@
     ]
   },
   {
-    "ContainingType": "hochi_food.Controllers.dishesController",
+    "ContainingType": "hochi_food.Controllers.ChefsController",
     "Method": "GetChefs",
-    "RelativePath": "api/dishes/chefs",
+    "RelativePath": "api/Chefs/chefs",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -935,9 +903,9 @@
     ]
   },
   {
-    "ContainingType": "hochi_food.Controllers.dishesController",
+    "ContainingType": "hochi_food.Controllers.ChefsController",
     "Method": "PostChef",
-    "RelativePath": "api/dishes/chefs",
+    "RelativePath": "api/Chefs/chefs",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -961,9 +929,9 @@
     ]
   },
   {
-    "ContainingType": "hochi_food.Controllers.dishesController",
+    "ContainingType": "hochi_food.Controllers.ChefsController",
     "Method": "GetChef",
-    "RelativePath": "api/dishes/chefs/{id}",
+    "RelativePath": "api/Chefs/chefs/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -987,9 +955,41 @@
     ]
   },
   {
-    "ContainingType": "hochi_food.Controllers.dishesController",
+    "ContainingType": "hochi_food.Controllers.DishesController",
+    "Method": "AppendActivityRecords",
+    "RelativePath": "api/Dishes/appendActivity_records",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "activity_records",
+        "Type": "hochi_food.Models.h_activity_records",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.DishesController",
+    "Method": "AppendNewDishes",
+    "RelativePath": "api/Dishes/appendNewdishes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dishes",
+        "Type": "hochi_food.Models.c_dishes",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.DishesController",
     "Method": "GetActivityDishes",
-    "RelativePath": "api/dishes/get_activity_dishes",
+    "RelativePath": "api/Dishes/get_activity_dishes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1023,29 +1023,9 @@
     ]
   },
   {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "GetActivityName",
-    "RelativePath": "api/dishes/get_activity_name",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.activity_nameDTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
+    "ContainingType": "hochi_food.Controllers.DishesController",
     "Method": "GetDishes",
-    "RelativePath": "api/dishes/get_dishes",
+    "RelativePath": "api/Dishes/get_dishes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1063,9 +1043,9 @@
     ]
   },
   {
-    "ContainingType": "hochi_food.Controllers.dishesController",
+    "ContainingType": "hochi_food.Controllers.DishesController",
     "Method": "GetDishesByName",
-    "RelativePath": "api/dishes/get_dishes_by_name/{dishesName}",
+    "RelativePath": "api/Dishes/get_dishes_by_name/{dishesName}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1089,265 +1069,9 @@
     ]
   },
   {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "GetDishesIdLike",
-    "RelativePath": "api/dishes/get_dishes_id_like/{dishes_id_like}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dishes_id_like",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "hochi_food.Dtos.dishesIdDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "GetFoodNutrition",
-    "RelativePath": "api/dishes/get_food_nutrition",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.nutritionDTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "GetFoodNutritionCategory",
-    "RelativePath": "api/dishes/get_food_nutrition_category",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.food_nutrition_categoryDTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "GetFoodNutritionSimpleField",
-    "RelativePath": "api/dishes/get_food_nutrition_simple_field",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "food_classification",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.food_nutrition_simple_fieldDTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "GetFruits",
-    "RelativePath": "api/dishes/get_fruits",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.c_fruits, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "GetActivityRecordsByDay",
-    "RelativePath": "api/dishes/get_h_activity_records_byday/{activity_days}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "activity_days",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.h_activity_records, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "GetActivityRecordsByMealType",
-    "RelativePath": "api/dishes/get_h_activity_records_bymealtype/{meal_type}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "meal_type",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.h_activity_records, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "GetActivityRecordsByName",
-    "RelativePath": "api/dishes/get_h_activity_records_byname/{activity_name}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "activity_name",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.h_activity_records, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "SearchActivityRecords",
-    "RelativePath": "api/dishes/get_h_activity_records_search",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "activity_name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "meal_type",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "activity_days",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "activity_start",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "activity_end",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.activity_searchDTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "GetIngredientsUnit",
-    "RelativePath": "api/dishes/get_ingredients_unit",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.ingredients_unitDTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
+    "ContainingType": "hochi_food.Controllers.DishesController",
     "Method": "GetMaterialIdNames",
-    "RelativePath": "api/dishes/get_material_id_names",
+    "RelativePath": "api/Dishes/get_material_id_names",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1371,9 +1095,9 @@
     ]
   },
   {
-    "ContainingType": "hochi_food.Controllers.dishesController",
+    "ContainingType": "hochi_food.Controllers.DishesController",
     "Method": "GetPurchase",
-    "RelativePath": "api/dishes/get_purchase",
+    "RelativePath": "api/Dishes/get_purchase",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1381,63 +1105,6 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Dtos.purchase_DTO, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "SearchDishesByWords",
-    "RelativePath": "api/dishes/search_dishes_by_words/{words}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "words",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.c_dishes, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.dishesController",
-    "Method": "SearchDishesByWordsAndMaterial",
-    "RelativePath": "api/dishes/search_dishes_by_wordsAndMaterial/{words}/{material}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "words",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "material",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.c_dishes, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
