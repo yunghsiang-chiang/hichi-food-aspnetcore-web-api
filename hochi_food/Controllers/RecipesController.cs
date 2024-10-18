@@ -49,6 +49,28 @@ namespace hochi_food.Controllers
 
             return Ok(recipe);
         }
+        /// <summary>
+        /// 新增食譜步驟
+        /// </summary>
+        /// <param name="steps"></param>
+        /// <returns></returns>
+        [HttpPost("recipeSteps")]
+        public async Task<ActionResult> AddRecipeSteps([FromBody] List<recipe_steps> steps)
+        {
+            if (steps == null || steps.Count == 0)
+            {
+                return BadRequest("No steps provided.");
+            }
+
+            foreach (var step in steps)
+            {
+                _foodContext.recipe_steps.Add(step);
+            }
+
+            await _foodContext.SaveChangesAsync();
+            return Ok();
+        }
+
 
         /// <summary>
         /// 新增或更新食谱信息
