@@ -36,7 +36,7 @@ public partial class recipe
     /// <summary>
     /// Link or identifier for further recipe details
     /// </summary>
-    public string? recipe_link { get; set; }
+    public string? description { get; set; }
 
     public virtual chef? chef { get; set; }
 

@@ -415,10 +415,10 @@ public partial class foodContext : DbContext
                 .HasMaxLength(255)
                 .HasComment("Category of the recipe (e.g., 主菜 - 紅燒, 咖哩)");
             entity.Property(e => e.chef_id).HasComment("References the ID of the chef from the Chef table");
-            entity.Property(e => e.main_ingredient_id).HasComment("References the ID of the main ingredient from the Main_Ingredient table");
-            entity.Property(e => e.recipe_link)
+            entity.Property(e => e.description)
                 .HasMaxLength(255)
                 .HasComment("Link or identifier for further recipe details");
+            entity.Property(e => e.main_ingredient_id).HasComment("References the ID of the main ingredient from the Main_Ingredient table");
             entity.Property(e => e.recipe_name)
                 .HasMaxLength(255)
                 .HasComment("Name of the recipe (e.g., 糖醋豆包)");

@@ -35,6 +35,7 @@ namespace hochi_food.Controllers
                     Category = r.category,
                     ChefName = r.chef.name,
                     MainIngredientName = r.main_ingredient.main_ingredient_name,
+                    Description = r.description, // 新增這一行，返回 description
                     RecipeSteps = r.recipe_steps.Select(rs => new RecipeStepDto
                     {
                         StepNumber = rs.step_number,
@@ -64,6 +65,7 @@ namespace hochi_food.Controllers
                     Category = r.category,
                     ChefName = r.chef.name,
                     MainIngredientName = r.main_ingredient.main_ingredient_name,
+                    Description = r.description, // 新增這一行，返回 description
                     RecipeSteps = r.recipe_steps.Select(rs => new RecipeStepDto
                     {
                         StepNumber = rs.step_number,
@@ -79,6 +81,7 @@ namespace hochi_food.Controllers
 
             return Ok(recipe);
         }
+
 
         /// <summary>
         /// 新增食譜步驟
@@ -124,6 +127,7 @@ namespace hochi_food.Controllers
                 existingRecipe.main_ingredient_id = newRecipe.main_ingredient_id;
                 existingRecipe.category = newRecipe.category;
                 existingRecipe.chef_id = newRecipe.chef_id;
+                existingRecipe.description = newRecipe.description; // 新增這一行，更新 description
                 _foodContext.recipe.Update(existingRecipe);
                 await _foodContext.SaveChangesAsync();
                 return Ok(existingRecipe);
