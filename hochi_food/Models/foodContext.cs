@@ -11,6 +11,8 @@ public partial class foodContext : DbContext
     {
     }
 
+    public virtual DbSet<__efmigrationshistory> __efmigrationshistory { get; set; }
+
     public virtual DbSet<c_cooking_method> c_cooking_method { get; set; }
 
     public virtual DbSet<c_cooking_method_old> c_cooking_method_old { get; set; }
@@ -49,6 +51,14 @@ public partial class foodContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<__efmigrationshistory>(entity =>
+        {
+            entity.HasKey(e => e.MigrationId).HasName("PRIMARY");
+
+            entity.Property(e => e.MigrationId).HasMaxLength(150);
+            entity.Property(e => e.ProductVersion).HasMaxLength(32);
+        });
+
         modelBuilder.Entity<c_cooking_method>(entity =>
         {
             entity.HasKey(e => e.cooking_method_id).HasName("PRIMARY");

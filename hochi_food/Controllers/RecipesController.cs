@@ -138,37 +138,41 @@ namespace hochi_food.Controllers
             return Ok();
         }
 
-
+        /// <summary>
+        /// 新增和更新時，避免重複保存操作
+        /// </summary>
+        /// <param name="newRecipe"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<recipe>> PostRecipe([FromBody] recipe newRecipe)
         {
             try
             {
+                // 檢查必要的欄位
                 if (newRecipe == null || string.IsNullOrEmpty(newRecipe.recipe_name))
                 {
                     return BadRequest("Recipe name is required.");
                 }
 
-                // 验证食材
-                if (newRecipe.ingredients != null)
+                // 驗證食材
+                if (newRecipe.ingredients == null || newRecipe.ingredients.Count == 0)
                 {
-                    foreach (var ingredient in newRecipe.ingredients)
-                    {
-                        if (ingredient.amount <= 0)
-                        {
-                            return BadRequest($"Ingredient '{ingredient.ingredient_name}' amount must be greater than zero.");
-                        }
-                        if (string.IsNullOrEmpty(ingredient.unit))
-                        {
-                            return BadRequest($"Ingredient '{ingredient.ingredient_name}' unit is required.");
-                        }
+                    return BadRequest("At least one ingredient is required.");
+                }
 
-                        // 將 recipe_id 清空，等主食譜保存后再設置
-                        ingredient.recipe = null;  // 清除 recipe 物件
+                foreach (var ingredient in newRecipe.ingredients)
+                {
+                    if (ingredient.amount <= 0)
+                    {
+                        return BadRequest($"Ingredient '{ingredient.ingredient_name}' amount must be greater than zero.");
+                    }
+                    if (string.IsNullOrEmpty(ingredient.unit))
+                    {
+                        return BadRequest($"Ingredient '{ingredient.ingredient_name}' unit is required.");
                     }
                 }
 
-                // 验证调味料
+                // 驗證調味料
                 if (newRecipe.seasonings != null)
                 {
                     foreach (var seasoning in newRecipe.seasonings)
@@ -181,33 +185,31 @@ namespace hochi_food.Controllers
                         {
                             return BadRequest($"Seasoning '{seasoning.seasoning_name}' unit is required.");
                         }
-
-                        // 將 recipe_id 清空，等主食譜保存后再設置
-                        seasoning.recipe = null;  // 清除 recipe 物件
                     }
                 }
 
                 if (newRecipe.recipe_id == 0)
                 {
-                    // 新增食谱信息，先保存主食譜，獲取 recipe_id
+                    // 新增邏輯
                     _foodContext.recipe.Add(newRecipe);
-                    await _foodContext.SaveChangesAsync();
 
-                    // 獲得新增後的 recipe_id
-                    int recipeId = newRecipe.recipe_id;
-
-                    // 更新食材信息的 recipe_id
-                    foreach (var ingredient in newRecipe.ingredients)
+                    // 同時保存新食材和調味料
+                    if (newRecipe.ingredients != null)
                     {
-                        ingredient.recipe_id = recipeId;
-                        _foodContext.ingredients.Add(ingredient);  // 保存每個食材
+                        foreach (var ingredient in newRecipe.ingredients)
+                        {
+                            ingredient.recipe_id = newRecipe.recipe_id;
+                            _foodContext.ingredients.Add(ingredient);
+                        }
                     }
 
-                    // 更新調味料信息的 recipe_id
-                    foreach (var seasoning in newRecipe.seasonings)
+                    if (newRecipe.seasonings != null)
                     {
-                        seasoning.recipe_id = recipeId;
-                        _foodContext.seasonings.Add(seasoning);  // 保存每個調味料
+                        foreach (var seasoning in newRecipe.seasonings)
+                        {
+                            seasoning.recipe_id = newRecipe.recipe_id;
+                            _foodContext.seasonings.Add(seasoning);
+                        }
                     }
 
                     await _foodContext.SaveChangesAsync();
@@ -215,40 +217,45 @@ namespace hochi_food.Controllers
                 }
                 else
                 {
+                    // 更新邏輯
                     var existingRecipe = await _foodContext.recipe
                         .Include(r => r.ingredients)
                         .Include(r => r.seasonings)
                         .FirstOrDefaultAsync(r => r.recipe_id == newRecipe.recipe_id);
 
-                    if (existingRecipe != null)
+                    if (existingRecipe == null)
                     {
-                        // 更新现有食谱信息
-                        existingRecipe.recipe_name = newRecipe.recipe_name;
-                        existingRecipe.main_ingredient_id = newRecipe.main_ingredient_id;
-                        existingRecipe.category = newRecipe.category;
-                        existingRecipe.chef_id = newRecipe.chef_id;
-                        existingRecipe.description = newRecipe.description;
+                        return NotFound($"Recipe with ID {newRecipe.recipe_id} not found.");
+                    }
 
-                        // 更新食材信息
-                        existingRecipe.ingredients.Clear();
-                        foreach (var ingredient in newRecipe.ingredients)
-                        {
-                            ingredient.recipe_id = existingRecipe.recipe_id;
-                            existingRecipe.ingredients.Add(ingredient);
-                        }
+                    // 更新現有食譜
+                    existingRecipe.recipe_name = newRecipe.recipe_name;
+                    existingRecipe.main_ingredient_id = newRecipe.main_ingredient_id;
+                    existingRecipe.category = newRecipe.category;
+                    existingRecipe.chef_id = newRecipe.chef_id;
+                    existingRecipe.description = newRecipe.description;
 
-                        // 更新调味料信息
-                        existingRecipe.seasonings.Clear();
+                    // 清空並更新食材和調味料
+                    existingRecipe.ingredients.Clear();
+                    foreach (var ingredient in newRecipe.ingredients)
+                    {
+                        ingredient.recipe_id = existingRecipe.recipe_id;
+                        existingRecipe.ingredients.Add(ingredient);
+                    }
+
+                    existingRecipe.seasonings.Clear();
+                    if (newRecipe.seasonings != null)
+                    {
                         foreach (var seasoning in newRecipe.seasonings)
                         {
                             seasoning.recipe_id = existingRecipe.recipe_id;
                             existingRecipe.seasonings.Add(seasoning);
                         }
-
-                        _foodContext.recipe.Update(existingRecipe);
-                        await _foodContext.SaveChangesAsync();
-                        return Ok(existingRecipe);
                     }
+
+                    _foodContext.recipe.Update(existingRecipe);
+                    await _foodContext.SaveChangesAsync();
+                    return Ok(existingRecipe);
                 }
             }
             catch (DbUpdateException dbEx)
@@ -259,11 +266,7 @@ namespace hochi_food.Controllers
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
-
-            return BadRequest("An unknown error occurred.");
         }
-
-
 
 
         /// <summary>
