@@ -1,5 +1,6 @@
 using hochi_food.Models;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient; // 引入 MySql.Data 命名空間
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,12 +26,19 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 
 var app = builder.Build();
 
+app.UseWebSockets(); 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger(c =>
+    {
+        c.SerializeAsV2 = true;
+    });
     app.UseSwaggerUI();
 }
+
+
 
 app.UseAuthorization();
 

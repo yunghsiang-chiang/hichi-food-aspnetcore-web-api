@@ -76,13 +76,13 @@
               "target": "Package",
               "version": "[8.0.8, )"
             },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[9.1.0, )"
+            },
             "MySql.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.5, )"
-            },
-            "MySqlConnection": {
-              "target": "Package",
-              "version": "[1.0.1, )"
+              "version": "[8.0.8, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -98,7 +98,7 @@
             },
             "System.Text.Json": {
               "target": "Package",
-              "version": "[8.0.4, )"
+              "version": "[8.0.5, )"
             }
           },
           "imports": [

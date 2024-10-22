@@ -34,7 +34,7 @@ public partial class recipe
     public int? chef_id { get; set; }
 
     /// <summary>
-    /// Link or identifier for further recipe details
+    /// Detailed description or further information about the recipe
     /// </summary>
     public string? description { get; set; }
 

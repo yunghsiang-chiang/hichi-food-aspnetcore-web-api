@@ -11,8 +11,6 @@ public partial class foodContext : DbContext
     {
     }
 
-    public virtual DbSet<__efmigrationshistory> __efmigrationshistory { get; set; }
-
     public virtual DbSet<c_cooking_method> c_cooking_method { get; set; }
 
     public virtual DbSet<c_cooking_method_old> c_cooking_method_old { get; set; }
@@ -51,14 +49,6 @@ public partial class foodContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<__efmigrationshistory>(entity =>
-        {
-            entity.HasKey(e => e.MigrationId).HasName("PRIMARY");
-
-            entity.Property(e => e.MigrationId).HasMaxLength(150);
-            entity.Property(e => e.ProductVersion).HasMaxLength(32);
-        });
-
         modelBuilder.Entity<c_cooking_method>(entity =>
         {
             entity.HasKey(e => e.cooking_method_id).HasName("PRIMARY");
@@ -329,9 +319,6 @@ public partial class foodContext : DbContext
             entity.Property(e => e.description)
                 .HasComment("Optional description or notes about the category")
                 .HasColumnType("text");
-            entity.Property(e => e.icon)
-                .HasMaxLength(255)
-                .HasComment("category icon");
         });
 
         modelBuilder.Entity<chef>(entity =>
@@ -400,11 +387,21 @@ public partial class foodContext : DbContext
         {
             entity.HasKey(e => e.ingredient_id).HasName("PRIMARY");
 
+            entity.ToTable(tb => tb.HasComment("Table to store ingredients used in each recipe"));
+
             entity.HasIndex(e => e.recipe_id, "recipe_id");
 
-            entity.Property(e => e.amount).HasPrecision(10);
-            entity.Property(e => e.ingredient_name).HasMaxLength(255);
-            entity.Property(e => e.unit).HasMaxLength(50);
+            entity.Property(e => e.ingredient_id).HasComment("Unique identifier for each ingredient used in a recipe");
+            entity.Property(e => e.amount)
+                .HasPrecision(10)
+                .HasComment("Amount of the ingredient used");
+            entity.Property(e => e.ingredient_name)
+                .HasMaxLength(255)
+                .HasComment("Name of the ingredient used in the recipe");
+            entity.Property(e => e.recipe_id).HasComment("References the ID of the recipe from the Recipe table");
+            entity.Property(e => e.unit)
+                .HasMaxLength(50)
+                .HasComment("Unit of measurement for the ingredient (e.g., grams, ml)");
 
             entity.HasOne(d => d.recipe).WithMany(p => p.ingredients)
                 .HasForeignKey(d => d.recipe_id)
@@ -446,7 +443,7 @@ public partial class foodContext : DbContext
             entity.Property(e => e.chef_id).HasComment("References the ID of the chef from the Chef table");
             entity.Property(e => e.description)
                 .HasMaxLength(255)
-                .HasComment("Link or identifier for further recipe details");
+                .HasComment("Detailed description or further information about the recipe");
             entity.Property(e => e.main_ingredient_id).HasComment("References the ID of the main ingredient from the Main_Ingredient table");
             entity.Property(e => e.recipe_name)
                 .HasMaxLength(255)
@@ -454,10 +451,12 @@ public partial class foodContext : DbContext
 
             entity.HasOne(d => d.chef).WithMany(p => p.recipe)
                 .HasForeignKey(d => d.chef_id)
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("recipe_ibfk_2");
 
             entity.HasOne(d => d.main_ingredient).WithMany(p => p.recipe)
                 .HasForeignKey(d => d.main_ingredient_id)
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("recipe_ibfk_1");
         });
 
@@ -481,6 +480,7 @@ public partial class foodContext : DbContext
 
             entity.HasOne(d => d.recipe).WithMany(p => p.recipe_steps)
                 .HasForeignKey(d => d.recipe_id)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("recipe_steps_ibfk_1");
         });
 
@@ -488,11 +488,21 @@ public partial class foodContext : DbContext
         {
             entity.HasKey(e => e.seasoning_id).HasName("PRIMARY");
 
+            entity.ToTable(tb => tb.HasComment("Table to store seasonings used in each recipe"));
+
             entity.HasIndex(e => e.recipe_id, "recipe_id");
 
-            entity.Property(e => e.amount).HasPrecision(10);
-            entity.Property(e => e.seasoning_name).HasMaxLength(255);
-            entity.Property(e => e.unit).HasMaxLength(50);
+            entity.Property(e => e.seasoning_id).HasComment("Unique identifier for each seasoning used in a recipe");
+            entity.Property(e => e.amount)
+                .HasPrecision(10)
+                .HasComment("Amount of the seasoning used");
+            entity.Property(e => e.recipe_id).HasComment("References the ID of the recipe from the Recipe table");
+            entity.Property(e => e.seasoning_name)
+                .HasMaxLength(255)
+                .HasComment("Name of the seasoning used in the recipe");
+            entity.Property(e => e.unit)
+                .HasMaxLength(50)
+                .HasComment("Unit of measurement for the seasoning (e.g., grams, ml)");
 
             entity.HasOne(d => d.recipe).WithMany(p => p.seasonings)
                 .HasForeignKey(d => d.recipe_id)

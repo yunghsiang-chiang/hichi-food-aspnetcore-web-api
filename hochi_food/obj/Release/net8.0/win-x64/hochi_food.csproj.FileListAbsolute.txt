@@ -38,7 +38,6 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Mic
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Mono.TextTemplating.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\MySql.Data.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\MySql.EntityFrameworkCore.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\MySQLConnection.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -141,3 +140,4 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Mic
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Newtonsoft.Json.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Newtonsoft.Json.Bson.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Text.Json.dll
