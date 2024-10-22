@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace hochi_food.Models;
@@ -34,6 +33,5 @@ public partial class recipe_steps
     /// </summary>
     public string? image_url { get; set; }
 
-    [JsonIgnore] // 忽略這個屬性在序列化時的輸出
     public virtual recipe? recipe { get; set; }
 }

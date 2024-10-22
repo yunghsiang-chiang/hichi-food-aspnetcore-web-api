@@ -187,6 +187,31 @@ namespace hochi_food.Controllers
 
             return Ok(result);
         }
+
+        // GetExhibitionData - 返回展覽數據以便堆疊條圖使用
+        [HttpGet("GetExhibitionData")]
+        public IActionResult GetExhibitionData()
+        {
+            var exhibitionData = _activityContext.exhibition
+                .GroupBy(e => e.colorGroup)
+                .Select(g => new
+                {
+                    ColorGroup = g.Key,
+                    Red = g.Count(e => e.color == "紅"),
+                    Orange = g.Count(e => e.color == "橙"),
+                    Yellow = g.Count(e => e.color == "黃"),
+                    Green = g.Count(e => e.color == "綠"),
+                    Blue = g.Count(e => e.color == "藍"),
+                    Indigo = g.Count(e => e.color == "靛"),
+                    Purple = g.Count(e => e.color == "紫")
+                })
+                .ToList();
+
+            return Ok(exhibitionData);
+        }
+
+
+
         [HttpPost("SubmitSurvey")]
         public async Task<IActionResult> SubmitSurvey([FromBody] SurveySubmissionDto dto)
         {
@@ -248,6 +273,40 @@ namespace hochi_food.Controllers
             };
 
             _activityContext.feedback.Add(feedback);
+            await _activityContext.SaveChangesAsync();
+
+            return Ok(new { message = "Survey submitted successfully!" });
+        }
+
+        // 追加的 HttpPost - Submit the exhibition survey data
+        [HttpPost("SubmitExhibition")]
+        public async Task<IActionResult> SubmitExhibition([FromBody] ExhibitionDto dto)
+        {
+            if (dto == null || string.IsNullOrEmpty(dto.userId))
+            {
+                return BadRequest("Invalid form data");
+            }
+
+            // 檢查是否已經提交過
+            var existingExhibition = await _activityContext.exhibition
+                .FirstOrDefaultAsync(e => e.userId == dto.userId && e.attendanceDate == dto.attendanceDate);
+
+            if (existingExhibition != null)
+            {
+                return Conflict("This user has already submitted the survey today.");
+            }
+
+            // 新增新的展覽問卷數據
+            var exhibition = new exhibition
+            {
+                userId = dto.userId,
+                colorGroup = dto.colorGroup,
+                color = dto.color,
+                IsAttendance = dto.IsAttendance,
+                attendanceDate = dto.attendanceDate
+            };
+
+            _activityContext.exhibition.Add(exhibition);
             await _activityContext.SaveChangesAsync();
 
             return Ok(new { message = "Survey submitted successfully!" });

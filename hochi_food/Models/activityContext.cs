@@ -13,6 +13,8 @@ public partial class activityContext : DbContext
 
     public virtual DbSet<color_preferences> color_preferences { get; set; }
 
+    public virtual DbSet<exhibition> exhibition { get; set; }
+
     public virtual DbSet<feedback> feedback { get; set; }
 
     public virtual DbSet<participants> participants { get; set; }
@@ -44,6 +46,16 @@ public partial class activityContext : DbContext
             entity.HasOne(d => d.participant).WithMany(p => p.color_preferences)
                 .HasForeignKey(d => d.participant_id)
                 .HasConstraintName("color_preferences_ibfk_1");
+        });
+
+        modelBuilder.Entity<exhibition>(entity =>
+        {
+            entity.HasKey(e => new { e.userId, e.attendanceDate }).HasName("PRIMARY");
+
+            entity.Property(e => e.userId).HasMaxLength(50);
+            entity.Property(e => e.attendanceDate).HasColumnType("date");
+            entity.Property(e => e.color).HasMaxLength(20);
+            entity.Property(e => e.colorGroup).HasMaxLength(20);
         });
 
         modelBuilder.Entity<feedback>(entity =>

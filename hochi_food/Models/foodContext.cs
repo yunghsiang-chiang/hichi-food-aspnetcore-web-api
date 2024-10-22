@@ -319,6 +319,7 @@ public partial class foodContext : DbContext
             entity.Property(e => e.description)
                 .HasComment("Optional description or notes about the category")
                 .HasColumnType("text");
+            entity.Property(e => e.icon).HasMaxLength(255);
         });
 
         modelBuilder.Entity<chef>(entity =>

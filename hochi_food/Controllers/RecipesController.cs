@@ -139,7 +139,7 @@ namespace hochi_food.Controllers
         }
 
         /// <summary>
-        /// 新增和更新時，避免重複保存操作
+        /// 新增食譜的功能
         /// </summary>
         /// <param name="newRecipe"></param>
         /// <returns></returns>
@@ -151,64 +151,29 @@ namespace hochi_food.Controllers
                 return BadRequest("Recipe name is required.");
             }
 
-            // 查找是否存在相同 recipe_id 的食譜
-            var existingRecipe = await _foodContext.recipe
-                .Include(r => r.ingredients)
-                .Include(r => r.seasonings)
-                .FirstOrDefaultAsync(r => r.recipe_id == newRecipe.recipe_id);
+            // 新增食譜邏輯
+            _foodContext.recipe.Add(newRecipe);
+            await _foodContext.SaveChangesAsync();  // 保存以便生成 recipe_id
 
-            if (existingRecipe != null)
+            // 添加食材和調味料
+            foreach (var ingredient in newRecipe.ingredients)
             {
-                // 更新現有的食譜
-                existingRecipe.recipe_name = newRecipe.recipe_name;
-                existingRecipe.main_ingredient_id = newRecipe.main_ingredient_id;
-                existingRecipe.category = newRecipe.category;
-                existingRecipe.chef_id = newRecipe.chef_id;
-
-                // 清空舊的食材和調味料
-                _foodContext.ingredients.RemoveRange(existingRecipe.ingredients);
-                _foodContext.seasonings.RemoveRange(existingRecipe.seasonings);
-
-                // 重新添加新的食材和調味料
-                foreach (var ingredient in newRecipe.ingredients)
-                {
-                    ingredient.recipe_id = existingRecipe.recipe_id; // 需要設置正確的 recipe_id
-                    _foodContext.ingredients.Add(ingredient);
-                }
-
-                foreach (var seasoning in newRecipe.seasonings)
-                {
-                    seasoning.recipe_id = existingRecipe.recipe_id; // 需要設置正確的 recipe_id
-                    _foodContext.seasonings.Add(seasoning);
-                }
-
-                _foodContext.recipe.Update(existingRecipe);
-                await _foodContext.SaveChangesAsync();
-                return Ok(existingRecipe);
+                ingredient.recipe_id = newRecipe.recipe_id; // 設置正確的 recipe_id
+                _foodContext.ingredients.Add(ingredient);
             }
-            else
+
+            foreach (var seasoning in newRecipe.seasonings)
             {
-                // 新增食譜邏輯
-                _foodContext.recipe.Add(newRecipe);
-                await _foodContext.SaveChangesAsync();  // 保存以便生成 recipe_id
-
-                // 添加食材和調味料
-                foreach (var ingredient in newRecipe.ingredients)
-                {
-                    ingredient.recipe_id = newRecipe.recipe_id; // 需要設置正確的 recipe_id
-                    _foodContext.ingredients.Add(ingredient);
-                }
-
-                foreach (var seasoning in newRecipe.seasonings)
-                {
-                    seasoning.recipe_id = newRecipe.recipe_id; // 需要設置正確的 recipe_id
-                    _foodContext.seasonings.Add(seasoning);
-                }
-
-                await _foodContext.SaveChangesAsync();
-                return CreatedAtAction(nameof(GetRecipe), new { id = newRecipe.recipe_id }, newRecipe);
+                seasoning.recipe_id = newRecipe.recipe_id; // 設置正確的 recipe_id
+                _foodContext.seasonings.Add(seasoning);
             }
+
+            await _foodContext.SaveChangesAsync();
+
+            // 返回創建的食譜
+            return CreatedAtAction(nameof(GetRecipe), new { id = newRecipe.recipe_id }, newRecipe);
         }
+
 
 
 

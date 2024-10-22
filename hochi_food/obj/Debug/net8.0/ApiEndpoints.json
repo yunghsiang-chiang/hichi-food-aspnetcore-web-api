@@ -51,6 +51,16 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.activityController",
+    "Method": "GetExhibitionData",
+    "RelativePath": "api/activity/GetExhibitionData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.activityController",
     "Method": "GetSocialData",
     "RelativePath": "api/activity/SocialData",
     "HttpMethod": "GET",
@@ -67,6 +77,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.activityController",
+    "Method": "SubmitExhibition",
+    "RelativePath": "api/activity/SubmitExhibition",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "hochi_food.Dtos.ExhibitionDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
