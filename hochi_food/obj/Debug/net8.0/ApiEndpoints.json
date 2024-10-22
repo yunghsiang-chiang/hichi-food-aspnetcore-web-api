@@ -1141,6 +1141,22 @@
     ]
   },
   {
+    "ContainingType": "hochi_food.Controllers.heipController",
+    "Method": "SubmitExhibition",
+    "RelativePath": "api/heip/SubmitExhibition",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "hochi_food.Dtos.ExhibitionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "hochi_food.Controllers.hochi_learnersController",
     "Method": "get_disciple_qty",
     "RelativePath": "api/hochi_learners/get_disciple_qty",
