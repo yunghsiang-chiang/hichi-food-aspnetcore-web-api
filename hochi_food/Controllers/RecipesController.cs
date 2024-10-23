@@ -65,7 +65,7 @@ namespace hochi_food.Controllers
 
 
         [HttpGet("{id}")]
-        /// <summary>
+        /// <summary>a
         /// 获取单个食谱信息
         /// </summary>
         public async Task<ActionResult<RecipeDto>> GetRecipe(int id)
@@ -139,40 +139,49 @@ namespace hochi_food.Controllers
         }
 
         /// <summary>
-        /// 新增食譜的功能
+        /// 
         /// </summary>
         /// <param name="newRecipe"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task<ActionResult<recipe>> PostRecipe([FromBody] recipe newRecipe)
+        [HttpPost("recipes")]
+        public async Task<ActionResult<recipe>> PostRecipe([FromBody] recipe recipe)
         {
-            if (newRecipe == null || string.IsNullOrEmpty(newRecipe.recipe_name))
+            if (recipe == null || string.IsNullOrEmpty(recipe.recipe_name))
             {
                 return BadRequest("Recipe name is required.");
             }
 
-            // 新增食譜邏輯
-            _foodContext.recipe.Add(newRecipe);
-            await _foodContext.SaveChangesAsync();  // 保存以便生成 recipe_id
+            // 新增食譜
+            _foodContext.recipe.Add(recipe);
+            await _foodContext.SaveChangesAsync(); // 保存後生成 recipe_id
 
-            // 添加食材和調味料
-            foreach (var ingredient in newRecipe.ingredients)
+            // 處理食譜步驟
+            foreach (var step in recipe.recipe_steps)
             {
-                ingredient.recipe_id = newRecipe.recipe_id; // 設置正確的 recipe_id
+                step.recipe_id = recipe.recipe_id; // 設置正確的 recipe_id
+                _foodContext.recipe_steps.Add(step);
+            }
+
+            // 處理食材
+            foreach (var ingredient in recipe.ingredients)
+            {
+                ingredient.recipe_id = recipe.recipe_id; // 設置正確的 recipe_id
                 _foodContext.ingredients.Add(ingredient);
             }
 
-            foreach (var seasoning in newRecipe.seasonings)
+            // 處理調味料
+            foreach (var seasoning in recipe.seasonings)
             {
-                seasoning.recipe_id = newRecipe.recipe_id; // 設置正確的 recipe_id
+                seasoning.recipe_id = recipe.recipe_id; // 設置正確的 recipe_id
                 _foodContext.seasonings.Add(seasoning);
             }
 
+            // 保存所有相關實體
             await _foodContext.SaveChangesAsync();
 
-            // 返回創建的食譜
-            return CreatedAtAction(nameof(GetRecipe), new { id = newRecipe.recipe_id }, newRecipe);
+            return CreatedAtAction(nameof(GetRecipe), new { id = recipe.recipe_id }, recipe);
         }
+
 
 
 

@@ -32,6 +32,6 @@ public partial class seasonings
     /// Unit of measurement for the seasoning (e.g., grams, ml)
     /// </summary>
     public string? unit { get; set; }
-
+    
     public virtual recipe recipe { get; set; } = null!;
 }

@@ -9,7 +9,7 @@ public partial class feedback
 
     public int participant_id { get; set; }
 
-    public string color_choice { get; set; } = null!;
+    public string? color_choice { get; set; }
 
     public string? color_choice_text { get; set; }
 

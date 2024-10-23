@@ -467,7 +467,7 @@ public partial class foodContext : DbContext
 
             entity.ToTable(tb => tb.HasComment("Table to store step-by-step instructions for each recipe"));
 
-            entity.HasIndex(e => e.recipe_id, "recipe_id");
+            entity.HasIndex(e => e.recipe_id, "recipe_steps_ibfk_1");
 
             entity.Property(e => e.step_id).HasComment("Unique identifier for each recipe step");
             entity.Property(e => e.description)
@@ -481,7 +481,6 @@ public partial class foodContext : DbContext
 
             entity.HasOne(d => d.recipe).WithMany(p => p.recipe_steps)
                 .HasForeignKey(d => d.recipe_id)
-                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("recipe_steps_ibfk_1");
         });
 

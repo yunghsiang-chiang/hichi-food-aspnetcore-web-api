@@ -1346,32 +1346,6 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.RecipesController",
-    "Method": "PostRecipe",
-    "RelativePath": "api/Recipes",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "newRecipe",
-        "Type": "hochi_food.Models.recipe",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "hochi_food.Models.recipe",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.RecipesController",
     "Method": "GetRecipe",
     "RelativePath": "api/Recipes/{id}",
     "HttpMethod": "GET",
@@ -1411,6 +1385,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.RecipesController",
+    "Method": "PostRecipe",
+    "RelativePath": "api/Recipes/recipes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "recipe",
+        "Type": "hochi_food.Models.recipe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hochi_food.Models.recipe",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "hochi_food.Controllers.RecipesController",

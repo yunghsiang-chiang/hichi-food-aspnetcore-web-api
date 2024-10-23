@@ -64,9 +64,7 @@ public partial class activityContext : DbContext
 
             entity.HasIndex(e => e.participant_id, "participant_id");
 
-            entity.Property(e => e.color_choice)
-                .HasDefaultValueSql("'需要的'")
-                .HasColumnType("enum('需要的','喜歡的','隨機的','其他')");
+            entity.Property(e => e.color_choice).HasColumnType("enum('需要的','喜歡的','隨機的','其他')");
             entity.Property(e => e.color_choice_text).HasColumnType("text");
             entity.Property(e => e.created_at)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")

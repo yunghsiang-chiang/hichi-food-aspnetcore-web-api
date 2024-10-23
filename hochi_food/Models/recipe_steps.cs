@@ -16,7 +16,7 @@ public partial class recipe_steps
     /// <summary>
     /// References the ID of the recipe from the Recipe table
     /// </summary>
-    public int? recipe_id { get; set; }
+    public int recipe_id { get; set; }
 
     /// <summary>
     /// The order of the step in the recipe
@@ -33,5 +33,5 @@ public partial class recipe_steps
     /// </summary>
     public string? image_url { get; set; }
 
-    public virtual recipe? recipe { get; set; }
+    public virtual recipe recipe { get; set; } = null!;
 }
