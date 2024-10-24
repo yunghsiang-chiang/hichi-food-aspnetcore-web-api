@@ -22,6 +22,4 @@ public partial class chef
     /// Region or location associated with the chef (optional)
     /// </summary>
     public string? region { get; set; }
-
-    public virtual ICollection<recipe> recipe { get; set; } = new List<recipe>();
 }

@@ -17,131 +17,10 @@ namespace hochi_food.Controllers
         {
             _foodContext = foodContext;
         }
-
         /// <summary>
-        /// 获取所有食谱
+        /// 儲存 Recipe
         /// </summary>
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<RecipeDto>>> GetRecipes()
-        {
-            var recipes = await _foodContext.recipe
-                .Include(r => r.chef)
-                .Include(r => r.main_ingredient)
-                .Include(r => r.recipe_steps)
-                .Include(r => r.ingredients)  // 加入對 Ingredients 的 Include
-                .Include(r => r.seasonings)   // 加入對 Seasonings 的 Include
-                .Select(r => new RecipeDto
-                {
-                    RecipeId = r.recipe_id,
-                    RecipeName = r.recipe_name,
-                    Category = r.category,
-                    ChefName = r.chef.name,
-                    MainIngredientName = r.main_ingredient.main_ingredient_name,
-                    Description = r.description, // 新增返回 Description
-                    RecipeSteps = r.recipe_steps.Select(rs => new RecipeStepDto
-                    {
-                        StepNumber = rs.step_number,
-                        Description = rs.description
-                    }).ToList(),
-                    Ingredients = r.ingredients.Select(i => new IngredientDto
-                    {
-                        IngredientId = i.ingredient_id,
-                        IngredientName = i.ingredient_name,
-                        Amount = i.amount,
-                        Unit = i.unit
-                    }).ToList(),
-                    Seasonings = r.seasonings.Select(s => new SeasoningDto
-                    {
-                        SeasoningId = s.seasoning_id,
-                        SeasoningName = s.seasoning_name,
-                        Amount = s.amount,
-                        Unit = s.unit
-                    }).ToList()
-                })
-                .ToListAsync();
-
-            return Ok(recipes);
-        }
-
-
-        [HttpGet("{id}")]
-        /// <summary>a
-        /// 获取单个食谱信息
-        /// </summary>
-        public async Task<ActionResult<RecipeDto>> GetRecipe(int id)
-        {
-            var recipe = await _foodContext.recipe
-                .Include(r => r.chef)
-                .Include(r => r.main_ingredient)
-                .Include(r => r.recipe_steps)
-                .Include(r => r.ingredients)
-                .Include(r => r.seasonings)
-                .Select(r => new RecipeDto
-                {
-                    RecipeId = r.recipe_id,
-                    RecipeName = r.recipe_name,
-                    Category = r.category,
-                    ChefName = r.chef.name,
-                    MainIngredientName = r.main_ingredient.main_ingredient_name,
-                    RecipeSteps = r.recipe_steps.Select(rs => new RecipeStepDto
-                    {
-                        StepNumber = rs.step_number,
-                        Description = rs.description
-                    }).ToList(),
-                    Ingredients = r.ingredients.Select(i => new IngredientDto
-                    {
-                        IngredientId = i.ingredient_id,
-                        IngredientName = i.ingredient_name,
-                        Amount = i.amount,
-                        Unit = i.unit
-                    }).ToList(),
-                    Seasonings = r.seasonings.Select(s => new SeasoningDto
-                    {
-                        SeasoningId = s.seasoning_id,
-                        SeasoningName = s.seasoning_name,
-                        Amount = s.amount,
-                        Unit = s.unit
-                    }).ToList()
-                })
-                .FirstOrDefaultAsync(r => r.RecipeId == id);
-
-            if (recipe == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(recipe);
-        }
-
-
-
-        /// <summary>
-        /// 新增食譜步驟
-        /// </summary>
-        /// <param name="steps"></param>
-        /// <returns></returns>
-        [HttpPost("recipeSteps")]
-        public async Task<ActionResult> AddRecipeSteps([FromBody] List<recipe_steps> steps)
-        {
-            if (steps == null || steps.Count == 0)
-            {
-                return BadRequest("No steps provided.");
-            }
-
-            foreach (var step in steps)
-            {
-                _foodContext.recipe_steps.Add(step);
-            }
-
-
-            await _foodContext.SaveChangesAsync();
-            return Ok();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="newRecipe"></param>
+        /// <param name="recipe"></param>
         /// <returns></returns>
         [HttpPost("recipes")]
         public async Task<ActionResult<recipe>> PostRecipe([FromBody] recipe recipe)
@@ -153,60 +32,131 @@ namespace hochi_food.Controllers
 
             // 新增食譜
             _foodContext.recipe.Add(recipe);
-            await _foodContext.SaveChangesAsync(); // 保存後生成 recipe_id
-
-            // 處理食譜步驟
-            foreach (var step in recipe.recipe_steps)
-            {
-                step.recipe_id = recipe.recipe_id; // 設置正確的 recipe_id
-                _foodContext.recipe_steps.Add(step);
-            }
-
-            // 處理食材
-            foreach (var ingredient in recipe.ingredients)
-            {
-                ingredient.recipe_id = recipe.recipe_id; // 設置正確的 recipe_id
-                _foodContext.ingredients.Add(ingredient);
-            }
-
-            // 處理調味料
-            foreach (var seasoning in recipe.seasonings)
-            {
-                seasoning.recipe_id = recipe.recipe_id; // 設置正確的 recipe_id
-                _foodContext.seasonings.Add(seasoning);
-            }
-
-            // 保存所有相關實體
-            await _foodContext.SaveChangesAsync();
+            await _foodContext.SaveChangesAsync();  // 保存以生成 recipe_id
 
             return CreatedAtAction(nameof(GetRecipe), new { id = recipe.recipe_id }, recipe);
         }
 
-
-
-
-
-        /// <summary>
-        /// 删除食谱及其关联的步骤、食材和调味料信息
-        /// </summary>
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRecipe(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<recipe>> GetRecipe(int id)
         {
-            var recipe = await _foodContext.recipe
-                .Include(r => r.recipe_steps)
-                .Include(r => r.ingredients)
-                .Include(r => r.seasonings)
-                .FirstOrDefaultAsync(r => r.recipe_id == id);
+            var recipe = await _foodContext.recipe.FindAsync(id);
 
             if (recipe == null)
             {
                 return NotFound();
             }
 
-            _foodContext.recipe.Remove(recipe);
+            return Ok(recipe);
+        }
+        /// <summary>
+        /// 儲存 Recipe Steps
+        /// </summary>
+        /// <param name="recipeSteps"></param>
+        /// <returns></returns>
+        [HttpPost("steps")]
+        public async Task<ActionResult<recipe_steps>> PostRecipeSteps([FromBody] recipe_steps recipeSteps)
+        {
+            if (recipeSteps == null || recipeSteps.recipe_id == 0)
+            {
+                return BadRequest("Recipe ID and step details are required.");
+            }
+
+            // 新增步驟
+            _foodContext.recipe_steps.Add(recipeSteps);
             await _foodContext.SaveChangesAsync();
 
-            return NoContent();
+            return CreatedAtAction(nameof(GetRecipeSteps), new { id = recipeSteps.step_id }, recipeSteps);
+        }
+        /// <summary>
+        /// 取得 Recipe Steps
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("steps/{id}")]
+        public async Task<ActionResult<recipe_steps>> GetRecipeSteps(int id)
+        {
+            var step = await _foodContext.recipe_steps.FindAsync(id);
+
+            if (step == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(step);
+        }
+
+        /// <summary>
+        /// 儲存 Ingredients
+        /// </summary>
+        /// <param name="ingredient"></param>
+        /// <returns></returns>
+        [HttpPost("ingredients")]
+        public async Task<ActionResult<ingredients>> PostIngredients([FromBody] ingredients ingredient)
+        {
+            if (ingredient == null || ingredient.recipe_id == 0)
+            {
+                return BadRequest("Recipe ID and ingredient details are required.");
+            }
+
+            // 新增食材
+            _foodContext.ingredients.Add(ingredient);
+            await _foodContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetIngredients), new { id = ingredient.ingredient_id }, ingredient);
+        }
+        /// <summary>
+        /// 取得 Ingredients
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("ingredients/{id}")]
+        public async Task<ActionResult<ingredients>> GetIngredients(int id)
+        {
+            var ingredient = await _foodContext.ingredients.FindAsync(id);
+
+            if (ingredient == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(ingredient);
+        }
+        /// <summary>
+        /// 儲存 Seasonings
+        /// </summary>
+        /// <param name="seasoning"></param>
+        /// <returns></returns>
+        [HttpPost("seasonings")]
+        public async Task<ActionResult<seasonings>> PostSeasonings([FromBody] seasonings seasoning)
+        {
+            if (seasoning == null || seasoning.recipe_id == 0)
+            {
+                return BadRequest("Recipe ID and seasoning details are required.");
+            }
+
+            // 新增調味料
+            _foodContext.seasonings.Add(seasoning);
+            await _foodContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetSeasonings), new { id = seasoning.seasoning_id }, seasoning);
+        }
+        /// <summary>
+        /// 取得 Seasonings
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("seasonings/{id}")]
+        public async Task<ActionResult<seasonings>> GetSeasonings(int id)
+        {
+            var seasoning = await _foodContext.seasonings.FindAsync(id);
+
+            if (seasoning == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(seasoning);
         }
 
     }

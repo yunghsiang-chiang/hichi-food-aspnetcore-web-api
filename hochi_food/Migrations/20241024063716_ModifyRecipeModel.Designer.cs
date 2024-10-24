@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hochi_food.Models;
 
@@ -10,9 +11,11 @@ using hochi_food.Models;
 namespace hochi_food.Migrations
 {
     [DbContext(typeof(foodContext))]
-    partial class foodContextModelSnapshot : ModelSnapshot
+    [Migration("20241024063716_ModifyRecipeModel")]
+    partial class ModifyRecipeModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -887,6 +890,8 @@ namespace hochi_food.Migrations
                     b.HasKey("ingredient_id")
                         .HasName("PRIMARY");
 
+                    b.HasIndex("recipe_id");
+
                     b.ToTable("ingredients", t =>
                         {
                             t.HasComment("Table to store ingredients used in each recipe");
@@ -996,6 +1001,8 @@ namespace hochi_food.Migrations
                     b.HasKey("step_id")
                         .HasName("PRIMARY");
 
+                    b.HasIndex("recipe_id");
+
                     b.ToTable("recipe_steps", t =>
                         {
                             t.HasComment("Table to store step-by-step instructions for each recipe");
@@ -1027,10 +1034,73 @@ namespace hochi_food.Migrations
                     b.HasKey("seasoning_id")
                         .HasName("PRIMARY");
 
+                    b.HasIndex("recipe_id");
+
                     b.ToTable("seasonings", t =>
                         {
                             t.HasComment("Table to store seasonings used in each recipe");
                         });
+                });
+
+            modelBuilder.Entity("hochi_food.Models.ingredients", b =>
+                {
+                    b.HasOne("hochi_food.Models.recipe", "Recipe")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("recipe_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("hochi_food.Models.recipe", b =>
+                {
+                    b.HasOne("hochi_food.Models.chef", "Chef")
+                        .WithMany()
+                        .HasForeignKey("chef_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("hochi_food.Models.main_ingredient", "MainIngredient")
+                        .WithMany()
+                        .HasForeignKey("main_ingredient_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chef");
+
+                    b.Navigation("MainIngredient");
+                });
+
+            modelBuilder.Entity("hochi_food.Models.recipe_steps", b =>
+                {
+                    b.HasOne("hochi_food.Models.recipe", "Recipe")
+                        .WithMany("RecipeSteps")
+                        .HasForeignKey("recipe_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("hochi_food.Models.seasonings", b =>
+                {
+                    b.HasOne("hochi_food.Models.recipe", "Recipe")
+                        .WithMany("Seasonings")
+                        .HasForeignKey("recipe_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("hochi_food.Models.recipe", b =>
+                {
+                    b.Navigation("Ingredients");
+
+                    b.Navigation("RecipeSteps");
+
+                    b.Navigation("Seasonings");
                 });
 #pragma warning restore 612, 618
         }

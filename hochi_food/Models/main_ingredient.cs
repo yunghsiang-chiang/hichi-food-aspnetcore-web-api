@@ -27,6 +27,4 @@ public partial class main_ingredient
     /// Category of the ingredient (e.g., 豆製品 for tofu products)
     /// </summary>
     public string? category { get; set; }
-
-    public virtual ICollection<recipe> recipe { get; set; } = new List<recipe>();
 }

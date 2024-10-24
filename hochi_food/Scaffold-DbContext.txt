@@ -1,0 +1,3 @@
+Scaffold-DbContext "Server=192.168.11.51;Database=food;User ID=hochi_root;Password=hochi_Taoyuan;" MySql.EntityFrameworkCore -OutputDir Models -NoOnConfiguring -UseDatabaseNames -NoPluralize -Force
+
+Scaffold-DbContext "Server=192.168.11.51;Database=activity;User ID=hochi_root;Password=hochi_Taoyuan;" MySql.EntityFrameworkCore -OutputDir Models -NoOnConfiguring -UseDatabaseNames -NoPluralize -Force

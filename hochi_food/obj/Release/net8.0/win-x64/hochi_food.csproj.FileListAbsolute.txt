@@ -13,6 +13,8 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Hum
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\K4os.Compression.LZ4.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\K4os.Compression.LZ4.Streams.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\K4os.Hash.xxHash.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.CodeAnalysis.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.CodeAnalysis.CSharp.dll
@@ -38,9 +40,12 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Mic
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Mono.TextTemplating.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\MySql.Data.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\MySql.EntityFrameworkCore.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Newtonsoft.Json.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Newtonsoft.Json.Bson.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.ClientModel.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.CodeDom.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Composition.AttributedModel.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Composition.Convention.dll
@@ -53,6 +58,7 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Sys
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Runtime.Caching.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Security.Cryptography.ProtectedData.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Security.Permissions.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Text.Json.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Windows.Extensions.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\ZstdSharp.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\cs\Microsoft.CodeAnalysis.resources.dll
@@ -135,9 +141,3 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\ref
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\hochi_food.pdb
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\hochi_food.genruntimeconfig.cache
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\ref\hochi_food.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.ClientModel.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Newtonsoft.Json.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Newtonsoft.Json.Bson.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Text.Json.dll

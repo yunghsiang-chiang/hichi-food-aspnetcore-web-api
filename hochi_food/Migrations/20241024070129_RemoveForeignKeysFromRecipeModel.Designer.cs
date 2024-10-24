@@ -11,8 +11,8 @@ using hochi_food.Models;
 namespace hochi_food.Migrations
 {
     [DbContext(typeof(foodContext))]
-    [Migration("20241018100402_RemoveRecipeNavigationFromIngredientsAndSeasonings")]
-    partial class RemoveRecipeNavigationFromIngredientsAndSeasonings
+    [Migration("20241024070129_RemoveForeignKeysFromRecipeModel")]
+    partial class RemoveForeignKeysFromRecipeModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,6 +21,23 @@ namespace hochi_food.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("hochi_food.Models.__efmigrationshistory", b =>
+                {
+                    b.Property<string>("MigrationId")
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<string>("ProductVersion")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.HasKey("MigrationId")
+                        .HasName("PRIMARY");
+
+                    b.ToTable("__efmigrationshistory");
+                });
 
             modelBuilder.Entity("hochi_food.Models.c_cooking_method", b =>
                 {
@@ -731,8 +748,7 @@ namespace hochi_food.Migrations
 
                     b.Property<string>("icon")
                         .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasComment("category icon");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("category_id")
                         .HasName("PRIMARY");
@@ -867,9 +883,6 @@ namespace hochi_food.Migrations
                     b.Property<int>("recipe_id")
                         .HasColumnType("int");
 
-                    b.Property<int?>("recipe_id1")
-                        .HasColumnType("int");
-
                     b.Property<string>("unit")
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
@@ -877,11 +890,10 @@ namespace hochi_food.Migrations
                     b.HasKey("ingredient_id")
                         .HasName("PRIMARY");
 
-                    b.HasIndex("recipe_id1");
-
-                    b.HasIndex(new[] { "recipe_id" }, "recipe_id");
-
-                    b.ToTable("ingredients");
+                    b.ToTable("ingredients", t =>
+                        {
+                            t.HasComment("Table to store ingredients used in each recipe");
+                        });
                 });
 
             modelBuilder.Entity("hochi_food.Models.main_ingredient", b =>
@@ -923,20 +935,20 @@ namespace hochi_food.Migrations
                         .HasComment("Unique identifier for each recipe");
 
                     b.Property<string>("category")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)")
                         .HasComment("Category of the recipe (e.g., 主菜 - 紅燒, 咖哩)");
 
-                    b.Property<int?>("chef_id")
+                    b.Property<int>("chef_id")
                         .HasColumnType("int")
                         .HasComment("References the ID of the chef from the Chef table");
 
                     b.Property<string>("description")
                         .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasComment("Link or identifier for further recipe details");
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<int?>("main_ingredient_id")
+                    b.Property<int>("main_ingredient_id")
                         .HasColumnType("int")
                         .HasComment("References the ID of the main ingredient from the Main_Ingredient table");
 
@@ -949,9 +961,9 @@ namespace hochi_food.Migrations
                     b.HasKey("recipe_id")
                         .HasName("PRIMARY");
 
-                    b.HasIndex(new[] { "chef_id" }, "chef_id");
+                    b.HasIndex(new[] { "main_ingredient_id" }, "recipe_ibfk_1");
 
-                    b.HasIndex(new[] { "main_ingredient_id" }, "main_ingredient_id");
+                    b.HasIndex(new[] { "chef_id" }, "recipe_ibfk_2");
 
                     b.ToTable("recipe", t =>
                         {
@@ -976,7 +988,7 @@ namespace hochi_food.Migrations
                         .HasColumnType("varchar(255)")
                         .HasComment("URL for an image illustrating the step (if available)");
 
-                    b.Property<int?>("recipe_id")
+                    b.Property<int>("recipe_id")
                         .HasColumnType("int")
                         .HasComment("References the ID of the recipe from the Recipe table");
 
@@ -986,9 +998,6 @@ namespace hochi_food.Migrations
 
                     b.HasKey("step_id")
                         .HasName("PRIMARY");
-
-                    b.HasIndex(new[] { "recipe_id" }, "recipe_id")
-                        .HasDatabaseName("recipe_id1");
 
                     b.ToTable("recipe_steps", t =>
                         {
@@ -1009,9 +1018,6 @@ namespace hochi_food.Migrations
                     b.Property<int>("recipe_id")
                         .HasColumnType("int");
 
-                    b.Property<int?>("recipe_id1")
-                        .HasColumnType("int");
-
                     b.Property<string>("seasoning_name")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -1024,72 +1030,10 @@ namespace hochi_food.Migrations
                     b.HasKey("seasoning_id")
                         .HasName("PRIMARY");
 
-                    b.HasIndex("recipe_id1");
-
-                    b.HasIndex(new[] { "recipe_id" }, "recipe_id")
-                        .HasDatabaseName("recipe_id2");
-
-                    b.ToTable("seasonings");
-                });
-
-            modelBuilder.Entity("hochi_food.Models.ingredients", b =>
-                {
-                    b.HasOne("hochi_food.Models.recipe", null)
-                        .WithMany("ingredients")
-                        .HasForeignKey("recipe_id1");
-                });
-
-            modelBuilder.Entity("hochi_food.Models.recipe", b =>
-                {
-                    b.HasOne("hochi_food.Models.chef", "chef")
-                        .WithMany("recipe")
-                        .HasForeignKey("chef_id")
-                        .HasConstraintName("recipe_ibfk_2");
-
-                    b.HasOne("hochi_food.Models.main_ingredient", "main_ingredient")
-                        .WithMany("recipe")
-                        .HasForeignKey("main_ingredient_id")
-                        .HasConstraintName("recipe_ibfk_1");
-
-                    b.Navigation("chef");
-
-                    b.Navigation("main_ingredient");
-                });
-
-            modelBuilder.Entity("hochi_food.Models.recipe_steps", b =>
-                {
-                    b.HasOne("hochi_food.Models.recipe", "recipe")
-                        .WithMany("recipe_steps")
-                        .HasForeignKey("recipe_id")
-                        .HasConstraintName("recipe_steps_ibfk_1");
-
-                    b.Navigation("recipe");
-                });
-
-            modelBuilder.Entity("hochi_food.Models.seasonings", b =>
-                {
-                    b.HasOne("hochi_food.Models.recipe", null)
-                        .WithMany("seasonings")
-                        .HasForeignKey("recipe_id1");
-                });
-
-            modelBuilder.Entity("hochi_food.Models.chef", b =>
-                {
-                    b.Navigation("recipe");
-                });
-
-            modelBuilder.Entity("hochi_food.Models.main_ingredient", b =>
-                {
-                    b.Navigation("recipe");
-                });
-
-            modelBuilder.Entity("hochi_food.Models.recipe", b =>
-                {
-                    b.Navigation("ingredients");
-
-                    b.Navigation("recipe_steps");
-
-                    b.Navigation("seasonings");
+                    b.ToTable("seasonings", t =>
+                        {
+                            t.HasComment("Table to store seasonings used in each recipe");
+                        });
                 });
 #pragma warning restore 612, 618
         }
