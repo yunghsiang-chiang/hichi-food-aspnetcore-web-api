@@ -55,19 +55,27 @@ namespace hochi_food.Controllers
         /// <param name="recipeSteps"></param>
         /// <returns></returns>
         [HttpPost("steps")]
-        public async Task<ActionResult<recipe_steps>> PostRecipeSteps([FromBody] recipe_steps recipeSteps)
+        public async Task<ActionResult> PostRecipeSteps([FromBody] List<recipe_steps> recipeSteps)
         {
-            if (recipeSteps == null || recipeSteps.recipe_id == 0)
+            if (recipeSteps == null || recipeSteps.Count == 0)
             {
-                return BadRequest("Recipe ID and step details are required.");
+                return BadRequest("Recipe steps are required.");
             }
 
-            // 新增步驟
-            _foodContext.recipe_steps.Add(recipeSteps);
-            await _foodContext.SaveChangesAsync();
+            foreach (var step in recipeSteps)
+            {
+                if (step.recipe_id == 0)
+                {
+                    return BadRequest("Recipe ID is required for each step.");
+                }
 
-            return CreatedAtAction(nameof(GetRecipeSteps), new { id = recipeSteps.step_id }, recipeSteps);
+                _foodContext.recipe_steps.Add(step);
+            }
+
+            await _foodContext.SaveChangesAsync();
+            return Ok("Recipe steps saved successfully.");
         }
+
         /// <summary>
         /// 取得 Recipe Steps
         /// </summary>
@@ -92,19 +100,27 @@ namespace hochi_food.Controllers
         /// <param name="ingredient"></param>
         /// <returns></returns>
         [HttpPost("ingredients")]
-        public async Task<ActionResult<ingredients>> PostIngredients([FromBody] ingredients ingredient)
+        public async Task<ActionResult> PostIngredients([FromBody] List<ingredients> ingredientsList)
         {
-            if (ingredient == null || ingredient.recipe_id == 0)
+            if (ingredientsList == null || ingredientsList.Count == 0)
             {
-                return BadRequest("Recipe ID and ingredient details are required.");
+                return BadRequest("Ingredients are required.");
             }
 
-            // 新增食材
-            _foodContext.ingredients.Add(ingredient);
-            await _foodContext.SaveChangesAsync();
+            foreach (var ingredient in ingredientsList)
+            {
+                if (ingredient.recipe_id == 0)
+                {
+                    return BadRequest("Recipe ID is required for each ingredient.");
+                }
 
-            return CreatedAtAction(nameof(GetIngredients), new { id = ingredient.ingredient_id }, ingredient);
+                _foodContext.ingredients.Add(ingredient);
+            }
+
+            await _foodContext.SaveChangesAsync();
+            return Ok("Ingredients saved successfully.");
         }
+
         /// <summary>
         /// 取得 Ingredients
         /// </summary>
@@ -128,19 +144,27 @@ namespace hochi_food.Controllers
         /// <param name="seasoning"></param>
         /// <returns></returns>
         [HttpPost("seasonings")]
-        public async Task<ActionResult<seasonings>> PostSeasonings([FromBody] seasonings seasoning)
+        public async Task<ActionResult> PostSeasonings([FromBody] List<seasonings> seasoningsList)
         {
-            if (seasoning == null || seasoning.recipe_id == 0)
+            if (seasoningsList == null || seasoningsList.Count == 0)
             {
-                return BadRequest("Recipe ID and seasoning details are required.");
+                return BadRequest("Seasonings are required.");
             }
 
-            // 新增調味料
-            _foodContext.seasonings.Add(seasoning);
-            await _foodContext.SaveChangesAsync();
+            foreach (var seasoning in seasoningsList)
+            {
+                if (seasoning.recipe_id == 0)
+                {
+                    return BadRequest("Recipe ID is required for each seasoning.");
+                }
 
-            return CreatedAtAction(nameof(GetSeasonings), new { id = seasoning.seasoning_id }, seasoning);
+                _foodContext.seasonings.Add(seasoning);
+            }
+
+            await _foodContext.SaveChangesAsync();
+            return Ok("Seasonings saved successfully.");
         }
+
         /// <summary>
         /// 取得 Seasonings
         /// </summary>
