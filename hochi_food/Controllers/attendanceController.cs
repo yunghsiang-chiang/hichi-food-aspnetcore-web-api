@@ -260,25 +260,35 @@ namespace hochi_food.Controllers
         [HttpGet("get_overtime_record")]
         public IEnumerable<h_overtime_record> get_overtime_record(string userid, DateTime startdate, DateTime enddate)
         {
+            // 確保 enddate 為該日的結束時間
+            DateTime endOfEndDate = enddate.Date.AddDays(1).AddTicks(-1);
+
             // 查詢指定使用者在指定時間範圍內的加班記錄
             var temp = from row in _attendanceContext.h_overtime_record
-                       where userid == row.userID && row.startTime.Date >= startdate.Date && row.endTime <= enddate.Date
+                       where userid == row.userID && row.startTime.Date >= startdate.Date && row.endTime <= endOfEndDate
                        select row;
+
             // 返回查詢結果
             return temp;
+
         }
 
         // HTTP GET 方法，根據使用者 ID 和指定時間範圍取得請假記錄
         [HttpGet("get_leave_record")]
         public IEnumerable<h_leave_record> get_leave_record(string userid, DateTime startdate, DateTime enddate)
         {
+            // 將 enddate 設為當日的結束時間
+            DateTime endOfEndDate = enddate.Date.AddDays(1).AddTicks(-1);
+
             // 查詢指定使用者在指定時間範圍內的請假記錄
             var temp = from row in _attendanceContext.h_leave_record
-                       where userid == row.userId && row.startTime.Date >= startdate.Date && row.endTime.Date <= enddate.Date
+                       where userid == row.userId && row.startTime.Date >= startdate.Date && row.endTime <= endOfEndDate
                        select row;
+
             // 返回查詢結果
             return temp;
         }
+
 
         // HTTP GET 方法，根據指定年份和月份取得請假記錄
         [HttpGet("get_leave_record_by_year_month")]
