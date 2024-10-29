@@ -1359,22 +1359,12 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ingredient",
-        "Type": "hochi_food.Models.ingredients",
+        "Name": "ingredientsList",
+        "Type": "System.Collections.Generic.List\u00601[[hochi_food.Models.ingredients, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "hochi_food.Models.ingredients",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "hochi_food.Controllers.RecipesController",
@@ -1437,22 +1427,12 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "seasoning",
-        "Type": "hochi_food.Models.seasonings",
+        "Name": "seasoningsList",
+        "Type": "System.Collections.Generic.List\u00601[[hochi_food.Models.seasonings, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "hochi_food.Models.seasonings",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "hochi_food.Controllers.RecipesController",
@@ -1490,21 +1470,11 @@
     "Parameters": [
       {
         "Name": "recipeSteps",
-        "Type": "hochi_food.Models.recipe_steps",
+        "Type": "System.Collections.Generic.List\u00601[[hochi_food.Models.recipe_steps, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "hochi_food.Models.recipe_steps",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "hochi_food.Controllers.RecipesController",

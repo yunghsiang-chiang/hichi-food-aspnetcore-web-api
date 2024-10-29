@@ -84,14 +84,17 @@ namespace hochi_food.Controllers
         [HttpGet("steps/{id}")]
         public async Task<ActionResult<recipe_steps>> GetRecipeSteps(int id)
         {
-            var step = await _foodContext.recipe_steps.FindAsync(id);
+            var steps = await _foodContext.recipe_steps
+         .Where(step => step.recipe_id == id)
+         .OrderBy(step => step.step_number)
+         .ToListAsync();
 
-            if (step == null)
+            if (steps == null || !steps.Any())
             {
                 return NotFound();
             }
 
-            return Ok(step);
+            return Ok(steps);
         }
 
         /// <summary>
@@ -129,14 +132,16 @@ namespace hochi_food.Controllers
         [HttpGet("ingredients/{id}")]
         public async Task<ActionResult<ingredients>> GetIngredients(int id)
         {
-            var ingredient = await _foodContext.ingredients.FindAsync(id);
+            var ingredientsList = await _foodContext.ingredients
+         .Where(ingredient => ingredient.recipe_id == id)
+         .ToListAsync();
 
-            if (ingredient == null)
+            if (ingredientsList == null || !ingredientsList.Any())
             {
                 return NotFound();
             }
 
-            return Ok(ingredient);
+            return Ok(ingredientsList);
         }
         /// <summary>
         /// 儲存 Seasonings
@@ -173,14 +178,16 @@ namespace hochi_food.Controllers
         [HttpGet("seasonings/{id}")]
         public async Task<ActionResult<seasonings>> GetSeasonings(int id)
         {
-            var seasoning = await _foodContext.seasonings.FindAsync(id);
+            var seasoningsList = await _foodContext.seasonings
+         .Where(seasoning => seasoning.recipe_id == id)
+         .ToListAsync();
 
-            if (seasoning == null)
+            if (seasoningsList == null || !seasoningsList.Any())
             {
                 return NotFound();
             }
 
-            return Ok(seasoning);
+            return Ok(seasoningsList);
         }
 
     }
