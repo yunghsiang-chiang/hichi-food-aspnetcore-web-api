@@ -17,6 +17,32 @@ namespace hochi_food.Controllers
         {
             _foodContext = foodContext;
         }
+
+        /// <summary>
+        /// 取得各種類別的食譜數量
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("description-count")]
+        public async Task<ActionResult<IEnumerable<DescriptionCountDto>>> GetDescriptionCount()
+        {
+            var descriptionCounts = await _foodContext.recipe
+                .GroupBy(r => r.description)
+                .Select(g => new DescriptionCountDto
+                {
+                    Description = g.Key,
+                    Qty = g.Count()
+                })
+                .ToListAsync();
+
+            if (descriptionCounts == null || !descriptionCounts.Any())
+            {
+                return NotFound("No description data found.");
+            }
+
+            return Ok(descriptionCounts);
+        }
+
+
         /// <summary>
         /// 儲存 Recipe
         /// </summary>
