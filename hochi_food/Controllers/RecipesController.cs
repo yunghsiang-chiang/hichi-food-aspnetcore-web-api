@@ -37,6 +37,28 @@ namespace hochi_food.Controllers
             return CreatedAtAction(nameof(GetRecipe), new { id = recipe.recipe_id }, recipe);
         }
 
+        /// <summary>
+        /// 取得所有 Recipe
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("all")]
+        public async Task<ActionResult<IEnumerable<recipe>>> GetRecipes()
+        {
+            var recipes = await _foodContext.recipe.ToListAsync();
+
+            if (recipes == null || !recipes.Any())
+            {
+                return NotFound("No recipes found.");
+            }
+
+            return Ok(recipes);
+        }
+
+        /// <summary>
+        /// 取得食譜 by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<recipe>> GetRecipe(int id)
         {
