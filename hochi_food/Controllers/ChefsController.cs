@@ -40,6 +40,28 @@ namespace hochi_food.Controllers
             return Ok(chef);
         }
 
+
+        /// <summary>
+        /// 获取每位厨师的食谱数量统计
+        /// </summary>
+        [HttpGet("chefs/recipeCounts")]
+        public async Task<ActionResult<IEnumerable<object>>> GetChefRecipeCounts()
+        {
+            var result = await (from chef in _foodContext.chef
+                                join recipe in _foodContext.recipe on chef.chef_id equals recipe.chef_id into chefRecipes
+                                select new
+                                {
+                                    ChefName = chef.name,
+                                    RecipeCount = chefRecipes.Count()
+                                })
+                               .OrderBy(c => c.ChefName)
+                               .ToListAsync();
+
+            return Ok(result);
+        }
+
+
+
         /// <summary>
         /// 新增或更新厨师信息
         /// </summary>
