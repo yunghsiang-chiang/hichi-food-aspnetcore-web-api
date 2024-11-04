@@ -1444,7 +1444,7 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.RecipesController",
-    "Method": "PostRecipe",
+    "Method": "PostOrUpdateRecipe",
     "RelativePath": "api/Recipes/recipes",
     "HttpMethod": "POST",
     "IsController": true,
