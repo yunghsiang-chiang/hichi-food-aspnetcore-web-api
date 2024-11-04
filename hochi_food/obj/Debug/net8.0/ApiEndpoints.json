@@ -51,6 +51,16 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.activityController",
+    "Method": "GetEduSideBlockData",
+    "RelativePath": "api/activity/GetEduSideBlockData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.activityController",
     "Method": "GetExhibitionData",
     "RelativePath": "api/activity/GetExhibitionData",
     "HttpMethod": "GET",

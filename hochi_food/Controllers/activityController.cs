@@ -210,6 +210,21 @@ namespace hochi_food.Controllers
             return Ok(exhibitionData);
         }
 
+        // 取得 edusideblock 資訊
+        [HttpGet("GetEduSideBlockData")]
+        public IActionResult GetEduSideBlockData()
+        {
+            var edusideblockData = _activityContext.edusideblock
+                .Select(e => new
+                {
+                    e.ColumnTitle,
+                    e.StartDate,
+                    e.LastUsedDate
+                })
+                .ToList();
+
+            return Ok(edusideblockData);
+        }
 
 
         [HttpPost("SubmitSurvey")]
