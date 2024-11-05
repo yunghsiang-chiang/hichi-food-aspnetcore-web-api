@@ -683,6 +683,27 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "GetAttendanceSummary",
+    "RelativePath": "api/attendance/GetAttendanceSummary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "GetMonthlyAttendanceSummary",
     "RelativePath": "api/attendance/getMonthlyAttendanceSummary",
     "HttpMethod": "GET",

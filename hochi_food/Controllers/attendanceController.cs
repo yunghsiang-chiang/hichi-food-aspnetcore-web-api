@@ -18,13 +18,19 @@ namespace hochi_food.Controllers
     {
         // 在全域變數宣告資料庫物件 attendanceContext
         private readonly attendanceContext _attendanceContext;
+        private readonly hochi_configContext _hochi_configContext;
 
         // 建構函式，將 attendanceContext 的實例注入到控制器中
-        public attendanceController(attendanceContext attendanceContext)
+        public attendanceController(attendanceContext attendanceContext, hochi_configContext hochi_configContext)
         {
             // 將注入的 attendanceContext 賦值給私有變數 _attendanceContext
             _attendanceContext = attendanceContext;
+            _hochi_configContext = hochi_configContext;
         }
+
+        
+
+        // 建構函式，將 hochi_configContext 的實例注入到控制器中
 
         // HTTP POST 方法，新增出勤資訊記錄
         [HttpPost("appendattendance_infor")]
@@ -113,6 +119,113 @@ namespace hochi_food.Controllers
             // 保存變更
             _attendanceContext.SaveChanges();
         }
+        /// <summary>
+        /// 取得資料
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        [HttpGet("GetAttendanceSummary")]
+        public async Task<IActionResult> GetAttendanceSummary(DateTime startDate, DateTime endDate)
+        {
+            // 獲取基本同修資料
+            var baseData = await _hochi_configContext.c_fellow_hochi_learners
+                .Where(hcl => hcl.person_type != "group")
+                .Select(hcl => new
+                {
+                    hcl.person_id,
+                    hcl.person_name
+                }).ToListAsync();
+
+            // 獲取出勤記錄
+            var attendanceData = await _attendanceContext.h_attendance_record
+                .Where(ar => ar.create_time >= startDate && ar.create_time <= endDate &&
+                             (ar.attendance_status == "到班" || ar.attendance_status == "外出公務"))
+                .GroupBy(ar => ar.user_id)
+                .Select(g => new
+                {
+                    User_id = g.Key,
+                    attendance_days = g.Count()
+                }).ToListAsync();
+
+            // 獲取晨光和晨會記錄
+            var meetingData = await _attendanceContext.h_attendance_day
+                .Where(ad => ad.attendance_day >= startDate && ad.attendance_day <= endDate)
+                .GroupBy(ad => ad.user_id)
+                .Select(g => new
+                {
+                    user_id = g.Key,
+                    morning_meeting = g.Sum(x => x.morning_meeting),
+                    morning_light_up = g.Sum(x => x.morning_light_up),
+                    morning_light_down = g.Sum(x => x.morning_light_down)
+                }).ToListAsync();
+
+            // 獲取病假記錄
+            var sickLeaveData = await _attendanceContext.h_leave_record
+                .Where(lr => lr.startTime >= startDate && lr.endTime <= endDate && lr.leaveType == "病假")
+                .GroupBy(lr => lr.userId)
+                .Select(g => new
+                {
+                    userid = g.Key,
+                    sick_hours = g.Sum(x => x.count_hours)
+                }).ToListAsync();
+
+            // 其他請假類型同樣的方式
+            var personalLeaveData = await _attendanceContext.h_leave_record
+                .Where(lr => lr.startTime >= startDate && lr.endTime <= endDate && lr.leaveType == "事假")
+                .GroupBy(lr => lr.userId)
+                .Select(g => new
+                {
+                    userid = g.Key,
+                    personal_hours = g.Sum(x => x.count_hours)
+                }).ToListAsync();
+
+            var annualLeaveData = await _attendanceContext.h_leave_record
+                .Where(lr => lr.startTime >= startDate && lr.endTime <= endDate && lr.leaveType == "特休")
+                .GroupBy(lr => lr.userId)
+                .Select(g => new
+                {
+                    userid = g.Key,
+                    annual_hours = g.Sum(x => x.count_hours)
+                }).ToListAsync();
+
+            var compLeaveData = await _attendanceContext.h_leave_record
+                .Where(lr => lr.startTime >= startDate && lr.endTime <= endDate && lr.leaveType == "補休")
+                .GroupBy(lr => lr.userId)
+                .Select(g => new
+                {
+                    userid = g.Key,
+                    comp_hours = g.Sum(x => x.count_hours)
+                }).ToListAsync();
+
+            var overtimeData = await _attendanceContext.h_overtime_record
+                .Where(or => or.startTime >= startDate && or.endTime <= endDate)
+                .GroupBy(or => or.userID)
+                .Select(g => new
+                {
+                    userID = g.Key,
+                    overtime_hours = g.Sum(x => x.count_hours)
+                }).ToListAsync();
+
+            // 將所有數據合併
+            var result = baseData.Select(hcl => new
+            {
+                User_id = hcl.person_id,
+                Name = hcl.person_name,
+                出勤 = attendanceData.FirstOrDefault(a => a.User_id == hcl.person_id)?.attendance_days ?? 0,
+                晨會 = meetingData.FirstOrDefault(m => m.user_id == hcl.person_id)?.morning_meeting ?? 0,
+                晨光上 = meetingData.FirstOrDefault(m => m.user_id == hcl.person_id)?.morning_light_up ?? 0,
+                晨光下 = meetingData.FirstOrDefault(m => m.user_id == hcl.person_id)?.morning_light_down ?? 0,
+                病假 = sickLeaveData.FirstOrDefault(s => s.userid == hcl.person_id)?.sick_hours ?? 0,
+                事假 = personalLeaveData.FirstOrDefault(p => p.userid == hcl.person_id)?.personal_hours ?? 0,
+                特休 = annualLeaveData.FirstOrDefault(a => a.userid == hcl.person_id)?.annual_hours ?? 0,
+                補休 = compLeaveData.FirstOrDefault(c => c.userid == hcl.person_id)?.comp_hours ?? 0,
+                加班 = overtimeData.FirstOrDefault(o => o.userID == hcl.person_id)?.overtime_hours ?? 0
+            }).ToList();
+
+            return Ok(result);
+        }
+
 
         // HTTP GET 方法，取得特定同修在某年某月的累積晨光與晨會數據
         [HttpGet("getMonthlyAttendanceSummary")]
