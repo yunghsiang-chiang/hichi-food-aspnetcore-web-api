@@ -121,7 +121,7 @@ namespace hochi_food.Controllers
             return Ok(recipe);
         }
         /// <summary>
-        /// 儲存 Recipe Steps
+        /// 儲存或更新 Recipe Steps
         /// </summary>
         /// <param name="recipeSteps"></param>
         /// <returns></returns>
@@ -133,34 +133,32 @@ namespace hochi_food.Controllers
                 return BadRequest("Recipe steps are required.");
             }
 
+            // 取得要更新的 recipe_id
+            var recipeId = recipeSteps.First().recipe_id;
+            if (recipeId == 0)
+            {
+                return BadRequest("Recipe ID is required for each step.");
+            }
+
+            // 查詢是否已有相同的 recipe_id 步驟
+            var existingSteps = _foodContext.recipe_steps.Where(rs => rs.recipe_id == recipeId).ToList();
+
+            if (existingSteps.Any())
+            {
+                // 若存在相同的 recipe_id，則刪除該 recipe_id 的所有舊步驟
+                _foodContext.recipe_steps.RemoveRange(existingSteps);
+            }
+
+            // 新增新的步驟
             foreach (var step in recipeSteps)
             {
-                if (step.recipe_id == 0)
-                {
-                    return BadRequest("Recipe ID is required for each step.");
-                }
-
-                var existingStep = await _foodContext.recipe_steps.FindAsync(step.step_id);
-
-                if (existingStep != null)
-                {
-                    // 更新現有步驟
-                    existingStep.step_number = step.step_number;
-                    existingStep.description = step.description;
-                    existingStep.image_url = step.image_url;
-
-                    _foodContext.recipe_steps.Update(existingStep);
-                }
-                else
-                {
-                    // 新增新步驟
-                    _foodContext.recipe_steps.Add(step);
-                }
+                _foodContext.recipe_steps.Add(step);
             }
 
             await _foodContext.SaveChangesAsync();
             return Ok("Recipe steps saved/updated successfully.");
         }
+
 
 
         /// <summary>
@@ -185,9 +183,9 @@ namespace hochi_food.Controllers
         }
 
         /// <summary>
-        /// 儲存 Ingredients
+        /// 儲存或更新 Ingredients
         /// </summary>
-        /// <param name="ingredient"></param>
+        /// <param name="ingredientsList"></param>
         /// <returns></returns>
         [HttpPost("ingredients")]
         public async Task<ActionResult> PostOrUpdateIngredients([FromBody] List<ingredients> ingredientsList)
@@ -197,34 +195,32 @@ namespace hochi_food.Controllers
                 return BadRequest("Ingredients are required.");
             }
 
+            // 取得要更新的 recipe_id
+            var recipeId = ingredientsList.First().recipe_id;
+            if (recipeId == 0)
+            {
+                return BadRequest("Recipe ID is required for each ingredient.");
+            }
+
+            // 查詢是否已有相同的 recipe_id 的食材資料
+            var existingIngredients = _foodContext.ingredients.Where(ing => ing.recipe_id == recipeId).ToList();
+
+            if (existingIngredients.Any())
+            {
+                // 若存在相同的 recipe_id，則刪除該 recipe_id 的所有舊食材資料
+                _foodContext.ingredients.RemoveRange(existingIngredients);
+            }
+
+            // 新增新的食材資料
             foreach (var ingredient in ingredientsList)
             {
-                if (ingredient.recipe_id == 0)
-                {
-                    return BadRequest("Recipe ID is required for each ingredient.");
-                }
-
-                var existingIngredient = await _foodContext.ingredients.FindAsync(ingredient.ingredient_id);
-
-                if (existingIngredient != null)
-                {
-                    // 更新現有食材
-                    existingIngredient.ingredient_name = ingredient.ingredient_name;
-                    existingIngredient.amount = ingredient.amount;
-                    existingIngredient.unit = ingredient.unit;
-
-                    _foodContext.ingredients.Update(existingIngredient);
-                }
-                else
-                {
-                    // 新增新食材
-                    _foodContext.ingredients.Add(ingredient);
-                }
+                _foodContext.ingredients.Add(ingredient);
             }
 
             await _foodContext.SaveChangesAsync();
             return Ok("Ingredients saved/updated successfully.");
         }
+
 
 
         /// <summary>
@@ -247,9 +243,9 @@ namespace hochi_food.Controllers
             return Ok(ingredientsList);
         }
         /// <summary>
-        /// 儲存 Seasonings
+        /// 儲存或更新 Seasonings
         /// </summary>
-        /// <param name="seasoning"></param>
+        /// <param name="seasoningsList"></param>
         /// <returns></returns>
         [HttpPost("seasonings")]
         public async Task<ActionResult> PostOrUpdateSeasonings([FromBody] List<seasonings> seasoningsList)
@@ -259,34 +255,32 @@ namespace hochi_food.Controllers
                 return BadRequest("Seasonings are required.");
             }
 
+            // 取得要更新的 recipe_id
+            var recipeId = seasoningsList.First().recipe_id;
+            if (recipeId == 0)
+            {
+                return BadRequest("Recipe ID is required for each seasoning.");
+            }
+
+            // 查詢是否已有相同的 recipe_id 的調味料資料
+            var existingSeasonings = _foodContext.seasonings.Where(seas => seas.recipe_id == recipeId).ToList();
+
+            if (existingSeasonings.Any())
+            {
+                // 若存在相同的 recipe_id，則刪除該 recipe_id 的所有舊調味料資料
+                _foodContext.seasonings.RemoveRange(existingSeasonings);
+            }
+
+            // 新增新的調味料資料
             foreach (var seasoning in seasoningsList)
             {
-                if (seasoning.recipe_id == 0)
-                {
-                    return BadRequest("Recipe ID is required for each seasoning.");
-                }
-
-                var existingSeasoning = await _foodContext.seasonings.FindAsync(seasoning.seasoning_id);
-
-                if (existingSeasoning != null)
-                {
-                    // 更新現有調味料
-                    existingSeasoning.seasoning_name = seasoning.seasoning_name;
-                    existingSeasoning.amount = seasoning.amount;
-                    existingSeasoning.unit = seasoning.unit;
-
-                    _foodContext.seasonings.Update(existingSeasoning);
-                }
-                else
-                {
-                    // 新增新調味料
-                    _foodContext.seasonings.Add(seasoning);
-                }
+                _foodContext.seasonings.Add(seasoning);
             }
 
             await _foodContext.SaveChangesAsync();
             return Ok("Seasonings saved/updated successfully.");
         }
+
 
 
         /// <summary>
