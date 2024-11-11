@@ -13,6 +13,10 @@ public partial class foodContext : DbContext
 
     public virtual DbSet<__efmigrationshistory> __efmigrationshistory { get; set; }
 
+    public virtual DbSet<activity_meal_recipes> activity_meal_recipes { get; set; }
+
+    public virtual DbSet<activity_meals> activity_meals { get; set; }
+
     public virtual DbSet<c_cooking_method> c_cooking_method { get; set; }
 
     public virtual DbSet<c_cooking_method_old> c_cooking_method_old { get; set; }
@@ -57,6 +61,35 @@ public partial class foodContext : DbContext
 
             entity.Property(e => e.MigrationId).HasMaxLength(150);
             entity.Property(e => e.ProductVersion).HasMaxLength(32);
+        });
+
+        modelBuilder.Entity<activity_meal_recipes>(entity =>
+        {
+            entity.HasKey(e => e.activity_meal_recipe_id).HasName("PRIMARY");
+
+            entity.Property(e => e.recipe_category).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<activity_meals>(entity =>
+        {
+            entity.HasKey(e => e.activity_meal_id).HasName("PRIMARY");
+
+            entity.Property(e => e.activity_meal_id).HasComment("每場活動的餐點紀錄");
+            entity.Property(e => e.activity_date)
+                .HasComment("班會日期")
+                .HasColumnType("date");
+            entity.Property(e => e.activity_name)
+                .HasMaxLength(100)
+                .HasComment("活動名稱");
+            entity.Property(e => e.end_date)
+                .HasComment("班會結束日")
+                .HasColumnType("date");
+            entity.Property(e => e.meal_type)
+                .HasComment("餐別")
+                .HasColumnType("enum('早餐','午餐','晚餐')");
+            entity.Property(e => e.start_date)
+                .HasComment("班會起始日")
+                .HasColumnType("date");
         });
 
         modelBuilder.Entity<c_cooking_method>(entity =>

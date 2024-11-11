@@ -303,5 +303,175 @@ namespace hochi_food.Controllers
             return Ok(seasoningsList);
         }
 
+        /// <summary>
+        /// 取得沒有對應 activity_meal_recipes 的 activity_meals
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("activity-meals/pending-recipes")]
+        public async Task<ActionResult<IEnumerable<activity_meals>>> GetMealsPendingRecipes()
+        {
+            // 找出所有沒有在 activity_meal_recipes 中對應的 activity_meal_id
+            var mealsWithoutRecipes = await _foodContext.activity_meals
+                .Where(am => !_foodContext.activity_meal_recipes
+                    .Any(amr => amr.activity_meal_id == am.activity_meal_id))
+                .ToListAsync();
+
+            if (mealsWithoutRecipes == null || !mealsWithoutRecipes.Any())
+            {
+                return NotFound("All activity meals have corresponding recipes.");
+            }
+
+            return Ok(mealsWithoutRecipes);
+        }
+
+        /// <summary>
+        /// 取得所有活動餐點資料
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("activity-meals")]
+        public async Task<ActionResult<IEnumerable<activity_meals>>> GetActivityMeals()
+        {
+            var activityMeals = await _foodContext.activity_meals.ToListAsync();
+
+            if (activityMeals == null || !activityMeals.Any())
+            {
+                return NotFound("No activity meals found.");
+            }
+
+            return Ok(activityMeals);
+        }
+
+        /// <summary>
+        /// 根據活動餐點ID取得活動餐點對應的食譜列表
+        /// </summary>
+        /// <param name="activityMealId"></param>
+        /// <returns></returns>
+        [HttpGet("activity-meal-recipes/{activityMealId}")]
+        public async Task<ActionResult<IEnumerable<activity_meal_recipes>>> GetActivityMealRecipes(int activityMealId)
+        {
+            var mealRecipes = await _foodContext.activity_meal_recipes
+                .Where(amr => amr.activity_meal_id == activityMealId)
+                .ToListAsync();
+
+            if (mealRecipes == null || !mealRecipes.Any())
+            {
+                return NotFound($"No recipes found for activity meal ID: {activityMealId}");
+            }
+
+            return Ok(mealRecipes);
+        }
+
+        /// <summary>
+        /// 根據起始日期與結束日期取得指定範圍內的活動日期與餐別
+        /// </summary>
+        /// <param name="startDate">起始日期</param>
+        /// <param name="endDate">結束日期</param>
+        /// <returns></returns>
+        [HttpGet("activity-meals/date-range")]
+        public async Task<ActionResult<IEnumerable<activity_meals>>> GetActivityMealsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            var mealsInRange = await _foodContext.activity_meals
+                .Where(am => am.activity_date >= startDate && am.activity_date <= endDate)
+                .OrderBy(am => am.activity_date)
+                .ThenBy(am => am.meal_type)
+                .ToListAsync();
+
+            if (mealsInRange == null || !mealsInRange.Any())
+            {
+                return NotFound("No activity meals found in the specified date range.");
+            }
+
+            return Ok(mealsInRange);
+        }
+
+
+        /// <summary>
+        /// 儲存或更新 Activity Meals
+        /// </summary>
+        /// <param name="activityMeal"></param>
+        /// <returns></returns>
+        [HttpPost("activity-meals")]
+        public async Task<ActionResult> PostOrUpdateActivityMeal([FromBody] activity_meals activityMeal)
+        {
+            if (activityMeal == null)
+            {
+                return BadRequest("Activity meal data is required.");
+            }
+
+            // 檢查是否存在該 activity_meal_id
+            var existingMeal = await _foodContext.activity_meals
+                .FirstOrDefaultAsync(am => am.activity_meal_id == activityMeal.activity_meal_id);
+
+            if (existingMeal != null)
+            {
+                // 更新現有的 activity_meals 資料
+                existingMeal.activity_name = activityMeal.activity_name;
+                existingMeal.start_date = activityMeal.start_date;
+                existingMeal.end_date = activityMeal.end_date;
+                existingMeal.activity_date = activityMeal.activity_date;
+                existingMeal.meal_type = activityMeal.meal_type;
+
+                _foodContext.activity_meals.Update(existingMeal);
+            }
+            else
+            {
+                // 新增新的 activity_meals 資料
+                _foodContext.activity_meals.Add(activityMeal);
+            }
+
+            await _foodContext.SaveChangesAsync();
+            return Ok("Activity meal saved/updated successfully.");
+        }
+
+        /// <summary>
+        /// 儲存或更新活動餐點食譜
+        /// </summary>
+        /// <param name="mealRecipes"></param>
+        /// <returns></returns>
+        [HttpPost("activity-meal-recipes")]
+        public async Task<ActionResult> PostOrUpdateActivityMealRecipes([FromBody] List<activity_meal_recipes> mealRecipes)
+        {
+            if (mealRecipes == null || mealRecipes.Count == 0)
+            {
+                return BadRequest("活動餐點食譜為必填項目。");
+            }
+
+            // 從第一個項目取得 activity_meal_id（所有項目應該具有相同的 activity_meal_id）
+            var activityMealId = mealRecipes.First().activity_meal_id;
+            if (activityMealId == 0)
+            {
+                return BadRequest("每個食譜都需要指定活動餐點 ID。");
+            }
+
+            // 刪除現有的對應 activity_meal_id 的項目
+            var existingMealRecipes = _foodContext.activity_meal_recipes
+                .Where(amr => amr.activity_meal_id == activityMealId)
+                .ToList();
+
+            if (existingMealRecipes.Any())
+            {
+                _foodContext.activity_meal_recipes.RemoveRange(existingMealRecipes);
+            }
+
+            // 新增新的項目
+            foreach (var mealRecipe in mealRecipes)
+            {
+                // 僅映射必要的屬性以避免多餘的資料
+                var newMealRecipe = new activity_meal_recipes
+                {
+                    activity_meal_id = mealRecipe.activity_meal_id,
+                    recipe_id = mealRecipe.recipe_id,
+                    recipe_category = mealRecipe.recipe_category
+                };
+
+                _foodContext.activity_meal_recipes.Add(newMealRecipe);
+            }
+
+            await _foodContext.SaveChangesAsync();
+            return Ok("活動餐點食譜已成功儲存或更新。");
+        }
+
+
+
     }
 }
