@@ -654,7 +654,63 @@ namespace hochi_food.Controllers
             }
         }
 
+        // 更新請假記錄 (刪除舊記錄，新增新記錄)
+        [HttpPut("replace-leave-record/{userId}/{leaveType}/{startTime}")]
+        public async Task<IActionResult> ReplaceLeaveRecord(string userId, string leaveType, DateTime startTime, [FromBody] h_leave_record updatedLeaveRecord)
+        {
+            // 查找舊的請假記錄
+            var existingLeaveRecord = await _attendanceContext.h_leave_record
+                .FirstOrDefaultAsync(l => l.userId == userId && l.leaveType == leaveType && l.startTime == startTime);
 
+            if (existingLeaveRecord == null)
+            {
+                return NotFound("請假記錄未找到。");
+            }
+
+            // 刪除舊記錄
+            _attendanceContext.h_leave_record.Remove(existingLeaveRecord);
+
+            // 新增新記錄
+            try
+            {
+                _attendanceContext.h_leave_record.Add(updatedLeaveRecord);
+                await _attendanceContext.SaveChangesAsync();
+                return Ok(updatedLeaveRecord);
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(500, $"更新失敗：{ex.Message}");
+            }
+        }
+
+        // 更新加班記錄 (刪除舊記錄，新增新記錄)
+        [HttpPut("replace-overtime-record/{userID}/{startTime}")]
+        public async Task<IActionResult> ReplaceOvertimeRecord(string userID, DateTime startTime, [FromBody] h_overtime_record updatedOvertimeRecord)
+        {
+            // 查找舊的加班記錄
+            var existingOvertimeRecord = await _attendanceContext.h_overtime_record
+                .FirstOrDefaultAsync(o => o.userID == userID && o.startTime == startTime);
+
+            if (existingOvertimeRecord == null)
+            {
+                return NotFound("加班記錄未找到。");
+            }
+
+            // 刪除舊記錄
+            _attendanceContext.h_overtime_record.Remove(existingOvertimeRecord);
+
+            // 新增新記錄
+            try
+            {
+                _attendanceContext.h_overtime_record.Add(updatedOvertimeRecord);
+                await _attendanceContext.SaveChangesAsync();
+                return Ok(updatedOvertimeRecord);
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(500, $"更新失敗：{ex.Message}");
+            }
+        }
 
     }
 }

@@ -730,6 +730,63 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "ReplaceLeaveRecord",
+    "RelativePath": "api/attendance/replace-leave-record/{userId}/{leaveType}/{startTime}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "leaveType",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "startTime",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedLeaveRecord",
+        "Type": "hochi_food.Models.h_leave_record",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "ReplaceOvertimeRecord",
+    "RelativePath": "api/attendance/replace-overtime-record/{userID}/{startTime}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "startTime",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedOvertimeRecord",
+        "Type": "hochi_food.Models.h_overtime_record",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "UpdateAttendanceCalendar",
     "RelativePath": "api/attendance/update_attendance_calendar",
     "HttpMethod": "PUT",
