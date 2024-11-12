@@ -625,5 +625,36 @@ namespace hochi_food.Controllers
             return Ok(existingRecord);
         }
 
+        // HTTP PUT 方法，刪除舊記錄並新增新記錄以更新出勤記錄
+        [HttpPut("update-attendance/{user_id}/{attendance_status}/{create_time}")]
+        public async Task<IActionResult> UpdateAttendanceRecord(string user_id, string attendance_status, DateTime create_time, [FromBody] h_attendance_record updatedRecord)
+        {
+            // 查找舊的出勤記錄
+            var existingRecord = await _attendanceContext.h_attendance_record
+                .FirstOrDefaultAsync(a => a.user_id == user_id && a.attendance_status == attendance_status && a.create_time == create_time);
+
+            if (existingRecord == null)
+            {
+                return NotFound("出勤記錄未找到。");
+            }
+
+            // 刪除舊的出勤記錄
+            _attendanceContext.h_attendance_record.Remove(existingRecord);
+
+            // 新增更新後的記錄
+            try
+            {
+                _attendanceContext.h_attendance_record.Add(updatedRecord); // 使用傳入的更新數據新增新記錄
+                await _attendanceContext.SaveChangesAsync();
+                return Ok(updatedRecord); // 返回新增後的記錄
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(500, $"更新失敗：{ex.Message}");
+            }
+        }
+
+
+
     }
 }

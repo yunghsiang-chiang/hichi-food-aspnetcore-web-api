@@ -746,6 +746,37 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "UpdateAttendanceRecord",
+    "RelativePath": "api/attendance/update-attendance/{user_id}/{attendance_status}/{create_time}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user_id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "attendance_status",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "create_time",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedRecord",
+        "Type": "hochi_food.Models.h_attendance_record",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "UpdateLeaveRecord",
     "RelativePath": "api/attendance/update-leave/{userId}/{leaveType}/{startTime}",
     "HttpMethod": "PUT",
