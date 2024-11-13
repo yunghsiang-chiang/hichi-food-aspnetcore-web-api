@@ -712,5 +712,59 @@ namespace hochi_food.Controllers
             }
         }
 
+        // 刪除出勤記錄
+        [HttpDelete("delete-attendance-record/{user_id}/{attendance_status}/{create_time}")]
+        public async Task<IActionResult> DeleteAttendanceRecord(string user_id, string attendance_status, DateTime create_time)
+        {
+            var record = await _attendanceContext.h_attendance_record
+                .FirstOrDefaultAsync(a => a.user_id == user_id && a.attendance_status == attendance_status && a.create_time == create_time);
+
+            if (record == null)
+            {
+                return NotFound("出勤記錄未找到。");
+            }
+
+            _attendanceContext.h_attendance_record.Remove(record);
+            await _attendanceContext.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // 刪除請假記錄
+        [HttpDelete("delete-leave-record/{userId}/{leaveType}/{startTime}")]
+        public async Task<IActionResult> DeleteLeaveRecord(string userId, string leaveType, DateTime startTime)
+        {
+            var record = await _attendanceContext.h_leave_record
+                .FirstOrDefaultAsync(l => l.userId == userId && l.leaveType == leaveType && l.startTime == startTime);
+
+            if (record == null)
+            {
+                return NotFound("請假記錄未找到。");
+            }
+
+            _attendanceContext.h_leave_record.Remove(record);
+            await _attendanceContext.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // 刪除加班記錄
+        [HttpDelete("delete-overtime-record/{userID}/{startTime}")]
+        public async Task<IActionResult> DeleteOvertimeRecord(string userID, DateTime startTime)
+        {
+            var record = await _attendanceContext.h_overtime_record
+                .FirstOrDefaultAsync(o => o.userID == userID && o.startTime == startTime);
+
+            if (record == null)
+            {
+                return NotFound("加班記錄未找到。");
+            }
+
+            _attendanceContext.h_overtime_record.Remove(record);
+            await _attendanceContext.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 }

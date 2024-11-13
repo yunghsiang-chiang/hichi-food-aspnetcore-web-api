@@ -249,6 +249,79 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "DeleteAttendanceRecord",
+    "RelativePath": "api/attendance/delete-attendance-record/{user_id}/{attendance_status}/{create_time}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user_id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "attendance_status",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "create_time",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "DeleteLeaveRecord",
+    "RelativePath": "api/attendance/delete-leave-record/{userId}/{leaveType}/{startTime}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "leaveType",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "startTime",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "DeleteOvertimeRecord",
+    "RelativePath": "api/attendance/delete-overtime-record/{userID}/{startTime}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "startTime",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "get_attendance_last_status",
     "RelativePath": "api/attendance/get_attendance_last_status",
     "HttpMethod": "GET",
