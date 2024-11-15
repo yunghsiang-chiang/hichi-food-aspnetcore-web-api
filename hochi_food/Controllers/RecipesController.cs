@@ -386,42 +386,46 @@ namespace hochi_food.Controllers
 
 
         /// <summary>
-        /// 儲存或更新 Activity Meals
+        /// 儲存或更新多筆 Activity Meals
         /// </summary>
-        /// <param name="activityMeal"></param>
+        /// <param name="activityMeals"></param>
         /// <returns></returns>
         [HttpPost("activity-meals")]
-        public async Task<ActionResult> PostOrUpdateActivityMeal([FromBody] activity_meals activityMeal)
+        public async Task<ActionResult> PostOrUpdateActivityMeals([FromBody] List<activity_meals> activityMeals)
         {
-            if (activityMeal == null)
+            if (activityMeals == null || activityMeals.Count == 0)
             {
                 return BadRequest("Activity meal data is required.");
             }
 
-            // 檢查是否存在該 activity_meal_id
-            var existingMeal = await _foodContext.activity_meals
-                .FirstOrDefaultAsync(am => am.activity_meal_id == activityMeal.activity_meal_id);
-
-            if (existingMeal != null)
+            foreach (var activityMeal in activityMeals)
             {
-                // 更新現有的 activity_meals 資料
-                existingMeal.activity_name = activityMeal.activity_name;
-                existingMeal.start_date = activityMeal.start_date;
-                existingMeal.end_date = activityMeal.end_date;
-                existingMeal.activity_date = activityMeal.activity_date;
-                existingMeal.meal_type = activityMeal.meal_type;
+                // 檢查是否存在該 activity_meal_id
+                var existingMeal = await _foodContext.activity_meals
+                    .FirstOrDefaultAsync(am => am.activity_meal_id == activityMeal.activity_meal_id);
 
-                _foodContext.activity_meals.Update(existingMeal);
-            }
-            else
-            {
-                // 新增新的 activity_meals 資料
-                _foodContext.activity_meals.Add(activityMeal);
+                if (existingMeal != null)
+                {
+                    // 更新現有的 activity_meals 資料
+                    existingMeal.activity_name = activityMeal.activity_name;
+                    existingMeal.start_date = activityMeal.start_date;
+                    existingMeal.end_date = activityMeal.end_date;
+                    existingMeal.activity_date = activityMeal.activity_date;
+                    existingMeal.meal_type = activityMeal.meal_type;
+
+                    _foodContext.activity_meals.Update(existingMeal);
+                }
+                else
+                {
+                    // 新增新的 activity_meals 資料
+                    _foodContext.activity_meals.Add(activityMeal);
+                }
             }
 
             await _foodContext.SaveChangesAsync();
-            return Ok("Activity meal saved/updated successfully.");
+            return Ok("Activity meals saved/updated successfully.");
         }
+
 
         /// <summary>
         /// 儲存或更新活動餐點食譜
