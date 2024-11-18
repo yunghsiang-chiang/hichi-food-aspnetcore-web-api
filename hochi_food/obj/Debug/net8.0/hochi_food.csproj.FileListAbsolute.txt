@@ -58,7 +58,6 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Debug\net8.0\System.Memory
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Debug\net8.0\System.Security.Permissions.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Debug\net8.0\System.Windows.Extensions.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Debug\net8.0\ZstdSharp.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
@@ -148,3 +147,7 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\refint\hochi_
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\hochi_food.pdb
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\hochi_food.genruntimeconfig.cache
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\ref\hochi_food.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Debug\net8.0\hochi_food.staticwebassets.endpoints.json
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets\msbuild.hochi_food.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

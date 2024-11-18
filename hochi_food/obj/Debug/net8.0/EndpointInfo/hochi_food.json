@@ -1,0 +1,4273 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "hochi_food",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/activity/SubmissionTimeData": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/activity/ColorDistribution": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/activity/GenderRatio": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/activity/FeedbackResponseRate": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/activity/BalloonUsageRate": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/activity/AgeData": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/activity/SocialData": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/activity/GetExhibitionData": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/activity/GetEduSideBlockData": {
+      "get": {
+        "tags": [
+          "activity"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/activity/SubmitSurvey": {
+      "post": {
+        "tags": [
+          "activity"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SurveySubmissionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SurveySubmissionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SurveySubmissionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/activity/SubmitExhibition": {
+      "post": {
+        "tags": [
+          "activity"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/appendattendance_infor": {
+      "post": {
+        "tags": [
+          "attendance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_infor"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_infor"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_infor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/appendattendance_day": {
+      "post": {
+        "tags": [
+          "attendance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_day"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_day"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_day"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/appendattendance_record": {
+      "post": {
+        "tags": [
+          "attendance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_record"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_record"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_record"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/appendleave_record": {
+      "post": {
+        "tags": [
+          "attendance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_leave_record"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_leave_record"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_leave_record"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/appendovetime_record": {
+      "post": {
+        "tags": [
+          "attendance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_overtime_record"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_overtime_record"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_overtime_record"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/appendattendance_calendar": {
+      "post": {
+        "tags": [
+          "attendance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_attendance_calendar"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_attendance_calendar"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_attendance_calendar"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/GetAttendanceSummary": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/getMonthlyAttendanceSummary": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/getAllAttendanceTimes": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/c_attendance_times"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/c_attendance_times"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/c_attendance_times"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_today_attendance_record": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_attendance_record"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_attendance_record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_attendance_record"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_attendanceDates": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attendanceyear",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "attendancemonth",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/attendanceDatesDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/attendanceDatesDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/attendanceDatesDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_attendanceDays": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "calendaryear",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "calendarmonth",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/get_attendanceDaysDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/get_attendanceDaysDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/get_attendanceDaysDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_today_check_in_time": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/get_today_check_in_timeDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/get_today_check_in_timeDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/get_today_check_in_timeDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_attendance_record_by_date": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attendanceDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/attendance_recordDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/attendance_recordDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/attendance_recordDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_attendance_record": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startdate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/attendance_recordDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/attendance_recordDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/attendance_recordDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_today_leave_record": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_overtime_record": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startdate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_overtime_record"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_overtime_record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_overtime_record"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_leave_record": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startdate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_leave_record_by_year_month": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_leave_record_last_year": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_overtime_record_by_year_month": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_overtime_record"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_overtime_record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_overtime_record"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_attendance_last_status": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/attendance_last_statusDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/attendance_last_statusDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/attendance_last_statusDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_person_vacation": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/r_person_vacation"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/r_person_vacation"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/r_person_vacation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/get_permissions_infor": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/permissions_inforDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/permissions_inforDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/permissions_inforDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/waiting_for_approval_of_overtime_record": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_overtime_record"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_overtime_record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_overtime_record"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/waiting_for_approval_of_leave_record": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/h_leave_record"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attendance/UpdateAttendanceTimes/{id}": {
+      "put": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_attendance_times"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_attendance_times"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_attendance_times"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/update_attendance_calendar": {
+      "put": {
+        "tags": [
+          "attendance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_attendance_calendar"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_attendance_calendar"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_attendance_calendar"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/update-overtime/{userID}/{overtimeType}/{startTime}": {
+      "put": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "overtimeType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_overtime_record"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_overtime_record"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_overtime_record"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/update-leave/{userId}/{leaveType}/{startTime}": {
+      "put": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "leaveType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_leave_record"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_leave_record"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_leave_record"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/update-attendance/{user_id}/{attendance_status}/{create_time}": {
+      "put": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attendance_status",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "create_time",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_record"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_record"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_attendance_record"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/replace-leave-record/{userId}/{leaveType}/{startTime}": {
+      "put": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "leaveType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_leave_record"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_leave_record"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_leave_record"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/replace-overtime-record/{userID}/{startTime}": {
+      "put": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_overtime_record"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_overtime_record"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_overtime_record"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/delete-attendance-record/{user_id}/{attendance_status}/{create_time}": {
+      "delete": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attendance_status",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "create_time",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/delete-leave-record/{userId}/{leaveType}/{startTime}": {
+      "delete": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "leaveType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/delete-overtime-record/{userID}/{startTime}": {
+      "delete": {
+        "tags": [
+          "attendance"
+        ],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Categories/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/category"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/category"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/category"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/category"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/category"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/category"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/category"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/category"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Categories/categories/{id}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/category"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/category"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Chefs/chefs": {
+      "get": {
+        "tags": [
+          "Chefs"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/chef"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/chef"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/chef"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Chefs"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/chef"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/chef"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/chef"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/chef"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/chef"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/chef"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Chefs/chefs/{id}": {
+      "get": {
+        "tags": [
+          "Chefs"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/chef"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/chef"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/chef"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Chefs/chefs/recipeCounts": {
+      "get": {
+        "tags": [
+          "Chefs"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dishes/get_dishes": {
+      "get": {
+        "tags": [
+          "Dishes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/c_dishes"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/c_dishes"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/c_dishes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dishes/get_activity_dishes": {
+      "get": {
+        "tags": [
+          "Dishes"
+        ],
+        "parameters": [
+          {
+            "name": "activity_name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "meal_type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activity_date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_dishesDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_dishesDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_dishesDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dishes/get_purchase": {
+      "get": {
+        "tags": [
+          "Dishes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/purchase_DTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/purchase_DTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/purchase_DTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dishes/get_material_id_names": {
+      "get": {
+        "tags": [
+          "Dishes"
+        ],
+        "parameters": [
+          {
+            "name": "material_id_names_string",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/material_id_namesDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/material_id_namesDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/material_id_namesDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dishes/get_dishes_by_name/{dishesName}": {
+      "get": {
+        "tags": [
+          "Dishes"
+        ],
+        "parameters": [
+          {
+            "name": "dishesName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/c_dishes"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/c_dishes"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/c_dishes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dishes/appendNewdishes": {
+      "post": {
+        "tags": [
+          "Dishes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_dishes"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_dishes"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/c_dishes"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dishes/appendActivity_records": {
+      "post": {
+        "tags": [
+          "Dishes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_activity_records"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_activity_records"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_activity_records"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/heip/SubmitExhibition": {
+      "post": {
+        "tags": [
+          "heip"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExhibitionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/hochi_learners/get_person_IdName": {
+      "get": {
+        "tags": [
+          "hochi_learners"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/personIdNameDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/personIdNameDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/personIdNameDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hochi_learners/get_person_IdNameType": {
+      "get": {
+        "tags": [
+          "hochi_learners"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/personDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/personDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/personDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hochi_learners/get_staff_qty": {
+      "get": {
+        "tags": [
+          "hochi_learners"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hochi_learners/get_disciple_qty": {
+      "get": {
+        "tags": [
+          "hochi_learners"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MainIngredients": {
+      "get": {
+        "tags": [
+          "MainIngredients"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/main_ingredient"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/main_ingredient"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/main_ingredient"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MainIngredients"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/main_ingredient"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/main_ingredient"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/main_ingredient"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/main_ingredient"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/main_ingredient"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/main_ingredient"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MainIngredients/{id}": {
+      "get": {
+        "tags": [
+          "MainIngredients"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/main_ingredient"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/main_ingredient"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/main_ingredient"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "MainIngredients"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Recipes/description-count": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DescriptionCountDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DescriptionCountDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DescriptionCountDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipes/recipes": {
+      "post": {
+        "tags": [
+          "Recipes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/recipe"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/recipe"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/recipe"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/recipe"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/recipe"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/recipe"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipes/all": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/recipe"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/recipe"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/recipe"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipes/{id}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/recipe"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/recipe"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/recipe"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipes/steps": {
+      "post": {
+        "tags": [
+          "Recipes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/recipe_steps"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/recipe_steps"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/recipe_steps"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Recipes/steps/{id}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/recipe_steps"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/recipe_steps"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/recipe_steps"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipes/ingredients": {
+      "post": {
+        "tags": [
+          "Recipes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ingredients"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ingredients"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ingredients"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Recipes/ingredients/{id}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ingredients"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ingredients"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ingredients"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipes/seasonings": {
+      "post": {
+        "tags": [
+          "Recipes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/seasonings"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/seasonings"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/seasonings"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Recipes/seasonings/{id}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/seasonings"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/seasonings"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/seasonings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipes/activity-meals/pending-recipes": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meals"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meals"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meals"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipes/activity-meals": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meals"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meals"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meals"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Recipes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/activity_meals"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/activity_meals"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/activity_meals"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Recipes/activity-meal-recipes/{activityMealId}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "activityMealId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meal_recipes"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meal_recipes"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meal_recipes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipes/activity-meals/date-range": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meals"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meals"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/activity_meals"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipes/activity-meal-recipes": {
+      "post": {
+        "tags": [
+          "Recipes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/activity_meal_recipes"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/activity_meal_recipes"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/activity_meal_recipes"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Recipes/food-nutrition": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/food_nutrition"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/food_nutrition"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/food_nutrition"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Recipes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/food_nutrition"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/food_nutrition"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/food_nutrition"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DescriptionCountDto": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "qty": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExhibitionDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "colorGroup": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAttendance": {
+            "type": "boolean"
+          },
+          "attendanceDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SurveySubmissionDto": {
+        "required": [
+          "ageRange",
+          "balloon",
+          "colorChoice",
+          "gender",
+          "isCheckIn",
+          "messageBoard",
+          "satisfaction"
+        ],
+        "type": "object",
+        "properties": {
+          "gender": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ageRange": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "isCheckIn": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "platform": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageBoard": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "messageBoardColor1": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageBoardColor2": {
+            "type": "string",
+            "nullable": true
+          },
+          "balloon": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "balloonColor1": {
+            "type": "string",
+            "nullable": true
+          },
+          "balloonColor2": {
+            "type": "string",
+            "nullable": true
+          },
+          "colorChoice": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "colorChoiceText": {
+            "type": "string",
+            "nullable": true
+          },
+          "satisfaction": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "feedbackText": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoterObservation": {
+            "type": "string",
+            "nullable": true
+          },
+          "others": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "activity_dishesDTO": {
+        "type": "object",
+        "properties": {
+          "activity_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "activity_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "meal_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "dishes_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "dishes_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "dishes_type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "activity_meal_recipes": {
+        "type": "object",
+        "properties": {
+          "activity_meal_recipe_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "activity_meal_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recipe_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recipe_category": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "activity_meals": {
+        "type": "object",
+        "properties": {
+          "activity_meal_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "activity_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "activity_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "meal_type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "attendanceDatesDTO": {
+        "type": "object",
+        "properties": {
+          "attendanceDates": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "attendance_last_statusDTO": {
+        "type": "object",
+        "properties": {
+          "attendance_status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "attendance_recordDTO": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "user_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "attendance_status": {
+            "type": "string",
+            "nullable": true
+          },
+          "create_time": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "c_attendance_calendar": {
+        "type": "object",
+        "properties": {
+          "calendar_year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "calendar_month": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "attendance_days": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "c_attendance_times": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "work_start_time": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "work_end_time": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "lunch_start_time": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "lunch_end_time": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "c_dishes": {
+        "type": "object",
+        "properties": {
+          "dishes_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "dishes_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "dishes_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "cooking_method": {
+            "type": "string",
+            "nullable": true
+          },
+          "material_id_items": {
+            "type": "string",
+            "nullable": true
+          },
+          "material_id_names": {
+            "type": "string",
+            "nullable": true
+          },
+          "cooking_step": {
+            "type": "string",
+            "nullable": true
+          },
+          "cooking_time": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dishes_image": {
+            "type": "string",
+            "nullable": true
+          },
+          "commentary": {
+            "type": "string",
+            "nullable": true
+          },
+          "seasoning": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "category": {
+        "type": "object",
+        "properties": {
+          "category_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "category_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "chef": {
+        "type": "object",
+        "properties": {
+          "chef_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "food_nutrition": {
+        "type": "object",
+        "properties": {
+          "ingredient_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ingredient_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "common_name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "get_attendanceDaysDTO": {
+        "type": "object",
+        "properties": {
+          "attendance_days": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "get_today_check_in_timeDTO": {
+        "type": "object",
+        "properties": {
+          "create_time": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "h_activity_records": {
+        "type": "object",
+        "properties": {
+          "activity_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "activity_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "meal_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "activity_days": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "during_the_activity": {
+            "type": "string",
+            "nullable": true
+          },
+          "lm_user": {
+            "type": "string",
+            "nullable": true
+          },
+          "dishes_id_str": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "h_attendance_day": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "user_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "attendance_day": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "morning_light_up": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "morning_light_down": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "morning_meeting": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "h_attendance_infor": {
+        "type": "object",
+        "properties": {
+          "user_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "attendance_state": {
+            "type": "string",
+            "nullable": true
+          },
+          "create_time": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "h_attendance_record": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "user_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "attendance_status": {
+            "type": "string",
+            "nullable": true
+          },
+          "create_time": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "h_leave_record": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "leaveType": {
+            "type": "string",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "count_hours": {
+            "type": "number",
+            "format": "float"
+          },
+          "submitted_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "approved_by": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "h_overtime_record": {
+        "type": "object",
+        "properties": {
+          "userID": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "overtimeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "count_hours": {
+            "type": "number",
+            "format": "float"
+          },
+          "submitted_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "approved_by": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ingredients": {
+        "type": "object",
+        "properties": {
+          "ingredient_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recipe_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ingredient_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "main_ingredient": {
+        "type": "object",
+        "properties": {
+          "main_ingredient_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "main_ingredient_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "material_id_namesDTO": {
+        "type": "object",
+        "properties": {
+          "material_id_names": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "permissions_inforDTO": {
+        "type": "object",
+        "properties": {
+          "role_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "permissions": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "personDTO": {
+        "type": "object",
+        "properties": {
+          "person_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "person_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "person_type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "personIdNameDTO": {
+        "type": "object",
+        "properties": {
+          "person_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "person_name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "purchase_DTO": {
+        "type": "object",
+        "properties": {
+          "activity_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "activity_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "meal_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "during_the_activity": {
+            "type": "string",
+            "nullable": true
+          },
+          "dishes_id_str": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "r_person_vacation": {
+        "type": "object",
+        "properties": {
+          "person_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "person_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "start_work": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "special_vacation_hours": {
+            "type": "number",
+            "format": "float"
+          },
+          "personal_leave_hours": {
+            "type": "number",
+            "format": "float"
+          },
+          "compensatory_leave_hours": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "additionalProperties": false
+      },
+      "recipe": {
+        "type": "object",
+        "properties": {
+          "recipe_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recipe_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "main_ingredient_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "chef_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "recipe_steps": {
+        "type": "object",
+        "properties": {
+          "step_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recipe_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "step_number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "image_url": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "seasonings": {
+        "type": "object",
+        "properties": {
+          "seasoning_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recipe_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "seasoning_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

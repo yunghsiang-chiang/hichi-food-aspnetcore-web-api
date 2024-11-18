@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "t4vvLNmgMdnwFPQcijkE0DJvxxIeu040QGozb+0d0Vo=",
+  "Hash": "JVHYKfQpqQo7dJbQIgfQ9p3hR/Gab5lmWhC2Jf6CJKo=",
   "Source": "hochi_food",
   "BasePath": "_content/hochi_food",
   "Mode": "Default",
   "ManifestType": "Publish",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

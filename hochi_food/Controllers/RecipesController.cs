@@ -476,6 +476,54 @@ namespace hochi_food.Controllers
         }
 
 
+        /// <summary>
+        /// 取得所有 Food Nutrition 資料
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("food-nutrition")]
+        public async Task<ActionResult<IEnumerable<food_nutrition>>> GetFoodNutrition()
+        {
+            var foodNutritionList = await _foodContext.food_nutrition.ToListAsync();
+
+            if (foodNutritionList == null || !foodNutritionList.Any())
+            {
+                return NotFound("No food nutrition data found.");
+            }
+
+            return Ok(foodNutritionList);
+        }
+
+        /// <summary>
+        /// 儲存或更新 Food Nutrition
+        /// </summary>
+        /// <param name="foodNutrition"></param>
+        /// <returns></returns>
+        [HttpPost("food-nutrition")]
+        public async Task<ActionResult> PostOrUpdateFoodNutrition([FromBody] food_nutrition foodNutrition)
+        {
+            if (foodNutrition == null || foodNutrition.ingredient_id == 0)
+            {
+                return BadRequest("Ingredient ID is required.");
+            }
+
+            // 查詢是否已存在相同的 ingredient_id
+            var existingFoodNutrition = await _foodContext.food_nutrition
+                .FirstOrDefaultAsync(fn => fn.ingredient_id == foodNutrition.ingredient_id);
+
+            if (existingFoodNutrition != null)
+            {
+                // 刪除現有資料
+                _foodContext.food_nutrition.Remove(existingFoodNutrition);
+                await _foodContext.SaveChangesAsync();
+            }
+
+            // 新增新資料
+            _foodContext.food_nutrition.Add(foodNutrition);
+            await _foodContext.SaveChangesAsync();
+
+            return Ok("Food nutrition data has been saved/updated successfully.");
+        }
+
 
     }
 }

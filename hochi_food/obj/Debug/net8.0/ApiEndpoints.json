@@ -1626,15 +1626,15 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.RecipesController",
-    "Method": "PostOrUpdateActivityMeal",
+    "Method": "PostOrUpdateActivityMeals",
     "RelativePath": "api/Recipes/activity-meals",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "activityMeal",
-        "Type": "hochi_food.Models.activity_meals",
+        "Name": "activityMeals",
+        "Type": "System.Collections.Generic.List\u00601[[hochi_food.Models.activity_meals, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": true
       }
     ],
@@ -1730,6 +1730,42 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.RecipesController",
+    "Method": "GetFoodNutrition",
+    "RelativePath": "api/Recipes/food-nutrition",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[hochi_food.Models.food_nutrition, hochi_food, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.RecipesController",
+    "Method": "PostOrUpdateFoodNutrition",
+    "RelativePath": "api/Recipes/food-nutrition",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "foodNutrition",
+        "Type": "hochi_food.Models.food_nutrition",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "hochi_food.Controllers.RecipesController",

@@ -58,7 +58,6 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\Sys
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Runtime.Caching.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Security.Cryptography.ProtectedData.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Security.Permissions.dll
-C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Text.Json.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\System.Windows.Extensions.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\ZstdSharp.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\cs\Microsoft.CodeAnalysis.resources.dll
@@ -141,3 +140,7 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\ref
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\hochi_food.pdb
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\hochi_food.genruntimeconfig.cache
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\ref\hochi_food.dll
+C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Release\net8.0\win-x64\hochi_food.staticwebassets.endpoints.json
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\staticwebassets.build.endpoints.json
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\staticwebassets\msbuild.hochi_food.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Release\net8.0\win-x64\staticwebassets.upToDateCheck.txt
