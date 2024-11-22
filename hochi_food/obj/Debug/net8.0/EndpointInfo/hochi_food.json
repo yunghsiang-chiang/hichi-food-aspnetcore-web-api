@@ -3357,6 +3357,88 @@
         }
       }
     },
+    "/api/Recipes/activity-meals/recipe-count": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "activityMealIds",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Recipes/activity-meals/recipe-ingredients": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "activityMealIds",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [

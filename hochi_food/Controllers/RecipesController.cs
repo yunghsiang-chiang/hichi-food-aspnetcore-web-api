@@ -524,6 +524,77 @@ namespace hochi_food.Controllers
             return Ok("Food nutrition data has been saved/updated successfully.");
         }
 
+        /// <summary>
+        /// 取得指定 activity_meal_id 清單中每個 recipe_id 的次數
+        /// </summary>
+        /// <param name="activityMealIds">活動餐點 ID 清單 (以逗號分隔)</param>
+        /// <returns></returns>
+        [HttpGet("activity-meals/recipe-count")]
+        public async Task<ActionResult<IEnumerable<object>>> GetRecipeCountByActivityMealIds([FromQuery] string activityMealIds)
+        {
+            if (string.IsNullOrEmpty(activityMealIds))
+                return BadRequest("Activity meal IDs are required.");
 
+            // 將逗號分隔的 ID 字串轉換為整數列表
+            var ids = activityMealIds.Split(',').Select(int.Parse).ToList();
+
+            // 查詢統計每個 recipe_id 的次數
+            var recipeCounts = await _foodContext.activity_meal_recipes
+                .Where(amr => ids.Contains(amr.activity_meal_id))
+                .GroupBy(amr => amr.recipe_id)
+                .Select(group => new
+                {
+                    RecipeId = group.Key,
+                    RecipeQty = group.Count()
+                })
+                .ToListAsync();
+
+            if (!recipeCounts.Any())
+                return NotFound("No recipes found for the specified activity meal IDs.");
+
+            return Ok(recipeCounts);
+        }
+
+        /// <summary>
+        /// 取得指定 activity_meal_id 清單中 recipe_id 對應的 ingredients 清單
+        /// </summary>
+        /// <param name="activityMealIds">活動餐點 ID 清單 (以逗號分隔)</param>
+        /// <returns></returns>
+        [HttpGet("activity-meals/recipe-ingredients")]
+        public async Task<ActionResult<IEnumerable<object>>> GetIngredientsByActivityMealIds([FromQuery] string activityMealIds)
+        {
+            if (string.IsNullOrEmpty(activityMealIds))
+                return BadRequest("Activity meal IDs are required.");
+
+            // 將逗號分隔的 ID 字串轉換為整數列表
+            var ids = activityMealIds.Split(',').Select(int.Parse).ToList();
+
+            // 查詢對應的 recipe_id 清單
+            var recipeIds = await _foodContext.activity_meal_recipes
+                .Where(amr => ids.Contains(amr.activity_meal_id))
+                .Select(amr => amr.recipe_id)
+                .Distinct()
+                .ToListAsync();
+
+            if (!recipeIds.Any())
+                return NotFound("No recipes found for the specified activity meal IDs.");
+
+            // 查詢 recipe_id 對應的 ingredients 清單
+            var ingredients = await _foodContext.ingredients
+                .Where(ing => recipeIds.Contains(ing.recipe_id))
+                .Select(ing => new
+                {
+                    RecipeId = ing.recipe_id,
+                    IngredientName = ing.ingredient_name,
+                    Amount = ing.amount,
+                    Unit = ing.unit
+                })
+                .ToListAsync();
+
+            if (!ingredients.Any())
+                return NotFound("No ingredients found for the specified recipes.");
+
+            return Ok(ingredients);
+        }
     }
 }
