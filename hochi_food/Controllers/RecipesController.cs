@@ -67,7 +67,7 @@ namespace hochi_food.Controllers
                 existingRecipe.category = recipe.category;
                 existingRecipe.chef_id = recipe.chef_id;
                 existingRecipe.description = recipe.description;
-
+                existingRecipe.portion_size = recipe.portion_size;
                 _foodContext.recipe.Update(existingRecipe);
                 await _foodContext.SaveChangesAsync();
 

@@ -383,6 +383,7 @@ public partial class foodContext : DbContext
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''");
             entity.Property(e => e.description).HasMaxLength(255);
+            entity.Property(e => e.portion_size).HasDefaultValueSql("'10'");
             entity.Property(e => e.recipe_name)
                 .HasMaxLength(255)
                 .HasComment("Name of the recipe (e.g., 糖醋豆包)");

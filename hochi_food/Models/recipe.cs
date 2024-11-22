@@ -25,4 +25,6 @@ public partial class recipe
     public int chef_id { get; set; }
 
     public string? description { get; set; }
+
+    public int? portion_size { get; set; }
 }

@@ -4294,6 +4294,11 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "portion_size": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
