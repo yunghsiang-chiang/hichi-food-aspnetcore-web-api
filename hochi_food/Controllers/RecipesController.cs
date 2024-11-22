@@ -42,7 +42,6 @@ namespace hochi_food.Controllers
             return Ok(descriptionCounts);
         }
 
-
         /// <summary>
         /// 儲存 Recipe
         /// </summary>
@@ -82,9 +81,6 @@ namespace hochi_food.Controllers
                 return CreatedAtAction(nameof(GetRecipe), new { id = recipe.recipe_id }, recipe);
             }
         }
-
-
-
 
         /// <summary>
         /// 取得所有 Recipe
@@ -159,8 +155,6 @@ namespace hochi_food.Controllers
             return Ok("Recipe steps saved/updated successfully.");
         }
 
-
-
         /// <summary>
         /// 取得 Recipe Steps
         /// </summary>
@@ -221,8 +215,6 @@ namespace hochi_food.Controllers
             return Ok("Ingredients saved/updated successfully.");
         }
 
-
-
         /// <summary>
         /// 取得 Ingredients
         /// </summary>
@@ -280,8 +272,6 @@ namespace hochi_food.Controllers
             await _foodContext.SaveChangesAsync();
             return Ok("Seasonings saved/updated successfully.");
         }
-
-
 
         /// <summary>
         /// 取得 Seasonings
@@ -384,7 +374,6 @@ namespace hochi_food.Controllers
             return Ok(mealsInRange);
         }
 
-
         /// <summary>
         /// 儲存或更新多筆 Activity Meals
         /// </summary>
@@ -425,7 +414,6 @@ namespace hochi_food.Controllers
             await _foodContext.SaveChangesAsync();
             return Ok("Activity meals saved/updated successfully.");
         }
-
 
         /// <summary>
         /// 儲存或更新活動餐點食譜
@@ -474,7 +462,6 @@ namespace hochi_food.Controllers
             await _foodContext.SaveChangesAsync();
             return Ok("活動餐點食譜已成功儲存或更新。");
         }
-
 
         /// <summary>
         /// 取得所有 Food Nutrition 資料
@@ -596,5 +583,55 @@ namespace hochi_food.Controllers
 
             return Ok(ingredients);
         }
+
+        /// <summary>
+        /// 取得所有有對應食譜的活動餐點資料
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("activity-meals/with-recipes")]
+        public async Task<ActionResult<IEnumerable<activity_meals>>> GetActivityMealsWithRecipes()
+        {
+            var activityMealsWithRecipes = await _foodContext.activity_meals
+                .Where(am => _foodContext.activity_meal_recipes
+                    .Select(amr => amr.activity_meal_id)
+                    .Distinct()
+                    .Contains(am.activity_meal_id))
+                .ToListAsync();
+
+            if (activityMealsWithRecipes == null || !activityMealsWithRecipes.Any())
+            {
+                return NotFound("No activity meals with recipes found.");
+            }
+
+            return Ok(activityMealsWithRecipes);
+        }
+
+        /// <summary>
+        /// 取得指定日期範圍內有對應食譜的活動餐點資料
+        /// </summary>
+        /// <param name="startDate">起始日期</param>
+        /// <param name="endDate">結束日期</param>
+        /// <returns></returns>
+        [HttpGet("activity-meals/with-recipes/date-range")]
+        public async Task<ActionResult<IEnumerable<activity_meals>>> GetActivityMealsWithRecipesByDateRange(DateTime startDate, DateTime endDate)
+        {
+            var activityMealsInRange = await _foodContext.activity_meals
+                .Where(am => _foodContext.activity_meal_recipes
+                    .Select(amr => amr.activity_meal_id)
+                    .Distinct()
+                    .Contains(am.activity_meal_id) &&
+                    am.activity_date >= startDate &&
+                    am.activity_date <= endDate)
+                .ToListAsync();
+
+            if (activityMealsInRange == null || !activityMealsInRange.Any())
+            {
+                return NotFound("No activity meals with recipes found in the specified date range.");
+            }
+
+            return Ok(activityMealsInRange);
+        }
+
+
     }
 }
