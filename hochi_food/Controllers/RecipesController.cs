@@ -632,6 +632,56 @@ namespace hochi_food.Controllers
             return Ok(activityMealsInRange);
         }
 
+        /// <summary>
+        /// 使用關鍵字和/或日期範圍搜尋活動餐點
+        /// </summary>
+        /// <param name="keyword">關鍵字 (optional)</param>
+        /// <param name="startDate">開始日期 (optional)</param>
+        /// <param name="endDate">結束日期 (optional)</param>
+        /// <returns>符合條件的活動餐點清單</returns>
+        [HttpGet("activity-meals/search")]
+        public async Task<ActionResult<IEnumerable<activity_meals>>> SearchActivityMeals(
+            [FromQuery] string? keyword,
+            [FromQuery] DateTime? startDate,
+            [FromQuery] DateTime? endDate)
+        {
+            // 建立查詢基礎
+            var query = _foodContext.activity_meals.AsQueryable();
+
+            // 如果提供了關鍵字，搜尋 activity_name
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                query = query.Where(am => am.activity_name.Contains(keyword));
+            }
+
+            // 如果提供了日期範圍，篩選符合條件的資料
+            if (startDate.HasValue && endDate.HasValue)
+            {
+                query = query.Where(am => am.activity_date >= startDate.Value && am.activity_date <= endDate.Value);
+            }
+            else if (startDate.HasValue) // 只有起始日期
+            {
+                query = query.Where(am => am.activity_date >= startDate.Value);
+            }
+            else if (endDate.HasValue) // 只有結束日期
+            {
+                query = query.Where(am => am.activity_date <= endDate.Value);
+            }
+
+            // 執行查詢並排序
+            var result = await query
+                .OrderBy(am => am.activity_date)
+                .ThenBy(am => am.meal_type)
+                .ToListAsync();
+
+            // 檢查結果是否為空
+            if (result == null || !result.Any())
+            {
+                return NotFound("No activity meals match the search criteria.");
+            }
+
+            return Ok(result);
+        }
 
     }
 }
