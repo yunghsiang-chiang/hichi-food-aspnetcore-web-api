@@ -683,5 +683,39 @@ namespace hochi_food.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// 使用 LINQ 查詢，結合 activity_meal_recipes、recipe 和 main_ingredient
+        /// 通過 activity_meal_id 過濾活動餐點對應的食譜
+        /// 如果 recipe 沒有對應的主食材 (main_ingredient)，則允許 MainIngredientName 為空（使用 DefaultIfEmpty()）
+        /// </summary>
+        /// <param name="activityMealId"></param>
+        /// <returns></returns>
+        [HttpGet("activity-meal/{activityMealId}/recipes")]
+        public async Task<ActionResult<IEnumerable<object>>> GetRecipesByActivityMealId(int activityMealId)
+        {
+            var recipes = await (from amr in _foodContext.activity_meal_recipes
+                                 join r in _foodContext.recipe on amr.recipe_id equals r.recipe_id
+                                 join mi in _foodContext.main_ingredient on r.main_ingredient_id equals mi.main_ingredient_id into miGroup
+                                 from mi in miGroup.DefaultIfEmpty()
+                                 where amr.activity_meal_id == activityMealId
+                                 select new
+                                 {
+                                     r.recipe_id,
+                                     r.recipe_name,
+                                     MainIngredientName = mi.main_ingredient_name,
+                                     r.category,
+                                     r.description,
+                                     r.portion_size
+                                 }).ToListAsync();
+
+            if (recipes == null || recipes.Count == 0)
+            {
+                return NotFound($"No recipes found for activity meal ID: {activityMealId}");
+            }
+
+            return Ok(recipes);
+        }
+
+
     }
 }
