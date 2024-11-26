@@ -716,6 +716,37 @@ namespace hochi_food.Controllers
             return Ok(recipes);
         }
 
+        /// <summary>
+        /// 取得所有食譜的詳細資料，包括食譜名稱、主食材、類別、廚師名稱、描述與份量
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("detailed-recipes")]
+        public async Task<ActionResult<IEnumerable<object>>> GetDetailedRecipes()
+        {
+            var detailedRecipes = await (from r in _foodContext.recipe
+                                         join mi in _foodContext.main_ingredient on r.main_ingredient_id equals mi.main_ingredient_id into miGroup
+                                         from mi in miGroup.DefaultIfEmpty() // 左連結主食材表
+                                         join c in _foodContext.chef on r.chef_id equals c.chef_id into cGroup
+                                         from c in cGroup.DefaultIfEmpty() // 左連結廚師表
+                                         select new
+                                         {
+                                             r.recipe_id,
+                                             r.recipe_name,
+                                             MainIngredientName = mi.main_ingredient_name ?? "無主食材",
+                                             r.category,
+                                             ChefName = c.name ?? "無廚師",
+                                             r.description,
+                                             r.portion_size
+                                         }).ToListAsync();
+
+            if (detailedRecipes == null || !detailedRecipes.Any())
+            {
+                return NotFound("No detailed recipes found.");
+            }
+
+            return Ok(detailedRecipes);
+        }
+
 
     }
 }
