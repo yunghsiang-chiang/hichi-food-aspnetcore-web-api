@@ -123,6 +123,22 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "AddAnnouncement",
+    "RelativePath": "api/attendance/AddAnnouncement",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newAnnouncement",
+        "Type": "hochi_food.Models.h_announcements",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "appendattendance_calendar",
     "RelativePath": "api/attendance/appendattendance_calendar",
     "HttpMethod": "POST",
@@ -753,6 +769,16 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "GetAnnouncements",
+    "RelativePath": "api/attendance/GetAnnouncements",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",

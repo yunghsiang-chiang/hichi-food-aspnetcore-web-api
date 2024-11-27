@@ -28,8 +28,6 @@ namespace hochi_food.Controllers
             _hochi_configContext = hochi_configContext;
         }
 
-        
-
         // 建構函式，將 hochi_configContext 的實例注入到控制器中
 
         // HTTP POST 方法，新增出勤資訊記錄
@@ -78,7 +76,6 @@ namespace hochi_food.Controllers
                 return StatusCode(500, new { error = $"Internal server error: {ex.Message}", data = h_Attendance_Day });
             }
         }
-
 
         // HTTP POST 方法，新增出勤記錄
         [HttpPost("appendattendance_record")]
@@ -226,7 +223,6 @@ namespace hochi_food.Controllers
             return Ok(result);
         }
 
-
         // HTTP GET 方法，取得特定同修在某年某月的累積晨光與晨會數據
         [HttpGet("getMonthlyAttendanceSummary")]
         public IActionResult GetMonthlyAttendanceSummary(string user_id, int year, int month)
@@ -258,7 +254,6 @@ namespace hochi_food.Controllers
             }
         }
 
-
         // HTTP GET 方法，查詢出勤資訊
         [HttpGet("getAllAttendanceTimes")]
         public IEnumerable<c_attendance_times> getAllAttendanceTimes()
@@ -269,7 +264,6 @@ namespace hochi_food.Controllers
             // 返回考勤時間記錄列表
             return attendanceTimes;
         }
-
 
         // HTTP GET 方法，取得今天的出勤記錄
         [HttpGet("get_today_attendance_record")]
@@ -402,7 +396,6 @@ namespace hochi_food.Controllers
             return temp;
         }
 
-
         // HTTP GET 方法，根據指定年份和月份取得請假記錄
         [HttpGet("get_leave_record_by_year_month")]
         public IEnumerable<h_leave_record> get_leave_record_by_year_month(int year, int month)
@@ -478,7 +471,6 @@ namespace hochi_food.Controllers
             // 如果沒有找到任何有效記錄，返回空的狀態
             return null;
         }
-
 
         // HTTP GET 方法，取得同休人員的休假表
         [HttpGet("get_person_vacation")]
@@ -557,7 +549,6 @@ namespace hochi_food.Controllers
             return NotFound();
         }
 
-
         // PUT: api/attendance/update_attendance_calendar
         [HttpPut("update_attendance_calendar")]
         public async Task<IActionResult> UpdateAttendanceCalendar([FromBody] c_attendance_calendar c_Attendance_Calendar)
@@ -580,8 +571,6 @@ namespace hochi_food.Controllers
 
             return NoContent(); // 更新成功，回傳204 No Content
         }
-
-        //
 
         [HttpPut("update-overtime/{userID}/{overtimeType}/{startTime}")]
         public async Task<IActionResult> UpdateOvertimeRecord(string userID, string overtimeType, DateTime startTime, [FromBody] h_overtime_record updatedRecord)
@@ -766,5 +755,55 @@ namespace hochi_food.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// 取得所有公告
+        /// </summary>
+        [HttpGet("GetAnnouncements")]
+        public async Task<IActionResult> GetAnnouncements()
+        {
+            try
+            {
+                var announcements = await _attendanceContext.h_announcements.ToListAsync();
+                return Ok(announcements);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"伺服器錯誤: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// 新增公告
+        /// </summary>
+        [HttpPost("AddAnnouncement")]
+        public async Task<IActionResult> AddAnnouncement([FromBody] h_announcements newAnnouncement)
+        {
+            try
+            {
+                if (newAnnouncement == null)
+                {
+                    return BadRequest("公告資料不能為空");
+                }
+
+                // 驗證必要欄位
+                if (string.IsNullOrEmpty(newAnnouncement.title) || string.IsNullOrEmpty(newAnnouncement.content))
+                {
+                    return BadRequest("標題與內容為必填欄位");
+                }
+
+                newAnnouncement.issue_time = DateTime.Now;
+                newAnnouncement.created_at = DateTime.Now;
+                newAnnouncement.updated_at = DateTime.Now;
+
+                await _attendanceContext.h_announcements.AddAsync(newAnnouncement);
+                await _attendanceContext.SaveChangesAsync();
+
+                return Ok("公告新增成功");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"伺服器錯誤: {ex.Message}");
+            }
+        }
     }
 }

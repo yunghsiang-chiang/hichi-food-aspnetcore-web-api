@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-
 
 namespace hochi_food.Models;
 
@@ -28,7 +26,5 @@ public partial class h_attendance_record
     /// <summary>
     /// 時間
     /// </summary>
-    /// 
-    [JsonConverter(typeof(TimeSpanConverter))] 
     public DateTime create_time { get; set; }
 }

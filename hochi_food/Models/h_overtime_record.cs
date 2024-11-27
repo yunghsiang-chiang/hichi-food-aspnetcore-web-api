@@ -47,4 +47,9 @@ public partial class h_overtime_record
     /// 審核人
     /// </summary>
     public string? approved_by { get; set; }
+
+    /// <summary>
+    /// 備註
+    /// </summary>
+    public string? remark { get; set; }
 }

@@ -23,6 +23,8 @@ public partial class attendanceContext : DbContext
 
     public virtual DbSet<c_user_roles> c_user_roles { get; set; }
 
+    public virtual DbSet<h_announcements> h_announcements { get; set; }
+
     public virtual DbSet<h_attendance_day> h_attendance_day { get; set; }
 
     public virtual DbSet<h_attendance_infor> h_attendance_infor { get; set; }
@@ -180,6 +182,47 @@ public partial class attendanceContext : DbContext
                 .HasColumnType("timestamp");
         });
 
+        modelBuilder.Entity<h_announcements>(entity =>
+        {
+            entity.HasKey(e => e.announcement_id).HasName("PRIMARY");
+
+            entity.ToTable(tb => tb.HasComment("公告"));
+
+            entity.Property(e => e.announcement_id).HasComment("公告的唯一識別碼");
+            entity.Property(e => e.author)
+                .HasMaxLength(100)
+                .HasComment("公告者");
+            entity.Property(e => e.content)
+                .HasComment("公告內容 (HTML 格式)")
+                .HasColumnType("text");
+            entity.Property(e => e.created_at)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasComment("建立時間")
+                .HasColumnType("datetime");
+            entity.Property(e => e.end_time)
+                .HasComment("下架時間")
+                .HasColumnType("datetime");
+            entity.Property(e => e.issue_time)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasComment("發行時間")
+                .HasColumnType("datetime");
+            entity.Property(e => e.start_time)
+                .HasComment("上架時間")
+                .HasColumnType("datetime");
+            entity.Property(e => e.status)
+                .HasDefaultValueSql("'draft'")
+                .HasComment("公告狀態")
+                .HasColumnType("enum('draft','published','archived')");
+            entity.Property(e => e.title)
+                .HasMaxLength(255)
+                .HasComment("公告標題");
+            entity.Property(e => e.updated_at)
+                .ValueGeneratedOnAddOrUpdate()
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasComment("更新時間")
+                .HasColumnType("datetime");
+        });
+
         modelBuilder.Entity<h_attendance_day>(entity =>
         {
             entity.HasKey(e => new { e.attendance_day, e.user_id }).HasName("PRIMARY");
@@ -323,6 +366,9 @@ public partial class attendanceContext : DbContext
             entity.Property(e => e.overtimeType)
                 .HasMaxLength(45)
                 .HasComment("加班類型");
+            entity.Property(e => e.remark)
+                .HasMaxLength(250)
+                .HasComment("備註");
             entity.Property(e => e.submitted_at)
                 .HasComment("提交日期")
                 .HasColumnType("datetime");

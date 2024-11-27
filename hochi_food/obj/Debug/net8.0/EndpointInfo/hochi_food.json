@@ -1746,6 +1746,49 @@
         }
       }
     },
+    "/api/attendance/GetAnnouncements": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/attendance/AddAnnouncement": {
+      "post": {
+        "tags": [
+          "attendance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_announcements"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_announcements"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/h_announcements"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Categories/categories": {
       "get": {
         "tags": [
@@ -4194,6 +4237,56 @@
         },
         "additionalProperties": false
       },
+      "h_announcements": {
+        "type": "object",
+        "properties": {
+          "announcement_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "author": {
+            "type": "string",
+            "nullable": true
+          },
+          "issue_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "end_time": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "h_attendance_day": {
         "type": "object",
         "properties": {
@@ -4334,6 +4427,10 @@
             "format": "date-time"
           },
           "approved_by": {
+            "type": "string",
+            "nullable": true
+          },
+          "remark": {
             "type": "string",
             "nullable": true
           }
