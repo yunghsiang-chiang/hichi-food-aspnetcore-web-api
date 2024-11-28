@@ -773,37 +773,63 @@ namespace hochi_food.Controllers
         }
 
         /// <summary>
-        /// 新增公告
+        /// 新增或更新公告
         /// </summary>
         [HttpPost("AddAnnouncement")]
-        public async Task<IActionResult> AddAnnouncement([FromBody] h_announcements newAnnouncement)
+        public async Task<IActionResult> AddAnnouncement([FromBody] h_announcements announcement)
         {
             try
             {
-                if (newAnnouncement == null)
+                if (announcement == null)
                 {
                     return BadRequest("公告資料不能為空");
                 }
 
                 // 驗證必要欄位
-                if (string.IsNullOrEmpty(newAnnouncement.title) || string.IsNullOrEmpty(newAnnouncement.content))
+                if (string.IsNullOrEmpty(announcement.title) || string.IsNullOrEmpty(announcement.content))
                 {
                     return BadRequest("標題與內容為必填欄位");
                 }
 
-                newAnnouncement.issue_time = DateTime.Now;
-                newAnnouncement.created_at = DateTime.Now;
-                newAnnouncement.updated_at = DateTime.Now;
+                if (announcement.announcement_id > 0) // 更新操作
+                {
+                    var existingAnnouncement = await _attendanceContext.h_announcements
+                        .FirstOrDefaultAsync(a => a.announcement_id == announcement.announcement_id);
 
-                await _attendanceContext.h_announcements.AddAsync(newAnnouncement);
+                    if (existingAnnouncement == null)
+                    {
+                        return NotFound("找不到指定的公告");
+                    }
+
+                    // 更新公告內容
+                    existingAnnouncement.title = announcement.title;
+                    existingAnnouncement.content = announcement.content;
+                    existingAnnouncement.author = announcement.author;
+                    existingAnnouncement.issue_time = announcement.issue_time;
+                    existingAnnouncement.start_time = announcement.start_time;
+                    existingAnnouncement.end_time = announcement.end_time;
+                    existingAnnouncement.status = announcement.status;
+                    existingAnnouncement.updated_at = DateTime.Now;
+
+                    _attendanceContext.h_announcements.Update(existingAnnouncement);
+                }
+                else // 新增操作
+                {
+                    announcement.created_at = DateTime.Now;
+                    announcement.updated_at = DateTime.Now;
+
+                    await _attendanceContext.h_announcements.AddAsync(announcement);
+                }
+
                 await _attendanceContext.SaveChangesAsync();
 
-                return Ok("公告新增成功");
+                return Ok(announcement.announcement_id > 0 ? "公告更新成功" : "公告新增成功");
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"伺服器錯誤: {ex.Message}");
             }
         }
+
     }
 }
