@@ -815,10 +815,20 @@ namespace hochi_food.Controllers
                 }
                 else // 新增操作
                 {
-                    announcement.created_at = DateTime.Now;
-                    announcement.updated_at = DateTime.Now;
+                    var newAnnouncement = new h_announcements
+                    {
+                        title = announcement.title,
+                        content = announcement.content,
+                        author = announcement.author,
+                        issue_time = announcement.issue_time,
+                        start_time = announcement.start_time,
+                        end_time = announcement.end_time,
+                        status = announcement.status,
+                        created_at = DateTime.Now,
+                        updated_at = DateTime.Now
+                    };
 
-                    await _attendanceContext.h_announcements.AddAsync(announcement);
+                    await _attendanceContext.h_announcements.AddAsync(newAnnouncement);
                 }
 
                 await _attendanceContext.SaveChangesAsync();
@@ -830,6 +840,7 @@ namespace hochi_food.Controllers
                 return StatusCode(500, $"伺服器錯誤: {ex.Message}");
             }
         }
+
 
     }
 }
