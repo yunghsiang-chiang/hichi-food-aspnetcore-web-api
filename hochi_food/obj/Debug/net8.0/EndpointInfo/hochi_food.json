@@ -1789,6 +1789,18 @@
         }
       }
     },
+    "/api/attendance/GetPublishedAnnouncements": {
+      "get": {
+        "tags": [
+          "attendance"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Categories/categories": {
       "get": {
         "tags": [

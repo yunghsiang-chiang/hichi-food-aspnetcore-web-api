@@ -841,6 +841,37 @@ namespace hochi_food.Controllers
             }
         }
 
+        /// <summary>
+        /// 獲取當前有效的公告列表
+        /// </summary>
+        /// <returns>返回符合條件的公告列表</returns>
+        [HttpGet("GetPublishedAnnouncements")]
+        public async Task<IActionResult> GetPublishedAnnouncements()
+        {
+            try
+            {
+                // 獲取當前有效的公告
+                var publishedAnnouncements = await _attendanceContext.h_announcements
+                    .Where(a => a.status == "published"
+                                && a.start_time <= DateTime.Now
+                                && a.end_time >= DateTime.Now)
+                    .OrderByDescending(a => a.created_at)
+                    .ToListAsync();
+
+                // 如果無符合條件的公告
+                if (!publishedAnnouncements.Any())
+                {
+                    return NotFound("目前沒有有效的公告");
+                }
+
+                return Ok(publishedAnnouncements);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"伺服器錯誤: {ex.Message}");
+            }
+        }
+
 
     }
 }

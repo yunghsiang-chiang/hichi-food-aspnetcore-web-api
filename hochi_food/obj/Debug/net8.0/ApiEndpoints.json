@@ -130,7 +130,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "newAnnouncement",
+        "Name": "announcement",
         "Type": "hochi_food.Models.h_announcements",
         "IsRequired": true
       }
@@ -825,6 +825,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "GetPublishedAnnouncements",
+    "RelativePath": "api/attendance/GetPublishedAnnouncements",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
