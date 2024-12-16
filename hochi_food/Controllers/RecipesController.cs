@@ -488,28 +488,37 @@ namespace hochi_food.Controllers
         [HttpPost("food-nutrition")]
         public async Task<ActionResult> PostOrUpdateFoodNutrition([FromBody] food_nutrition foodNutrition)
         {
-            if (foodNutrition == null || foodNutrition.ingredient_id == 0)
+            if (foodNutrition == null)
             {
-                return BadRequest("Ingredient ID is required.");
+                return BadRequest("Food nutrition data is required.");
             }
 
-            // 查詢是否已存在相同的 ingredient_id
-            var existingFoodNutrition = await _foodContext.food_nutrition
-                .FirstOrDefaultAsync(fn => fn.ingredient_id == foodNutrition.ingredient_id);
-
-            if (existingFoodNutrition != null)
+            if (foodNutrition.ingredient_id > 0)
             {
-                // 刪除現有資料
-                _foodContext.food_nutrition.Remove(existingFoodNutrition);
-                await _foodContext.SaveChangesAsync();
+                // 查詢是否已存在相同的 ingredient_id
+                var existingFoodNutrition = await _foodContext.food_nutrition
+                    .FirstOrDefaultAsync(fn => fn.ingredient_id == foodNutrition.ingredient_id);
+
+                if (existingFoodNutrition != null)
+                {
+                    // 更新現有資料
+                    existingFoodNutrition.ingredient_name = foodNutrition.ingredient_name;
+                    existingFoodNutrition.common_name = foodNutrition.common_name;
+
+                    _foodContext.food_nutrition.Update(existingFoodNutrition);
+                    await _foodContext.SaveChangesAsync();
+
+                    return Ok("Food nutrition data has been updated successfully.");
+                }
             }
 
-            // 新增新資料
+            // 如果沒有提供 ingredient_id 或不存在現有資料，則執行新增操作
             _foodContext.food_nutrition.Add(foodNutrition);
             await _foodContext.SaveChangesAsync();
 
-            return Ok("Food nutrition data has been saved/updated successfully.");
+            return Ok("Food nutrition data has been saved successfully.");
         }
+
 
         /// <summary>
         /// 取得指定 activity_meal_id 清單中每個 recipe_id 的次數
