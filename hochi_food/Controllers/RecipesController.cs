@@ -50,35 +50,45 @@ namespace hochi_food.Controllers
         [HttpPost("recipes")]
         public async Task<ActionResult<recipe>> PostOrUpdateRecipe([FromBody] recipe recipe)
         {
+            // 檢查是否傳入合法的 recipe 資料
             if (recipe == null || string.IsNullOrEmpty(recipe.recipe_name))
             {
-                return BadRequest("Recipe name is required.");
+                return BadRequest(new { error = "Recipe name is required." });
             }
 
-            // 檢查是否存在該 recipe_id
-            var existingRecipe = await _foodContext.recipe.FindAsync(recipe.recipe_id);
 
-            if (existingRecipe != null)
-            {
-                // 更新現有食譜
-                existingRecipe.recipe_name = recipe.recipe_name;
-                existingRecipe.main_ingredient_id = recipe.main_ingredient_id;
-                existingRecipe.category = recipe.category;
-                existingRecipe.chef_id = recipe.chef_id;
-                existingRecipe.description = recipe.description;
-                existingRecipe.portion_size = recipe.portion_size;
-                _foodContext.recipe.Update(existingRecipe);
-                await _foodContext.SaveChangesAsync();
-
-                return Ok(existingRecipe);
-            }
-            else
+            // 如果 recipe_id 為 null 或 0，則視為新增資料
+            if (recipe.recipe_id == null || recipe.recipe_id == 0)
             {
                 // 新增新食譜
                 _foodContext.recipe.Add(recipe);
-                await _foodContext.SaveChangesAsync();  // 保存以生成 recipe_id
+                await _foodContext.SaveChangesAsync(); // 保存以生成 recipe_id
 
                 return CreatedAtAction(nameof(GetRecipe), new { id = recipe.recipe_id }, recipe);
+            }
+            else
+            {
+                // 檢查是否存在該 recipe_id
+                var existingRecipe = await _foodContext.recipe.FindAsync(recipe.recipe_id);
+
+                if (existingRecipe != null)
+                {
+                    // 更新現有食譜
+                    existingRecipe.recipe_name = recipe.recipe_name;
+                    existingRecipe.main_ingredient_id = recipe.main_ingredient_id;
+                    existingRecipe.category = recipe.category;
+                    existingRecipe.chef_id = recipe.chef_id;
+                    existingRecipe.description = recipe.description;
+                    existingRecipe.portion_size = recipe.portion_size;
+                    _foodContext.recipe.Update(existingRecipe);
+                    await _foodContext.SaveChangesAsync();
+
+                    return Ok(existingRecipe);
+                }
+                else
+                {
+                    return NotFound(new { error = $"Recipe with ID {recipe.recipe_id} not found." });
+                }
             }
         }
 
