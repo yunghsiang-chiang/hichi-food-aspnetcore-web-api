@@ -1512,12 +1512,44 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.HochiReportsController",
+    "Method": "GetSavedReports",
+    "RelativePath": "api/HochiReports/GetSavedReports/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.HochiReportsController",
     "Method": "GetTableSchema",
     "RelativePath": "api/HochiReports/GetTableSchema",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.HochiReportsController",
+    "Method": "SaveReport",
+    "RelativePath": "api/HochiReports/SaveReport",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "report",
+        "Type": "hochi_food.Models.UserReports",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

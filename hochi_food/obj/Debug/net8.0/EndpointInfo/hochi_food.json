@@ -2584,6 +2584,59 @@
         }
       }
     },
+    "/api/HochiReports/GetSavedReports/{userId}": {
+      "get": {
+        "tags": [
+          "HochiReports"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/HochiReports/SaveReport": {
+      "post": {
+        "tags": [
+          "HochiReports"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserReports"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserReports"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserReports"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/MainIngredients": {
       "get": {
         "tags": [
@@ -3928,6 +3981,76 @@
           },
           "others": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserReports": {
+        "type": "object",
+        "properties": {
+          "report_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "user_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "report_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "table_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "chart_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "x_axis": {
+            "type": "string",
+            "nullable": true
+          },
+          "y_axes": {
+            "type": "string",
+            "nullable": true
+          },
+          "category_field": {
+            "type": "string",
+            "nullable": true
+          },
+          "stack_field": {
+            "type": "string",
+            "nullable": true
+          },
+          "filters": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "is_public": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "share_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "shared_with": {
+            "type": "string",
+            "nullable": true
+          },
+          "y_axes_list": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           }
         },

@@ -10,6 +10,7 @@ using Microsoft.Identity.Client;
 using Google.Protobuf.WellKnownTypes;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 
 namespace hochi_food.Controllers
@@ -29,7 +30,7 @@ namespace hochi_food.Controllers
         }
 
 
-
+        //GET API
 
         [HttpGet("GetTableSchema")]
         public async Task<IActionResult> GetTableSchema()
@@ -47,7 +48,6 @@ namespace hochi_food.Controllers
 
             return Ok(schemaData);
         }
-
 
         [HttpGet("GetReportData")]
         public async Task<IActionResult> GetReportData(string table, string column, string function)
@@ -93,6 +93,73 @@ namespace hochi_food.Controllers
             }
 
             return Ok(reportData);
+        }
+
+        [HttpGet("GetSavedReports/{userId}")]
+        public async Task<IActionResult> GetSavedReports(string userId)
+        {
+            var reports = await _hochiReportsContext.UserReports
+                .Where(r => r.user_id == userId)
+                .OrderByDescending(r => r.created_at)
+                .ToListAsync();
+
+            // 確保不會發生 NULL 轉換錯誤
+            var formattedReports = reports.Select(r => new
+            {
+                r.report_id,
+                r.report_name,
+                r.table_name,
+                r.chart_type,
+                r.x_axis,
+                y_axes = string.IsNullOrEmpty(r.y_axes)
+                    ? new List<string>()
+                    : JsonConvert.DeserializeObject<List<string>>(r.y_axes) ?? new List<string>(), // 避免 NULL 轉換失敗
+
+                r.category_field,
+                r.stack_field,
+                filters = string.IsNullOrEmpty(r.filters)
+                    ? new Dictionary<string, string>()
+                    : JsonConvert.DeserializeObject<Dictionary<string, string>>(r.filters) ?? new Dictionary<string, string>(), // 避免 NULL 轉換失敗
+
+                r.created_at,
+                r.is_public,
+                r.share_code
+            }).ToList();
+
+            return Ok(formattedReports);
+        }
+
+
+
+        //POST API
+
+        [HttpPost("SaveReport")]
+        public async Task<IActionResult> SaveReport([FromBody] UserReports report)
+        {
+            if (string.IsNullOrEmpty(report.user_id) || string.IsNullOrEmpty(report.report_name))
+            {
+                return BadRequest("缺少必要資訊");
+            }
+
+            // 確保 y_axes 以 JSON 格式存儲
+            if (report.y_axes_list == null || !report.y_axes_list.Any())
+            {
+                return BadRequest("Y 軸欄位不可為空");
+            }
+
+            report.y_axes = JsonConvert.SerializeObject(report.y_axes_list); // 轉回 JSON 存入資料庫
+
+            // 產生唯一分享碼
+            report.share_code = Guid.NewGuid().ToString();
+
+            // 確保 filters 為 JSON 格式
+            report.filters = string.IsNullOrEmpty(report.filters) ? "{}" : report.filters;
+
+            // 存儲至資料庫
+            _hochiReportsContext.UserReports.Add(report);
+            await _hochiReportsContext.SaveChangesAsync();
+
+            return Ok(new { message = "報表已儲存", share_code = report.share_code });
         }
 
 

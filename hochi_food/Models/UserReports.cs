@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace hochi_food.Models;
 
@@ -17,7 +18,8 @@ public partial class UserReports
 
     public string? x_axis { get; set; }
 
-    public string? y_axes { get; set; }
+    public string? y_axes { get; set; }  // 這個應該保持 string
+
 
     public string? category_field { get; set; }
 
