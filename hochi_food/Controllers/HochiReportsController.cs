@@ -129,6 +129,17 @@ namespace hochi_food.Controllers
             return Ok(formattedReports);
         }
 
+        [HttpGet("GetReportByShareCode/{shareCode}")]
+        public async Task<IActionResult> GetReportByShareCode(string shareCode)
+        {
+            var report = await _hochiReportsContext.UserReports
+                .FirstOrDefaultAsync(r => r.share_code == shareCode);
+
+            if (report == null)
+                return NotFound("報表不存在");
+
+            return Ok(report);
+        }
 
 
         //POST API
