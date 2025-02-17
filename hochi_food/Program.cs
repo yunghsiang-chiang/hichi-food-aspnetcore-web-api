@@ -10,6 +10,15 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
 }); ;
+
+// µù¥U SQL Server ªº DbContext
+builder.Services.AddDbContext<HochiSystemContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HochiSystem")));
+
+builder.Services.AddDbContext<HochiReportsContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HochiReports")));
+
+// µù¥U MySQL ¸ê®Æ®w
 builder.Services.AddDbContext<foodContext>(options =>options.UseMySQL(builder.Configuration.GetConnectionString("WebDatabase")));
 builder.Services.AddDbContext<attendanceContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("WebDatabase3")));
 builder.Services.AddDbContext<hochi_configContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("WebDatabase4")));

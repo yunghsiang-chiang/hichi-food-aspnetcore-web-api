@@ -2537,6 +2537,53 @@
         }
       }
     },
+    "/api/HochiReports/GetTableSchema": {
+      "get": {
+        "tags": [
+          "HochiReports"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/HochiReports/GetReportData": {
+      "get": {
+        "tags": [
+          "HochiReports"
+        ],
+        "parameters": [
+          {
+            "name": "table",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "column",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "function",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/MainIngredients": {
       "get": {
         "tags": [

@@ -1485,6 +1485,42 @@
     ]
   },
   {
+    "ContainingType": "hochi_food.Controllers.HochiReportsController",
+    "Method": "GetReportData",
+    "RelativePath": "api/HochiReports/GetReportData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "table",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "column",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "function",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.HochiReportsController",
+    "Method": "GetTableSchema",
+    "RelativePath": "api/HochiReports/GetTableSchema",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "hochi_food.Controllers.MainIngredientsController",
     "Method": "GetMainIngredients",
     "RelativePath": "api/MainIngredients",
