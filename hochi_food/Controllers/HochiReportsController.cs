@@ -142,6 +142,7 @@ namespace hochi_food.Controllers
         }
 
 
+
         //POST API
 
         [HttpPost("SaveReport")]
@@ -149,30 +150,32 @@ namespace hochi_food.Controllers
         {
             if (string.IsNullOrEmpty(report.user_id) || string.IsNullOrEmpty(report.report_name))
             {
-                return BadRequest("缺少必要資訊");
+                return BadRequest(new { message = "缺少必要資訊" });
             }
 
-            // 確保 y_axes 以 JSON 格式存儲
-            if (report.y_axes_list == null || !report.y_axes_list.Any())
+            // 確保 y_axes 為 List<string>
+            try
             {
-                return BadRequest("Y 軸欄位不可為空");
+                var yAxesList = report.y_axes_list ?? new List<string>();
+                report.y_axes = JsonConvert.SerializeObject(yAxesList);
+            }
+            catch (Exception)
+            {
+                return BadRequest(new { message = "Y 軸欄位格式錯誤，請使用 List<string>" });
             }
 
-            report.y_axes = JsonConvert.SerializeObject(report.y_axes_list); // 轉回 JSON 存入資料庫
-
-            // 產生唯一分享碼
-            report.share_code = Guid.NewGuid().ToString();
-
-            // 確保 filters 為 JSON 格式
+            // 確保 filters 為 JSON 物件
             report.filters = string.IsNullOrEmpty(report.filters) ? "{}" : report.filters;
 
-            // 存儲至資料庫
+            // 產生唯一分享碼
+            report.share_code = Guid.NewGuid().ToString().Substring(0, 8);
+
+            // 儲存至資料庫
             _hochiReportsContext.UserReports.Add(report);
             await _hochiReportsContext.SaveChangesAsync();
 
             return Ok(new { message = "報表已儲存", share_code = report.share_code });
         }
-
 
 
     }
