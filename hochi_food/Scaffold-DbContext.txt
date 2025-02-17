@@ -6,3 +6,4 @@ Scaffold-DbContext "Server=192.168.11.51;Database=attendance;User ID=hochi_root;
 
 Scaffold-DbContext "Server=192.168.11.51;Database=HochiSystem;User ID=GESql;Password=hochi_Taoyuan;TrustServerCertificate=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -NoOnConfiguring -UseDatabaseNames -NoPluralize -Force
 
+Scaffold-DbContext "Server=192.168.11.51;Database=HochiReports;User ID=GESql;Password=hochi_Taoyuan;TrustServerCertificate=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -NoOnConfiguring -UseDatabaseNames -NoPluralize -Force

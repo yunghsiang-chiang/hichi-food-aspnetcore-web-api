@@ -55,6 +55,8 @@ public partial class OrderList_Merge
 
     public string? HDharmaPass { get; set; }
 
+    public string? HDFReason { get; set; }
+
     public int? HRoom { get; set; }
 
     public string? HRoomTime { get; set; }
