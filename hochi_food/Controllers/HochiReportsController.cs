@@ -49,10 +49,6 @@ namespace hochi_food.Controllers
             return Ok(schemaData);
         }
 
-
-
-
-
         [HttpGet("GetReportData")]
         public async Task<IActionResult> GetReportData(string table, string column, string function, string? keyword = null)
         {
@@ -63,24 +59,25 @@ namespace hochi_food.Controllers
 
             string database = table == "TableSchema" || table == "UserReports" ? "HochiReports" : "HochiSystem";
 
-            // 確認是否為數值欄位
-            bool isNumericColumn = column.ToLower().Contains("id") || column.ToLower().Contains("age") || column.ToLower().Contains("count");
-
+            // **解析 function，檢查是否為函數**
             string sql;
-
-            if (function == "FILTER BY KEYWORD")
+            if (function.StartsWith("COUNT(") && function.EndsWith(")"))
+            {
+                // 解析函數內的欄位名稱
+                string functionColumn = function.Substring(6, function.Length - 7); // 取出括號內的 HID
+                sql = $"SELECT COUNT({functionColumn}) AS value FROM [{database}].[dbo].[{table}]";
+            }
+            else if (function == "FILTER BY KEYWORD")
             {
                 if (string.IsNullOrEmpty(keyword))
                 {
                     return BadRequest("關鍵字 (keyword) 不能為空");
                 }
-
                 sql = $"SELECT {column} FROM [{database}].[dbo].[{table}] WHERE {column} LIKE @Keyword";
             }
             else if (function == "GROUP BY")
             {
-                string isNullReplacement = isNumericColumn ? "0" : "'未知'"; // 避免數字欄位出現 varchar 值
-                sql = $"SELECT ISNULL(CAST({column} AS NVARCHAR), {isNullReplacement}) AS label, COUNT(*) AS value " +
+                sql = $"SELECT {column} AS label, COUNT(*) AS value " +
                       $"FROM [{database}].[dbo].[{table}] " +
                       $"GROUP BY {column}";
             }
@@ -102,7 +99,6 @@ namespace hochi_food.Controllers
                     {
                         command.CommandText = sql;
 
-                        // 如果是 "FILTER BY KEYWORD"，加上參數
                         if (function == "FILTER BY KEYWORD")
                         {
                             var param = command.CreateParameter();
@@ -117,7 +113,7 @@ namespace hochi_food.Controllers
                             {
                                 if (function == "GROUP BY")
                                 {
-                                    object label = isNumericColumn ? reader.GetValue(0) : reader.GetString(0);
+                                    object label = reader.GetValue(0);
                                     int value = reader.GetInt32(1);
 
                                     reportData.Add(new ReportResult
