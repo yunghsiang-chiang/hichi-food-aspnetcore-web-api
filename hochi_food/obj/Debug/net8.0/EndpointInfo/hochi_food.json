@@ -2537,18 +2537,6 @@
         }
       }
     },
-    "/api/HochiReports/GetTableSchema": {
-      "get": {
-        "tags": [
-          "HochiReports"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/HochiReports/GetReportData": {
       "get": {
         "tags": [
@@ -2592,6 +2580,28 @@
         "parameters": [
           {
             "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/HochiReports/GetReportByShareCode/{shareCode}": {
+      "get": {
+        "tags": [
+          "HochiReports"
+        ],
+        "parameters": [
+          {
+            "name": "shareCode",
             "in": "path",
             "required": true,
             "schema": {

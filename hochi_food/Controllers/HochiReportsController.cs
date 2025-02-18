@@ -32,25 +32,8 @@ namespace hochi_food.Controllers
 
         //GET API
 
-        [HttpGet("GetTableSchema")]
-        public async Task<IActionResult> GetTableSchema()
-        {
-            var schemaData = await _hochiReportsContext.TableSchema
-                .Select(t => new
-                {
-                    t.table_name,
-                    t.column_name,
-                    t.column_type,
-                    allowed_functions = t.allowed_functions != null ?
-                        Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(t.allowed_functions) : new List<string>()
-                })
-                .ToListAsync();
-
-            return Ok(schemaData);
-        }
-
         [HttpGet("GetReportData")]
-        public async Task<IActionResult> GetReportData(string table, string column, string function)
+        public async Task<IActionResult> GetReportData(string table, string column, string function, string? keyword = null)
         {
             if (string.IsNullOrEmpty(table) || string.IsNullOrEmpty(column) || string.IsNullOrEmpty(function))
             {
@@ -59,7 +42,31 @@ namespace hochi_food.Controllers
 
             string database = table == "TableSchema" || table == "UserReports" ? "HochiReports" : "HochiSystem";
 
-            string sql = $"SELECT ISNULL({column}, '未知') AS label, COUNT(*) AS value FROM [{database}].[dbo].[{table}] GROUP BY {column}";
+            // 確認是否為數值欄位
+            bool isNumericColumn = column.ToLower().Contains("id") || column.ToLower().Contains("age") || column.ToLower().Contains("count");
+
+            string sql;
+
+            if (function == "FILTER BY KEYWORD")
+            {
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    return BadRequest("關鍵字 (keyword) 不能為空");
+                }
+
+                sql = $"SELECT {column} FROM [{database}].[dbo].[{table}] WHERE {column} LIKE @Keyword";
+            }
+            else if (function == "GROUP BY")
+            {
+                string isNullReplacement = isNumericColumn ? "0" : "'未知'"; // 避免數字欄位出現 varchar 值
+                sql = $"SELECT ISNULL(CAST({column} AS NVARCHAR), {isNullReplacement}) AS label, COUNT(*) AS value " +
+                      $"FROM [{database}].[dbo].[{table}] " +
+                      $"GROUP BY {column}";
+            }
+            else
+            {
+                sql = $"SELECT {function}({column}) AS value FROM [{database}].[dbo].[{table}]";
+            }
 
             List<ReportResult> reportData = new List<ReportResult>();
 
@@ -73,15 +80,39 @@ namespace hochi_food.Controllers
                     using (var command = connection.CreateCommand())
                     {
                         command.CommandText = sql;
+
+                        // 如果是 "FILTER BY KEYWORD"，加上參數
+                        if (function == "FILTER BY KEYWORD")
+                        {
+                            var param = command.CreateParameter();
+                            param.ParameterName = "@Keyword";
+                            param.Value = $"%{keyword}%";
+                            command.Parameters.Add(param);
+                        }
+
                         using (var reader = await command.ExecuteReaderAsync())
                         {
                             while (await reader.ReadAsync())
                             {
-                                reportData.Add(new ReportResult
+                                if (function == "GROUP BY")
                                 {
-                                    label = reader.GetString(0),
-                                    value = reader.GetInt32(1)
-                                });
+                                    object label = isNumericColumn ? reader.GetValue(0) : reader.GetString(0);
+                                    int value = reader.GetInt32(1);
+
+                                    reportData.Add(new ReportResult
+                                    {
+                                        label = label.ToString(),
+                                        value = value
+                                    });
+                                }
+                                else
+                                {
+                                    reportData.Add(new ReportResult
+                                    {
+                                        label = function,
+                                        value = reader.GetInt32(0)
+                                    });
+                                }
                             }
                         }
                     }
@@ -94,6 +125,7 @@ namespace hochi_food.Controllers
 
             return Ok(reportData);
         }
+
 
         [HttpGet("GetSavedReports/{userId}")]
         public async Task<IActionResult> GetSavedReports(string userId)
@@ -176,6 +208,7 @@ namespace hochi_food.Controllers
 
             return Ok(new { message = "報表已儲存", share_code = report.share_code });
         }
+
 
 
     }

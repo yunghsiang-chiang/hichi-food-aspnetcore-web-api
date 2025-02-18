@@ -1486,6 +1486,22 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.HochiReportsController",
+    "Method": "GetReportByShareCode",
+    "RelativePath": "api/HochiReports/GetReportByShareCode/{shareCode}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "shareCode",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.HochiReportsController",
     "Method": "GetReportData",
     "RelativePath": "api/HochiReports/GetReportData",
     "HttpMethod": "GET",
@@ -1524,16 +1540,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "hochi_food.Controllers.HochiReportsController",
-    "Method": "GetTableSchema",
-    "RelativePath": "api/HochiReports/GetTableSchema",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {
