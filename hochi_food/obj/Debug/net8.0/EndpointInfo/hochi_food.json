@@ -2537,6 +2537,18 @@
         }
       }
     },
+    "/api/HochiReports/GetTableSchema": {
+      "get": {
+        "tags": [
+          "HochiReports"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/HochiReports/GetReportData": {
       "get": {
         "tags": [
@@ -2559,6 +2571,13 @@
           },
           {
             "name": "function",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "keyword",
             "in": "query",
             "schema": {
               "type": "string"

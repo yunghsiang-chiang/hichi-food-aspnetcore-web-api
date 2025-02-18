@@ -32,6 +32,26 @@ namespace hochi_food.Controllers
 
         //GET API
 
+        [HttpGet("GetTableSchema")]
+        public async Task<IActionResult> GetTableSchema()
+        {
+            var schemaData = await _hochiReportsContext.TableSchema
+                .Select(t => new
+                {
+                    t.table_name,
+                    t.column_name,
+                    t.column_type,
+                    allowed_functions = EF.Functions.Like(t.allowed_functions, "[%]") // 確保是 JSON 格式
+                        ? Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(t.allowed_functions)
+                        : new List<string> { t.allowed_functions } // 轉換為 List<string>
+                })
+                .ToListAsync();
+
+            return Ok(schemaData);
+        }
+
+
+
         [HttpGet("GetReportData")]
         public async Task<IActionResult> GetReportData(string table, string column, string function, string? keyword = null)
         {

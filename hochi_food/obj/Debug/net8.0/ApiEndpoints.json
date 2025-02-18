@@ -1522,6 +1522,11 @@
         "Name": "function",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "keyword",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -1540,6 +1545,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.HochiReportsController",
+    "Method": "GetTableSchema",
+    "RelativePath": "api/HochiReports/GetTableSchema",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
