@@ -32,6 +32,7 @@ namespace hochi_food.Controllers
 
         //GET API
 
+
         [HttpGet("GetTableSchema")]
         public async Task<IActionResult> GetTableSchema()
         {
@@ -41,13 +42,12 @@ namespace hochi_food.Controllers
                     t.table_name,
                     t.column_name,
                     t.column_type,
-                    allowed_functions = JsonConvert.DeserializeObject<List<string>>(t.allowed_functions ?? "[]") // 確保為 List<string>
+                    allowed_functions = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(t.allowed_functions)
                 })
                 .ToListAsync();
 
-            return Ok(new { values = schemaData });
+            return Ok(schemaData);
         }
-
 
 
 
