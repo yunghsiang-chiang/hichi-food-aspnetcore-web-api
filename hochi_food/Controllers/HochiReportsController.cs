@@ -41,14 +41,15 @@ namespace hochi_food.Controllers
                     t.table_name,
                     t.column_name,
                     t.column_type,
-                    allowed_functions = EF.Functions.Like(t.allowed_functions, "[%]") // 確保是 JSON 格式
-                        ? Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(t.allowed_functions)
-                        : new List<string> { t.allowed_functions } // 轉換為 List<string>
+                    allowed_functions = JsonConvert.DeserializeObject<List<string>>(t.allowed_functions ?? "[]") // 確保為 List<string>
                 })
                 .ToListAsync();
 
-            return Ok(schemaData);
+            return Ok(new { values = schemaData });
         }
+
+
+
 
 
 
