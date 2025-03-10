@@ -57,6 +57,7 @@ namespace hochi_food.Controllers
                     existingRecord.morning_light_up = h_Attendance_Day.morning_light_up;
                     existingRecord.morning_light_down = h_Attendance_Day.morning_light_down;
                     existingRecord.morning_meeting = h_Attendance_Day.morning_meeting;
+                    existingRecord.morning_light_down_after_purple_light= h_Attendance_Day.morning_light_down_after_purple_light;
                 }
                 else
                 {
@@ -154,7 +155,8 @@ namespace hochi_food.Controllers
                     user_id = g.Key,
                     morning_meeting = g.Sum(x => x.morning_meeting),
                     morning_light_up = g.Sum(x => x.morning_light_up),
-                    morning_light_down = g.Sum(x => x.morning_light_down)
+                    morning_light_down = g.Sum(x => x.morning_light_down),
+                    morning_light_down_after_purple_light = g.Sum(x=>x.morning_light_down_after_purple_light)
                 }).ToListAsync();
 
             // 獲取病假記錄
@@ -213,6 +215,7 @@ namespace hochi_food.Controllers
                 晨會 = meetingData.FirstOrDefault(m => m.user_id == hcl.person_id)?.morning_meeting ?? 0,
                 晨光上 = meetingData.FirstOrDefault(m => m.user_id == hcl.person_id)?.morning_light_up ?? 0,
                 晨光下 = meetingData.FirstOrDefault(m => m.user_id == hcl.person_id)?.morning_light_down ?? 0,
+                晨下煉完紫光系 = meetingData.FirstOrDefault(m=>m.user_id == hcl.person_id)?.morning_light_down_after_purple_light ?? 0,
                 病假 = sickLeaveData.FirstOrDefault(s => s.userid == hcl.person_id)?.sick_hours ?? 0,
                 事假 = personalLeaveData.FirstOrDefault(p => p.userid == hcl.person_id)?.personal_hours ?? 0,
                 特休 = annualLeaveData.FirstOrDefault(a => a.userid == hcl.person_id)?.annual_hours ?? 0,
@@ -241,7 +244,8 @@ namespace hochi_food.Controllers
                 {
                     TotalMorningLightUp = attendanceRecords.Sum(a => a.morning_light_up),
                     TotalMorningLightDown = attendanceRecords.Sum(a => a.morning_light_down),
-                    TotalMorningMeeting = attendanceRecords.Sum(a => a.morning_meeting)
+                    TotalMorningMeeting = attendanceRecords.Sum(a => a.morning_meeting),
+                    TotalMorning_light_down_after_purple_light = attendanceRecords.Sum(a=>a.morning_light_down_after_purple_light)
                 };
 
                 // 回傳累積數據
