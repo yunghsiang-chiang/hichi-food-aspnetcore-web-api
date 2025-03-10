@@ -57,7 +57,7 @@ namespace hochi_food.Controllers
                     existingRecord.morning_light_up = h_Attendance_Day.morning_light_up;
                     existingRecord.morning_light_down = h_Attendance_Day.morning_light_down;
                     existingRecord.morning_meeting = h_Attendance_Day.morning_meeting;
-                    existingRecord.morning_light_down_after_purple_light= h_Attendance_Day.morning_light_down_after_purple_light;
+                    existingRecord.morning_light_down_after_purple_light = h_Attendance_Day.morning_light_down_after_purple_light;
                 }
                 else
                 {
