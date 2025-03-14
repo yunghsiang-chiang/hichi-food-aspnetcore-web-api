@@ -411,7 +411,6 @@ namespace hochi_food.Controllers
                     existingMeal.end_date = activityMeal.end_date;
                     existingMeal.activity_date = activityMeal.activity_date;
                     existingMeal.meal_type = activityMeal.meal_type;
-
                     _foodContext.activity_meals.Update(existingMeal);
                 }
                 else
@@ -766,6 +765,40 @@ namespace hochi_food.Controllers
             return Ok(detailedRecipes);
         }
 
+        /// <summary>
+        /// 根據 activity_meal_id 刪除對應的活動餐點及其食譜關聯
+        /// </summary>
+        /// <param name="activityMealId"></param>
+        /// <returns></returns>
+        [HttpDelete("activity-meals/{activityMealId}")]
+        public async Task<ActionResult> DeleteActivityMealAndRecipes(int activityMealId)
+        {
+            // 取得對應的 activity_meal_recipes
+            var relatedRecipes = await _foodContext.activity_meal_recipes
+                .Where(amr => amr.activity_meal_id == activityMealId)
+                .ToListAsync();
+
+            if (relatedRecipes.Any())
+            {
+                _foodContext.activity_meal_recipes.RemoveRange(relatedRecipes);
+            }
+
+            // 取得對應的 activity_meals
+            var meal = await _foodContext.activity_meals
+                .FirstOrDefaultAsync(am => am.activity_meal_id == activityMealId);
+
+            if (meal != null)
+            {
+                _foodContext.activity_meals.Remove(meal);
+            }
+            else
+            {
+                return NotFound($"找不到 activity_meal_id = {activityMealId} 的活動餐點資料。");
+            }
+
+            await _foodContext.SaveChangesAsync();
+            return Ok($"已成功刪除 activity_meal_id = {activityMealId} 的相關紀錄。");
+        }
 
     }
 }

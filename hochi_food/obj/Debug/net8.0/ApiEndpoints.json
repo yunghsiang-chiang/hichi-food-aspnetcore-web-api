@@ -1793,6 +1793,22 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.RecipesController",
+    "Method": "DeleteActivityMealAndRecipes",
+    "RelativePath": "api/Recipes/activity-meals/{activityMealId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "activityMealId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.RecipesController",
     "Method": "GetActivityMealsByDateRange",
     "RelativePath": "api/Recipes/activity-meals/date-range",
     "HttpMethod": "GET",

@@ -3855,6 +3855,29 @@
         }
       }
     },
+    "/api/Recipes/activity-meals/{activityMealId}": {
+      "delete": {
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "name": "activityMealId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -4522,6 +4545,10 @@
             "format": "int32"
           },
           "morning_meeting": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "morning_light_down_after_purple_light": {
             "type": "integer",
             "format": "int32"
           }
