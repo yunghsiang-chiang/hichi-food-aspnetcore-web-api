@@ -803,6 +803,32 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "GetMonthlyAttendance",
+    "RelativePath": "api/attendance/getMonthlyAttendance",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user_id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "month",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "GetMonthlyAttendanceSummary",
     "RelativePath": "api/attendance/getMonthlyAttendanceSummary",
     "HttpMethod": "GET",

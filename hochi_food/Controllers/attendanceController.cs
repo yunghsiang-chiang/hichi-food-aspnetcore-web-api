@@ -258,6 +258,28 @@ namespace hochi_food.Controllers
             }
         }
 
+        [HttpGet("getMonthlyAttendance")]
+        public IActionResult GetMonthlyAttendance(string user_id, int year, int month)
+        {
+            try
+            {
+                // 篩選符合 user_id 和指定年份與月份的出勤記錄
+                var attendanceRecords = _attendanceContext.h_attendance_day
+                    .Where(a => a.user_id == user_id
+                                && a.attendance_day.Year == year
+                                && a.attendance_day.Month == month)
+                    .ToList();
+
+                // 回傳累積數據
+                return Ok(attendanceRecords);
+            }
+            catch (Exception ex)
+            {
+                // 異常時回傳錯誤訊息
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
         // HTTP GET 方法，查詢出勤資訊
         [HttpGet("getAllAttendanceTimes")]
         public IEnumerable<c_attendance_times> getAllAttendanceTimes()
