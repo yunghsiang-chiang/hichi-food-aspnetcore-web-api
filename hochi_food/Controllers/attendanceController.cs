@@ -272,7 +272,12 @@ namespace hochi_food.Controllers
                         a.morning_light_down_after_purple_light
                     }).ToList();
 
-                return Ok(records);
+                return Ok(records.Select(r => new {
+                    r.user_id,
+                    r.user_name,
+                    r.attendance_day,
+                    r.morning_light_down_after_purple_light
+                }));
             }
             catch (Exception ex)
             {
