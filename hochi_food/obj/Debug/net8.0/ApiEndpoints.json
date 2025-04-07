@@ -265,6 +265,27 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "CancelPurpleLight",
+    "RelativePath": "api/attendance/cancel-purple-light/{user_id}/{attendance_day}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user_id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "attendance_day",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
     "Method": "DeleteAttendanceRecord",
     "RelativePath": "api/attendance/delete-attendance-record/{user_id}/{attendance_status}/{create_time}",
     "HttpMethod": "DELETE",
@@ -332,6 +353,32 @@
         "Name": "startTime",
         "Type": "System.DateTime",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.attendanceController",
+    "Method": "GetAttendanceDayRecord",
+    "RelativePath": "api/attendance/get_attendance_day_record",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user_id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

@@ -257,6 +257,53 @@ namespace hochi_food.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+        // HTTP GET 方法，取得特定同修單一區段或範圍 "修練到紫光"
+        [HttpGet("get_attendance_day_record")]
+        public IActionResult GetAttendanceDayRecord(string user_id, DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                var records = _attendanceContext.h_attendance_day
+                    .Where(a => a.user_id == user_id && a.attendance_day >= startDate && a.attendance_day <= endDate)
+                    .Select(a => new {
+                        a.user_id,
+                        a.user_name,
+                        a.attendance_day,
+                        a.morning_light_down_after_purple_light
+                    }).ToList();
+
+                return Ok(records);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"取得失敗：{ex.Message}");
+            }
+        }
+        // HTTP Put 方法取消同修某天的修練到紫光紀錄
+        [HttpPut("cancel-purple-light/{user_id}/{attendance_day}")]
+        public async Task<IActionResult> CancelPurpleLight(string user_id, DateTime attendance_day)
+        {
+            try
+            {
+                var record = await _attendanceContext.h_attendance_day
+                    .FirstOrDefaultAsync(a => a.user_id == user_id && a.attendance_day == attendance_day);
+
+                if (record == null)
+                {
+                    return NotFound("查無此紀錄");
+                }
+
+                record.morning_light_down_after_purple_light = 0;
+                await _attendanceContext.SaveChangesAsync();
+
+                return Ok("紫光後關燈已取消");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"取消失敗: {ex.Message}");
+            }
+        }
+
 
         [HttpGet("getMonthlyAttendance")]
         public IActionResult GetMonthlyAttendance(string user_id, int year, int month)
