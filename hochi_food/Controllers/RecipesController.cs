@@ -58,8 +58,12 @@ namespace hochi_food.Controllers
 
 
             // 如果 recipe_id 為 null 或 0，則視為新增資料
-            if (recipe.recipe_id == null || recipe.recipe_id == 0)
+            if (recipe.recipe_id == 0)
             {
+                // 自動找出目前最大 recipe_code，並加一
+                int maxCode = await _foodContext.recipe.MaxAsync(r => (int?)r.recipe_code) ?? 0;
+                recipe.recipe_code = maxCode + 1;
+
                 // 新增新食譜
                 _foodContext.recipe.Add(recipe);
                 await _foodContext.SaveChangesAsync(); // 保存以生成 recipe_id
@@ -91,6 +95,35 @@ namespace hochi_food.Controllers
                 }
             }
         }
+
+        /// <summary>
+        /// 讓管理者或主廚可以手動更改漂亮的編號 recipe_code
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("update-code")]
+        public async Task<IActionResult> UpdateRecipeCode([FromBody] UpdateRecipeCodeDto input)
+        {
+            var recipe = await _foodContext.recipe.FindAsync(input.RecipeId);
+            if (recipe == null)
+                return NotFound("Recipe not found");
+
+            // 檢查是否有重複的 code
+            var duplicate = await _foodContext.recipe.AnyAsync(r => r.recipe_code == input.NewCode && r.recipe_id != input.RecipeId);
+            if (duplicate)
+                return BadRequest("The new recipe code is already in use.");
+
+            recipe.recipe_code = input.NewCode;
+            await _foodContext.SaveChangesAsync();
+            return Ok("Recipe code updated.");
+        }
+
+        public class UpdateRecipeCodeDto
+        {
+            public int RecipeId { get; set; }
+            public int NewCode { get; set; }
+        }
+
 
         /// <summary>
         /// 取得所有 Recipe
@@ -749,6 +782,7 @@ namespace hochi_food.Controllers
                                          select new
                                          {
                                              r.recipe_id,
+                                             r.recipe_code,
                                              r.recipe_name,
                                              MainIngredientName = mi.main_ingredient_name ?? "無主食材",
                                              r.category,

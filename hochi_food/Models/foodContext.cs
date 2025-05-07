@@ -378,6 +378,8 @@ public partial class foodContext : DbContext
 
             entity.HasIndex(e => e.main_ingredient_id, "FK_recipe_main_ingredient_main_ingredient_id");
 
+            entity.HasIndex(e => e.recipe_code, "recipe_code").IsUnique();
+
             entity.Property(e => e.recipe_id).HasComment("Unique identifier for each recipe");
             entity.Property(e => e.category)
                 .HasMaxLength(255)

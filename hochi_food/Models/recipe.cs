@@ -13,6 +13,8 @@ public partial class recipe
     /// </summary>
     public int recipe_id { get; set; }
 
+    public int? recipe_code { get; set; }
+
     /// <summary>
     /// Name of the recipe (e.g., 糖醋豆包)
     /// </summary>
