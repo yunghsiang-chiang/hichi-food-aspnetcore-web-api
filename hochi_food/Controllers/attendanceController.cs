@@ -676,12 +676,33 @@ namespace hochi_food.Controllers
         {
             // 查找請假記錄
             var existingRecord = await _attendanceContext.h_leave_record
-                .FirstOrDefaultAsync(l => l.userId == userId && l.leaveType == leaveType && l.startTime == startTime);
+    .FirstOrDefaultAsync(l =>
+        l.userId == userId &&
+        l.leaveType == leaveType &&
+        l.startTime >= startTime.AddSeconds(-1) &&
+        l.startTime <= startTime.AddSeconds(1));
+
 
             if (existingRecord == null)
             {
-                return NotFound("請假記錄未找到。");
+                var debug = _attendanceContext.h_leave_record
+                    .Where(l => l.userId == userId)
+                    .ToList();
+
+                return BadRequest(new
+                {
+                    message = "查無資料",
+                    received_startTime = startTime.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                    leaveType,
+                    userId,
+                    db = debug.Select(x => new {
+                        x.userId,
+                        x.leaveType,
+                        db_startTime = x.startTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
+                    })
+                });
             }
+
 
             // 更新資料
             existingRecord.approved_by = updatedRecord.approved_by;
