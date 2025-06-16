@@ -2021,6 +2021,37 @@
   },
   {
     "ContainingType": "hochi_food.Controllers.RecipesController",
+    "Method": "GetActivityMealSummaryByDateRange",
+    "RelativePath": "api/Recipes/activity-meals/summary-by-date",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.RecipesController",
     "Method": "GetActivityMealsWithRecipes",
     "RelativePath": "api/Recipes/activity-meals/with-recipes",
     "HttpMethod": "GET",
@@ -2317,6 +2348,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "hochi_food.Controllers.RecipesController",
+    "Method": "UpdateRecipeCode",
+    "RelativePath": "api/Recipes/update-code",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "hochi_food.Controllers.RecipesController\u002BUpdateRecipeCodeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "hochi_food.Controllers.WeatherForecastController",

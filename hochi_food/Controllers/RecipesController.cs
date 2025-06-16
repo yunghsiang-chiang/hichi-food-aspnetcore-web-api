@@ -834,5 +834,72 @@ namespace hochi_food.Controllers
             return Ok($"已成功刪除 activity_meal_id = {activityMealId} 的相關紀錄。");
         }
 
+        /// <summary>
+        /// 取得指定日期範圍的 activity_meals
+        /// 依照 activity_date 分組
+        /// 每筆 activity_meal 拿 activity_meal_id → recipe_id → recipe資料
+        /// 串接 ingredients, seasonings
+        /// 組成結構化的 JSON 回傳
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        [HttpGet("activity-meals/summary-by-date")]
+        public async Task<ActionResult<IEnumerable<object>>> GetActivityMealSummaryByDateRange(
+    [FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
+        {
+            var meals = await _foodContext.activity_meals
+                .Where(am => am.activity_date >= startDate && am.activity_date <= endDate)
+                .ToListAsync();
+
+            var mealIds = meals.Select(m => m.activity_meal_id).ToList();
+
+            var mealRecipes = await _foodContext.activity_meal_recipes
+                .Where(amr => mealIds.Contains(amr.activity_meal_id))
+                .ToListAsync();
+
+            var recipeIds = mealRecipes.Select(r => r.recipe_id).Distinct().ToList();
+
+            var recipes = await _foodContext.recipe
+                .Where(r => recipeIds.Contains(r.recipe_id))
+                .ToDictionaryAsync(r => r.recipe_id);
+
+            var ingredients = await _foodContext.ingredients
+                .Where(i => recipeIds.Contains(i.recipe_id))
+                .ToListAsync();
+
+            var seasonings = await _foodContext.seasonings
+                .Where(s => recipeIds.Contains(s.recipe_id))
+                .ToListAsync();
+
+            var groupedMeals = meals
+                .GroupBy(m => m.activity_date.Date)
+                .OrderBy(g => g.Key)
+                .Select(g => new
+                {
+                    activity_date = g.Key.ToString("yyyy-MM-dd"),
+                    meals = g.Select(m => new
+                    {
+                        m.meal_type,
+                        m.activity_name,
+                        recipes = mealRecipes
+                            .Where(r => r.activity_meal_id == m.activity_meal_id)
+                            .Select(r => new
+                            {
+                                recipe_name = recipes.ContainsKey(r.recipe_id) ? recipes[r.recipe_id].recipe_name : "未知食譜",
+                                ingredients = ingredients
+                                    .Where(i => i.recipe_id == r.recipe_id)
+                                    .Select(i => new { name = i.ingredient_name, amount = i.amount, unit = i.unit }),
+                                seasonings = seasonings
+                                    .Where(s => s.recipe_id == r.recipe_id)
+                                    .Select(s => new { name = s.seasoning_name, amount = s.amount, unit = s.unit })
+                            })
+                    })
+                });
+
+            return Ok(groupedMeals);
+        }
+
+
     }
 }
