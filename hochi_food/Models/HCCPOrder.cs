@@ -11,6 +11,11 @@ public partial class HCCPOrder
 
     public string? HCCPImportNum { get; set; }
 
+    /// <summary>
+    /// 是否為紙本
+    /// </summary>
+    public int? HPaperYN { get; set; }
+
     public string? HRemark { get; set; }
 
     public int? HStatus { get; set; }
@@ -22,9 +27,4 @@ public partial class HCCPOrder
     public string? HModify { get; set; }
 
     public string? HModifyDT { get; set; }
-
-    /// <summary>
-    /// 是否為紙本
-    /// </summary>
-    public int? HPaperYN { get; set; }
 }

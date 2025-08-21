@@ -43,6 +43,8 @@ public partial class HCCPeriod
 
     public int? HDReceiptSType { get; set; }
 
+    public int? HNumbers { get; set; }
+
     public string? HDonor { get; set; }
 
     public string? HCardHolder { get; set; }
@@ -84,20 +86,12 @@ public partial class HCCPeriod
     /// </summary>
     public int? HOrderStatus { get; set; }
 
-    public int? HStatus { get; set; }
-
-    public string? HCreate { get; set; }
-
-    public string? HCreateDT { get; set; }
-
-    public string? HModify { get; set; }
-
-    public string? HModifyDT { get; set; }
-
     /// <summary>
     /// 是否為紙本
     /// </summary>
     public int? HPaperYN { get; set; }
+
+    public int? HCCRegularID { get; set; }
 
     /// <summary>
     /// 捐款用途
@@ -108,4 +102,28 @@ public partial class HCCPeriod
     /// 捐款項目
     /// </summary>
     public string? HDItem { get; set; }
+
+    public string? HOriCCPOrderCode { get; set; }
+
+    public int? HPayOption { get; set; }
+
+    public int? HPartialPayTimes { get; set; }
+
+    public int? HPartialPayAmount { get; set; }
+
+    public string? HOrderGroup { get; set; }
+
+    public int? HOpenEdit { get; set; }
+
+    public string? HNewDCCPSDate { get; set; }
+
+    public int? HStatus { get; set; }
+
+    public string? HCreate { get; set; }
+
+    public string? HCreateDT { get; set; }
+
+    public string? HModify { get; set; }
+
+    public string? HModifyDT { get; set; }
 }

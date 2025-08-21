@@ -9,6 +9,8 @@ public partial class HParmTab
 
     public string? HName_TW { get; set; }
 
+    public int? HType { get; set; }
+
     public int? HStatus { get; set; }
 
     public string? HCreate { get; set; }

@@ -146,4 +146,6 @@ public partial class OrderList
     public string? HCPkgName { get; set; }
 
     public int? HUploadIRS { get; set; }
+
+    public int? HBookByDateYN { get; set; }
 }

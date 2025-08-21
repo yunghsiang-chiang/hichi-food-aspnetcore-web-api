@@ -53,18 +53,6 @@ public partial class HCourse_T
 
     public string? HContent { get; set; }
 
-    public int? HStatus { get; set; }
-
-    public string? HCreate { get; set; }
-
-    public string? HCreateDT { get; set; }
-
-    public string? HModify { get; set; }
-
-    public string? HModifyDT { get; set; }
-
-    public string? HSave { get; set; }
-
     public string? HVRoleID { get; set; }
 
     public string? HARoleID { get; set; }
@@ -95,4 +83,31 @@ public partial class HCourse_T
     public int? HAxisClass { get; set; }
 
     public int? HExamSubject { get; set; }
+
+    public int HRollcallYN { get; set; }
+
+    public int? HExamContentID { get; set; }
+
+    /// <summary>
+    /// 報名人數上限
+    /// </summary>
+    public int? HParticipantLimit { get; set; }
+
+    public int? HBookByDateYN { get; set; }
+
+    public string? HSave { get; set; }
+
+    public int? HCCPeriodYN { get; set; }
+
+    public int? HCCPeriodDItem { get; set; }
+
+    public int? HStatus { get; set; }
+
+    public string? HCreate { get; set; }
+
+    public string? HCreateDT { get; set; }
+
+    public string? HModify { get; set; }
+
+    public string? HModifyDT { get; set; }
 }

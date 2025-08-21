@@ -40,4 +40,14 @@ public partial class HCourseList_View
     public string? HIRestriction { get; set; }
 
     public string? HCreateDT { get; set; }
+
+    public int? HIndexShow { get; set; }
+
+    public int? HIndexSort { get; set; }
+
+    public int? HBookByDateYN { get; set; }
+
+    public int? HCCPeriodYN { get; set; }
+
+    public int? HCCPeriodDItem { get; set; }
 }

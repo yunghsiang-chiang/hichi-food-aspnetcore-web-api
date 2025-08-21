@@ -26,4 +26,6 @@ public partial class HTMaterial_View
     public string? HOCPlace { get; set; }
 
     public string? MainTeam { get; set; }
+
+    public string? HCBatchNum { get; set; }
 }

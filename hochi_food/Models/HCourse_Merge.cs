@@ -129,11 +129,25 @@ public partial class HCourse_Merge
 
     public int? HGradeCalculation { get; set; }
 
-    public string? HExamPaper { get; set; }
+    public string? HExamPaperID { get; set; }
 
     public string? HSupervise { get; set; }
 
     public int? HAttRateStandard { get; set; }
 
     public int? HExamPassStandard { get; set; }
+
+    public int? HExamContentID { get; set; }
+
+    public int? HParticipantLimit { get; set; }
+
+    public int? HTeacherClass { get; set; }
+
+    public int? HTearcherLV { get; set; }
+
+    public int? HBookByDateYN { get; set; }
+
+    public int? HCCPeriodYN { get; set; }
+
+    public int? HCCPeriodDItem { get; set; }
 }

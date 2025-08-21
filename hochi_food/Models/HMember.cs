@@ -9,7 +9,12 @@ public partial class HMember
 
     public string? HSeries { get; set; }
 
-    public string? HAccount { get; set; }
+    public string HAccount { get; set; } = null!;
+
+    /// <summary>
+    /// 登入方式
+    /// </summary>
+    public int HLoginType { get; set; }
 
     public string? HPassword { get; set; }
 
@@ -55,9 +60,11 @@ public partial class HMember
 
     public string? HEmail { get; set; }
 
-    public int? HEmailStatus { get; set; }
+    public int? HOTPStatus { get; set; }
 
-    public string? HEmailGarbled { get; set; }
+    public string? HOTP { get; set; }
+
+    public TimeOnly? HRequestDT { get; set; }
 
     public string? HEmerName { get; set; }
 
@@ -212,4 +219,15 @@ public partial class HMember
     public string? HLearningType { get; set; }
 
     public string? HSCFClassFavorite { get; set; }
+
+    public int HCarrier { get; set; }
+
+    public int HRainbow { get; set; }
+
+    public int HLightEnvoy { get; set; }
+
+    /// <summary>
+    /// 生命導師HID(dbo.HMember.HID)_學員類別(2~7階)
+    /// </summary>
+    public int? HLifeLeaderID { get; set; }
 }

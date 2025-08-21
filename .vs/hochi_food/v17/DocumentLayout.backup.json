@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\egrou\\source\\repos\\hochi_food\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\scaffold-dbcontext.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\scaffold-dbcontext.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hochi_food\\controllers\\recipescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\controllers\\recipescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,7 +30,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\appsettings.json",
+              "RelativeDocumentMoniker": "hochi_food\\appsettings.json",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\appsettings.json",
+              "RelativeToolTip": "hochi_food\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-07-11T02:30:39.944Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Scaffold-DbContext.txt",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Scaffold-DbContext.txt",
+              "RelativeDocumentMoniker": "hochi_food\\Scaffold-DbContext.txt",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Scaffold-DbContext.txt",
+              "RelativeToolTip": "hochi_food\\Scaffold-DbContext.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-07-11T02:28:37.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "RecipesController.cs",
               "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\RecipesController.cs",
               "RelativeDocumentMoniker": "hochi_food\\Controllers\\RecipesController.cs",
@@ -30,8 +63,7 @@
               "RelativeToolTip": "hochi_food\\Controllers\\RecipesController.cs",
               "ViewState": "AgIAADYDAAAAAAAAAAAUwEsDAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:47:01.721Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-16T02:47:01.721Z"
             }
           ]
         }

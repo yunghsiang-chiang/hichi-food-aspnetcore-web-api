@@ -40,4 +40,6 @@ public partial class Course_BackendList
     public string? HSave { get; set; }
 
     public int? HSerial { get; set; }
+
+    public int? HBookByDateYN { get; set; }
 }

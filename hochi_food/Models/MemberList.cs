@@ -15,13 +15,15 @@ public partial class MemberList
 
     public string? HPeriod { get; set; }
 
-    public string? HAccount { get; set; }
+    public string HAccount { get; set; } = null!;
 
     public string? HTeamID { get; set; }
 
     public int? HSystemID { get; set; }
 
     public string? HSystemName { get; set; }
+
+    public string? HImg { get; set; }
 
     public int? HPositionID { get; set; }
 
@@ -172,4 +174,12 @@ public partial class MemberList
     public int? HEIPUid { get; set; }
 
     public int? HStatus { get; set; }
+
+    public int HCarrier { get; set; }
+
+    public int HRainbow { get; set; }
+
+    public int HLightEnvoy { get; set; }
+
+    public string? HAxisType { get; set; }
 }

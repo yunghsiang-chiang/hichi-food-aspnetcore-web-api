@@ -117,16 +117,6 @@ public partial class HCourse
 
     public string? HCourseLinkTask { get; set; }
 
-    public int HStatus { get; set; }
-
-    public string? HCreate { get; set; }
-
-    public string? HCreateDT { get; set; }
-
-    public string? HModify { get; set; }
-
-    public string? HModifyDT { get; set; }
-
     public string? HSave { get; set; }
 
     /// <summary>
@@ -173,7 +163,7 @@ public partial class HCourse
     /// <summary>
     /// 考卷
     /// </summary>
-    public string? HExamPaper { get; set; }
+    public string? HExamPaperID { get; set; }
 
     /// <summary>
     /// 督導
@@ -189,4 +179,43 @@ public partial class HCourse
     /// 檢覈成績通過標準
     /// </summary>
     public int? HExamPassStandard { get; set; }
+
+    public int HRollcallYN { get; set; }
+
+    public int? HIndexShow { get; set; }
+
+    public int? HIndexSort { get; set; }
+
+    public int? HExamContentID { get; set; }
+
+    /// <summary>
+    /// 報名人數上限
+    /// </summary>
+    public int? HParticipantLimit { get; set; }
+
+    /// <summary>
+    /// 講師類別(1:識透講師/2:玉成講師/3:教練/4:傳承師)
+    /// </summary>
+    public int? HTeacherClass { get; set; }
+
+    /// <summary>
+    /// 講師層級分類(1:見習/2:初任/3:正式)
+    /// </summary>
+    public int? HTearcherLV { get; set; }
+
+    public int? HBookByDateYN { get; set; }
+
+    public int? HCCPeriodYN { get; set; }
+
+    public int? HCCPeriodDItem { get; set; }
+
+    public int HStatus { get; set; }
+
+    public string? HCreate { get; set; }
+
+    public string? HCreateDT { get; set; }
+
+    public string? HModify { get; set; }
+
+    public string? HModifyDT { get; set; }
 }

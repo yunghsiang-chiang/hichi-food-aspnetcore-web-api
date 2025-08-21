@@ -7,7 +7,20 @@ public partial class HExamSubject
 {
     public int HID { get; set; }
 
-    public string? HExamSubject1 { get; set; }
+    public int? HExamSubjectGroupID { get; set; }
+
+    /// <summary>
+    /// 檢覈科目名稱
+    /// </summary>
+    public string? HExamSubjectName { get; set; }
+
+    public int? HExamPassScore { get; set; }
+
+    public int? HExamMinute { get; set; }
+
+    public int? HExamTimesPNum { get; set; }
+
+    public int? HExamSort { get; set; }
 
     public int? HStatus { get; set; }
 

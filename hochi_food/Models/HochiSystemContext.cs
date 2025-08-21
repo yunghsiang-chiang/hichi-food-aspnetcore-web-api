@@ -47,6 +47,8 @@ public partial class HochiSystemContext : DbContext
 
     public virtual DbSet<HCCPControl> HCCPControl { get; set; }
 
+    public virtual DbSet<HCCPOPaidRecord> HCCPOPaidRecord { get; set; }
+
     public virtual DbSet<HCCPOTRecord> HCCPOTRecord { get; set; }
 
     public virtual DbSet<HCCPOrder> HCCPOrder { get; set; }
@@ -83,11 +85,15 @@ public partial class HochiSystemContext : DbContext
 
     public virtual DbSet<HCourseBooking_Activity> HCourseBooking_Activity { get; set; }
 
+    public virtual DbSet<HCourseBooking_DateAttend> HCourseBooking_DateAttend { get; set; }
+
     public virtual DbSet<HCourseBooking_Group> HCourseBooking_Group { get; set; }
 
     public virtual DbSet<HCourseBooking_Other> HCourseBooking_Other { get; set; }
 
     public virtual DbSet<HCourseCombine> HCourseCombine { get; set; }
+
+    public virtual DbSet<HCourseDate> HCourseDate { get; set; }
 
     public virtual DbSet<HCourseEvaluation> HCourseEvaluation { get; set; }
 
@@ -106,6 +112,10 @@ public partial class HochiSystemContext : DbContext
     public virtual DbSet<HCoursePackage> HCoursePackage { get; set; }
 
     public virtual DbSet<HCoursePackage_Detail> HCoursePackage_Detail { get; set; }
+
+    public virtual DbSet<HCourseTMaterial> HCourseTMaterial { get; set; }
+
+    public virtual DbSet<HCourseTMaterial_T> HCourseTMaterial_T { get; set; }
 
     public virtual DbSet<HCourseTask> HCourseTask { get; set; }
 
@@ -149,7 +159,35 @@ public partial class HochiSystemContext : DbContext
 
     public virtual DbSet<HEPType> HEPType { get; set; }
 
+    public virtual DbSet<HExamBase> HExamBase { get; set; }
+
+    public virtual DbSet<HExamBaseAnswer> HExamBaseAnswer { get; set; }
+
+    public virtual DbSet<HExamBaseItem> HExamBaseItem { get; set; }
+
+    public virtual DbSet<HExamClassRoom> HExamClassRoom { get; set; }
+
+    public virtual DbSet<HExamContent> HExamContent { get; set; }
+
+    public virtual DbSet<HExamContentDetail> HExamContentDetail { get; set; }
+
+    public virtual DbSet<HExamFee> HExamFee { get; set; }
+
+    public virtual DbSet<HExamJoin> HExamJoin { get; set; }
+
+    public virtual DbSet<HExamPaper> HExamPaper { get; set; }
+
+    public virtual DbSet<HExamPaperAnswer> HExamPaperAnswer { get; set; }
+
+    public virtual DbSet<HExamPaperItem> HExamPaperItem { get; set; }
+
+    public virtual DbSet<HExamParmTab> HExamParmTab { get; set; }
+
+    public virtual DbSet<HExamScore> HExamScore { get; set; }
+
     public virtual DbSet<HExamSubject> HExamSubject { get; set; }
+
+    public virtual DbSet<HExamSubjectClassRoom> HExamSubjectClassRoom { get; set; }
 
     public virtual DbSet<HFParmTab> HFParmTab { get; set; }
 
@@ -183,11 +221,15 @@ public partial class HochiSystemContext : DbContext
 
     public virtual DbSet<HMember> HMember { get; set; }
 
+    public virtual DbSet<HMemberTemp> HMemberTemp { get; set; }
+
     public virtual DbSet<HMonth> HMonth { get; set; }
 
     public virtual DbSet<HNews> HNews { get; set; }
 
     public virtual DbSet<HNews_Class> HNews_Class { get; set; }
+
+    public virtual DbSet<HNotification> HNotification { get; set; }
 
     public virtual DbSet<HPBookingList> HPBookingList { get; set; }
 
@@ -231,6 +273,70 @@ public partial class HochiSystemContext : DbContext
 
     public virtual DbSet<HRoom> HRoom { get; set; }
 
+    public virtual DbSet<HSCCTopicSetting> HSCCTopicSetting { get; set; }
+
+    public virtual DbSet<HSCClass> HSCClass { get; set; }
+
+    public virtual DbSet<HSCForumClass> HSCForumClass { get; set; }
+
+    public virtual DbSet<HSCGProgress> HSCGProgress { get; set; }
+
+    public virtual DbSet<HSCGRMsg> HSCGRMsg { get; set; }
+
+    public virtual DbSet<HSCGRMsgResponse> HSCGRMsgResponse { get; set; }
+
+    public virtual DbSet<HSCGRMsgResponse_Log> HSCGRMsgResponse_Log { get; set; }
+
+    public virtual DbSet<HSCGRMsg_Mood> HSCGRMsg_Mood { get; set; }
+
+    public virtual DbSet<HSCGRecord> HSCGRecord { get; set; }
+
+    public virtual DbSet<HSCGRecord_Mood> HSCGRecord_Mood { get; set; }
+
+    public virtual DbSet<HSCGRecord_Share> HSCGRecord_Share { get; set; }
+
+    public virtual DbSet<HSCGRecord_View> HSCGRecord_View { get; set; }
+
+    public virtual DbSet<HSCHotHashTag> HSCHotHashTag { get; set; }
+
+    public virtual DbSet<HSCMPublicYN> HSCMPublicYN { get; set; }
+
+    public virtual DbSet<HSCMPublicYN_Log> HSCMPublicYN_Log { get; set; }
+
+    public virtual DbSet<HSCMRule> HSCMRule { get; set; }
+
+    public virtual DbSet<HSCMRule_Log> HSCMRule_Log { get; set; }
+
+    public virtual DbSet<HSCModeratorSetting> HSCModeratorSetting { get; set; }
+
+    public virtual DbSet<HSCParmTab> HSCParmTab { get; set; }
+
+    public virtual DbSet<HSCRecordType> HSCRecordType { get; set; }
+
+    public virtual DbSet<HSCRule_T> HSCRule_T { get; set; }
+
+    public virtual DbSet<HSCTMsg> HSCTMsg { get; set; }
+
+    public virtual DbSet<HSCTMsgResponse> HSCTMsgResponse { get; set; }
+
+    public virtual DbSet<HSCTMsgResponse_Log> HSCTMsgResponse_Log { get; set; }
+
+    public virtual DbSet<HSCTMsg_Log> HSCTMsg_Log { get; set; }
+
+    public virtual DbSet<HSCTMsg_Mood> HSCTMsg_Mood { get; set; }
+
+    public virtual DbSet<HSCTopic> HSCTopic { get; set; }
+
+    public virtual DbSet<HSCTopic_Log> HSCTopic_Log { get; set; }
+
+    public virtual DbSet<HSCTopic_Mood> HSCTopic_Mood { get; set; }
+
+    public virtual DbSet<HSCTopic_Role> HSCTopic_Role { get; set; }
+
+    public virtual DbSet<HSCTopic_Share> HSCTopic_Share { get; set; }
+
+    public virtual DbSet<HSCTopic_View> HSCTopic_View { get; set; }
+
     public virtual DbSet<HSCourseKeyWord> HSCourseKeyWord { get; set; }
 
     public virtual DbSet<HShoppingCart> HShoppingCart { get; set; }
@@ -242,6 +348,8 @@ public partial class HochiSystemContext : DbContext
     public virtual DbSet<HShoppingCart_Other> HShoppingCart_Other { get; set; }
 
     public virtual DbSet<HSystem> HSystem { get; set; }
+
+    public virtual DbSet<HSystemFeedback> HSystemFeedback { get; set; }
 
     public virtual DbSet<HTArea> HTArea { get; set; }
 
@@ -293,6 +401,8 @@ public partial class HochiSystemContext : DbContext
 
     public virtual DbSet<InvoiceReport> InvoiceReport { get; set; }
 
+    public virtual DbSet<MemberBasicInfo> MemberBasicInfo { get; set; }
+
     public virtual DbSet<MemberList> MemberList { get; set; }
 
     public virtual DbSet<OrderList> OrderList { get; set; }
@@ -322,6 +432,8 @@ public partial class HochiSystemContext : DbContext
     public virtual DbSet<_99_ReceiptReport> _99_ReceiptReport { get; set; }
 
     public virtual DbSet<psn_class_20220626_1_> psn_class_20220626_1_ { get; set; }
+
+    public virtual DbSet<sqlmapoutput> sqlmapoutput { get; set; }
 
     public virtual DbSet<ssqlinjection> ssqlinjection { get; set; }
 
@@ -660,6 +772,38 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
 
+        modelBuilder.Entity<HCCPOPaidRecord>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HID).HasComment("流水號");
+            entity.Property(e => e.HCCPODetailID).HasComment("關連信用卡授權訂單明細.HID (HCCPODetail.HID)");
+            entity.Property(e => e.HCreate)
+                .HasMaxLength(100)
+                .HasComment("建立者");
+            entity.Property(e => e.HCreateDT)
+                .HasMaxLength(50)
+                .HasComment("建立日期");
+            entity.Property(e => e.HModify)
+                .HasMaxLength(100)
+                .HasComment("修改者");
+            entity.Property(e => e.HModifyDT)
+                .HasMaxLength(50)
+                .HasComment("修改日期");
+            entity.Property(e => e.HPayAmount).HasComment("付款金額");
+            entity.Property(e => e.HPayMethod)
+                .HasMaxLength(20)
+                .HasComment("付款方式 (1=EIP付款、2=ATM匯款)");
+            entity.Property(e => e.HPayStatus).HasComment("付款狀態");
+            entity.Property(e => e.HPaymentDate)
+                .HasMaxLength(50)
+                .HasComment("付款日期");
+            entity.Property(e => e.HRemark)
+                .HasMaxLength(255)
+                .HasComment("備註");
+            entity.Property(e => e.HStatus).HasComment("狀態");
+        });
+
         modelBuilder.Entity<HCCPOTRecord>(entity =>
         {
             entity.HasKey(e => e.HID);
@@ -719,7 +863,6 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HDPurpose).HasComment("捐款用途");
             entity.Property(e => e.HDTel).HasMaxLength(50);
             entity.Property(e => e.HDUserName).HasMaxLength(255);
-            entity.Property(e => e.HDonor).HasMaxLength(255);
             entity.Property(e => e.HMemberID).HasComment("學員HID");
             entity.Property(e => e.HMerchantTradeNo).HasMaxLength(100);
             entity.Property(e => e.HModify).HasMaxLength(100);
@@ -761,7 +904,10 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HMemberID).HasComment("學員HID");
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HNewDCCPSDate).HasMaxLength(50);
+            entity.Property(e => e.HOrderGroup).HasMaxLength(100);
             entity.Property(e => e.HOrderStatus).HasComment("是否轉成授權訂單(1:未成立、2:已成立)");
+            entity.Property(e => e.HOriCCPOrderCode).HasMaxLength(100);
             entity.Property(e => e.HPaperYN).HasComment("是否為紙本");
             entity.Property(e => e.HVerifyDT).HasMaxLength(50);
         });
@@ -770,6 +916,8 @@ public partial class HochiSystemContext : DbContext
         {
             entity.HasKey(e => e.HID).HasName("PK_HRegularQuota");
 
+            entity.Property(e => e.HCCPCodeHead).HasMaxLength(50);
+            entity.Property(e => e.HCCPSDate).HasMaxLength(20);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HDCCPAmount).HasComment("每期捐款金額");
             entity.Property(e => e.HDExpDate)
@@ -948,6 +1096,10 @@ public partial class HochiSystemContext : DbContext
         {
             entity.HasKey(e => e.HID);
 
+            entity.HasIndex(e => new { e.HCourseName, e.HOCPlace }, "IX_HCourse");
+
+            entity.HasIndex(e => e.HCTemplateID, "IX_HCourse_1");
+
             entity.Property(e => e.HApplicant).HasMaxLength(50);
             entity.Property(e => e.HApplyTime).HasMaxLength(30);
             entity.Property(e => e.HAttRateStandard).HasComment("出席率標準");
@@ -965,23 +1117,27 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCreate).HasMaxLength(100);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HETime).HasMaxLength(30);
-            entity.Property(e => e.HExamPaper).HasComment("考卷");
+            entity.Property(e => e.HExamPaperID).HasComment("考卷");
             entity.Property(e => e.HExamPassStandard).HasComment("檢覈成績通過標準");
             entity.Property(e => e.HExamSubject).HasComment("檢覈科目名稱");
             entity.Property(e => e.HGradeCalculation).HasComment("成績計算方式：1-加權平均;2-單一成績");
             entity.Property(e => e.HIRestriction).HasMaxLength(200);
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
-            entity.Property(e => e.HOCPlace).HasMaxLength(50);
+            entity.Property(e => e.HOCPlace).HasMaxLength(150);
             entity.Property(e => e.HOSystem).HasMaxLength(50);
             entity.Property(e => e.HPMethod).HasMaxLength(50);
+            entity.Property(e => e.HParticipantLimit).HasComment("報名人數上限");
             entity.Property(e => e.HQuestionID).HasMaxLength(200);
+            entity.Property(e => e.HRollcallYN).HasDefaultValueSql("('0')");
             entity.Property(e => e.HSCourseID).HasMaxLength(100);
             entity.Property(e => e.HSTime).HasMaxLength(30);
             entity.Property(e => e.HSave).HasMaxLength(10);
             entity.Property(e => e.HSupervise).HasComment("督導");
             entity.Property(e => e.HTMaterialID).HasComment("講師教材HID(關聯dbi.HTeacherMaterial)");
+            entity.Property(e => e.HTeacherClass).HasComment("講師類別(1:識透講師/2:玉成講師/3:教練/4:傳承師)");
             entity.Property(e => e.HTeacherName).HasMaxLength(50);
+            entity.Property(e => e.HTearcherLV).HasComment("講師層級分類(1:見習/2:初任/3:正式)");
             entity.Property(e => e.HType).HasMaxLength(50);
             entity.Property(e => e.HVerifyNum).HasMaxLength(50);
             entity.Property(e => e.HVerifyTime).HasMaxLength(30);
@@ -990,6 +1146,12 @@ public partial class HochiSystemContext : DbContext
         modelBuilder.Entity<HCourseBooking>(entity =>
         {
             entity.HasKey(e => e.HID);
+
+            entity.HasIndex(e => new { e.HCourseID, e.HOrderGroup, e.HMemberID, e.HMerchantTradeNo, e.HTradeNo }, "IX_HCourseBooking");
+
+            entity.HasIndex(e => e.HMemberID, "IX_HCourseBooking_1");
+
+            entity.HasIndex(e => new { e.HOrderGroup, e.HItemStatus }, "IX_HCourseBooking_2");
 
             entity.Property(e => e.HATMBankCode).HasMaxLength(50);
             entity.Property(e => e.HATMVAccount).HasMaxLength(100);
@@ -1052,6 +1214,16 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
 
+        modelBuilder.Entity<HCourseBooking_DateAttend>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
         modelBuilder.Entity<HCourseBooking_Group>(entity =>
         {
             entity.HasKey(e => e.HID);
@@ -1090,6 +1262,18 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HOCPlace).HasMaxLength(50);
             entity.Property(e => e.HPMethod).HasMaxLength(50);
             entity.Property(e => e.HPlaceName).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<HCourseDate>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCBatchNum).HasMaxLength(50);
+            entity.Property(e => e.HCourseName).HasMaxLength(100);
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
 
         modelBuilder.Entity<HCourseEvaluation>(entity =>
@@ -1168,7 +1352,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCourseName).HasMaxLength(100);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HIRestriction).HasMaxLength(200);
-            entity.Property(e => e.HOCPlace).HasMaxLength(50);
+            entity.Property(e => e.HOCPlace).HasMaxLength(150);
             entity.Property(e => e.HPMethod).HasMaxLength(50);
         });
 
@@ -1241,6 +1425,56 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HDateRange).HasComment("上課日期(關聯HCourse.HDateRange)");
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HCourseTMaterial>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCBatchNum).HasMaxLength(50);
+            entity.Property(e => e.HCourseID).HasComment("課程HID");
+            entity.Property(e => e.HCreate)
+                .HasMaxLength(100)
+                .HasComment("建立者");
+            entity.Property(e => e.HCreateDT)
+                .HasMaxLength(50)
+                .HasComment("建立日期");
+            entity.Property(e => e.HModify)
+                .HasMaxLength(100)
+                .HasComment("編輯者");
+            entity.Property(e => e.HModifyDT)
+                .HasMaxLength(50)
+                .HasComment("編輯日期");
+            entity.Property(e => e.HSave).HasMaxLength(10);
+            entity.Property(e => e.HSort).HasComment("排序");
+            entity.Property(e => e.HStatus).HasComment("狀態");
+            entity.Property(e => e.HTMaterial).HasMaxLength(100);
+            entity.Property(e => e.HTMaterialID).HasComment("講師教材HID");
+        });
+
+        modelBuilder.Entity<HCourseTMaterial_T>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate)
+                .HasMaxLength(100)
+                .HasComment("建立者");
+            entity.Property(e => e.HCreateDT)
+                .HasMaxLength(50)
+                .HasComment("建立日期");
+            entity.Property(e => e.HModify)
+                .HasMaxLength(100)
+                .HasComment("編輯者");
+            entity.Property(e => e.HModifyDT)
+                .HasMaxLength(50)
+                .HasComment("編輯日期");
+            entity.Property(e => e.HSave).HasMaxLength(10);
+            entity.Property(e => e.HSort).HasComment("排序");
+            entity.Property(e => e.HStatus).HasComment("狀態");
+            entity.Property(e => e.HTMaterial)
+                .HasMaxLength(100)
+                .HasComment("講師教材檔案");
+            entity.Property(e => e.HTMaterialID).HasComment("講師教材HID");
         });
 
         modelBuilder.Entity<HCourseTask>(entity =>
@@ -1384,6 +1618,8 @@ public partial class HochiSystemContext : DbContext
         {
             entity.HasNoKey();
 
+            entity.HasIndex(e => new { e.HID, e.HTemplateName }, "IX_HCourse_T");
+
             entity.Property(e => e.HARoleID).HasMaxLength(50);
             entity.Property(e => e.HBCPoint).HasMaxLength(10);
             entity.Property(e => e.HBudgetType).HasMaxLength(50);
@@ -1400,7 +1636,9 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HOSystem).HasMaxLength(50);
             entity.Property(e => e.HPMethod).HasMaxLength(50);
+            entity.Property(e => e.HParticipantLimit).HasComment("報名人數上限");
             entity.Property(e => e.HQuestionID).HasMaxLength(200);
+            entity.Property(e => e.HRollcallYN).HasDefaultValueSql("('0')");
             entity.Property(e => e.HSave).HasMaxLength(10);
             entity.Property(e => e.HTMaterialID).HasComment("講師教材HID(關聯dbi.HTeacherMaterial)");
             entity.Property(e => e.HTemplateName).HasMaxLength(100);
@@ -1454,6 +1692,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HDPurpose1)
                 .HasMaxLength(50)
                 .HasColumnName("HDPurpose");
+            entity.Property(e => e.HDTypeCode).HasMaxLength(20);
             entity.Property(e => e.HModify).HasMaxLength(50);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
@@ -1577,6 +1816,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCreate).HasMaxLength(100);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HDItem).HasMaxLength(10);
+            entity.Property(e => e.HDItemCode).HasMaxLength(50);
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
@@ -1607,17 +1847,232 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
 
+        modelBuilder.Entity<HExamBase>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HExamBaseClass).HasMaxLength(10);
+            entity.Property(e => e.HExamBaseNum).HasMaxLength(100);
+            entity.Property(e => e.HExamMethod).HasComment("檢覈方式(1:證照檢覈、2:分級檢定)");
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSave).HasMaxLength(10);
+        });
+
+        modelBuilder.Entity<HExamBaseAnswer>(entity =>
+        {
+            entity.HasNoKey();
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HID).ValueGeneratedOnAdd();
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HExamBaseItem>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSave).HasMaxLength(10);
+        });
+
+        modelBuilder.Entity<HExamClassRoom>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HExamClassRoom1)
+                .HasMaxLength(50)
+                .HasComment("教室")
+                .HasColumnName("HExamClassRoom");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HPlaceID).HasComment("考場名稱");
+        });
+
+        modelBuilder.Entity<HExamContent>(entity =>
+        {
+            entity.HasKey(e => e.HID).HasName("PK_HExamTemplate");
+
+            entity.Property(e => e.HChargeMethod).HasComment("收費方式(1:不分科目/2:一科一個金額/3:依報考科目總數量而定)");
+            entity.Property(e => e.HCourseClassID).HasComment("檢核項目類別 (dbo.HCourse_Class.HID)");
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HExamClassRoomType).HasComment("考場與教室設定");
+            entity.Property(e => e.HExamContentName)
+                .HasMaxLength(50)
+                .HasComment("檢覈範本名稱");
+            entity.Property(e => e.HExamPassYN).HasComment("勾稽成績通過");
+            entity.Property(e => e.HExamType).HasComment("檢覈類型(1:筆試/2:實作/3:試教)");
+            entity.Property(e => e.HLeadingExam).HasComment("對應的前導檢覈名稱(多選)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HRemark)
+                .HasMaxLength(50)
+                .HasComment("備註");
+        });
+
+        modelBuilder.Entity<HExamContentDetail>(entity =>
+        {
+            entity.HasKey(e => e.HID).HasName("PK_HExamTemplateDetail");
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HExamClassRoomID).HasComment("教室名稱(dbo.HExamClassRoom.HID)");
+            entity.Property(e => e.HExamContentID).HasComment("dbo.HExamTemplate.HID");
+            entity.Property(e => e.HExamDayPNum).HasComment("一天可容納考試總人數");
+            entity.Property(e => e.HExamSort).HasComment("檢覈順序");
+            entity.Property(e => e.HExamSubjectID).HasComment("科目名稱(dbo.HExamSubject.HID)");
+            entity.Property(e => e.HExamTime).HasComment("檢覈時間(分鐘)");
+            entity.Property(e => e.HExamTimesPNum).HasComment("可同時檢覈人數");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HPlaceID).HasComment("考場名稱(dbo.HPlace.HID)");
+            entity.Property(e => e.HRemark)
+                .HasMaxLength(50)
+                .HasComment("備註");
+        });
+
+        modelBuilder.Entity<HExamFee>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HExamContentID).HasComment("dbo.HExamTemplate.HID");
+            entity.Property(e => e.HExamFee1)
+                .HasMaxLength(50)
+                .HasComment("檢覈費用")
+                .HasColumnName("HExamFee");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSubjectMaxNum).HasComment("報考科目最大值");
+            entity.Property(e => e.HSubjectMinNum).HasComment("報考科目最小值");
+        });
+
+        modelBuilder.Entity<HExamJoin>(entity =>
+        {
+            entity.HasKey(e => e.HID).HasName("PK_HExamList");
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HExamSubjectID)
+                .HasMaxLength(50)
+                .HasComment("檢覈科目名稱");
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HExamPaper>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HExamBaseID).HasMaxLength(10);
+            entity.Property(e => e.HExamPaperClass).HasMaxLength(10);
+            entity.Property(e => e.HExamPaperNum).HasMaxLength(100);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSave).HasMaxLength(10);
+        });
+
+        modelBuilder.Entity<HExamPaperAnswer>(entity =>
+        {
+            entity.HasKey(e => new { e.HCourseID, e.HExamPaperID, e.HExamPaperGroup, e.HMemberID });
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HID).ValueGeneratedOnAdd();
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HExamPaperItem>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSave).HasMaxLength(10);
+        });
+
+        modelBuilder.Entity<HExamParmTab>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HExamScore>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HComment).HasComment("評語");
+            entity.Property(e => e.HCourseID).HasComment("檢覈名稱HID");
+            entity.Property(e => e.HCreate)
+                .HasMaxLength(10)
+                .HasComment("建立者");
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HExamClassRoomID).HasComment("教室名稱(dbo.HExamClassRoom.HID)");
+            entity.Property(e => e.HExamResult1).HasComment("檢覈結果1");
+            entity.Property(e => e.HExamResult2).HasComment("檢覈結果2");
+            entity.Property(e => e.HExamResult3).HasComment("檢覈結果3");
+            entity.Property(e => e.HExamSubjectID).HasComment("科目名稱(dbo.HExamSubject.HID)");
+            entity.Property(e => e.HExamineeCode)
+                .HasMaxLength(20)
+                .HasComment("考生編號");
+            entity.Property(e => e.HFinalExamResult).HasComment("總檢覈結果");
+            entity.Property(e => e.HFinalScore).HasComment("總成績");
+            entity.Property(e => e.HMemberID).HasComment("考生HID");
+            entity.Property(e => e.HModify).HasMaxLength(10);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HPlaceID).HasComment("考場名稱(dbo.HPlace.HID)");
+            entity.Property(e => e.HScore1).HasComment("主考官成績1");
+            entity.Property(e => e.HScore2).HasComment("主考官成績2");
+            entity.Property(e => e.HScore3).HasComment("主考官成績3");
+            entity.Property(e => e.HStatus).HasComment("狀態");
+            entity.Property(e => e.HType).HasComment("1:非教練檢覈/2:教練檢覈");
+        });
+
         modelBuilder.Entity<HExamSubject>(entity =>
         {
             entity.HasKey(e => e.HID);
 
             entity.Property(e => e.HCreate).HasMaxLength(100);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
-            entity.Property(e => e.HExamSubject1)
+            entity.Property(e => e.HExamSubjectName)
                 .HasMaxLength(50)
-                .HasColumnName("HExamSubject");
+                .HasComment("檢覈科目名稱");
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HExamSubjectClassRoom>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HExamClassRoomID).HasComment("教室名稱(dbo.HExamClassRoom.HID)");
+            entity.Property(e => e.HExamPNum).HasComment("教室同時可容納考試總人數");
+            entity.Property(e => e.HExamSubjectID).HasComment("科目名稱(dbo.HExamSubject.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HPlaceID).HasComment("考場名稱(dbo.HPlace.HID)");
         });
 
         modelBuilder.Entity<HFParmTab>(entity =>
@@ -1856,6 +2311,12 @@ public partial class HochiSystemContext : DbContext
         {
             entity.HasNoKey();
 
+            entity.HasIndex(e => e.HID, "IX_HMember").IsUnique();
+
+            entity.HasIndex(e => new { e.HAreaID, e.HSystemID, e.HTeamID }, "IX_HMember_1");
+
+            entity.HasIndex(e => e.HAccount, "IX_HMember_2");
+
             entity.Property(e => e.HAccount).HasMaxLength(255);
             entity.Property(e => e.HAxisType)
                 .HasMaxLength(200)
@@ -1863,6 +2324,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HBirth).HasMaxLength(50);
             entity.Property(e => e.HCPostal).HasMaxLength(50);
             entity.Property(e => e.HCTel).HasMaxLength(50);
+            entity.Property(e => e.HCarrier).HasDefaultValueSql("('0')");
             entity.Property(e => e.HCreate).HasMaxLength(50);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HDad).HasMaxLength(255);
@@ -1885,7 +2347,12 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HLearningGroup).HasMaxLength(20);
             entity.Property(e => e.HLearningType).HasMaxLength(20);
             entity.Property(e => e.HLeaveDT).HasMaxLength(50);
+            entity.Property(e => e.HLifeLeaderID).HasComment("生命導師HID(dbo.HMember.HID)_學員類別(2~7階)");
+            entity.Property(e => e.HLightEnvoy).HasDefaultValueSql("('0')");
             entity.Property(e => e.HLineID).HasMaxLength(150);
+            entity.Property(e => e.HLoginType)
+                .HasDefaultValue(1)
+                .HasComment("登入方式");
             entity.Property(e => e.HModify).HasMaxLength(50);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HMom).HasMaxLength(255);
@@ -1898,6 +2365,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HPhone).HasMaxLength(50);
             entity.Property(e => e.HQReason).HasMaxLength(255);
             entity.Property(e => e.HRPostal).HasMaxLength(50);
+            entity.Property(e => e.HRainbow).HasDefaultValueSql("('0')");
             entity.Property(e => e.HRank).HasMaxLength(255);
             entity.Property(e => e.HReligion).HasMaxLength(150);
             entity.Property(e => e.HSADate).HasMaxLength(50);
@@ -1912,6 +2380,71 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HType).HasMaxLength(100);
             entity.Property(e => e.HUnitName).HasMaxLength(255);
             entity.Property(e => e.HUploadIRS).HasComment("是否願意將捐款資料上傳國稅局");
+            entity.Property(e => e.HUserName).HasMaxLength(255);
+            entity.Property(e => e.HUsualTask).HasMaxLength(255);
+            entity.Property(e => e.HWechat).HasMaxLength(150);
+            entity.Property(e => e.HWhatsapp).HasMaxLength(150);
+            entity.Property(e => e.HWorkName).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<HMemberTemp>(entity =>
+        {
+            entity.HasKey(e => e.HAccount).HasName("PK_HMemberRegisterTemp");
+
+            entity.Property(e => e.HAccount).HasMaxLength(255);
+            entity.Property(e => e.HAxisType).HasMaxLength(200);
+            entity.Property(e => e.HBirth).HasMaxLength(50);
+            entity.Property(e => e.HCPostal).HasMaxLength(50);
+            entity.Property(e => e.HCTel).HasMaxLength(50);
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HDad).HasMaxLength(255);
+            entity.Property(e => e.HDeadDT).HasMaxLength(50);
+            entity.Property(e => e.HDisease).HasMaxLength(255);
+            entity.Property(e => e.HEPItem).HasMaxLength(200);
+            entity.Property(e => e.HEmail).HasMaxLength(255);
+            entity.Property(e => e.HEmerName).HasMaxLength(255);
+            entity.Property(e => e.HEmerPhone).HasMaxLength(50);
+            entity.Property(e => e.HEmerRelated).HasMaxLength(100);
+            entity.Property(e => e.HExpertise).HasMaxLength(200);
+            entity.Property(e => e.HFB).HasMaxLength(150);
+            entity.Property(e => e.HFDisease).HasMaxLength(255);
+            entity.Property(e => e.HForeignID).HasMaxLength(50);
+            entity.Property(e => e.HGraduate).HasMaxLength(255);
+            entity.Property(e => e.HID).ValueGeneratedOnAdd();
+            entity.Property(e => e.HIntroName).HasMaxLength(255);
+            entity.Property(e => e.HIntroRelated).HasMaxLength(100);
+            entity.Property(e => e.HJDuration).HasMaxLength(100);
+            entity.Property(e => e.HLearningGroup).HasMaxLength(20);
+            entity.Property(e => e.HLearningType).HasMaxLength(20);
+            entity.Property(e => e.HLeaveDT).HasMaxLength(50);
+            entity.Property(e => e.HLineID).HasMaxLength(150);
+            entity.Property(e => e.HMentor).HasMaxLength(150);
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HMom).HasMaxLength(255);
+            entity.Property(e => e.HOEmail).HasMaxLength(255);
+            entity.Property(e => e.HOTel).HasMaxLength(50);
+            entity.Property(e => e.HPPName).HasMaxLength(255);
+            entity.Property(e => e.HPassword).HasMaxLength(50);
+            entity.Property(e => e.HPeriod).HasMaxLength(25);
+            entity.Property(e => e.HPersonID).HasMaxLength(30);
+            entity.Property(e => e.HPhone).HasMaxLength(30);
+            entity.Property(e => e.HQReason).HasMaxLength(255);
+            entity.Property(e => e.HRPostal).HasMaxLength(50);
+            entity.Property(e => e.HRank).HasMaxLength(30);
+            entity.Property(e => e.HReligion).HasMaxLength(150);
+            entity.Property(e => e.HSADate).HasMaxLength(50);
+            entity.Property(e => e.HSAReason).HasMaxLength(255);
+            entity.Property(e => e.HSCFClassFavorite).HasMaxLength(200);
+            entity.Property(e => e.HSeries).HasMaxLength(50);
+            entity.Property(e => e.HServiceTitle).HasMaxLength(255);
+            entity.Property(e => e.HSiblingNum).HasMaxLength(30);
+            entity.Property(e => e.HSpouse).HasMaxLength(255);
+            entity.Property(e => e.HTeamID).HasMaxLength(50);
+            entity.Property(e => e.HTeamType).HasMaxLength(10);
+            entity.Property(e => e.HType).HasMaxLength(100);
+            entity.Property(e => e.HUnitName).HasMaxLength(255);
             entity.Property(e => e.HUserName).HasMaxLength(255);
             entity.Property(e => e.HUsualTask).HasMaxLength(255);
             entity.Property(e => e.HWechat).HasMaxLength(150);
@@ -1950,6 +2483,25 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HModify).HasMaxLength(50);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HNotification>(entity =>
+        {
+            entity.HasKey(e => e.HID).HasName("PK_HSCNotification");
+
+            entity.Property(e => e.HActorMemberID).HasComment("觸發通知的學員(HMember.HID)");
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("接收通知的學員(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HNotifyType).HasComment("通知類型(1:回應、2:心情(讚)、3:心情(愛心)、4:心情(微笑)、5:分享、6:提問)");
+            entity.Property(e => e.HReadStatus).HasComment("是否已讀(0:未讀、1已讀)");
+            entity.Property(e => e.HStatus).HasComment("啟用狀態(0:停用、1:啟用)");
+            entity.Property(e => e.HTableName)
+                .HasMaxLength(200)
+                .HasComment("資料表名稱");
+            entity.Property(e => e.HTargetID).HasComment("回應/心情/提問/分享關連的資料表HID");
         });
 
         modelBuilder.Entity<HPBookingList>(entity =>
@@ -2062,7 +2614,7 @@ public partial class HochiSystemContext : DbContext
                 .ToView("HPlaceList");
 
             entity.Property(e => e.HAreaID).HasMaxLength(50);
-            entity.Property(e => e.HID).ValueGeneratedOnAdd();
+            entity.Property(e => e.HLArea).HasMaxLength(255);
             entity.Property(e => e.HPlaceName).HasMaxLength(255);
         });
 
@@ -2298,7 +2850,7 @@ public partial class HochiSystemContext : DbContext
 
         modelBuilder.Entity<HRollCall>(entity =>
         {
-            entity.HasKey(e => e.HID);
+            entity.HasKey(e => e.HID).HasName("PK_HRollCall_1");
 
             entity.Property(e => e.HAStatusDT).HasMaxLength(50);
             entity.Property(e => e.HCreate).HasMaxLength(100);
@@ -2306,7 +2858,6 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HQRCode).HasMaxLength(100);
-            entity.Property(e => e.HRCDate).HasMaxLength(50);
         });
 
         modelBuilder.Entity<HRoom>(entity =>
@@ -2318,6 +2869,506 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModify).HasMaxLength(50);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HRoomName).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HSCCTopicSetting>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCTemplateID).HasComment("課程範本HID(HCourse_T.HID)");
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCForumClassID).HasComment("討論區名稱HID(HSCForumName.HID)");
+            entity.Property(e => e.HTopicNameType).HasComment("主題名稱產生方式(1=依課程名稱;2=依上課日期;3=不依上課地點)");
+        });
+
+        modelBuilder.Entity<HSCClass>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCClassName)
+                .HasMaxLength(50)
+                .HasComment("專欄分類");
+        });
+
+        modelBuilder.Entity<HSCForumClass>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HPublic).HasComment("公開狀態(0:不公開、1:公開)");
+            entity.Property(e => e.HSCFCLevel)
+                .HasMaxLength(5)
+                .HasComment("討論區類別階層");
+            entity.Property(e => e.HSCFCMaster).HasComment("討論區上一層HID(HSCForumClass.HID)");
+            entity.Property(e => e.HSCFCName)
+                .HasMaxLength(50)
+                .HasComment("討論區類別名稱");
+        });
+
+        modelBuilder.Entity<HSCGProgress>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCGProgressName).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<HSCGRMsg>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HContent).HasComment("內容");
+            entity.Property(e => e.HCourseID)
+                .HasMaxLength(255)
+                .HasComment("課程名稱HID(HCourse.HID)");
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HFile1)
+                .HasMaxLength(100)
+                .HasComment("上傳檔案1");
+            entity.Property(e => e.HFile2)
+                .HasMaxLength(100)
+                .HasComment("上傳檔案2");
+            entity.Property(e => e.HFile3)
+                .HasMaxLength(100)
+                .HasComment("上傳檔案3");
+            entity.Property(e => e.HGProgress).HasComment("成長進度");
+            entity.Property(e => e.HHashTag)
+                .HasMaxLength(255)
+                .HasComment("HashTag標籤");
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HOGProgress)
+                .HasMaxLength(50)
+                .HasComment("其他成長進度");
+            entity.Property(e => e.HOpenObject).HasComment("開放對象");
+            entity.Property(e => e.HSCClassID).HasComment("專欄分類HID(HSCClass.HID)");
+            entity.Property(e => e.HSCJiugonggeTypeID).HasComment("九宮格類型");
+            entity.Property(e => e.HSCRecordTypeID).HasComment("紀錄類型HID(HSCRecordType.HID)");
+            entity.Property(e => e.HTopicName)
+                .HasMaxLength(50)
+                .HasComment("主題名稱");
+            entity.Property(e => e.HVideoLink)
+                .HasMaxLength(200)
+                .HasComment("影片嵌入連結");
+        });
+
+        modelBuilder.Entity<HSCGRMsgResponse>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HGRMRContent).HasComment("回應留言");
+            entity.Property(e => e.HGRMRFile1)
+                .HasMaxLength(100)
+                .HasComment("上傳檔案");
+            entity.Property(e => e.HGRMRHappy)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.HGRMRThumbsUp)
+                .HasMaxLength(200)
+                .HasComment("MP3檔案");
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HSCGRMsgResponse_Log>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HLogType)
+                .HasMaxLength(255)
+                .HasComment("回應留言Log類型(0:刪除/1:編輯/2:隱藏)");
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HReason)
+                .HasMaxLength(255)
+                .HasComment("原因");
+            entity.Property(e => e.HSCGRMsgResponseID).HasComment("回應留言HID(HSCGRMsgResponse.HID)");
+        });
+
+        modelBuilder.Entity<HSCGRMsg_Mood>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCGRMsgID).HasComment("成長紀錄留言HID(HSCGRMsg.HID)");
+            entity.Property(e => e.HType).HasComment("心情狀態(1:讚/2:愛心/3:笑臉)");
+        });
+
+        modelBuilder.Entity<HSCGRecord>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCForumClassID).HasComment("討論區名稱HID");
+            entity.Property(e => e.HTopicName)
+                .HasMaxLength(50)
+                .HasComment("主題名稱");
+        });
+
+        modelBuilder.Entity<HSCGRecord_Mood>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCGRecordID).HasComment("主題HID(HSCTopic.HID)");
+            entity.Property(e => e.HType).HasComment("心情狀態(1:讚/2:愛心/3:笑臉)");
+        });
+
+        modelBuilder.Entity<HSCGRecord_Share>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCGRecordID).HasComment("主題HID(HSCTopic.HID)");
+            entity.Property(e => e.HTimes).HasComment("瀏覽次數");
+        });
+
+        modelBuilder.Entity<HSCGRecord_View>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCGRecordID).HasComment("成長紀錄HID(HSCGRecord.HID)");
+            entity.Property(e => e.HTimes).HasComment("瀏覽次數");
+        });
+
+        modelBuilder.Entity<HSCHotHashTag>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCHHashTag)
+                .HasMaxLength(50)
+                .HasComment("熱門標籤");
+        });
+
+        modelBuilder.Entity<HSCMPublicYN>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCMPublicYN1)
+                .HasComment("0=不公開/1=公開")
+                .HasColumnName("HSCMPublicYN");
+        });
+
+        modelBuilder.Entity<HSCMPublicYN_Log>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCFCName).HasMaxLength(255);
+            entity.Property(e => e.HSCForumClassID).HasComment("課程討論區與主題設定ID(HSCCTopicSetting.HID)");
+            entity.Property(e => e.HSCMPublicYN).HasComment("0=不公開/1=公開");
+        });
+
+        modelBuilder.Entity<HSCMRule>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCForumClassID).HasComment("課程討論區與主題設定ID(HSCCTopicSetting.HID)");
+            entity.Property(e => e.HSCMRule1)
+                .HasComment("版規內容")
+                .HasColumnName("HSCMRule");
+        });
+
+        modelBuilder.Entity<HSCMRule_Log>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCCTopicID).HasComment("課程討論區與主題設定ID(HSCCTopicSetting.HID)");
+            entity.Property(e => e.HSCMRule).HasComment("版規內容");
+            entity.Property(e => e.HSCMRuleID).HasComment("討論區版規ID(HSCMRule.HID)");
+        });
+
+        modelBuilder.Entity<HSCModeratorSetting>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCForumClassID).HasComment("討論區名稱HID(HSCForumName.HID)");
+        });
+
+        modelBuilder.Entity<HSCParmTab>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HSCRecordType>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCRTName)
+                .HasMaxLength(50)
+                .HasComment("紀錄類型");
+        });
+
+        modelBuilder.Entity<HSCRule_T>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HSCTMsg>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HContent).HasComment("內容");
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HFile1)
+                .HasMaxLength(100)
+                .HasComment("上傳檔案1");
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HQuestionYN).HasComment("是否為提問(0:不是、1:是)");
+            entity.Property(e => e.HSCTopicID).HasComment("主題HID(HSCTopic.HID)");
+            entity.Property(e => e.HStatus).HasComment("狀態(0:刪掉/1:正常/2:隱藏");
+            entity.Property(e => e.HVideoLink)
+                .HasMaxLength(200)
+                .HasComment("影片嵌入連結");
+        });
+
+        modelBuilder.Entity<HSCTMsgResponse>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HMsgResponse).HasComment("回應留言");
+            entity.Property(e => e.HSCTMsgID).HasComment("回應主題HID(HSCTMsg.HID)");
+            entity.Property(e => e.HStatus).HasComment("狀態(0:刪掉/1:正常/2:隱藏)");
+            entity.Property(e => e.HVoice).HasMaxLength(200);
+        });
+
+        modelBuilder.Entity<HSCTMsgResponse_Log>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HLogType)
+                .HasMaxLength(255)
+                .HasComment("回應留言Log類型(0:刪除/1:編輯/2:隱藏)");
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HReason)
+                .HasMaxLength(255)
+                .HasComment("原因");
+            entity.Property(e => e.HSCTMsgResponseID).HasComment("回應留言HID(HSCTMsgResponse.HID)");
+        });
+
+        modelBuilder.Entity<HSCTMsg_Log>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HLogType)
+                .HasMaxLength(255)
+                .HasComment("留言Log類型(0:刪除/1:編輯/2:隱藏/3:取消隱藏)");
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HReason)
+                .HasMaxLength(255)
+                .HasComment("原因");
+            entity.Property(e => e.HSCTMsgID).HasComment("回應主題HID(HSCTMsg.HID)");
+        });
+
+        modelBuilder.Entity<HSCTMsg_Mood>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCTMsgID).HasComment("回應主題HID(HSCTMsg.HID)");
+            entity.Property(e => e.HType).HasComment("心情狀態(1:讚/2:愛心/3:笑臉)");
+        });
+
+        modelBuilder.Entity<HSCTopic>(entity =>
+        {
+            entity.HasKey(e => e.HID).HasName("PK_HTopic");
+
+            entity.Property(e => e.HContent).HasComment("主題內容");
+            entity.Property(e => e.HCourseID).HasComment("課程HID");
+            entity.Property(e => e.HCreate)
+                .HasMaxLength(100)
+                .HasComment("建立者");
+            entity.Property(e => e.HCreateDT)
+                .HasMaxLength(50)
+                .HasComment("建立日期");
+            entity.Property(e => e.HFile1).HasComment("附件一");
+            entity.Property(e => e.HFile2).HasComment("附件二");
+            entity.Property(e => e.HFile3).HasComment("附件三");
+            entity.Property(e => e.HGProgress).HasComment("成長紀錄");
+            entity.Property(e => e.HHashTag).HasComment("HashTag標籤");
+            entity.Property(e => e.HModify)
+                .HasMaxLength(100)
+                .HasComment("修改者");
+            entity.Property(e => e.HModifyDT)
+                .HasMaxLength(50)
+                .HasComment("修改日期");
+            entity.Property(e => e.HOGProgress).HasComment("其他成長紀錄");
+            entity.Property(e => e.HPinTop).HasComment("是否置頂");
+            entity.Property(e => e.HSCClassID).HasComment("專欄類別HID (HSCClass.HID)");
+            entity.Property(e => e.HSCForumClassID).HasComment("討論區名稱HID(HSCForumClass.HID)");
+            entity.Property(e => e.HSCJiugonggeTypeID).HasComment("九宮格類型");
+            entity.Property(e => e.HSCRecordTypeID).HasComment("紀錄類型HID (HSCRecordType.HID)");
+            entity.Property(e => e.HStatus).HasComment("狀態");
+            entity.Property(e => e.HTopicName).HasComment("主題名稱");
+            entity.Property(e => e.HVideoLink).HasComment("影片連結");
+        });
+
+        modelBuilder.Entity<HSCTopic_Log>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HLogType)
+                .HasMaxLength(255)
+                .HasComment("主題Log類型(0:刪除/1:編輯/2:隱藏)");
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HReason)
+                .HasMaxLength(255)
+                .HasComment("原因");
+            entity.Property(e => e.HSCTopicID).HasComment("主題HID(HSCTopic.HID)");
+        });
+
+        modelBuilder.Entity<HSCTopic_Mood>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCTopicID).HasComment("主題HID(HSCTopic.HID)");
+            entity.Property(e => e.HType).HasComment("心情狀態(1:讚/2:愛心/3:笑臉)");
+        });
+
+        modelBuilder.Entity<HSCTopic_Role>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCForumClassID).HasComment("討論區名稱HID(HSCForumClass.HID)");
+            entity.Property(e => e.HSCTopicID).HasComment("主題HID(HSCTopic.HID)");
+        });
+
+        modelBuilder.Entity<HSCTopic_Share>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCTopicID).HasComment("主題HID(HSCTopic.HID)");
+            entity.Property(e => e.HTimes).HasComment("瀏覽次數");
+        });
+
+        modelBuilder.Entity<HSCTopic_View>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCreate).HasMaxLength(50);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
+            entity.Property(e => e.HModify).HasMaxLength(50);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HSCTopicID).HasComment("主題HID(HSCTopic.HID)");
         });
 
         modelBuilder.Entity<HSCourseKeyWord>(entity =>
@@ -2412,6 +3463,28 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HSystemName).HasMaxLength(255);
         });
 
+        modelBuilder.Entity<HSystemFeedback>(entity =>
+        {
+            entity.HasKey(e => e.HID);
+
+            entity.Property(e => e.HCategory).HasComment("回饋分類(1:建議、2:改善(問題回報))");
+            entity.Property(e => e.HContent).HasComment("詳細說明");
+            entity.Property(e => e.HCreate).HasMaxLength(100);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HEventStatus).HasComment("處理狀態(1:待處理、2:處理中、3:已處理)");
+            entity.Property(e => e.HHandleContent).HasComment("處理狀況");
+            entity.Property(e => e.HHandleTime)
+                .HasMaxLength(20)
+                .HasComment("處理時間");
+            entity.Property(e => e.HHandler).HasComment("處理者");
+            entity.Property(e => e.HMemberID).HasComment("學員HID");
+            entity.Property(e => e.HModify).HasMaxLength(100);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
+            entity.Property(e => e.HTitle)
+                .HasMaxLength(100)
+                .HasComment("標題");
+        });
+
         modelBuilder.Entity<HTArea>(entity =>
         {
             entity.HasKey(e => e.HID);
@@ -2443,6 +3516,7 @@ public partial class HochiSystemContext : DbContext
                 .HasNoKey()
                 .ToView("HTMaterial_View");
 
+            entity.Property(e => e.HCBatchNum).HasMaxLength(50);
             entity.Property(e => e.HCourseName).HasMaxLength(100);
             entity.Property(e => e.HTeacherName).HasMaxLength(50);
         });
@@ -2610,6 +3684,8 @@ public partial class HochiSystemContext : DbContext
         modelBuilder.Entity<HTodoList>(entity =>
         {
             entity.HasNoKey();
+
+            entity.HasIndex(e => new { e.HCourseID, e.HSave }, "IX_HTodoList");
 
             entity.Property(e => e.HCBatchNum).HasMaxLength(50);
             entity.Property(e => e.HCreate).HasMaxLength(100);
@@ -2871,6 +3947,36 @@ public partial class HochiSystemContext : DbContext
                 .IsUnicode(false);
         });
 
+        modelBuilder.Entity<MemberBasicInfo>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("MemberBasicInfo");
+
+            entity.Property(e => e.AreaHeadName).HasMaxLength(793);
+            entity.Property(e => e.AreaName).HasMaxLength(255);
+            entity.Property(e => e.CarrierName)
+                .HasMaxLength(4)
+                .IsUnicode(false);
+            entity.Property(e => e.HArea).HasMaxLength(255);
+            entity.Property(e => e.HAxisType).HasMaxLength(200);
+            entity.Property(e => e.HLightEnvoy)
+                .HasMaxLength(2)
+                .IsUnicode(false);
+            entity.Property(e => e.HPeriod).HasMaxLength(25);
+            entity.Property(e => e.HRName).HasMaxLength(50);
+            entity.Property(e => e.HSystemName).HasMaxLength(255);
+            entity.Property(e => e.HTeamID).HasMaxLength(50);
+            entity.Property(e => e.HUsername).HasMaxLength(255);
+            entity.Property(e => e.HeaderName).HasMaxLength(4000);
+            entity.Property(e => e.LAreaName).HasMaxLength(255);
+            entity.Property(e => e.MMentorName).HasMaxLength(793);
+            entity.Property(e => e.MentorName).HasMaxLength(793);
+            entity.Property(e => e.RainbowName)
+                .HasMaxLength(4)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<MemberList>(entity =>
         {
             entity
@@ -2880,6 +3986,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.CountryTW).HasMaxLength(20);
             entity.Property(e => e.HAccount).HasMaxLength(255);
             entity.Property(e => e.HArea).HasMaxLength(255);
+            entity.Property(e => e.HAxisType).HasMaxLength(200);
             entity.Property(e => e.HBirth).HasMaxLength(50);
             entity.Property(e => e.HCPostal).HasMaxLength(50);
             entity.Property(e => e.HCTel).HasMaxLength(50);
@@ -2999,6 +4106,7 @@ public partial class HochiSystemContext : DbContext
                 .HasNoKey()
                 .ToView("OrderList_Detail");
 
+            entity.Property(e => e.HAttend).HasMaxLength(4000);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HDCode).HasMaxLength(30);
             entity.Property(e => e.HDPoint).HasMaxLength(30);
@@ -3397,6 +4505,13 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.state).HasColumnType("text");
             entity.Property(e => e.sustain).HasColumnType("text");
             entity.Property(e => e.txt_id).HasColumnType("text");
+        });
+
+        modelBuilder.Entity<sqlmapoutput>(entity =>
+        {
+            entity.HasKey(e => e.id).HasName("PK__sqlmapou__3213E83F94E896EF");
+
+            entity.Property(e => e.data).HasMaxLength(4000);
         });
 
         modelBuilder.Entity<ssqlinjection>(entity =>

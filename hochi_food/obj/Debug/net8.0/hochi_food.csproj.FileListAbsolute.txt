@@ -135,11 +135,6 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\hochi_food.Mv
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\hochi_food.sourcelink.json
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets.development.json
-C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets\msbuild.hochi_food.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets\msbuild.build.hochi_food.props
-C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.hochi_food.props
-C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.hochi_food.props
-C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\scopedcss\bundle\hochi_food.styles.css
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\hochi_food.csproj.Up2Date
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\hochi_food.dll
@@ -149,5 +144,9 @@ C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\hochi_food.ge
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\ref\hochi_food.dll
 C:\Users\egrou\source\repos\hochi_food\hochi_food\bin\Debug\net8.0\hochi_food.staticwebassets.endpoints.json
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets\msbuild.hochi_food.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\egrou\source\repos\hochi_food\hochi_food\obj\Debug\net8.0\staticwebassets.build.json.cache

@@ -7,6 +7,8 @@ public partial class HDonationItem
 {
     public int HID { get; set; }
 
+    public string? HDItemCode { get; set; }
+
     public int? HDPurposeID { get; set; }
 
     public string? HDItem { get; set; }

@@ -70,4 +70,12 @@ public partial class CourseList
     public int? HSerial { get; set; }
 
     public string? HIRestriction { get; set; }
+
+    public int HRollcallYN { get; set; }
+
+    public int? HBookByDateYN { get; set; }
+
+    public int? HCCPeriodYN { get; set; }
+
+    public int? HCCPeriodDItem { get; set; }
 }

@@ -41,6 +41,8 @@ public partial class OrderList_Front
 
     public int? HCPkgYN { get; set; }
 
+    public int? HBookByDateYN { get; set; }
+
     public string? ItemStatus { get; set; }
 
     public string? HCXLHandleStatus { get; set; }

@@ -123,6 +123,8 @@ public partial class HCourseBooking
 
     public int? HCourseDonate { get; set; }
 
+    public int? HBookByDateYN { get; set; }
+
     public int? HItemStatus { get; set; }
 
     public int? HStatus { get; set; }
@@ -194,4 +196,6 @@ public partial class HCourseBooking
     /// 是否願意將捐款資料上傳國稅局
     /// </summary>
     public int? HUploadIRS { get; set; }
+
+    public int? HHWStatus { get; set; }
 }

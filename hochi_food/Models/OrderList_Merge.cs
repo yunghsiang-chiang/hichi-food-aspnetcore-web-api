@@ -180,4 +180,6 @@ public partial class OrderList_Merge
     public string? HCourseLinkRelay { get; set; }
 
     public string? HCourseLinkTask { get; set; }
+
+    public int? HBookByDateYN { get; set; }
 }

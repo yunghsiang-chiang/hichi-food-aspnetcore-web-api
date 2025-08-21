@@ -7,6 +7,8 @@ public partial class HDPurpose
 {
     public int HID { get; set; }
 
+    public string? HDTypeCode { get; set; }
+
     public string? HDPurpose1 { get; set; }
 
     public int? HStatus { get; set; }

@@ -7,6 +7,8 @@ public partial class HCCRegular
 {
     public int HID { get; set; }
 
+    public string? HCCPCodeHead { get; set; }
+
     /// <summary>
     /// 捐款用途HID
     /// </summary>
@@ -52,6 +54,8 @@ public partial class HCCRegular
     /// </summary>
     public int? HMaxTimes { get; set; }
 
+    public string? HCCPSDate { get; set; }
+
     /// <summary>
     /// 開放捐款日期
     /// </summary>
@@ -61,6 +65,10 @@ public partial class HCCRegular
     /// 截止捐款日期
     /// </summary>
     public string? HDExpDate { get; set; }
+
+    public int? HOpenBlessing { get; set; }
+
+    public int? HOpenPaper { get; set; }
 
     public int? HStatus { get; set; }
 

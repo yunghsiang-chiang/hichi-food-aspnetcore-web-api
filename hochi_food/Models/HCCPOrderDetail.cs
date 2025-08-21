@@ -91,16 +91,6 @@ public partial class HCCPOrderDetail
     /// </summary>
     public string? HRtnMsg { get; set; }
 
-    public int? HStatus { get; set; }
-
-    public string? HCreate { get; set; }
-
-    public string? HCreateDT { get; set; }
-
-    public string? HModify { get; set; }
-
-    public string? HModifyDT { get; set; }
-
     /// <summary>
     /// 是否為紙本
     /// </summary>
@@ -115,4 +105,14 @@ public partial class HCCPOrderDetail
     /// 捐款項目
     /// </summary>
     public string? HDItem { get; set; }
+
+    public int? HStatus { get; set; }
+
+    public string? HCreate { get; set; }
+
+    public string? HCreateDT { get; set; }
+
+    public string? HModify { get; set; }
+
+    public string? HModifyDT { get; set; }
 }

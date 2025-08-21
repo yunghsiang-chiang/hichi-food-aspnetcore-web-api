@@ -23,7 +23,7 @@ public partial class OrderList_Detail
 
     public int? HPMethod { get; set; }
 
-    public int? HAttend { get; set; }
+    public string? HAttend { get; set; }
 
     public int? HPAmount { get; set; }
 
@@ -71,6 +71,8 @@ public partial class OrderList_Detail
 
     public string? HDateRange { get; set; }
 
+    public string? HDate { get; set; }
+
     public string? HCourseLink { get; set; }
 
     public string? HSATCourseLink { get; set; }
@@ -88,4 +90,6 @@ public partial class OrderList_Detail
     public string? HPlaceName { get; set; }
 
     public string? HCreateDT { get; set; }
+
+    public int? HBookByDateYN { get; set; }
 }

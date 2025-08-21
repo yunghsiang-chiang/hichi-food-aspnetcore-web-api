@@ -11,7 +11,7 @@ public partial class HRollCall
 
     public int? HMemberID { get; set; }
 
-    public string? HRCDate { get; set; }
+    public DateOnly? HRCDate { get; set; }
 
     public int? HAStatus { get; set; }
 
