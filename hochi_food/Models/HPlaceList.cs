@@ -22,4 +22,12 @@ public partial class HPlaceList
     public int? HStatus { get; set; }
 
     public int? strHAreaID { get; set; }
+
+    public string? HPlaceLevel { get; set; }
+
+    public string? HAddress { get; set; }
+
+    public string? HManager { get; set; }
+
+    public string? HUserName { get; set; }
 }

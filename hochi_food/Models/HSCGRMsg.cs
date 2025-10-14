@@ -82,6 +82,11 @@ public partial class HSCGRMsg
     /// </summary>
     public int? HOpenObject { get; set; }
 
+    /// <summary>
+    /// 是否通知導師及帶領導師
+    /// </summary>
+    public bool? HNotifyMentor { get; set; }
+
     public int? HStatus { get; set; }
 
     public string? HCreate { get; set; }
