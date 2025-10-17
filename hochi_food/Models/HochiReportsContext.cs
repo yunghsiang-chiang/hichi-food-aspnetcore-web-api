@@ -47,6 +47,16 @@ public partial class HochiReportsContext : DbContext
 
     public virtual DbSet<UserReports> UserReports { get; set; }
 
+    public virtual DbSet<dim_group> dim_group { get; set; }
+
+    public virtual DbSet<dim_member> dim_member { get; set; }
+
+    public virtual DbSet<event_contact_log> event_contact_log { get; set; }
+
+    public virtual DbSet<person_identity> person_identity { get; set; }
+
+    public virtual DbSet<v_crm_people_search> v_crm_people_search { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Assignment>(entity =>
@@ -230,6 +240,8 @@ public partial class HochiReportsContext : DbContext
         {
             entity.HasKey(e => e.NewFriendId).HasName("PK__NewFrien__BD7BF62ED0E580F1");
 
+            entity.HasIndex(e => e.FullNameNorm, "IX_NewFriend_FullNameNorm");
+
             entity.HasIndex(e => e.MobilePhone, "IX_NewFriend_MobilePhone")
                 .IsUnique()
                 .HasFilter("([MobilePhone] IS NOT NULL)");
@@ -369,6 +381,88 @@ public partial class HochiReportsContext : DbContext
             entity.Property(e => e.table_name).HasMaxLength(100);
             entity.Property(e => e.user_id).HasMaxLength(50);
             entity.Property(e => e.x_axis).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<dim_group>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("dim_group");
+
+            entity.Property(e => e.node_name).HasMaxLength(255);
+            entity.Property(e => e.node_type)
+                .HasMaxLength(16)
+                .IsUnicode(false);
+            entity.Property(e => e.parent_type)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<dim_member>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("dim_member");
+
+            entity.Property(e => e.area_name).HasMaxLength(255);
+            entity.Property(e => e.birth_text).HasMaxLength(50);
+            entity.Property(e => e.full_name).HasMaxLength(255);
+            entity.Property(e => e.larea_name).HasMaxLength(255);
+            entity.Property(e => e.line_user_id).HasMaxLength(150);
+            entity.Property(e => e.mobile_norm).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<event_contact_log>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("event_contact_log");
+
+            entity.Property(e => e.event_ts).HasColumnType("datetime");
+            entity.Property(e => e.event_type)
+                .HasMaxLength(11)
+                .IsUnicode(false);
+            entity.Property(e => e.intent_level).HasMaxLength(20);
+            entity.Property(e => e.memo).HasMaxLength(1000);
+            entity.Property(e => e.method).HasMaxLength(30);
+            entity.Property(e => e.next_action).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<person_identity>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("person_identity");
+
+            entity.Property(e => e.created_at).HasColumnType("datetime");
+            entity.Property(e => e.dupe_key).HasMaxLength(255);
+            entity.Property(e => e.full_name).HasMaxLength(255);
+            entity.Property(e => e.full_name_norm).HasMaxLength(50);
+            entity.Property(e => e.line_user_id).HasMaxLength(150);
+            entity.Property(e => e.mobile_norm).HasMaxLength(50);
+            entity.Property(e => e.person_key)
+                .HasMaxLength(15)
+                .IsUnicode(false);
+            entity.Property(e => e.src_table)
+                .HasMaxLength(9)
+                .IsUnicode(false);
+            entity.Property(e => e.updated_at).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<v_crm_people_search>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_crm_people_search");
+
+            entity.Property(e => e.Address).HasMaxLength(200);
+            entity.Property(e => e.City).HasMaxLength(50);
+            entity.Property(e => e.District).HasMaxLength(50);
+            entity.Property(e => e.full_name).HasMaxLength(255);
+            entity.Property(e => e.mobile_norm).HasMaxLength(4000);
+            entity.Property(e => e.source_type)
+                .HasMaxLength(3)
+                .IsUnicode(false);
         });
 
         OnModelCreatingPartial(modelBuilder);
