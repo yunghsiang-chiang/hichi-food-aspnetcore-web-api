@@ -15,8 +15,6 @@ public partial class HBlessedPerson
 
     public string? HCounty { get; set; }
 
-    public string? HRelation { get; set; }
-
     public string? HAudioUrl { get; set; }
 
     public int? HAudioSec { get; set; }
@@ -25,7 +23,7 @@ public partial class HBlessedPerson
 
     public DateTime HCreatedAt { get; set; }
 
-    public DateTime? HUpdatedAt { get; set; }
+    public DateTime HUpdatedAt { get; set; }
 
     public virtual ICollection<HApplicationItem> HApplicationItem { get; set; } = new List<HApplicationItem>();
 }

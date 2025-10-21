@@ -9,7 +9,7 @@ public partial class HApplicationItem
 
     public int HApplicationId { get; set; }
 
-    public int HBlessedPersonId { get; set; }
+    public int? HBlessedPersonId { get; set; }
 
     public string HStatus { get; set; } = null!;
 
@@ -19,7 +19,9 @@ public partial class HApplicationItem
 
     public DateTime? HLockedAt { get; set; }
 
-    public virtual HApplication HApplication { get; set; } = null!;
+    public string? HBlessedPersonName { get; set; }
 
-    public virtual HBlessedPerson HBlessedPerson { get; set; } = null!;
+    public int? HApplicantHID { get; set; }
+
+    public virtual HBlessedPerson? HBlessedPerson { get; set; }
 }

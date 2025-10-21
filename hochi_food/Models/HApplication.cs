@@ -11,7 +11,7 @@ public partial class HApplication
 
     public string HPhase { get; set; } = null!;
 
-    public DateTime HSubmitAt { get; set; }
+    public DateOnly HSubmitAt { get; set; }
 
     public string? HAudioUrl { get; set; }
 
@@ -25,7 +25,5 @@ public partial class HApplication
 
     public byte[]? HBatchKey { get; set; }
 
-    public virtual ICollection<HApplicationItem> HApplicationItem { get; set; } = new List<HApplicationItem>();
-
-    public virtual ICollection<HCoApplicant> HCoApplicant { get; set; } = new List<HCoApplicant>();
+    public virtual ICollection<HCCPeriod> HCCPeriod { get; set; } = new List<HCCPeriod>();
 }

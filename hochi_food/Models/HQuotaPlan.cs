@@ -27,11 +27,11 @@ public partial class HQuotaPlan
 
     public bool HAutoCloseOnFull { get; set; }
 
-    public DateTime? HOpenFrom { get; set; }
+    public DateOnly HOpenFrom { get; set; }
 
-    public DateTime? HOpenTo { get; set; }
+    public DateOnly HOpenTo { get; set; }
 
-    public DateTime HLastUpdated { get; set; }
+    public DateOnly HLastUpdated { get; set; }
 
     public virtual ICollection<HPhaseWindow> HPhaseWindow { get; set; } = new List<HPhaseWindow>();
 }

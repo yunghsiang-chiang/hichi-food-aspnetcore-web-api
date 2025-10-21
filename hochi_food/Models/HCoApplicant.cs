@@ -18,6 +18,4 @@ public partial class HCoApplicant
     public bool? HIsGroup { get; set; }
 
     public int? HGroupNumber { get; set; }
-
-    public virtual HApplication HApplication { get; set; } = null!;
 }

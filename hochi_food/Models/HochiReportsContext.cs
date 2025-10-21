@@ -19,9 +19,23 @@ public partial class HochiReportsContext : DbContext
 
     public virtual DbSet<DuplicateQueue> DuplicateQueue { get; set; }
 
+    public virtual DbSet<HApplication> HApplication { get; set; }
+
+    public virtual DbSet<HApplicationItem> HApplicationItem { get; set; }
+
+    public virtual DbSet<HBlessedPerson> HBlessedPerson { get; set; }
+
+    public virtual DbSet<HCCPeriod> HCCPeriod { get; set; }
+
+    public virtual DbSet<HCCPeriodDetail> HCCPeriodDetail { get; set; }
+
+    public virtual DbSet<HCoApplicant> HCoApplicant { get; set; }
+
     public virtual DbSet<HPhaseWindow> HPhaseWindow { get; set; }
 
     public virtual DbSet<HQuotaPlan> HQuotaPlan { get; set; }
+
+    public virtual DbSet<HRegistrationBlessingDetailsV> HRegistrationBlessingDetailsV { get; set; }
 
     public virtual DbSet<HierarchyStructure> HierarchyStructure { get; set; }
 
@@ -55,7 +69,37 @@ public partial class HochiReportsContext : DbContext
 
     public virtual DbSet<person_identity> person_identity { get; set; }
 
+    public virtual DbSet<v_active_nf_90d> v_active_nf_90d { get; set; }
+
     public virtual DbSet<v_crm_people_search> v_crm_people_search { get; set; }
+
+    public virtual DbSet<v_event_contact_log> v_event_contact_log { get; set; }
+
+    public virtual DbSet<v_first_attend> v_first_attend { get; set; }
+
+    public virtual DbSet<v_first_attend_30d> v_first_attend_30d { get; set; }
+
+    public virtual DbSet<v_first_attend_90d> v_first_attend_90d { get; set; }
+
+    public virtual DbSet<v_first_attend_per_edu> v_first_attend_per_edu { get; set; }
+
+    public virtual DbSet<v_first_done> v_first_done { get; set; }
+
+    public virtual DbSet<v_first_touch> v_first_touch { get; set; }
+
+    public virtual DbSet<v_funnel_30d> v_funnel_30d { get; set; }
+
+    public virtual DbSet<v_kpi_coverage90> v_kpi_coverage90 { get; set; }
+
+    public virtual DbSet<v_kpi_coverage90_area> v_kpi_coverage90_area { get; set; }
+
+    public virtual DbSet<v_kpi_coverage90_by_scope> v_kpi_coverage90_by_scope { get; set; }
+
+    public virtual DbSet<v_kpi_growth_conversion> v_kpi_growth_conversion { get; set; }
+
+    public virtual DbSet<v_person_nf_to_edu> v_person_nf_to_edu { get; set; }
+
+    public virtual DbSet<v_today_tpe> v_today_tpe { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -119,6 +163,102 @@ public partial class HochiReportsContext : DbContext
                 .HasDefaultValue("待處理");
         });
 
+        modelBuilder.Entity<HApplication>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HApplica__C7551547556A6D16");
+
+            entity.HasIndex(e => new { e.HApplicantHID, e.HPhase, e.HSubmitAt }, "IX_HApplication_Key").IsDescending(false, false, true);
+
+            entity.Property(e => e.HApplicantHID).HasMaxLength(50);
+            entity.Property(e => e.HAudioUrl).HasMaxLength(300);
+            entity.Property(e => e.HBatchKey).HasMaxLength(20);
+            entity.Property(e => e.HCoApplicantsNote).HasMaxLength(500);
+            entity.Property(e => e.HMandateStatus).HasMaxLength(20);
+            entity.Property(e => e.HMandateType).HasMaxLength(20);
+            entity.Property(e => e.HPhase).HasMaxLength(16);
+            entity.Property(e => e.HSubmitAt).HasDefaultValueSql("(sysutcdatetime())");
+        });
+
+        modelBuilder.Entity<HApplicationItem>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HApplica__C755154728F46893");
+
+            entity.HasIndex(e => e.HApplicationId, "IX_HApplicationItem_AppId");
+
+            entity.HasIndex(e => e.HApplicantHID, "IX_HApplicationItem_ApplicantHID");
+
+            entity.HasIndex(e => new { e.HStatus, e.HAssignedYear }, "IX_HApplicationItem_Status");
+
+            entity.Property(e => e.HBlessedPersonName).HasMaxLength(100);
+            entity.Property(e => e.HLastEditAt).HasColumnType("datetime");
+            entity.Property(e => e.HLockedAt).HasColumnType("datetime");
+            entity.Property(e => e.HStatus).HasMaxLength(20);
+
+            entity.HasOne(d => d.HBlessedPerson).WithMany(p => p.HApplicationItem)
+                .HasForeignKey(d => d.HBlessedPersonId)
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasConstraintName("FK_HApplicationItem_HBlessedPerson");
+        });
+
+        modelBuilder.Entity<HBlessedPerson>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HBlessed__C7551547ADD68A9A");
+
+            entity.HasIndex(e => new { e.HLegalName, e.HAppealName }, "IX_HBlessedPerson_Name");
+
+            entity.Property(e => e.HAppealName).HasMaxLength(50);
+            entity.Property(e => e.HAudioUrl).HasMaxLength(300);
+            entity.Property(e => e.HCounty).HasMaxLength(50);
+            entity.Property(e => e.HCreatedAt)
+                .HasDefaultValueSql("(sysutcdatetime())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.HCreatedByHID).HasMaxLength(50);
+            entity.Property(e => e.HLegalName).HasMaxLength(50);
+            entity.Property(e => e.HUpdatedAt).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<HCCPeriod>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HCCPerio__C75515476E432F9C");
+
+            entity.Property(e => e.HAuthDocUrl).HasMaxLength(300);
+            entity.Property(e => e.HAuthStatus).HasMaxLength(20);
+            entity.Property(e => e.HAuthType).HasMaxLength(20);
+            entity.Property(e => e.HUpdatedAt).HasDefaultValueSql("(sysutcdatetime())");
+
+            entity.HasOne(d => d.HApplication).WithMany(p => p.HCCPeriod)
+                .HasForeignKey(d => d.HApplicationId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__HCCPeriod__HAppl__0A688BB1");
+        });
+
+        modelBuilder.Entity<HCCPeriodDetail>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HCCPerio__C7551547E862E7B7");
+
+            entity.Property(e => e.HAmount).HasColumnType("decimal(12, 2)");
+            entity.Property(e => e.HChargeStatus).HasMaxLength(20);
+            entity.Property(e => e.HNote).HasMaxLength(200);
+
+            entity.HasOne(d => d.HCCPeriod).WithMany(p => p.HCCPeriodDetail)
+                .HasForeignKey(d => d.HCCPeriodId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__HCCPeriod__HCCPe__0E391C95");
+        });
+
+        modelBuilder.Entity<HCoApplicant>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HCoAppli__C755154768E737B8");
+
+            entity.HasIndex(e => e.HApplicationId, "IX_HCoApplicant_AppId");
+
+            entity.HasIndex(e => e.HApplicationId, "IX_HCoApplicant_ApplicationId");
+
+            entity.Property(e => e.HCoApplicantName).HasMaxLength(50);
+            entity.Property(e => e.HDharmaSeat).HasMaxLength(100);
+            entity.Property(e => e.HPeriod).HasMaxLength(50);
+        });
+
         modelBuilder.Entity<HPhaseWindow>(entity =>
         {
             entity.HasKey(e => e.HId).HasName("PK__HPhaseWi__C7551547DEF5FFF2");
@@ -145,12 +285,27 @@ public partial class HochiReportsContext : DbContext
             entity.HasIndex(e => new { e.HYear, e.HPhase }, "UQ_HQuotaPlan").IsUnique();
 
             entity.Property(e => e.HAutoCloseOnFull).HasDefaultValue(true);
-            entity.Property(e => e.HLastUpdated)
-                .HasDefaultValueSql("(getutcdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.HOpenFrom).HasColumnType("datetime");
-            entity.Property(e => e.HOpenTo).HasColumnType("datetime");
+            entity.Property(e => e.HLastUpdated).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.HPhase).HasMaxLength(16);
+        });
+
+        modelBuilder.Entity<HRegistrationBlessingDetailsV>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("HRegistrationBlessingDetailsV");
+
+            entity.Property(e => e.HAppealName).HasMaxLength(50);
+            entity.Property(e => e.HApplicantHID).HasMaxLength(50);
+            entity.Property(e => e.HAudioUrl).HasMaxLength(300);
+            entity.Property(e => e.HCoApplicants).HasMaxLength(4000);
+            entity.Property(e => e.HCounty).HasMaxLength(50);
+            entity.Property(e => e.HLegalName).HasMaxLength(50);
+            entity.Property(e => e.HMandateStatus).HasMaxLength(20);
+            entity.Property(e => e.HMandateType).HasMaxLength(20);
+            entity.Property(e => e.HPhase).HasMaxLength(16);
+            entity.Property(e => e.HRelation).HasMaxLength(50);
+            entity.Property(e => e.HStatus).HasMaxLength(20);
         });
 
         modelBuilder.Entity<HierarchyStructure>(entity =>
@@ -227,6 +382,10 @@ public partial class HochiReportsContext : DbContext
         {
             entity.HasKey(e => e.InteractionId).HasName("PK__Interact__922C0496E9AFBD8D");
 
+            entity.HasIndex(e => new { e.Method, e.CreatedAt }, "IX_Interactions_Method_CreatedAt");
+
+            entity.HasIndex(e => new { e.NewFriendId, e.CreatedAt }, "IX_Interactions_NewFriendId_CreatedAt");
+
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
@@ -266,6 +425,8 @@ public partial class HochiReportsContext : DbContext
         modelBuilder.Entity<NewFriendAssignment>(entity =>
         {
             entity.HasKey(e => e.AssignmentId).HasName("PK__NewFrien__32499E77DDA9907A");
+
+            entity.HasIndex(e => new { e.NewFriendId, e.FirstMetAt }, "IX_NewFriendAssignment_NewFriendId_FirstMetAt");
 
             entity.Property(e => e.Channel).HasMaxLength(30);
             entity.Property(e => e.FirstMetAt)
@@ -449,6 +610,13 @@ public partial class HochiReportsContext : DbContext
             entity.Property(e => e.updated_at).HasColumnType("datetime");
         });
 
+        modelBuilder.Entity<v_active_nf_90d>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_active_nf_90d");
+        });
+
         modelBuilder.Entity<v_crm_people_search>(entity =>
         {
             entity
@@ -463,6 +631,134 @@ public partial class HochiReportsContext : DbContext
             entity.Property(e => e.source_type)
                 .HasMaxLength(3)
                 .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<v_event_contact_log>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_event_contact_log");
+
+            entity.Property(e => e.EventAt).HasColumnType("datetime");
+            entity.Property(e => e.EventType).HasMaxLength(11);
+            entity.Property(e => e.IntentLevel).HasMaxLength(20);
+            entity.Property(e => e.Memo).HasMaxLength(1000);
+            entity.Property(e => e.Method).HasMaxLength(20);
+            entity.Property(e => e.NextAction).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<v_first_attend>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_first_attend");
+
+            entity.Property(e => e.FirstAttendAt).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<v_first_attend_30d>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_first_attend_30d");
+        });
+
+        modelBuilder.Entity<v_first_attend_90d>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_first_attend_90d");
+        });
+
+        modelBuilder.Entity<v_first_attend_per_edu>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_first_attend_per_edu");
+
+            entity.Property(e => e.first_attend_at).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<v_first_done>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_first_done");
+
+            entity.Property(e => e.FirstDoneAt).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<v_first_touch>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_first_touch");
+
+            entity.Property(e => e.FirstTouchAt).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<v_funnel_30d>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_funnel_30d");
+        });
+
+        modelBuilder.Entity<v_kpi_coverage90>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_kpi_coverage90");
+
+            entity.Property(e => e.Coverage90).HasColumnType("decimal(9, 4)");
+        });
+
+        modelBuilder.Entity<v_kpi_coverage90_area>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_kpi_coverage90_area");
+
+            entity.Property(e => e.area_name).HasMaxLength(255);
+            entity.Property(e => e.coverage90).HasColumnType("decimal(9, 4)");
+            entity.Property(e => e.larea_name).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<v_kpi_coverage90_by_scope>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_kpi_coverage90_by_scope");
+
+            entity.Property(e => e.Coverage90).HasColumnType("decimal(9, 4)");
+        });
+
+        modelBuilder.Entity<v_kpi_growth_conversion>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_kpi_growth_conversion");
+
+            entity.Property(e => e.first_attend_rate).HasColumnType("decimal(9, 4)");
+            entity.Property(e => e.window_tag)
+                .HasMaxLength(3)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<v_person_nf_to_edu>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_person_nf_to_edu");
+
+            entity.Property(e => e.mobile_norm).HasMaxLength(4000);
+        });
+
+        modelBuilder.Entity<v_today_tpe>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_today_tpe");
         });
 
         OnModelCreatingPartial(modelBuilder);
