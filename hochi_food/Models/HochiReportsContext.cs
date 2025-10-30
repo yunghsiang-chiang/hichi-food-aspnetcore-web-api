@@ -23,6 +23,8 @@ public partial class HochiReportsContext : DbContext
 
     public virtual DbSet<HApplicationItem> HApplicationItem { get; set; }
 
+    public virtual DbSet<HApplicationItemCC> HApplicationItemCC { get; set; }
+
     public virtual DbSet<HBlessedPerson> HBlessedPerson { get; set; }
 
     public virtual DbSet<HCCPeriod> HCCPeriod { get; set; }
@@ -189,6 +191,12 @@ public partial class HochiReportsContext : DbContext
 
             entity.HasIndex(e => new { e.HStatus, e.HAssignedYear }, "IX_HApplicationItem_Status");
 
+            entity.HasIndex(e => new { e.HApplicationId, e.HBlessedPersonId }, "UX_HApplicationItem_PersonId")
+                .IsUnique()
+                .HasFilter("([HBlessedPersonId] IS NOT NULL)");
+
+            entity.HasIndex(e => new { e.HApplicationId, e.HBlessedPersonName }, "UX_HApplicationItem_PersonName").IsUnique();
+
             entity.Property(e => e.HBlessedPersonName).HasMaxLength(100);
             entity.Property(e => e.HLastEditAt).HasColumnType("datetime");
             entity.Property(e => e.HLockedAt).HasColumnType("datetime");
@@ -198,6 +206,26 @@ public partial class HochiReportsContext : DbContext
                 .HasForeignKey(d => d.HBlessedPersonId)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_HApplicationItem_HBlessedPerson");
+        });
+
+        modelBuilder.Entity<HApplicationItemCC>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HApplica__C755154723EE3792");
+
+            entity.HasIndex(e => e.HCCPeriodCode, "IX_HApplicationItemCC_Period");
+
+            entity.HasIndex(e => new { e.HApplicationItemId, e.HCCPeriodCode }, "UX_HApplicationItemCC_Item_Period").IsUnique();
+
+            entity.Property(e => e.HCCPeriodCode).HasMaxLength(50);
+            entity.Property(e => e.HCreatedAt)
+                .HasPrecision(0)
+                .HasDefaultValueSql("(sysdatetime())");
+            entity.Property(e => e.HUpdatedAt).HasPrecision(0);
+
+            entity.HasOne(d => d.HApplicationItem).WithMany(p => p.HApplicationItemCC)
+                .HasForeignKey(d => d.HApplicationItemId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_HApplicationItemCC_Item");
         });
 
         modelBuilder.Entity<HBlessedPerson>(entity =>
@@ -215,35 +243,6 @@ public partial class HochiReportsContext : DbContext
             entity.Property(e => e.HCreatedByHID).HasMaxLength(50);
             entity.Property(e => e.HLegalName).HasMaxLength(50);
             entity.Property(e => e.HUpdatedAt).HasColumnType("datetime");
-        });
-
-        modelBuilder.Entity<HCCPeriod>(entity =>
-        {
-            entity.HasKey(e => e.HId).HasName("PK__HCCPerio__C75515476E432F9C");
-
-            entity.Property(e => e.HAuthDocUrl).HasMaxLength(300);
-            entity.Property(e => e.HAuthStatus).HasMaxLength(20);
-            entity.Property(e => e.HAuthType).HasMaxLength(20);
-            entity.Property(e => e.HUpdatedAt).HasDefaultValueSql("(sysutcdatetime())");
-
-            entity.HasOne(d => d.HApplication).WithMany(p => p.HCCPeriod)
-                .HasForeignKey(d => d.HApplicationId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__HCCPeriod__HAppl__0A688BB1");
-        });
-
-        modelBuilder.Entity<HCCPeriodDetail>(entity =>
-        {
-            entity.HasKey(e => e.HId).HasName("PK__HCCPerio__C7551547E862E7B7");
-
-            entity.Property(e => e.HAmount).HasColumnType("decimal(12, 2)");
-            entity.Property(e => e.HChargeStatus).HasMaxLength(20);
-            entity.Property(e => e.HNote).HasMaxLength(200);
-
-            entity.HasOne(d => d.HCCPeriod).WithMany(p => p.HCCPeriodDetail)
-                .HasForeignKey(d => d.HCCPeriodId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__HCCPeriod__HCCPe__0E391C95");
         });
 
         modelBuilder.Entity<HCoApplicant>(entity =>

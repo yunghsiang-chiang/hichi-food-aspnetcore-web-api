@@ -5031,6 +5031,10 @@
           "compensatory_leave_hours": {
             "type": "number",
             "format": "float"
+          },
+          "personal_sick_hours": {
+            "type": "number",
+            "format": "float"
           }
         },
         "additionalProperties": false

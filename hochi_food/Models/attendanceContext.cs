@@ -417,6 +417,7 @@ public partial class attendanceContext : DbContext
                 .HasMaxLength(45)
                 .HasComment("姓名");
             entity.Property(e => e.personal_leave_hours).HasComment("事假");
+            entity.Property(e => e.personal_sick_hours).HasDefaultValueSql("'240'");
             entity.Property(e => e.special_vacation_hours).HasComment("特休時數");
             entity.Property(e => e.start_work)
                 .HasComment("到職日")

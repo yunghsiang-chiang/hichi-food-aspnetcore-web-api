@@ -5325,11 +5325,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\hochi_food.csproj",
+      "projectUniqueName": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\hochi_food.csproj",
       "projectName": "hochi_food",
-      "projectPath": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\hochi_food.csproj",
+      "projectPath": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\hochi_food.csproj",
       "packagesPath": "C:\\Users\\egrou\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\obj\\",
+      "outputPath": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

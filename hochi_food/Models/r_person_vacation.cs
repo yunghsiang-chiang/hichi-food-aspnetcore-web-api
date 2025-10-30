@@ -38,4 +38,6 @@ public partial class r_person_vacation
     /// 補休
     /// </summary>
     public float compensatory_leave_hours { get; set; }
+
+    public float personal_sick_hours { get; set; }
 }

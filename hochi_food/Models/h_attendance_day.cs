@@ -35,8 +35,5 @@ public partial class h_attendance_day
     /// </summary>
     public int morning_meeting { get; set; }
 
-    /// <summary>
-    /// 晨下煉完紫光系
-    /// </summary>
     public int morning_light_down_after_purple_light { get; set; }
 }

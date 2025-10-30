@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F/8EBlbnwhY=",
+  "dgSpecHash": "Ht71eC5KbKk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\hochi_food.csproj",
+  "projectFilePath": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\hochi_food.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\egrou\\.nuget\\packages\\azure.core\\1.40.0\\azure.core.1.40.0.nupkg.sha512",
     "C:\\Users\\egrou\\.nuget\\packages\\azure.identity\\1.12.1\\azure.identity.1.12.1.nupkg.sha512",
