@@ -25,5 +25,9 @@ public partial class HBlessedPerson
 
     public DateTime HUpdatedAt { get; set; }
 
+    public string? HAppealLang { get; set; }
+
+    public string? HLegalLang { get; set; }
+
     public virtual ICollection<HApplicationItem> HApplicationItem { get; set; } = new List<HApplicationItem>();
 }

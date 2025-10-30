@@ -17,5 +17,7 @@ public partial class HApplicationItemCC
 
     public DateTime? HUpdatedAt { get; set; }
 
+    public int? HApplyCardId { get; set; }
+
     public virtual HApplicationItem HApplicationItem { get; set; } = null!;
 }

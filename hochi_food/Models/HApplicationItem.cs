@@ -23,7 +23,11 @@ public partial class HApplicationItem
 
     public int? HApplicantHID { get; set; }
 
-    public virtual ICollection<HApplicationItemCC> HApplicationItemCC { get; set; } = new List<HApplicationItemCC>();
+    public string? HBlessedAppealLang { get; set; }
+
+    public string? HBlessedLegalLang { get; set; }
+
+    public virtual HApplicationItemCC? HApplicationItemCC { get; set; }
 
     public virtual HBlessedPerson? HBlessedPerson { get; set; }
 }

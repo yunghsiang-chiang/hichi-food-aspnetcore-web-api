@@ -25,11 +25,9 @@ public partial class HochiReportsContext : DbContext
 
     public virtual DbSet<HApplicationItemCC> HApplicationItemCC { get; set; }
 
+    public virtual DbSet<HApplyCard> HApplyCard { get; set; }
+
     public virtual DbSet<HBlessedPerson> HBlessedPerson { get; set; }
-
-    public virtual DbSet<HCCPeriod> HCCPeriod { get; set; }
-
-    public virtual DbSet<HCCPeriodDetail> HCCPeriodDetail { get; set; }
 
     public virtual DbSet<HCoApplicant> HCoApplicant { get; set; }
 
@@ -197,6 +195,8 @@ public partial class HochiReportsContext : DbContext
 
             entity.HasIndex(e => new { e.HApplicationId, e.HBlessedPersonName }, "UX_HApplicationItem_PersonName").IsUnique();
 
+            entity.Property(e => e.HBlessedAppealLang).HasMaxLength(10);
+            entity.Property(e => e.HBlessedLegalLang).HasMaxLength(10);
             entity.Property(e => e.HBlessedPersonName).HasMaxLength(100);
             entity.Property(e => e.HLastEditAt).HasColumnType("datetime");
             entity.Property(e => e.HLockedAt).HasColumnType("datetime");
@@ -214,6 +214,10 @@ public partial class HochiReportsContext : DbContext
 
             entity.HasIndex(e => e.HCCPeriodCode, "IX_HApplicationItemCC_Period");
 
+            entity.HasIndex(e => e.HApplicationItemId, "UQ_ApplicationItemCC_Item")
+                .IsUnique()
+                .HasFilter("([HApplyCardId] IS NOT NULL)");
+
             entity.HasIndex(e => new { e.HApplicationItemId, e.HCCPeriodCode }, "UX_HApplicationItemCC_Item_Period").IsUnique();
 
             entity.Property(e => e.HCCPeriodCode).HasMaxLength(50);
@@ -222,10 +226,49 @@ public partial class HochiReportsContext : DbContext
                 .HasDefaultValueSql("(sysdatetime())");
             entity.Property(e => e.HUpdatedAt).HasPrecision(0);
 
-            entity.HasOne(d => d.HApplicationItem).WithMany(p => p.HApplicationItemCC)
-                .HasForeignKey(d => d.HApplicationItemId)
+            entity.HasOne(d => d.HApplicationItem).WithOne(p => p.HApplicationItemCC)
+                .HasForeignKey<HApplicationItemCC>(d => d.HApplicationItemId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_HApplicationItemCC_Item");
+        });
+
+        modelBuilder.Entity<HApplyCard>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HApplyCa__C7551547306AB365");
+
+            entity.HasIndex(e => e.HApplicantHID, "IX_HApplyCard_Applicant");
+
+            entity.Property(e => e.Alias).HasMaxLength(50);
+            entity.Property(e => e.Bank).HasMaxLength(50);
+            entity.Property(e => e.CVC).HasMaxLength(128);
+            entity.Property(e => e.CardHolder).HasMaxLength(50);
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.EDate)
+                .HasMaxLength(7)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.MM)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.No1).HasMaxLength(4);
+            entity.Property(e => e.No2).HasMaxLength(4);
+            entity.Property(e => e.No3).HasMaxLength(4);
+            entity.Property(e => e.No4).HasMaxLength(4);
+            entity.Property(e => e.PersonId).HasMaxLength(20);
+            entity.Property(e => e.Phone).HasMaxLength(30);
+            entity.Property(e => e.SDate)
+                .HasMaxLength(7)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.Times).HasDefaultValue(48);
+            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+            entity.Property(e => e.YY)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .IsFixedLength();
         });
 
         modelBuilder.Entity<HBlessedPerson>(entity =>
@@ -234,6 +277,7 @@ public partial class HochiReportsContext : DbContext
 
             entity.HasIndex(e => new { e.HLegalName, e.HAppealName }, "IX_HBlessedPerson_Name");
 
+            entity.Property(e => e.HAppealLang).HasMaxLength(10);
             entity.Property(e => e.HAppealName).HasMaxLength(50);
             entity.Property(e => e.HAudioUrl).HasMaxLength(300);
             entity.Property(e => e.HCounty).HasMaxLength(50);
@@ -241,6 +285,7 @@ public partial class HochiReportsContext : DbContext
                 .HasDefaultValueSql("(sysutcdatetime())")
                 .HasColumnType("datetime");
             entity.Property(e => e.HCreatedByHID).HasMaxLength(50);
+            entity.Property(e => e.HLegalLang).HasMaxLength(10);
             entity.Property(e => e.HLegalName).HasMaxLength(50);
             entity.Property(e => e.HUpdatedAt).HasColumnType("datetime");
         });

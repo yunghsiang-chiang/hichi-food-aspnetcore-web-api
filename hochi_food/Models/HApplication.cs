@@ -24,6 +24,4 @@ public partial class HApplication
     public string? HCoApplicantsNote { get; set; }
 
     public byte[]? HBatchKey { get; set; }
-
-    public virtual ICollection<HCCPeriod> HCCPeriod { get; set; } = new List<HCCPeriod>();
 }
