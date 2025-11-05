@@ -30,4 +30,6 @@ public partial class HExamPaperAnswer
     public string? HModify { get; set; }
 
     public string? HModifyDT { get; set; }
+
+    public string HCandidateNo { get; set; } = null!;
 }

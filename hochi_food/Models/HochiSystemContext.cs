@@ -2012,8 +2012,8 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCreate).HasMaxLength(100);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HExamBaseID).HasMaxLength(10);
-            entity.Property(e => e.HExamPaperClass).HasMaxLength(10);
-            entity.Property(e => e.HExamPaperNum).HasMaxLength(100);
+            entity.Property(e => e.HExamPaperClass).HasMaxLength(20);
+            entity.Property(e => e.HExamPaperNum).HasMaxLength(128);
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HSave).HasMaxLength(10);
@@ -2021,11 +2021,15 @@ public partial class HochiSystemContext : DbContext
 
         modelBuilder.Entity<HExamPaperAnswer>(entity =>
         {
-            entity.HasKey(e => new { e.HCourseID, e.HExamPaperID, e.HExamPaperGroup, e.HMemberID });
+            entity.HasKey(e => e.HID);
 
+            entity.HasIndex(e => new { e.HExamPaperID, e.HExamPaperGroup, e.HCandidateNo, e.HCreateDT }, "UX_HExamPaperAnswer_Dedupe").IsUnique();
+
+            entity.Property(e => e.HCandidateNo)
+                .HasMaxLength(64)
+                .HasDefaultValue("");
             entity.Property(e => e.HCreate).HasMaxLength(100);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
-            entity.Property(e => e.HID).ValueGeneratedOnAdd();
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
@@ -2038,7 +2042,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
-            entity.Property(e => e.HSave).HasMaxLength(10);
+            entity.Property(e => e.HSave).HasMaxLength(256);
         });
 
         modelBuilder.Entity<HExamParmTab>(entity =>
