@@ -35,6 +35,8 @@ public partial class HochiSystemContext : DbContext
 
     public virtual DbSet<HAreaHistory> HAreaHistory { get; set; }
 
+    public virtual DbSet<HAreaMonthlySummary> HAreaMonthlySummary { get; set; }
+
     public virtual DbSet<HAxisCTeam> HAxisCTeam { get; set; }
 
     public virtual DbSet<HAxisMTeam> HAxisMTeam { get; set; }
@@ -214,6 +216,8 @@ public partial class HochiSystemContext : DbContext
     public virtual DbSet<HLCourse> HLCourse { get; set; }
 
     public virtual DbSet<HLCourse_Detail> HLCourse_Detail { get; set; }
+
+    public virtual DbSet<HLNGroupStandard> HLNGroupStandard { get; set; }
 
     public virtual DbSet<HLeadingCourse> HLeadingCourse { get; set; }
 
@@ -690,6 +694,20 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HNew).HasMaxLength(50);
             entity.Property(e => e.HOld).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HAreaMonthlySummary>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__HAreaMon__3214EC071EF1707D");
+
+            entity.HasIndex(e => new { e.SnapshotYear, e.SnapshotMonth, e.LAreaName, e.AreaName }, "IX_HAreaMonthlySummary_YearMonthArea").IsUnique();
+
+            entity.Property(e => e.AreaName).HasMaxLength(50);
+            entity.Property(e => e.LAreaName).HasMaxLength(50);
+            entity.Property(e => e.Remark).HasMaxLength(200);
+            entity.Property(e => e.SnapshotCreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
         });
 
         modelBuilder.Entity<HAxisCTeam>(entity =>
@@ -2012,8 +2030,8 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCreate).HasMaxLength(100);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HExamBaseID).HasMaxLength(10);
-            entity.Property(e => e.HExamPaperClass).HasMaxLength(20);
-            entity.Property(e => e.HExamPaperNum).HasMaxLength(128);
+            entity.Property(e => e.HExamPaperClass).HasMaxLength(10);
+            entity.Property(e => e.HExamPaperNum).HasMaxLength(100);
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HSave).HasMaxLength(10);
@@ -2021,15 +2039,11 @@ public partial class HochiSystemContext : DbContext
 
         modelBuilder.Entity<HExamPaperAnswer>(entity =>
         {
-            entity.HasKey(e => e.HID);
+            entity.HasKey(e => new { e.HCourseID, e.HExamPaperID, e.HExamPaperGroup, e.HMemberID });
 
-            entity.HasIndex(e => new { e.HExamPaperID, e.HExamPaperGroup, e.HCandidateNo, e.HCreateDT }, "UX_HExamPaperAnswer_Dedupe").IsUnique();
-
-            entity.Property(e => e.HCandidateNo)
-                .HasMaxLength(64)
-                .HasDefaultValue("");
             entity.Property(e => e.HCreate).HasMaxLength(100);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HID).ValueGeneratedOnAdd();
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
@@ -2042,7 +2056,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
-            entity.Property(e => e.HSave).HasMaxLength(256);
+            entity.Property(e => e.HSave).HasMaxLength(10);
         });
 
         modelBuilder.Entity<HExamParmTab>(entity =>
@@ -2316,6 +2330,26 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HSave).HasMaxLength(10);
+        });
+
+        modelBuilder.Entity<HLNGroupStandard>(entity =>
+        {
+            entity.HasKey(e => e.HID).HasName("PK_HSTDQualificationTab");
+
+            entity.Property(e => e.H1010).HasComment("【回應/分享數量】第一小項:專欄回應次數");
+            entity.Property(e => e.H1011).HasComment("【回應/分享數量】第二小項:成長紀錄建立次數");
+            entity.Property(e => e.H2010).HasComment("【時間投入程度】第一小項:瀏覽教材次數");
+            entity.Property(e => e.H2011).HasComment("【時間投入程度】第二小項:課程護持服務時數統計");
+            entity.Property(e => e.H3010).HasComment("【學習異常狀況】第一小項:缺席次數");
+            entity.Property(e => e.H3011).HasComment("【學員異常狀況】第二小項:作業未繳交次數");
+            entity.Property(e => e.HCreate).HasMaxLength(25);
+            entity.Property(e => e.HCreateDT).HasMaxLength(50);
+            entity.Property(e => e.HLNGroupCode).HasMaxLength(50);
+            entity.Property(e => e.HLNGroupName)
+                .HasMaxLength(100)
+                .HasComment("學習族群名稱");
+            entity.Property(e => e.HModify).HasMaxLength(25);
+            entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
 
         modelBuilder.Entity<HLeadingCourse>(entity =>
@@ -3384,8 +3418,10 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCreate).HasMaxLength(50);
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HFile1)
-                .HasMaxLength(100)
+                .HasMaxLength(255)
                 .HasComment("上傳檔案1");
+            entity.Property(e => e.HFile2).HasMaxLength(255);
+            entity.Property(e => e.HFile3).HasMaxLength(255);
             entity.Property(e => e.HMemberID).HasComment("學員HID(HMember.HID)");
             entity.Property(e => e.HModify).HasMaxLength(50);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
@@ -3393,7 +3429,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HSCTopicID).HasComment("主題HID(HSCTopic.HID)");
             entity.Property(e => e.HStatus).HasComment("狀態(0:刪掉/1:正常/2:隱藏");
             entity.Property(e => e.HVideoLink)
-                .HasMaxLength(200)
+                .HasMaxLength(255)
                 .HasComment("影片嵌入連結");
         });
 

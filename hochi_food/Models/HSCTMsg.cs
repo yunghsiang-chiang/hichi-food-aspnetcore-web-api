@@ -27,6 +27,10 @@ public partial class HSCTMsg
     /// </summary>
     public string? HFile1 { get; set; }
 
+    public string? HFile2 { get; set; }
+
+    public string? HFile3 { get; set; }
+
     /// <summary>
     /// 影片嵌入連結
     /// </summary>
