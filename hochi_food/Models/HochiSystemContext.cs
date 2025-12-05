@@ -33,9 +33,13 @@ public partial class HochiSystemContext : DbContext
 
     public virtual DbSet<HArea> HArea { get; set; }
 
+    public virtual DbSet<HAreaFunnelMonthlySummary> HAreaFunnelMonthlySummary { get; set; }
+
     public virtual DbSet<HAreaHistory> HAreaHistory { get; set; }
 
     public virtual DbSet<HAreaMonthlySummary> HAreaMonthlySummary { get; set; }
+
+    public virtual DbSet<HAttendanceMonthlySummary> HAttendanceMonthlySummary { get; set; }
 
     public virtual DbSet<HAxisCTeam> HAxisCTeam { get; set; }
 
@@ -217,8 +221,6 @@ public partial class HochiSystemContext : DbContext
 
     public virtual DbSet<HLCourse_Detail> HLCourse_Detail { get; set; }
 
-    public virtual DbSet<HLNGroupStandard> HLNGroupStandard { get; set; }
-
     public virtual DbSet<HLeadingCourse> HLeadingCourse { get; set; }
 
     public virtual DbSet<HLeadingCourse_T> HLeadingCourse_T { get; set; }
@@ -236,6 +238,8 @@ public partial class HochiSystemContext : DbContext
     public virtual DbSet<HMailRecord> HMailRecord { get; set; }
 
     public virtual DbSet<HMember> HMember { get; set; }
+
+    public virtual DbSet<HMemberFunnelHistory> HMemberFunnelHistory { get; set; }
 
     public virtual DbSet<HMemberTemp> HMemberTemp { get; set; }
 
@@ -392,6 +396,8 @@ public partial class HochiSystemContext : DbContext
     public virtual DbSet<HTeacherMaterial_Detail> HTeacherMaterial_Detail { get; set; }
 
     public virtual DbSet<HTeamHistory> HTeamHistory { get; set; }
+
+    public virtual DbSet<HTeamMonthlySummary> HTeamMonthlySummary { get; set; }
 
     public virtual DbSet<HTeamTVerifyLog> HTeamTVerifyLog { get; set; }
 
@@ -682,6 +688,19 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
 
+        modelBuilder.Entity<HAreaFunnelMonthlySummary>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__HAreaFun__3214EC07F76EBB94");
+
+            entity.HasIndex(e => new { e.SnapshotYear, e.SnapshotMonth, e.LAreaId, e.AreaId }, "IX_HAreaFunnelMonthlySummary_YearMonthArea").IsUnique();
+
+            entity.Property(e => e.AreaName).HasMaxLength(50);
+            entity.Property(e => e.LAreaName).HasMaxLength(50);
+            entity.Property(e => e.LastRebuildAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+        });
+
         modelBuilder.Entity<HAreaHistory>(entity =>
         {
             entity.HasNoKey();
@@ -698,9 +717,23 @@ public partial class HochiSystemContext : DbContext
 
         modelBuilder.Entity<HAreaMonthlySummary>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__HAreaMon__3214EC071EF1707D");
+            entity.HasKey(e => e.Id).HasName("PK__HAreaMon__3214EC077BB36AB0");
 
             entity.HasIndex(e => new { e.SnapshotYear, e.SnapshotMonth, e.LAreaName, e.AreaName }, "IX_HAreaMonthlySummary_YearMonthArea").IsUnique();
+
+            entity.Property(e => e.AreaName).HasMaxLength(50);
+            entity.Property(e => e.LAreaName).HasMaxLength(50);
+            entity.Property(e => e.Remark).HasMaxLength(200);
+            entity.Property(e => e.SnapshotCreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<HAttendanceMonthlySummary>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__HAttenda__3214EC07B665B19F");
+
+            entity.HasIndex(e => new { e.SnapshotYear, e.SnapshotMonth, e.LAreaName, e.AreaName }, "IX_HAttendanceMonthlySummary_YearMonthArea").IsUnique();
 
             entity.Property(e => e.AreaName).HasMaxLength(50);
             entity.Property(e => e.LAreaName).HasMaxLength(50);
@@ -912,8 +945,9 @@ public partial class HochiSystemContext : DbContext
 
         modelBuilder.Entity<HCCPeriod>(entity =>
         {
-            entity.HasKey(e => e.HID);
+            entity.HasKey(e => new { e.HID, e.HCCPeriodCode });
 
+            entity.Property(e => e.HID).ValueGeneratedOnAdd();
             entity.Property(e => e.HCCPeriodCode)
                 .HasMaxLength(100)
                 .HasComment("信用卡定期定額授權申請單號");
@@ -2332,26 +2366,6 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HSave).HasMaxLength(10);
         });
 
-        modelBuilder.Entity<HLNGroupStandard>(entity =>
-        {
-            entity.HasKey(e => e.HID).HasName("PK_HSTDQualificationTab");
-
-            entity.Property(e => e.H1010).HasComment("【回應/分享數量】第一小項:專欄回應次數");
-            entity.Property(e => e.H1011).HasComment("【回應/分享數量】第二小項:成長紀錄建立次數");
-            entity.Property(e => e.H2010).HasComment("【時間投入程度】第一小項:瀏覽教材次數");
-            entity.Property(e => e.H2011).HasComment("【時間投入程度】第二小項:課程護持服務時數統計");
-            entity.Property(e => e.H3010).HasComment("【學習異常狀況】第一小項:缺席次數");
-            entity.Property(e => e.H3011).HasComment("【學員異常狀況】第二小項:作業未繳交次數");
-            entity.Property(e => e.HCreate).HasMaxLength(25);
-            entity.Property(e => e.HCreateDT).HasMaxLength(50);
-            entity.Property(e => e.HLNGroupCode).HasMaxLength(50);
-            entity.Property(e => e.HLNGroupName)
-                .HasMaxLength(100)
-                .HasComment("學習族群名稱");
-            entity.Property(e => e.HModify).HasMaxLength(25);
-            entity.Property(e => e.HModifyDT).HasMaxLength(50);
-        });
-
         modelBuilder.Entity<HLeadingCourse>(entity =>
         {
             entity.HasNoKey();
@@ -2548,6 +2562,18 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HWechat).HasMaxLength(150);
             entity.Property(e => e.HWhatsapp).HasMaxLength(150);
             entity.Property(e => e.HWorkName).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<HMemberFunnelHistory>(entity =>
+        {
+            entity.HasNoKey();
+
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
         });
 
         modelBuilder.Entity<HMemberTemp>(entity =>
@@ -3869,6 +3895,21 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HNew).HasMaxLength(50);
             entity.Property(e => e.HOld).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HTeamMonthlySummary>(entity =>
+        {
+            entity.HasKey(e => new { e.SnapshotYear, e.SnapshotMonth, e.LAreaName, e.AreaName, e.TeamName });
+
+            entity.HasIndex(e => new { e.SnapshotYear, e.SnapshotMonth, e.LAreaName, e.AreaName }, "IX_HTeamMonthlySummary_YearMonth_LArea");
+
+            entity.Property(e => e.LAreaName).HasMaxLength(50);
+            entity.Property(e => e.AreaName).HasMaxLength(50);
+            entity.Property(e => e.TeamName).HasMaxLength(100);
+            entity.Property(e => e.MotherTeam).HasMaxLength(100);
+            entity.Property(e => e.SnapshotCreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
         });
 
         modelBuilder.Entity<HTeamTVerifyLog>(entity =>

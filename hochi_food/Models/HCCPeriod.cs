@@ -10,7 +10,7 @@ public partial class HCCPeriod
     /// <summary>
     /// 信用卡定期定額授權申請單號
     /// </summary>
-    public string? HCCPeriodCode { get; set; }
+    public string HCCPeriodCode { get; set; } = null!;
 
     /// <summary>
     /// 學員HID
