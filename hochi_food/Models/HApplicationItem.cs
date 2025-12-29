@@ -27,7 +27,7 @@ public partial class HApplicationItem
 
     public string? HBlessedLegalLang { get; set; }
 
-    public virtual HApplicationItemCC? HApplicationItemCC { get; set; }
+    public virtual ICollection<HApplicationItemCC> HApplicationItemCC { get; set; } = new List<HApplicationItemCC>();
 
     public virtual HBlessedPerson? HBlessedPerson { get; set; }
 }

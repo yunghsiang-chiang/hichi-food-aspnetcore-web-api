@@ -31,7 +31,7 @@ public partial class HApplyCard
 
     public string YY { get; set; } = null!;
 
-    public byte[]? CVC { get; set; }
+    public string? CVC { get; set; }
 
     public int Times { get; set; }
 

@@ -32,6 +32,4 @@ public partial class HQuotaPlan
     public DateOnly HOpenTo { get; set; }
 
     public DateOnly HLastUpdated { get; set; }
-
-    public virtual ICollection<HPhaseWindow> HPhaseWindow { get; set; } = new List<HPhaseWindow>();
 }

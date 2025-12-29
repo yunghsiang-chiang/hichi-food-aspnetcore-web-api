@@ -32,6 +32,8 @@ public partial class HMember
 
     public int? HPositionID { get; set; }
 
+    public string? HMainDharmaSeat { get; set; }
+
     public int? HSex { get; set; }
 
     public int? HBlood { get; set; }

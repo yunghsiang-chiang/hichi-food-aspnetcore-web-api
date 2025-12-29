@@ -31,9 +31,15 @@ public partial class HochiSystemContext : DbContext
 
     public virtual DbSet<HActivity_Class> HActivity_Class { get; set; }
 
-    public virtual DbSet<HArea> HArea { get; set; }
+    public virtual DbSet<HApplication> HApplication { get; set; }
 
-    public virtual DbSet<HAreaFunnelMonthlySummary> HAreaFunnelMonthlySummary { get; set; }
+    public virtual DbSet<HApplicationItem> HApplicationItem { get; set; }
+
+    public virtual DbSet<HApplicationItemCC> HApplicationItemCC { get; set; }
+
+    public virtual DbSet<HApplyCard> HApplyCard { get; set; }
+
+    public virtual DbSet<HArea> HArea { get; set; }
 
     public virtual DbSet<HAreaHistory> HAreaHistory { get; set; }
 
@@ -46,6 +52,8 @@ public partial class HochiSystemContext : DbContext
     public virtual DbSet<HAxisMTeam> HAxisMTeam { get; set; }
 
     public virtual DbSet<HAxisType> HAxisType { get; set; }
+
+    public virtual DbSet<HBlessedPerson> HBlessedPerson { get; set; }
 
     public virtual DbSet<HBudgetType> HBudgetType { get; set; }
 
@@ -80,6 +88,8 @@ public partial class HochiSystemContext : DbContext
     public virtual DbSet<HCVerifyUnit> HCVerifyUnit { get; set; }
 
     public virtual DbSet<HCancelBooking> HCancelBooking { get; set; }
+
+    public virtual DbSet<HCoApplicant> HCoApplicant { get; set; }
 
     public virtual DbSet<HColCategory> HColCategory { get; set; }
 
@@ -239,8 +249,6 @@ public partial class HochiSystemContext : DbContext
 
     public virtual DbSet<HMember> HMember { get; set; }
 
-    public virtual DbSet<HMemberFunnelHistory> HMemberFunnelHistory { get; set; }
-
     public virtual DbSet<HMemberTemp> HMemberTemp { get; set; }
 
     public virtual DbSet<HMentorRole> HMentorRole { get; set; }
@@ -262,6 +270,8 @@ public partial class HochiSystemContext : DbContext
     public virtual DbSet<HPNotes> HPNotes { get; set; }
 
     public virtual DbSet<HParmTab> HParmTab { get; set; }
+
+    public virtual DbSet<HPhaseWindow> HPhaseWindow { get; set; }
 
     public virtual DbSet<HPlace> HPlace { get; set; }
 
@@ -286,6 +296,8 @@ public partial class HochiSystemContext : DbContext
     public virtual DbSet<HQuestionAnswer> HQuestionAnswer { get; set; }
 
     public virtual DbSet<HQuestionItem> HQuestionItem { get; set; }
+
+    public virtual DbSet<HQuotaPlan> HQuotaPlan { get; set; }
 
     public virtual DbSet<HReceiptTemp> HReceiptTemp { get; set; }
 
@@ -396,8 +408,6 @@ public partial class HochiSystemContext : DbContext
     public virtual DbSet<HTeacherMaterial_Detail> HTeacherMaterial_Detail { get; set; }
 
     public virtual DbSet<HTeamHistory> HTeamHistory { get; set; }
-
-    public virtual DbSet<HTeamMonthlySummary> HTeamMonthlySummary { get; set; }
 
     public virtual DbSet<HTeamTVerifyLog> HTeamTVerifyLog { get; set; }
 
@@ -675,6 +685,90 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
 
+        modelBuilder.Entity<HApplication>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HApplica__C7551547556A6D16");
+
+            entity.Property(e => e.HApplicantHID).HasMaxLength(50);
+            entity.Property(e => e.HAudioUrl).HasMaxLength(300);
+            entity.Property(e => e.HBatchKey).HasMaxLength(20);
+            entity.Property(e => e.HCoApplicantsNote).HasMaxLength(500);
+            entity.Property(e => e.HMandateStatus).HasMaxLength(20);
+            entity.Property(e => e.HMandateType).HasMaxLength(20);
+            entity.Property(e => e.HPhase).HasMaxLength(16);
+            entity.Property(e => e.HSubmitAt).HasDefaultValueSql("(sysutcdatetime())");
+        });
+
+        modelBuilder.Entity<HApplicationItem>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HApplica__C755154728F46893");
+
+            entity.Property(e => e.HBlessedAppealLang).HasMaxLength(10);
+            entity.Property(e => e.HBlessedLegalLang).HasMaxLength(10);
+            entity.Property(e => e.HBlessedPersonName).HasMaxLength(100);
+            entity.Property(e => e.HLastEditAt).HasColumnType("datetime");
+            entity.Property(e => e.HLockedAt).HasColumnType("datetime");
+            entity.Property(e => e.HStatus).HasMaxLength(20);
+
+            entity.HasOne(d => d.HBlessedPerson).WithMany(p => p.HApplicationItem)
+                .HasForeignKey(d => d.HBlessedPersonId)
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasConstraintName("FK_HApplicationItem_HBlessedPerson");
+        });
+
+        modelBuilder.Entity<HApplicationItemCC>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HApplica__C7551547F3646959");
+
+            entity.Property(e => e.HCCPeriodCode).HasMaxLength(50);
+            entity.Property(e => e.HCreatedAt)
+                .HasPrecision(0)
+                .HasDefaultValueSql("(sysdatetime())");
+            entity.Property(e => e.HUpdatedAt).HasPrecision(0);
+
+            entity.HasOne(d => d.HApplicationItem).WithMany(p => p.HApplicationItemCC)
+                .HasForeignKey(d => d.HApplicationItemId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_HApplicationItemCC_Item");
+        });
+
+        modelBuilder.Entity<HApplyCard>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HApplyCa__C7551547306AB365");
+
+            entity.Property(e => e.Alias).HasMaxLength(50);
+            entity.Property(e => e.Bank).HasMaxLength(50);
+            entity.Property(e => e.CVC).HasMaxLength(4);
+            entity.Property(e => e.CardHolder).HasMaxLength(50);
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.EDate)
+                .HasMaxLength(7)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.MM)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.No1).HasMaxLength(4);
+            entity.Property(e => e.No2).HasMaxLength(4);
+            entity.Property(e => e.No3).HasMaxLength(4);
+            entity.Property(e => e.No4).HasMaxLength(4);
+            entity.Property(e => e.PersonId).HasMaxLength(20);
+            entity.Property(e => e.Phone).HasMaxLength(30);
+            entity.Property(e => e.SDate)
+                .HasMaxLength(7)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.Times).HasDefaultValue(48);
+            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+            entity.Property(e => e.YY)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .IsFixedLength();
+        });
+
         modelBuilder.Entity<HArea>(entity =>
         {
             entity.HasKey(e => e.HID);
@@ -686,19 +780,6 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HModify).HasMaxLength(50);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
-        });
-
-        modelBuilder.Entity<HAreaFunnelMonthlySummary>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__HAreaFun__3214EC07F76EBB94");
-
-            entity.HasIndex(e => new { e.SnapshotYear, e.SnapshotMonth, e.LAreaId, e.AreaId }, "IX_HAreaFunnelMonthlySummary_YearMonthArea").IsUnique();
-
-            entity.Property(e => e.AreaName).HasMaxLength(50);
-            entity.Property(e => e.LAreaName).HasMaxLength(50);
-            entity.Property(e => e.LastRebuildAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
         });
 
         modelBuilder.Entity<HAreaHistory>(entity =>
@@ -776,6 +857,23 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HCreateDT).HasMaxLength(50);
             entity.Property(e => e.HModify).HasMaxLength(50);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<HBlessedPerson>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HBlessed__C7551547ADD68A9A");
+
+            entity.Property(e => e.HAppealLang).HasMaxLength(10);
+            entity.Property(e => e.HAppealName).HasMaxLength(50);
+            entity.Property(e => e.HAudioUrl).HasMaxLength(300);
+            entity.Property(e => e.HCounty).HasMaxLength(50);
+            entity.Property(e => e.HCreatedAt)
+                .HasDefaultValueSql("(sysutcdatetime())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.HCreatedByHID).HasMaxLength(50);
+            entity.Property(e => e.HLegalLang).HasMaxLength(10);
+            entity.Property(e => e.HLegalName).HasMaxLength(50);
+            entity.Property(e => e.HUpdatedAt).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<HBudgetType>(entity =>
@@ -945,9 +1043,8 @@ public partial class HochiSystemContext : DbContext
 
         modelBuilder.Entity<HCCPeriod>(entity =>
         {
-            entity.HasKey(e => new { e.HID, e.HCCPeriodCode });
+            entity.HasKey(e => e.HCCPeriodCode).HasName("PK_HCCPeriod_1");
 
-            entity.Property(e => e.HID).ValueGeneratedOnAdd();
             entity.Property(e => e.HCCPeriodCode)
                 .HasMaxLength(100)
                 .HasComment("信用卡定期定額授權申請單號");
@@ -971,6 +1068,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HDPurpose).HasComment("捐款用途");
             entity.Property(e => e.HDTel).HasMaxLength(50);
             entity.Property(e => e.HDUserName).HasMaxLength(255);
+            entity.Property(e => e.HID).ValueGeneratedOnAdd();
             entity.Property(e => e.HMemberID).HasComment("學員HID");
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
@@ -1136,6 +1234,18 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HTradeNo)
                 .HasMaxLength(50)
                 .HasComment("綠界交易編號");
+        });
+
+        modelBuilder.Entity<HCoApplicant>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HCoAppli__C7551547C6962E3E");
+
+            entity.Property(e => e.HCoApplicantName).HasMaxLength(50);
+            entity.Property(e => e.HDharmaSeat).HasMaxLength(100);
+            entity.Property(e => e.HPeriod).HasMaxLength(50);
+            entity.Property(e => e.HRelationship)
+                .HasMaxLength(50)
+                .HasDefaultValue("同修");
         });
 
         modelBuilder.Entity<HColCategory>(entity =>
@@ -1632,6 +1742,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModify).HasMaxLength(50);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HQuestionHID).HasComment("問卷(關聯HQuestionHID)");
+            entity.Property(e => e.HQuestionLink).HasComment("問卷連結");
             entity.Property(e => e.HSave).HasMaxLength(10);
         });
 
@@ -2530,6 +2641,7 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HLoginType)
                 .HasDefaultValue(1)
                 .HasComment("登入方式");
+            entity.Property(e => e.HMainDharmaSeat).HasMaxLength(255);
             entity.Property(e => e.HModify).HasMaxLength(50);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HMom).HasMaxLength(255);
@@ -2562,18 +2674,6 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HWechat).HasMaxLength(150);
             entity.Property(e => e.HWhatsapp).HasMaxLength(150);
             entity.Property(e => e.HWorkName).HasMaxLength(255);
-        });
-
-        modelBuilder.Entity<HMemberFunnelHistory>(entity =>
-        {
-            entity.HasNoKey();
-
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.UpdatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
         });
 
         modelBuilder.Entity<HMemberTemp>(entity =>
@@ -2829,6 +2929,19 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
         });
 
+        modelBuilder.Entity<HPhaseWindow>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HPhaseWi__C7551547DEF5FFF2");
+
+            entity.Property(e => e.HAutoCloseOnFull).HasDefaultValue(true);
+            entity.Property(e => e.HCreatedAt).HasDefaultValueSql("(sysutcdatetime())");
+            entity.Property(e => e.HOpenFrom).HasColumnType("datetime");
+            entity.Property(e => e.HOpenTo).HasColumnType("datetime");
+            entity.Property(e => e.HPhase).HasMaxLength(16);
+            entity.Property(e => e.HTitle).HasMaxLength(100);
+            entity.Property(e => e.HUpdatedAt).HasDefaultValueSql("(sysutcdatetime())");
+        });
+
         modelBuilder.Entity<HPlace>(entity =>
         {
             entity.HasNoKey();
@@ -3021,6 +3134,17 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModify).HasMaxLength(100);
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HSave).HasMaxLength(10);
+        });
+
+        modelBuilder.Entity<HQuotaPlan>(entity =>
+        {
+            entity.HasKey(e => e.HId).HasName("PK__HQuotaPl__C7551547A7E09A63");
+
+            entity.HasIndex(e => new { e.HYear, e.HPhase }, "UQ_HQuotaPlan").IsUnique();
+
+            entity.Property(e => e.HAutoCloseOnFull).HasDefaultValue(true);
+            entity.Property(e => e.HLastUpdated).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.HPhase).HasMaxLength(16);
         });
 
         modelBuilder.Entity<HReceiptTemp>(entity =>
@@ -3895,21 +4019,6 @@ public partial class HochiSystemContext : DbContext
             entity.Property(e => e.HModifyDT).HasMaxLength(50);
             entity.Property(e => e.HNew).HasMaxLength(50);
             entity.Property(e => e.HOld).HasMaxLength(50);
-        });
-
-        modelBuilder.Entity<HTeamMonthlySummary>(entity =>
-        {
-            entity.HasKey(e => new { e.SnapshotYear, e.SnapshotMonth, e.LAreaName, e.AreaName, e.TeamName });
-
-            entity.HasIndex(e => new { e.SnapshotYear, e.SnapshotMonth, e.LAreaName, e.AreaName }, "IX_HTeamMonthlySummary_YearMonth_LArea");
-
-            entity.Property(e => e.LAreaName).HasMaxLength(50);
-            entity.Property(e => e.AreaName).HasMaxLength(50);
-            entity.Property(e => e.TeamName).HasMaxLength(100);
-            entity.Property(e => e.MotherTeam).HasMaxLength(100);
-            entity.Property(e => e.SnapshotCreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
         });
 
         modelBuilder.Entity<HTeamTVerifyLog>(entity =>

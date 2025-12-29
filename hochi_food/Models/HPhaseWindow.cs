@@ -13,9 +13,9 @@ public partial class HPhaseWindow
 
     public string HTitle { get; set; } = null!;
 
-    public DateOnly? HOpenFrom { get; set; }
+    public DateTime? HOpenFrom { get; set; }
 
-    public DateOnly? HOpenTo { get; set; }
+    public DateTime? HOpenTo { get; set; }
 
     public bool HIsOpen { get; set; }
 
@@ -28,6 +28,4 @@ public partial class HPhaseWindow
     public DateOnly? HCreatedAt { get; set; }
 
     public DateOnly HUpdatedAt { get; set; }
-
-    public virtual HQuotaPlan HQuotaPlan { get; set; } = null!;
 }

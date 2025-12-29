@@ -18,4 +18,6 @@ public partial class HCoApplicant
     public bool? HIsGroup { get; set; }
 
     public int? HGroupNumber { get; set; }
+
+    public string HRelationship { get; set; } = null!;
 }
