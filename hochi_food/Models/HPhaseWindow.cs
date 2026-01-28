@@ -28,4 +28,6 @@ public partial class HPhaseWindow
     public DateOnly? HCreatedAt { get; set; }
 
     public DateOnly HUpdatedAt { get; set; }
+
+    public int? HCCRegularHID { get; set; }
 }

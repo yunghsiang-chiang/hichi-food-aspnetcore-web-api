@@ -11,11 +11,7 @@ public partial class HAreaFunnelMonthlySummary
 
     public byte SnapshotMonth { get; set; }
 
-    public int? LAreaId { get; set; }
-
     public string? LAreaName { get; set; }
-
-    public int? AreaId { get; set; }
 
     public string? AreaName { get; set; }
 

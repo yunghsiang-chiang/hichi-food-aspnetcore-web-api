@@ -214,11 +214,8 @@ public partial class HochiReportsContext : DbContext
 
             entity.HasIndex(e => e.HCCPeriodCode, "IX_HApplicationItemCC_Period");
 
-            entity.HasIndex(e => e.HApplicationItemId, "UQ_ApplicationItemCC_Item")
-                .IsUnique()
-                .HasFilter("([HApplyCardId] IS NOT NULL)");
-
-            entity.HasIndex(e => new { e.HApplicationItemId, e.HCCPeriodCode }, "UX_HApplicationItemCC_Item_Period").IsUnique();
+            entity.HasIndex(e => new { e.HApplicationItemId, e.HCCPeriodCode }, "UX_HApplicationItemCC_Item_Period")
+                .IsUnique();
 
             entity.Property(e => e.HCCPeriodCode).HasMaxLength(50);
             entity.Property(e => e.HCreatedAt)
@@ -226,11 +223,14 @@ public partial class HochiReportsContext : DbContext
                 .HasDefaultValueSql("(sysdatetime())");
             entity.Property(e => e.HUpdatedAt).HasPrecision(0);
 
-            entity.HasOne(d => d.HApplicationItem).WithOne(p => p.HApplicationItemCC)
-                .HasForeignKey<HApplicationItemCC>(d => d.HApplicationItemId)
+            // ✅ 一對多（HApplicationItem 1 -> 多筆 HApplicationItemCC）
+            entity.HasOne(d => d.HApplicationItem)
+                .WithMany(p => p.HApplicationItemCC)   // 這裡名稱要對到你的實際屬性
+                .HasForeignKey(d => d.HApplicationItemId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_HApplicationItemCC_Item");
         });
+
 
         modelBuilder.Entity<HApplyCard>(entity =>
         {

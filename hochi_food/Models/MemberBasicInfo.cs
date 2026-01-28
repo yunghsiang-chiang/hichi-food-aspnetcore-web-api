@@ -7,6 +7,8 @@ public partial class MemberBasicInfo
 {
     public int HID { get; set; }
 
+    public string HAccount { get; set; } = null!;
+
     public string? HArea { get; set; }
 
     public string? HPeriod { get; set; }
