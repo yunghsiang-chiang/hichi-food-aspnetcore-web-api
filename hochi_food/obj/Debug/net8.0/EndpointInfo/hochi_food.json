@@ -2771,6 +2771,44 @@
         }
       }
     },
+    "/api/HochiSystem/CourseBanners": {
+      "get": {
+        "tags": [
+          "HochiSystem"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseBannerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseBannerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseBannerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/MainIngredients": {
       "get": {
         "tags": [
@@ -4106,6 +4144,37 @@
   },
   "components": {
     "schemas": {
+      "CourseBannerDto": {
+        "type": "object",
+        "properties": {
+          "hCourseName": {
+            "type": "string",
+            "nullable": true
+          },
+          "hDateRange": {
+            "type": "string",
+            "nullable": true
+          },
+          "hContentTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "hContent": {
+            "type": "string",
+            "nullable": true
+          },
+          "hImg": {
+            "type": "string",
+            "nullable": true
+          },
+          "hSerial": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "DescriptionCountDto": {
         "type": "object",
         "properties": {
