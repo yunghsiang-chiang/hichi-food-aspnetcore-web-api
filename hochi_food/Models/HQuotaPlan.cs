@@ -32,4 +32,8 @@ public partial class HQuotaPlan
     public DateOnly HOpenTo { get; set; }
 
     public DateOnly HLastUpdated { get; set; }
+
+    // ✅ 補上集合（名稱需跟 Fluent API 一致）
+    public virtual ICollection<HPhaseWindow> HPhaseWindow { get; set; }
+        = new List<HPhaseWindow>();
 }

@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\scaffold-dbcontext.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\scaffold-dbcontext.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|c:\\users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\models\\hochireportscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F44D1B9D-C202-4201-A171-4234DF8F0B8F}|hochi_food\\hochi_food.csproj|solutionrelative:hochi_food\\models\\hochireportscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,15 +26,28 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HochiReportsContext.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\Models\\HochiReportsContext.cs",
+              "RelativeDocumentMoniker": "hochi_food\\Models\\HochiReportsContext.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\Models\\HochiReportsContext.cs",
+              "RelativeToolTip": "hochi_food\\Models\\HochiReportsContext.cs",
+              "ViewState": "AgIAACgBAAAAAAAAAAAuwD0BAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T08:55:18.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Scaffold-DbContext.txt",
-              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\Scaffold-DbContext.txt",
-              "RelativeDocumentMoniker": "hochi_food\\Scaffold-DbContext.txt",
-              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\Scaffold-DbContext.txt",
-              "RelativeToolTip": "hochi_food\\Scaffold-DbContext.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-12-01T06:02:28.252Z",
+              "Title": "attendanceController.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\Controllers\\attendanceController.cs",
+              "RelativeDocumentMoniker": "hochi_food\\Controllers\\attendanceController.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hichi-food-aspnetcore-web-api\\hochi_food\\Controllers\\attendanceController.cs",
+              "RelativeToolTip": "hochi_food\\Controllers\\attendanceController.cs",
+              "ViewState": "AgIAAGgBAAAAAAAAAAAUwIABAABiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T08:54:44.201Z",
               "EditorCaption": ""
             }
           ]

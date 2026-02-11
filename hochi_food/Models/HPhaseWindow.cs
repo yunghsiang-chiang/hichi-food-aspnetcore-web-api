@@ -30,4 +30,7 @@ public partial class HPhaseWindow
     public DateOnly HUpdatedAt { get; set; }
 
     public int? HCCRegularHID { get; set; }
+
+    // ✅ 補上這個（名稱需跟 Fluent API 一致）
+    public virtual HQuotaPlan HQuotaPlan { get; set; } = null!;
 }
