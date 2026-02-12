@@ -61,6 +61,26 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+// 比對「後台模擬」vs「LINE 實機」到底有沒有打到 API
+app.Use(async (ctx, next) =>
+{
+    var path = ctx.Request.Path.Value ?? "";
+    if (path.Contains("/api/HochiSystem/CourseBanners", StringComparison.OrdinalIgnoreCase))
+    {
+        var line = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {ctx.Request.Method} {path} " +
+                   $"ip={ctx.Connection.RemoteIpAddress} origin={ctx.Request.Headers["Origin"]} " +
+                   $"ua={ctx.Request.Headers["User-Agent"]}\n";
+
+        var logPath = Path.Combine(AppContext.BaseDirectory, "App_Data", "coursebanners_hit.log");
+        Directory.CreateDirectory(Path.GetDirectoryName(logPath)!);
+        await File.AppendAllTextAsync(logPath, line);
+    }
+
+    await next();
+});
+
+
+
 // ✅ 先掛 CORS（讓它能處理 preflight、也能讓後面 4xx/5xx 盡量帶到 CORS header）
 app.UseCors("corsapp");
 
