@@ -37,6 +37,7 @@ builder.Services.AddCors(options =>
     {
         policy
             .WithOrigins(
+                "https://internal.hochi.org.tw:8083",
                 "https://editor-bot.no8.io"
             // 若你還有其他前端來源，繼續加在這裡
             // "https://xxx.no8.io"
