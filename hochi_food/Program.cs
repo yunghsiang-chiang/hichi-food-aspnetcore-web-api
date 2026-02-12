@@ -30,7 +30,7 @@ builder.Services.AddDbContext<heipContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// ✅ CORS：明確允許來源（包含 8083 與 editor-bot）
+// ✅ CORS：明確允許來源
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("corsapp", policy =>
@@ -42,7 +42,7 @@ builder.Services.AddCors(options =>
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
-        // 如果你有用 cookie/驗證，再加：
+        // 若需要 cookie/身分驗證才加：
         // .AllowCredentials();
     });
 });
@@ -61,10 +61,21 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-// ✅ 先 CORS（讓它能處理 preflight）
+// ✅ 先掛 CORS（讓它能處理 preflight、也能讓後面 4xx/5xx 盡量帶到 CORS header）
 app.UseCors("corsapp");
 
-// ✅ PNA header：保留即可，但不要攔截 OPTIONS
+// ✅ 例外統一處理成 JSON 500（避免 IIS/Kestrel 預設 500 沒帶 CORS）
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json; charset=utf-8";
+        await context.Response.WriteAsync("{\"ok\":false,\"message\":\"Internal Server Error\"}");
+    });
+});
+
+// ✅ PNA header：保留即可
 app.Use(async (context, next) =>
 {
     context.Response.Headers["Access-Control-Allow-Private-Network"] = "true";
