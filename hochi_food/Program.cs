@@ -30,7 +30,7 @@ builder.Services.AddDbContext<heipContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// ✅ CORS：請明確允許來源（不要用 WithOrigins("*")）
+// ✅ CORS：明確允許來源（包含 8083 與 editor-bot）
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("corsapp", policy =>
@@ -39,11 +39,11 @@ builder.Services.AddCors(options =>
             .WithOrigins(
                 "https://internal.hochi.org.tw:8083",
                 "https://editor-bot.no8.io"
-            // 若你還有其他前端來源，繼續加在這裡
-            // "https://xxx.no8.io"
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
+        // 如果你有用 cookie/驗證，再加：
+        // .AllowCredentials();
     });
 });
 
@@ -57,36 +57,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// ✅ PNA：必須加這個 header，否則瀏覽器會擋「local address space」
-app.Use(async (context, next) =>
-{
-    context.Response.Headers["Access-Control-Allow-Private-Network"] = "true";
-
-    // 讓 preflight OPTIONS 更穩（包含 PNA preflight）
-    if (context.Request.Method == "OPTIONS")
-    {
-        // 讓 CORS preflight 能完整過
-        var origin = context.Request.Headers["Origin"].ToString();
-        if (!string.IsNullOrEmpty(origin))
-            context.Response.Headers["Access-Control-Allow-Origin"] = origin;
-
-        context.Response.Headers["Vary"] = "Origin";
-        context.Response.Headers["Access-Control-Allow-Methods"] = "GET,POST,PUT,DELETE,OPTIONS";
-        context.Response.Headers["Access-Control-Allow-Headers"] = context.Request.Headers["Access-Control-Request-Headers"].ToString();
-
-        context.Response.StatusCode = StatusCodes.Status204NoContent;
-        return;
-    }
-
-    await next();
-});
-
 app.UseHttpsRedirection();
 
 app.UseRouting();
 
-// ✅ CORS 要放在 MapControllers 前（或至少在 endpoints 前）
+// ✅ 先 CORS（讓它能處理 preflight）
 app.UseCors("corsapp");
+
+// ✅ PNA header：保留即可，但不要攔截 OPTIONS
+app.Use(async (context, next) =>
+{
+    context.Response.Headers["Access-Control-Allow-Private-Network"] = "true";
+    await next();
+});
 
 app.UseAuthorization();
 
