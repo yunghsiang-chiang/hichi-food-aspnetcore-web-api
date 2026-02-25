@@ -32,7 +32,7 @@ namespace hochi_food.Controllers
 
             var courses = await _hochiSystemContext.HCourse
                 .AsNoTracking()
-                .Where(c => c.HStatus == 1 && c.HIRestriction != null && c.HIRestriction.StartsWith("1,") && (c.HSerial == 0 || c.HSerial == 1))
+                .Where(c => c.HStatus == 1 && c.HType == "1" && c.HIRestriction != null && c.HIRestriction.StartsWith("1,") && (c.HSerial == 0 || c.HSerial == 1))
                 .Select(c => new
                 {
                     c.HCourseName,
