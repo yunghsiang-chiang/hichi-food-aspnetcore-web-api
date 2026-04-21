@@ -126,6 +126,9 @@ namespace hochi_food.Controllers
         [HttpGet("GetAttendanceSummary")]
         public async Task<IActionResult> GetAttendanceSummary(DateTime startDate, DateTime endDate)
         {
+            DateTime startOfStartDate = startDate.Date;
+            DateTime endOfEndDate = endDate.Date.AddDays(1).AddTicks(-1);
+
             // 獲取基本同修資料
             var baseData = await _hochi_configContext.c_fellow_hochi_learners
                 .Where(hcl => hcl.person_type != "group")
@@ -137,8 +140,9 @@ namespace hochi_food.Controllers
 
             // 獲取出勤記錄
             var attendanceData = await _attendanceContext.h_attendance_record
-                .Where(ar => ar.create_time >= startDate && ar.create_time <= endDate &&
-                             (ar.attendance_status == "到班" || ar.attendance_status == "外出公務"))
+                .Where(ar => ar.create_time >= startOfStartDate
+                             && ar.create_time <= endOfEndDate
+                             && (ar.attendance_status == "到班" || ar.attendance_status == "外出公務"))
                 .GroupBy(ar => ar.user_id)
                 .Select(g => new
                 {
@@ -148,7 +152,7 @@ namespace hochi_food.Controllers
 
             // 獲取晨光和晨會記錄
             var meetingData = await _attendanceContext.h_attendance_day
-                .Where(ad => ad.attendance_day >= startDate && ad.attendance_day <= endDate)
+                .Where(ad => ad.attendance_day >= startOfStartDate && ad.attendance_day <= endOfEndDate)
                 .GroupBy(ad => ad.user_id)
                 .Select(g => new
                 {
@@ -156,12 +160,15 @@ namespace hochi_food.Controllers
                     morning_meeting = g.Sum(x => x.morning_meeting),
                     morning_light_up = g.Sum(x => x.morning_light_up),
                     morning_light_down = g.Sum(x => x.morning_light_down),
-                    morning_light_down_after_purple_light = g.Sum(x=>x.morning_light_down_after_purple_light)
+                    morning_light_down_after_purple_light = g.Sum(x => x.morning_light_down_after_purple_light)
                 }).ToListAsync();
 
-            // 獲取病假記錄
-            var sickLeaveData = await _attendanceContext.h_leave_record
-                .Where(lr => lr.startTime >= startDate && lr.endTime <= endDate && lr.leaveType == "病假")
+            // 請假統計：只要請假區間與查詢區間有重疊，就納入
+            var leaveBaseQuery = _attendanceContext.h_leave_record
+                .Where(lr => lr.startTime <= endOfEndDate && lr.endTime >= startOfStartDate);
+
+            var sickLeaveData = await leaveBaseQuery
+                .Where(lr => lr.leaveType == "病假")
                 .GroupBy(lr => lr.userId)
                 .Select(g => new
                 {
@@ -169,9 +176,8 @@ namespace hochi_food.Controllers
                     sick_hours = g.Sum(x => x.count_hours)
                 }).ToListAsync();
 
-            // 其他請假類型同樣的方式
-            var personalLeaveData = await _attendanceContext.h_leave_record
-                .Where(lr => lr.startTime >= startDate && lr.endTime <= endDate && lr.leaveType == "事假")
+            var personalLeaveData = await leaveBaseQuery
+                .Where(lr => lr.leaveType == "事假")
                 .GroupBy(lr => lr.userId)
                 .Select(g => new
                 {
@@ -179,8 +185,8 @@ namespace hochi_food.Controllers
                     personal_hours = g.Sum(x => x.count_hours)
                 }).ToListAsync();
 
-            var annualLeaveData = await _attendanceContext.h_leave_record
-                .Where(lr => lr.startTime >= startDate && lr.endTime <= endDate && lr.leaveType == "特休")
+            var annualLeaveData = await leaveBaseQuery
+                .Where(lr => lr.leaveType == "特休")
                 .GroupBy(lr => lr.userId)
                 .Select(g => new
                 {
@@ -188,8 +194,8 @@ namespace hochi_food.Controllers
                     annual_hours = g.Sum(x => x.count_hours)
                 }).ToListAsync();
 
-            var compLeaveData = await _attendanceContext.h_leave_record
-                .Where(lr => lr.startTime >= startDate && lr.endTime <= endDate && lr.leaveType == "補休")
+            var compLeaveData = await leaveBaseQuery
+                .Where(lr => lr.leaveType == "補休")
                 .GroupBy(lr => lr.userId)
                 .Select(g => new
                 {
@@ -198,7 +204,7 @@ namespace hochi_food.Controllers
                 }).ToListAsync();
 
             var overtimeData = await _attendanceContext.h_overtime_record
-                .Where(or => or.startTime >= startDate && or.endTime <= endDate)
+                .Where(or => or.startTime <= endOfEndDate && or.endTime >= startOfStartDate)
                 .GroupBy(or => or.userID)
                 .Select(g => new
                 {
@@ -215,7 +221,7 @@ namespace hochi_food.Controllers
                 晨會 = meetingData.FirstOrDefault(m => m.user_id == hcl.person_id)?.morning_meeting ?? 0,
                 晨光上 = meetingData.FirstOrDefault(m => m.user_id == hcl.person_id)?.morning_light_up ?? 0,
                 晨光下 = meetingData.FirstOrDefault(m => m.user_id == hcl.person_id)?.morning_light_down ?? 0,
-                晨下煉完紫光系 = meetingData.FirstOrDefault(m=>m.user_id == hcl.person_id)?.morning_light_down_after_purple_light ?? 0,
+                晨下煉完紫光系 = meetingData.FirstOrDefault(m => m.user_id == hcl.person_id)?.morning_light_down_after_purple_light ?? 0,
                 病假 = sickLeaveData.FirstOrDefault(s => s.userid == hcl.person_id)?.sick_hours ?? 0,
                 事假 = personalLeaveData.FirstOrDefault(p => p.userid == hcl.person_id)?.personal_hours ?? 0,
                 特休 = annualLeaveData.FirstOrDefault(a => a.userid == hcl.person_id)?.annual_hours ?? 0,
@@ -462,15 +468,19 @@ namespace hochi_food.Controllers
         [HttpGet("get_leave_record")]
         public IEnumerable<h_leave_record> get_leave_record(string userid, DateTime startdate, DateTime enddate)
         {
-            // 將 enddate 設為當日的結束時間
+            // 查詢起始日的 00:00:00
+            DateTime startOfStartDate = startdate.Date;
+
+            // 查詢結束日的 23:59:59.9999999
             DateTime endOfEndDate = enddate.Date.AddDays(1).AddTicks(-1);
 
-            // 查詢指定使用者在指定時間範圍內的請假記錄
+            // 只要請假區間與查詢區間有重疊，就要撈出來
             var temp = from row in _attendanceContext.h_leave_record
-                       where userid == row.userId && row.startTime.Date >= startdate.Date && row.endTime <= endOfEndDate
+                       where row.userId == userid
+                             && row.startTime <= endOfEndDate
+                             && row.endTime >= startOfStartDate
                        select row;
 
-            // 返回查詢結果
             return temp;
         }
 
