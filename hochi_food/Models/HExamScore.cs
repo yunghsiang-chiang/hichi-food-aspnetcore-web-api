@@ -12,10 +12,12 @@ public partial class HExamScore
     /// </summary>
     public int? HCourseID { get; set; }
 
+    public int? HExamContentID { get; set; }
+
     /// <summary>
     /// 1:非教練檢覈/2:教練檢覈
     /// </summary>
-    public int? HType { get; set; }
+    public int? HEvaluationType { get; set; }
 
     /// <summary>
     /// 考場名稱(dbo.HPlace.HID)
@@ -31,6 +33,8 @@ public partial class HExamScore
     /// 科目名稱(dbo.HExamSubject.HID)
     /// </summary>
     public int? HExamSubjectID { get; set; }
+
+    public int? HExamPaperID { get; set; }
 
     /// <summary>
     /// 考生編號
@@ -83,9 +87,24 @@ public partial class HExamScore
     public int? HFinalExamResult { get; set; }
 
     /// <summary>
-    /// 評語
+    /// 優點項目
     /// </summary>
-    public string? HComment { get; set; }
+    public string? HGoodComment { get; set; }
+
+    /// <summary>
+    /// 改善項目
+    /// </summary>
+    public string? HImproveComment { get; set; }
+
+    /// <summary>
+    /// 發布成績與否(1:已發布)
+    /// </summary>
+    public int? HPublishedStatus { get; set; }
+
+    /// <summary>
+    /// 通過日期(依發布成績的日期)
+    /// </summary>
+    public DateOnly? HPassedDate { get; set; }
 
     /// <summary>
     /// 狀態
@@ -97,9 +116,9 @@ public partial class HExamScore
     /// </summary>
     public string? HCreate { get; set; }
 
-    public string? HCreateDT { get; set; }
+    public DateTime? HCreateDT { get; set; }
 
     public string? HModify { get; set; }
 
-    public string? HModifyDT { get; set; }
+    public DateTime? HModifyDT { get; set; }
 }

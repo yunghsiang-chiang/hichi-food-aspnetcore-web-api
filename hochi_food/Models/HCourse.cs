@@ -117,8 +117,6 @@ public partial class HCourse
 
     public string? HCourseLinkTask { get; set; }
 
-    public string? HSave { get; set; }
-
     /// <summary>
     /// 講師教材HID(關聯dbi.HTeacherMaterial)
     /// </summary>
@@ -141,21 +139,6 @@ public partial class HCourse
     public int? HCourseType { get; set; }
 
     /// <summary>
-    /// 是否為軸線課程
-    /// </summary>
-    public int? HAxisYN { get; set; }
-
-    /// <summary>
-    /// 軸線類別
-    /// </summary>
-    public int? HAxisClass { get; set; }
-
-    /// <summary>
-    /// 檢覈科目名稱
-    /// </summary>
-    public int? HExamSubject { get; set; }
-
-    /// <summary>
     /// 成績計算方式：1-加權平均;2-單一成績
     /// </summary>
     public int? HGradeCalculation { get; set; }
@@ -163,7 +146,7 @@ public partial class HCourse
     /// <summary>
     /// 考卷
     /// </summary>
-    public string? HExamPaperID { get; set; }
+    public string? HExamPaper { get; set; }
 
     /// <summary>
     /// 督導
@@ -179,6 +162,21 @@ public partial class HCourse
     /// 檢覈成績通過標準
     /// </summary>
     public int? HExamPassStandard { get; set; }
+
+    /// <summary>
+    /// 是否為軸線課程
+    /// </summary>
+    public int? HAxisYN { get; set; }
+
+    /// <summary>
+    /// 軸線類別
+    /// </summary>
+    public int? HAxisClass { get; set; }
+
+    /// <summary>
+    /// 檢覈科目名稱
+    /// </summary>
+    public int? HExamSubject { get; set; }
 
     public int HRollcallYN { get; set; }
 
@@ -209,6 +207,11 @@ public partial class HCourse
 
     public int? HCCPeriodDItem { get; set; }
 
+    /// <summary>
+    /// 考卷
+    /// </summary>
+    public string? HExamPaperID { get; set; }
+
     public int HStatus { get; set; }
 
     public string? HCreate { get; set; }
@@ -218,4 +221,6 @@ public partial class HCourse
     public string? HModify { get; set; }
 
     public string? HModifyDT { get; set; }
+
+    public string? HSave { get; set; }
 }

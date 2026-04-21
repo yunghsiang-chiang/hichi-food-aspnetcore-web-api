@@ -31,4 +31,6 @@ public partial class HExamSubject
     public string? HModify { get; set; }
 
     public string? HModifyDT { get; set; }
+
+    public virtual ICollection<HExamSubjectScoreItem> HExamSubjectScoreItem { get; set; } = new List<HExamSubjectScoreItem>();
 }

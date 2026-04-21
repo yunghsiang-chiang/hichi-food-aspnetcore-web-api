@@ -3,19 +3,26 @@ using System.Collections.Generic;
 
 namespace hochi_food.Models;
 
-public partial class HExamClassRoom
+public partial class HExamAssignment
 {
     public int HID { get; set; }
 
-    /// <summary>
-    /// 考場名稱
-    /// </summary>
-    public int? HPlaceID { get; set; }
+    public int? HCourseID { get; set; }
 
     /// <summary>
-    /// 教室
+    /// 檢覈內容名稱(關聯HExamContent.HID)
     /// </summary>
-    public string? HExamClassRoomName { get; set; }
+    public int? HExamContentID { get; set; }
+
+    public int? HExamSubjectID { get; set; }
+
+    public int? HPlaceID { get; set; }
+
+    public int? HExamClassRoomID { get; set; }
+
+    public int? HMemberID { get; set; }
+
+    public string? HAssignTime { get; set; }
 
     public int? HStatus { get; set; }
 

@@ -17,10 +17,25 @@ public partial class HExamContentDetail
     /// </summary>
     public int? HExamSubjectID { get; set; }
 
+    public string? HExamSubjectName { get; set; }
+
     /// <summary>
-    /// 檢覈時間(分鐘)
+    /// 考場名稱(dbo.HPlace.HID)
     /// </summary>
-    public int? HExamTime { get; set; }
+    public int? HPlaceID { get; set; }
+
+    public string? HPlaceName { get; set; }
+
+    /// <summary>
+    /// 教室名稱(dbo.HExamClassRoom.HID)
+    /// </summary>
+    public int? HExamClassRoomID { get; set; }
+
+    public string? HExamClassRoomName { get; set; }
+
+    public int? HExamPNum { get; set; }
+
+    public int? HExamMinute { get; set; }
 
     /// <summary>
     /// 可同時檢覈人數
@@ -32,6 +47,10 @@ public partial class HExamContentDetail
     /// </summary>
     public int? HExamSort { get; set; }
 
+    public int? HExamPaperID { get; set; }
+
+    public int? HExamPassScore { get; set; }
+
     /// <summary>
     /// 備註
     /// </summary>
@@ -41,24 +60,9 @@ public partial class HExamContentDetail
 
     public string? HCreate { get; set; }
 
-    public string? HCreateDT { get; set; }
+    public DateTime? HCreateDT { get; set; }
 
     public string? HModify { get; set; }
 
-    public string? HModifyDT { get; set; }
-
-    /// <summary>
-    /// 考場名稱(dbo.HPlace.HID)
-    /// </summary>
-    public int? HPlaceID { get; set; }
-
-    /// <summary>
-    /// 教室名稱(dbo.HExamClassRoom.HID)
-    /// </summary>
-    public int? HExamClassRoomID { get; set; }
-
-    /// <summary>
-    /// 一天可容納考試總人數
-    /// </summary>
-    public int? HExamDayPNum { get; set; }
+    public DateTime? HModifyDT { get; set; }
 }

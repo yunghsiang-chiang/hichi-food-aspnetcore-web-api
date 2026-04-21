@@ -95,8 +95,6 @@ public partial class HCourse_T
 
     public int? HBookByDateYN { get; set; }
 
-    public string? HSave { get; set; }
-
     public int? HCCPeriodYN { get; set; }
 
     public int? HCCPeriodDItem { get; set; }
@@ -110,4 +108,6 @@ public partial class HCourse_T
     public string? HModify { get; set; }
 
     public string? HModifyDT { get; set; }
+
+    public string? HSave { get; set; }
 }

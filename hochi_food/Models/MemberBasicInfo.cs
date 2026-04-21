@@ -9,6 +9,8 @@ public partial class MemberBasicInfo
 
     public string HAccount { get; set; } = null!;
 
+    public int? HAreaID { get; set; }
+
     public string? HArea { get; set; }
 
     public string? HPeriod { get; set; }

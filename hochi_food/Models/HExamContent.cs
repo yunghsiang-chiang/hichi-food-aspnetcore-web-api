@@ -30,7 +30,9 @@ public partial class HExamContent
     /// <summary>
     /// 對應的前導檢覈名稱(多選)
     /// </summary>
-    public string? HLeadingExam { get; set; }
+    public string? HLeadingExamID { get; set; }
+
+    public string? HLeadingExamSubjectID { get; set; }
 
     /// <summary>
     /// 勾稽成績通過
