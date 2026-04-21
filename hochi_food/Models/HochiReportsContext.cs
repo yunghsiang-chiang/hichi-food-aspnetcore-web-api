@@ -315,7 +315,7 @@ public partial class HochiReportsContext : DbContext
             entity.Property(e => e.HTitle).HasMaxLength(100);
             entity.Property(e => e.HUpdatedAt).HasDefaultValueSql("(sysutcdatetime())");
 
-            entity.HasOne(d => d.HQuotaPlan).WithMany(p => p.HPhaseWindow)
+            entity.HasOne(d => d.HQuotaPlan).WithMany(p => p.HPhaseWindows)
                 .HasPrincipalKey(p => new { p.HYear, p.HPhase })
                 .HasForeignKey(d => new { d.HYear, d.HPhase })
                 .OnDelete(DeleteBehavior.ClientSetNull)
