@@ -31,6 +31,8 @@ public partial class HSCTMsg
 
     public string? HFile3 { get; set; }
 
+    public string? HHashTag { get; set; }
+
     /// <summary>
     /// 影片嵌入連結
     /// </summary>

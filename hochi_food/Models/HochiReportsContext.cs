@@ -19,22 +19,6 @@ public partial class HochiReportsContext : DbContext
 
     public virtual DbSet<DuplicateQueue> DuplicateQueue { get; set; }
 
-    public virtual DbSet<HApplication> HApplication { get; set; }
-
-    public virtual DbSet<HApplicationItem> HApplicationItem { get; set; }
-
-    public virtual DbSet<HApplicationItemCC> HApplicationItemCC { get; set; }
-
-    public virtual DbSet<HApplyCard> HApplyCard { get; set; }
-
-    public virtual DbSet<HBlessedPerson> HBlessedPerson { get; set; }
-
-    public virtual DbSet<HCoApplicant> HCoApplicant { get; set; }
-
-    public virtual DbSet<HPhaseWindow> HPhaseWindow { get; set; }
-
-    public virtual DbSet<HQuotaPlan> HQuotaPlan { get; set; }
-
     public virtual DbSet<HRegistrationBlessingDetailsV> HRegistrationBlessingDetailsV { get; set; }
 
     public virtual DbSet<HierarchyStructure> HierarchyStructure { get; set; }
@@ -163,176 +147,6 @@ public partial class HochiReportsContext : DbContext
                 .HasDefaultValue("待處理");
         });
 
-        modelBuilder.Entity<HApplication>(entity =>
-        {
-            entity.HasKey(e => e.HId).HasName("PK__HApplica__C7551547556A6D16");
-
-            entity.HasIndex(e => new { e.HApplicantHID, e.HPhase, e.HSubmitAt }, "IX_HApplication_Key").IsDescending(false, false, true);
-
-            entity.Property(e => e.HApplicantHID).HasMaxLength(50);
-            entity.Property(e => e.HAudioUrl).HasMaxLength(300);
-            entity.Property(e => e.HBatchKey).HasMaxLength(20);
-            entity.Property(e => e.HCoApplicantsNote).HasMaxLength(500);
-            entity.Property(e => e.HMandateStatus).HasMaxLength(20);
-            entity.Property(e => e.HMandateType).HasMaxLength(20);
-            entity.Property(e => e.HPhase).HasMaxLength(16);
-            entity.Property(e => e.HSubmitAt).HasDefaultValueSql("(sysutcdatetime())");
-        });
-
-        modelBuilder.Entity<HApplicationItem>(entity =>
-        {
-            entity.HasKey(e => e.HId).HasName("PK__HApplica__C755154728F46893");
-
-            entity.HasIndex(e => e.HApplicationId, "IX_HApplicationItem_AppId");
-
-            entity.HasIndex(e => e.HApplicantHID, "IX_HApplicationItem_ApplicantHID");
-
-            entity.HasIndex(e => new { e.HStatus, e.HAssignedYear }, "IX_HApplicationItem_Status");
-
-            entity.HasIndex(e => new { e.HApplicationId, e.HBlessedPersonId }, "UX_HApplicationItem_PersonId")
-                .IsUnique()
-                .HasFilter("([HBlessedPersonId] IS NOT NULL)");
-
-            entity.HasIndex(e => new { e.HApplicationId, e.HBlessedPersonName }, "UX_HApplicationItem_PersonName").IsUnique();
-
-            entity.Property(e => e.HBlessedAppealLang).HasMaxLength(10);
-            entity.Property(e => e.HBlessedLegalLang).HasMaxLength(10);
-            entity.Property(e => e.HBlessedPersonName).HasMaxLength(100);
-            entity.Property(e => e.HLastEditAt).HasColumnType("datetime");
-            entity.Property(e => e.HLockedAt).HasColumnType("datetime");
-            entity.Property(e => e.HStatus).HasMaxLength(20);
-
-            entity.HasOne(d => d.HBlessedPerson).WithMany(p => p.HApplicationItem)
-                .HasForeignKey(d => d.HBlessedPersonId)
-                .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("FK_HApplicationItem_HBlessedPerson");
-        });
-
-        modelBuilder.Entity<HApplicationItemCC>(entity =>
-        {
-            entity.HasKey(e => e.HId).HasName("PK__HApplica__C755154723EE3792");
-
-            entity.HasIndex(e => e.HCCPeriodCode, "IX_HApplicationItemCC_Period");
-
-            entity.HasIndex(e => new { e.HApplicationItemId, e.HCCPeriodCode }, "UX_HApplicationItemCC_Item_Period")
-                .IsUnique();
-
-            entity.Property(e => e.HCCPeriodCode).HasMaxLength(50);
-            entity.Property(e => e.HCreatedAt)
-                .HasPrecision(0)
-                .HasDefaultValueSql("(sysdatetime())");
-            entity.Property(e => e.HUpdatedAt).HasPrecision(0);
-
-            // ✅ 一對多（HApplicationItem 1 -> 多筆 HApplicationItemCC）
-            entity.HasOne(d => d.HApplicationItem)
-                .WithMany(p => p.HApplicationItemCC)   // 這裡名稱要對到你的實際屬性
-                .HasForeignKey(d => d.HApplicationItemId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_HApplicationItemCC_Item");
-        });
-
-
-        modelBuilder.Entity<HApplyCard>(entity =>
-        {
-            entity.HasKey(e => e.HId).HasName("PK__HApplyCa__C7551547306AB365");
-
-            entity.HasIndex(e => e.HApplicantHID, "IX_HApplyCard_Applicant");
-
-            entity.Property(e => e.Alias).HasMaxLength(50);
-            entity.Property(e => e.Bank).HasMaxLength(50);
-            entity.Property(e => e.CVC).HasMaxLength(128);
-            entity.Property(e => e.CardHolder).HasMaxLength(50);
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.EDate)
-                .HasMaxLength(7)
-                .IsUnicode(false)
-                .IsFixedLength();
-            entity.Property(e => e.MM)
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .IsFixedLength();
-            entity.Property(e => e.No1).HasMaxLength(4);
-            entity.Property(e => e.No2).HasMaxLength(4);
-            entity.Property(e => e.No3).HasMaxLength(4);
-            entity.Property(e => e.No4).HasMaxLength(4);
-            entity.Property(e => e.PersonId).HasMaxLength(20);
-            entity.Property(e => e.Phone).HasMaxLength(30);
-            entity.Property(e => e.SDate)
-                .HasMaxLength(7)
-                .IsUnicode(false)
-                .IsFixedLength();
-            entity.Property(e => e.Times).HasDefaultValue(48);
-            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
-            entity.Property(e => e.YY)
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .IsFixedLength();
-        });
-
-        modelBuilder.Entity<HBlessedPerson>(entity =>
-        {
-            entity.HasKey(e => e.HId).HasName("PK__HBlessed__C7551547ADD68A9A");
-
-            entity.HasIndex(e => new { e.HLegalName, e.HAppealName }, "IX_HBlessedPerson_Name");
-
-            entity.Property(e => e.HAppealLang).HasMaxLength(10);
-            entity.Property(e => e.HAppealName).HasMaxLength(50);
-            entity.Property(e => e.HAudioUrl).HasMaxLength(300);
-            entity.Property(e => e.HCounty).HasMaxLength(50);
-            entity.Property(e => e.HCreatedAt)
-                .HasDefaultValueSql("(sysutcdatetime())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.HCreatedByHID).HasMaxLength(50);
-            entity.Property(e => e.HLegalLang).HasMaxLength(10);
-            entity.Property(e => e.HLegalName).HasMaxLength(50);
-            entity.Property(e => e.HUpdatedAt).HasColumnType("datetime");
-        });
-
-        modelBuilder.Entity<HCoApplicant>(entity =>
-        {
-            entity.HasKey(e => e.HId).HasName("PK__HCoAppli__C755154768E737B8");
-
-            entity.HasIndex(e => e.HApplicationId, "IX_HCoApplicant_AppId");
-
-            entity.HasIndex(e => e.HApplicationId, "IX_HCoApplicant_ApplicationId");
-
-            entity.Property(e => e.HCoApplicantName).HasMaxLength(50);
-            entity.Property(e => e.HDharmaSeat).HasMaxLength(100);
-            entity.Property(e => e.HPeriod).HasMaxLength(50);
-        });
-
-        modelBuilder.Entity<HPhaseWindow>(entity =>
-        {
-            entity.HasKey(e => e.HId).HasName("PK__HPhaseWi__C7551547DEF5FFF2");
-
-            entity.HasIndex(e => new { e.HYear, e.HPhase, e.HIsOpen, e.HOpenFrom, e.HOpenTo }, "IX_HPhaseWindow_Key");
-
-            entity.Property(e => e.HAutoCloseOnFull).HasDefaultValue(true);
-            entity.Property(e => e.HCreatedAt).HasDefaultValueSql("(sysutcdatetime())");
-            entity.Property(e => e.HPhase).HasMaxLength(16);
-            entity.Property(e => e.HTitle).HasMaxLength(100);
-            entity.Property(e => e.HUpdatedAt).HasDefaultValueSql("(sysutcdatetime())");
-
-            entity.HasOne(d => d.HQuotaPlan).WithMany(p => p.HPhaseWindows)
-                .HasPrincipalKey(p => new { p.HYear, p.HPhase })
-                .HasForeignKey(d => new { d.HYear, d.HPhase })
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_HPhaseWindow_Quota");
-        });
-
-        modelBuilder.Entity<HQuotaPlan>(entity =>
-        {
-            entity.HasKey(e => e.HId).HasName("PK__HQuotaPl__C7551547A7E09A63");
-
-            entity.HasIndex(e => new { e.HYear, e.HPhase }, "UQ_HQuotaPlan").IsUnique();
-
-            entity.Property(e => e.HAutoCloseOnFull).HasDefaultValue(true);
-            entity.Property(e => e.HLastUpdated).HasDefaultValueSql("(getutcdate())");
-            entity.Property(e => e.HPhase).HasMaxLength(16);
-        });
-
         modelBuilder.Entity<HRegistrationBlessingDetailsV>(entity =>
         {
             entity
@@ -433,6 +247,7 @@ public partial class HochiReportsContext : DbContext
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+            entity.Property(e => e.DoneAt).HasColumnType("datetime");
             entity.Property(e => e.IntentLevel).HasMaxLength(20);
             entity.Property(e => e.Memo).HasMaxLength(1000);
             entity.Property(e => e.Method).HasMaxLength(20);

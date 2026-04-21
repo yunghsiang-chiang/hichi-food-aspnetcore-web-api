@@ -3,37 +3,29 @@ using System.Collections.Generic;
 
 namespace hochi_food.Models;
 
-public partial class HVow
+public partial class HLightHistory
 {
-    /// <summary>
-    /// 流水號
-    /// </summary>
     public int HID { get; set; }
 
     /// <summary>
-    /// 立愿者
+    /// dbo.HMember.HID
     /// </summary>
     public int? HMemberID { get; set; }
 
     /// <summary>
-    /// 立愿類型
+    /// 建立日期
     /// </summary>
-    public int? HVowType { get; set; }
+    public DateOnly? HCDate { get; set; }
 
     /// <summary>
-    /// 開口愿次數(每週幾次)
+    /// 原光系名稱
     /// </summary>
-    public int? HMVTimesPerWeek { get; set; }
+    public string? HOld { get; set; }
 
     /// <summary>
-    /// 立愿內容
+    /// 新光系名稱
     /// </summary>
-    public string? HVowContent { get; set; }
-
-    /// <summary>
-    /// 下次檢核立愿次數日期
-    /// </summary>
-    public DateOnly? HNextAuditDate { get; set; }
+    public string? HNew { get; set; }
 
     /// <summary>
     /// 狀態
@@ -43,20 +35,20 @@ public partial class HVow
     /// <summary>
     /// 建立者
     /// </summary>
-    public int? HCreate { get; set; }
+    public string? HCreate { get; set; }
 
     /// <summary>
-    /// 建立日期(立愿日期)
+    /// 建立日期
     /// </summary>
     public DateTime? HCreateDT { get; set; }
 
     /// <summary>
-    /// 修改者
+    /// 編輯者
     /// </summary>
-    public int? HModify { get; set; }
+    public string? HModify { get; set; }
 
     /// <summary>
-    /// 修改日期
+    /// 編輯日期
     /// </summary>
     public DateTime? HModifyDT { get; set; }
 }

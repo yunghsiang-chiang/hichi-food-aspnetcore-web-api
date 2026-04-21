@@ -13,6 +13,11 @@ public partial class HSCGRMsg
     public int? HMemberID { get; set; }
 
     /// <summary>
+    /// 紀錄日期
+    /// </summary>
+    public DateOnly? HRecordDate { get; set; }
+
+    /// <summary>
     /// 主題名稱
     /// </summary>
     public string? HTopicName { get; set; }

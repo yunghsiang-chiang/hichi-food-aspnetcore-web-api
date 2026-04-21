@@ -15,6 +15,12 @@ public partial class HNews
 
     public string? HImage { get; set; }
 
+    public string? HFile1 { get; set; }
+
+    public string? HFile2 { get; set; }
+
+    public string? HFile3 { get; set; }
+
     public string? HVideoLink { get; set; }
 
     public int? HStatus { get; set; }

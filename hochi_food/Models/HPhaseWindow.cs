@@ -30,7 +30,4 @@ public partial class HPhaseWindow
     public DateOnly HUpdatedAt { get; set; }
 
     public int? HCCRegularHID { get; set; }
-
-
-    public virtual HQuotaPlan? HQuotaPlan { get; set; }
 }
